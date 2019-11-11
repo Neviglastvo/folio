@@ -26,8 +26,14 @@ export default function targetToShatter(imgToShatter, clickX, clickY) {
 
     h.container.removeEventListener('click', targetToShatter);
 
-    triangulate(h.clickPosition[0], h.clickPosition[1]);
+    console.log(h.fragments.length);
+
+
+    triangulate(clickX, clickY);
     shatter(shatterToPiecesBoom);
+
+    console.log(h.fragments);
+
 
 
 
@@ -35,12 +41,8 @@ export default function targetToShatter(imgToShatter, clickX, clickY) {
 
 function shatterToPiecesBoom() {
 
-
-    // h.fragments.forEach(function (fragment) {
-
     boom(h.fragments, h.clickPosition[0], h.clickPosition[1])
-        // rotate(fragment.canvas)
-    // });
+    // rotate(h.fragments)
 
     console.log('shatterToPiecesBoom()');
 }

@@ -21,8 +21,6 @@ export default function shatter(nextFunction) {
             );
 
         element.style.zIndex = Math.floor(d).toString();
-        // console.log(`${dx} : ${dy} : ${d}`);
-
 
         let tl1 = new TimelineMax();
 
@@ -32,6 +30,8 @@ export default function shatter(nextFunction) {
 
         h.fragments.push(fragment);
 
+
+
         h.container.appendChild(element);
     }
 
@@ -39,8 +39,6 @@ export default function shatter(nextFunction) {
     $(h.container).find("img").addClass('hidden');
 
     console.log(`shatter()`);
-
-
 
 }
 

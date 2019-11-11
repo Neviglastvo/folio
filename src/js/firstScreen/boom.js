@@ -2,37 +2,50 @@ import * as h from './help'
 
 export default function boom(element, clickX, clickY) {
 
-    let bounds = h.container.getBoundingClientRect(),
+    let bounds = h.image.getBoundingClientRect(),
         center = {
             x: clickX,
             y: clickY,
         },
-        cfg = h.cfg.boom,
-        stagger = cfg.stagger,
+        cfgBoom = h.cfg.boom,
+        cfgRotate = h.cfg.rotate,
         radius = getDistance(center, bounds);
 
-    element.forEach(function (element) {
+    element.forEach(function (element = element.canvas) {
 
         element = element.canvas;
 
-        let bbox = element.getBoundingClientRect();
-        let dist = getDistance(bbox, center);
-        let delay = dist / radius * stagger;
-        let scalar = radius / dist;
+        let bbox = element.getBoundingClientRect(),
+            dist = getDistance(bbox, center),
+            delay = dist / radius * cfgBoom.stagger,
+            scalar = radius / dist,
+            nt = {
+                signs: ['-=', '+=']
+            };
 
         let tl0 = new TimelineMax();
         let tl1 = new TimelineMax();
 
 
-        tl0.to(element, cfg.speed1, {
-            autoAlpha: cfg.alpha,
+        tl0.to(element, cfgBoom.speed1, {
+            autoAlpha: cfgBoom.alpha,
             x: (bbox.x - center.x) * scalar,
-            y: (bbox.y - center.y) * scalar
+            y: (bbox.y - center.y) * scalar,
+            css: {
+
+                rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
+                rotationX: Math.random() * 360,
+                z: 400,
+                // left: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px",
+                // top: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px"
+            },
+            ease: cfgRotate.ease,
+            // repeat: cfgRotate.repeat,
         }, delay);
 
-        tl1.to(tl1, cfg.speed2, {
-            progress: cfg.progress,
-            ease: cfg.ease,
+        tl1.to(tl1, cfgBoom.speed2, {
+            progress: cfgBoom.progress,
+            ease: cfgBoom.ease,
             repeat: 0,
         });
 

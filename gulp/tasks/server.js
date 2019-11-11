@@ -23,7 +23,7 @@ gulp.task('server', done => {
       config.dest.img + '/**/*'
     ],
     port: util.env.port || 8080,
-    logLevel: 'info', // 'debug', 'info', 'silent', 'warn'
+    logLevel: 'silent', // 'debug', 'info', 'silent', 'warn'
     logConnections: false,
     logFileChanges: true,
     open: Boolean(util.env.open),

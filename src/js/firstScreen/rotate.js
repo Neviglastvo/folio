@@ -2,25 +2,34 @@ import * as h from './help'
 
 export default function rotate(element) {
 
-    let tl0 = new TimelineMax(),
-        nt = {
-            signs: ['-=', '+=']
-        };
+    let cfg = h.cfg.rotate;
 
-    tl0.to(element, 1 * h.randomRange(0.9, 1.1), {
-        css: {
+    element.forEach(function (element) {
 
-            rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
-            rotationX: Math.random() * 360,
-            z: 400,
-            left: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px",
-            top: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px"
-        },
-        ease: Linear.easeOut,
-        repeat: 0,
-        yoyo: false,
-        paused: false
+        element = element.canvas;
+
+        let tl0 = new TimelineMax(),
+            nt = {
+                signs: ['-=', '+=']
+            };
+
+        tl0.to(element, cfg.speed * h.randomRange(cfg.speedRandomMin, cfg.speedRandomMax), {
+            css: {
+
+                rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
+                rotationX: Math.random() * 360,
+                z: 400,
+                // left: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px",
+                // top: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px"
+            },
+            ease: cfg.ease,
+            repeat: cfg.repeat,
+            yoyo: false,
+            paused: false
+        });
+
     });
+
 
     console.log('rotate()');
 
