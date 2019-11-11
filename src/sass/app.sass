@@ -1,0 +1,157 @@
+@import "helpers/*.sass"
+@import "base/*.sass"
+@import "generated/*.sass"
+
+
+body
+	background-color: black
+	overflow-x: hidden
+	display: flex
+	flex-direction: column
+
+#container
+	width: 100vw
+	height: 100vh
+	overflow: hidden
+	display: flex
+	align-items: center
+	justify-content: center
+	img
+		cursor: pointer
+	canvas
+		position: absolute
+		backface-visibility: visible
+		fill: #000
+		fill-opacity: 0.7
+		stroke: #333
+		stroke-width: 0.5
+		vector-effect: non-scaling-stroke
+		stroke-linejoin: round
+
+.hero
+	position: relative
+	display: flex
+	width: 100vw
+	height: 100vh
+	&__container
+		position: relative
+		height: 100%
+		width: 50%
+
+	img
+		width: auto
+		height: 100%
+		+coverimg
+		+coverdiv
+		+h
+			cursor: pointer
+
+	canvas
+		position: absolute
+
+.first-screen
+	display: flex
+	justify-content: center
+	align-items: center
+	position: absolute
+	width: 100vw
+	height: 100vh
+	left: 0
+	top: 0
+	background-color: black
+	overflow: hidden
+
+	&__center
+		width: 200px
+		height: 200px
+		border-radius: 50%
+		position: relative
+		z-index: 10
+
+		.circle
+			+coverdiv
+			border-radius: 50%
+			background: linear-gradient(#fc107f, #f86ef6,#fc107f)
+			animation: qwe 0.2s linear infinite
+
+			&:after
+				content: ""
+				position: absolute
+				border-radius: 50%
+				top: 2px
+				right: 2px
+				bottom: 2px
+				left: 2px
+				background-color: black
+
+			span
+				+coverdiv
+				border-radius: 50%
+				background: linear-gradient(#fc107f, #f86ef6,#fc107f)
+				&:nth-child(1)
+					+blur(5px)
+				&:nth-child(2)
+					+blur(25px)
+				&:nth-child(3)
+					+blur(50px)
+				&:nth-child(4)
+					+blur(75px)
+
+	&__bg
+		+coverdiv
+		pointer-events: none
+		transform-origin: center center
+		transform: scale(1.5) rotate(160deg)
+
+	&__bg-item
+		position: absolute
+		left: 0
+		width: 100%
+		height: 50vh
+
+		&--top
+			top: 0
+			border-bottom: 1px solid #fc107f
+
+		&--bot
+			border-top: 1px solid #fc107f
+			bottom: 0
+
+
++keyframes(qwe)
+	0%
+		+rotate(0)
+	100%
+		+rotate(360)
+
+
+.test
+	width: 100vw
+	height: 100vh
+	overflow: hidden
+	display: flex
+	align-items: center
+	justify-content: center
+
+	&__container
+		width: 100%
+		display: flex
+		align-items: center
+
+	&__img-container
+		width: calc(100% / 3)
+		position: relative
+	canvas
+		position: absolute
+
+	&__img
+		width: 100%
+		height: auto
+		+h
+			cursor: pointer
+
+
+.hidden
+	opacity: 0
+	pointer-events: none
+	visibility: hidden
