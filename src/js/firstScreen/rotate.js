@@ -2,18 +2,24 @@ import * as h from './help'
 
 export default function rotate(element) {
 
-    let cfg = h.cfg.rotate;
+    let cfg = h.cfg.rotate,
+        center = {
+            x: h.clickPosition[0],
+            y: h.clickPosition[1]
+        },
+        radius = getDistance(center, h.imageBound);
 
     element.forEach(function (element) {
 
         element = element.canvas;
 
-        let tl0 = new TimelineMax(),
-            nt = {
+        let nt = {
                 signs: ['-=', '+=']
             };
 
-        tl0.to(element, cfg.speed * h.randomRange(cfg.speedRandomMin, cfg.speedRandomMax), {
+        let tl0 = new TimelineMax();
+
+        tl0.to(element, cfg.speed, {
             css: {
 
                 rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
@@ -26,12 +32,16 @@ export default function rotate(element) {
             repeat: cfg.repeat,
             yoyo: false,
             paused: false
-        });
+        }, delay);
 
     });
 
-
     console.log('rotate()');
 
+}
 
+function getDistance(p1, p2) {
+    let dx = p2.x - p1.x;
+    let dy = p2.y - p1.y;
+    return Math.sqrt(dx * dx + dy * dy);
 }

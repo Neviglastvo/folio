@@ -7,31 +7,30 @@ export let cfg = {
         { r: 1000, c: 15 },
         { r: 2000, c: 12 },
     ],
-    variance: 0.5, //0.5 - 5 best. Variativity of fragments
+    variance: 0.15, //0.5 - 5 best. Variativity of fragments
     shatter: {
-        delay: 0.1,
-        speed: 0.1,
-        fragmentDelay: 0.003,
-        fragmentDelayRandomMin: 0.1,
-        fragmentDelayRandomMax: 0.5,
+        delay: 0.5,
+        fragmentDelay: 0.007,
+        fragmentDelayRandomMin: 0.05,
+        fragmentDelayRandomMax: 0.43,
         shatteredOpacityOfFragment: 0.9,
         shatteredOpacityDelayBefore: 0.01, // sec
         shatteredOpacitySpeed: 0.05, // sec
     },
     boom: {
-        stagger: 1, //delay before next fragment boom()
-        progress: 0.1,
-        alpha: 0.5,
-        ease: 'Expo.easeInOut',
-        speed1: 1, // overall animation speed
-        speed2: 0,
+        stagger: 0.04, //delay before next fragment boom()
+        progress: 0.02, // linarity of overall animation
+        alpha: 0,
+        ease: 'Expo.easeIn',
+        speed1: 3, // overall animation speed
+        speed2: 1.2,
 
     },
     rotate: {
         ease: 'Linear.easeOut',
-        speed: 20, // overall animation speed (lower - faster)
+        speed: 10, // overall animation speed (lower - faster)
         speedRandomMin: 0.1, // minimum rotation speed
-        speedRandomMax: 0.5, // maximum rotation speed
+        speedRandomMax: 1, // maximum rotation speed
         repeat: 0, //0 - no repeat, -1 repeat
 
     },

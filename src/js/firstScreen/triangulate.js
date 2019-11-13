@@ -1,4 +1,5 @@
 import * as h from './help'
+import Delaunay from '../lib/delaunay'
 
 export default function triangulate(clickX, clickY) {
 

@@ -1,6 +1,5 @@
 import targetToShatter from './firstScreen/targetToShatter';
 import domToImage from 'dom-to-image';
-import async from 'async';
 
 document.addEventListener('click', function (e) {
 	let target = e.target;

@@ -1,11 +1,11 @@
 import * as h from './help'
 
-export default function boom(element, clickX, clickY) {
+export default function boom(element) {
 
     let center = {
-            x: clickX,
-            y: clickY
-        },
+        x: h.clickPosition[0],
+        y: h.clickPosition[1]
+    },
         cfg = h.cfg.boom,
         radius = getDistance(center, h.imageBound);
 
@@ -35,9 +35,12 @@ export default function boom(element, clickX, clickY) {
             autoAlpha: cfg.alpha,
             x: (bbox.x - center.x) * scalar,
             y: (bbox.y - center.y) * scalar,
+            rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
+            rotationX: Math.random() * 360,
+            z: Math.random() * 400,
         }, delay);
 
-        tl1.to(tl1, cfg.speed2, {
+        tl1.to(tl0, cfg.speed2, {
             progress: cfg.progress,
             ease: cfg.ease,
             repeat: 0,
