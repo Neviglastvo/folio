@@ -18,7 +18,7 @@ function createConfig(env) {
     context: path.join(__dirname, config.src.js),
     entry: {
       // vendor: ['jquery'],
-      app: './app.js',
+      app: ['babel-polyfill', './app.js'],
       // global: './global.js',
       // index: './index.js',
       // catalog: './catalog.js',

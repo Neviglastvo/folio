@@ -1,48 +1,41 @@
 import targetToShatter from './firstScreen/targetToShatter';
 import domToImage from 'dom-to-image';
+import async from 'async';
 
-const imgElement = $(".js-shatter");
+document.addEventListener('click', function (e) {
+	let target = e.target;
 
-$(document).ready(function () {
+	if (target && target.classList.contains('js-shatter')) {
 
-	imgElement.each(function (i=0) {
+		let newImg,
+			box = target.getBoundingClientRect(),
+			top = box.top,
+			left = box.left,
+			clickX = e.clientX - left,
+			clickY = e.clientY - top;
 
-		let $this = this;
-
-		domToImage.toPng(this).then(function (dataUrl) {
+		domToImage.toPng(target).then(function (dataUrl) {
 
 			let img = new Image();
+			newImg = img;
 
 			img.src = dataUrl;
 			img.className = 'js-shatter-new';
-			img.dataset.id = i++;
+			img.dataset.id = 0;
 
-			$this.parentNode.appendChild(img);
-			$this.remove();
+			target.parentNode.appendChild(newImg);
+			target.remove();
 
+		}).then(function () {
 
-		})
-		// .catch(function (error) {
-		// 	console.error('oops, something went wrong!', error);
-		// })
-		// .finally(function () {
+			targetToShatter(newImg, clickX, clickY)
 
-		// 	console.log('toPng()');
+		}).catch(function (error) {
+			console.error('oops, something went wrong!', error);
+		}).finally(function () {
+			console.log('finish');
+		});
 
-		// });
+	}
 
-	})
-
-});
-
-$('body').on('click', '.js-shatter-new', function (event) {
-
-	let target = event.target,
-		box = target.getBoundingClientRect(),
-		top = box.top,
-		left = box.left,
-		clickX = event.clientX - left,
-		clickY = event.clientY - top;
-
-	targetToShatter(this, clickX, clickY)
 });

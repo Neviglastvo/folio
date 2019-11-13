@@ -1,0 +1,54 @@
+.works
+	height: 100vh
+	background-color: black
+	padding: 15px 15px 15px 15px
+
+
+	&__container
+		display: flex
+		flex-direction: column
+		align-items: center
+		border-radius: 6px
+		padding: 15px
+		padding-bottom: 15vh
+		height: 100%
+		background-color: $black
+		position: relative
+		overflow: hidden
+		&:after
+			content: ""
+			position: absolute
+			bottom: 0px
+			height: 24vh
+			left: 0
+			width: 100%
+			border-top: 1px solid $pink
+			transform: perspective(300px) rotateX(65deg) scaleY(-1)
+
+	&__title-container
+		display: flex
+		align-items: center
+		margin-bottom: 60px
+
+	&__title
+		font-family: $fa
+		font-size: 80px
+		font-weight: 900
+		color: $white
+		text-transform: uppercase
+
+	&__slider
+		width: 100%
+		display: flex
+		height: 100%
+		flex-grow: 1
+
+	&__slider-container
+		width: 100%
+		display: flex
+		align-items: flex-end
+		height: 100%
+
+	&__slider-item
+		width: calc(100% / 3)
+

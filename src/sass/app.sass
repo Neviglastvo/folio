@@ -2,6 +2,11 @@
 @import "base/*.sass"
 @import "generated/*.sass"
 
+@import "screens/*.sass"
+@import "partials/*.sass"
+@import "works/*.sass"
+@import "cards/*.sass"
+
 
 body
 	background-color: black
@@ -9,35 +14,24 @@ body
 	display: flex
 	flex-direction: column
 
-#container
-	width: 100vw
-	height: 100vh
-	overflow: hidden
-	display: flex
-	align-items: center
-	justify-content: center
-	img
-		+h
-			cursor: pointer
-	canvas
-		position: absolute
-		backface-visibility: visible
-		fill: #000
-		fill-opacity: 0.7
-		stroke: #333
-		stroke-width: 0.5
-		vector-effect: non-scaling-stroke
-		stroke-linejoin: round
 
 .hero
 	position: relative
 	display: flex
 	width: 100vw
 	height: 100vh
+	// transform: perspective(300px) rotateY(65deg)
 	&__container
 		position: relative
 		height: 100%
-		width: 50%
+		width: 100%
+		&:after
+			content: ""
+			+vcenter
+			width: 3px
+			height: 3px
+			background-color: cyan
+			pointer-events: none
 
 	img
 		width: auto
@@ -49,6 +43,7 @@ body
 
 	canvas
 		position: absolute
+		pointer-events: none
 
 .first-screen
 	display: flex
@@ -156,3 +151,5 @@ body
 	opacity: 0
 	pointer-events: none
 	visibility: hidden
+
+

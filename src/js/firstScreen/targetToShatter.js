@@ -1,4 +1,4 @@
-import { TweenMax } from 'gsap/TweenMax'
+import { TweenMax } from 'gsap'
 
 import * as h from './help'
 import triangulate from './triangulate'
@@ -10,10 +10,8 @@ import rotate from './rotate'
 export default function targetToShatter(imgToShatter, clickX, clickY) {
 
     h.image = imgToShatter;
+    h.imageBound = h.image.getBoundingClientRect();
     h.container = imgToShatter.parentNode;
-    h.containerBound = h.container.getBoundingClientRect();
-    // h.imageWidth = window.getComputedStyle(h.image).width;
-    // h.imageHeight = window.getComputedStyle(h.image).height;
     h.clickPosition[0] = clickX;
     h.clickPosition[1] = clickY;
     h.imageWidth = imgToShatter.offsetWidth
@@ -26,16 +24,8 @@ export default function targetToShatter(imgToShatter, clickX, clickY) {
 
     h.container.removeEventListener('click', targetToShatter);
 
-    console.log(h.fragments.length);
-
-
     triangulate(clickX, clickY);
     shatter(shatterToPiecesBoom);
-
-    console.log(h.fragments);
-
-
-
 
 }
 
@@ -44,7 +34,16 @@ function shatterToPiecesBoom() {
     boom(h.fragments, h.clickPosition[0], h.clickPosition[1])
     // rotate(h.fragments)
 
-    console.log('shatterToPiecesBoom()');
+    // h.fragments.forEach(function (f) {
+    //     h.container.removeChild(f.canvas);
+    // });
+    // h.fragments.length = 0;
+    // h.vertices.length = 0;
+    // h.indices.length = 0;
+
+    console.log('end');
+
+
 }
 
 

@@ -30,12 +30,10 @@ export default function shatter(nextFunction) {
 
         h.fragments.push(fragment);
 
-
-
         h.container.appendChild(element);
     }
 
-    // h.container.removeChild(h.image);
+
     $(h.container).find("img").addClass('hidden');
 
     console.log(`shatter()`);

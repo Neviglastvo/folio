@@ -25,7 +25,8 @@ export default function triangulate(clickX, clickY) {
 
 
     h.indices = Delaunay.triangulate(h.vertices);
-    console.log(`triangulate(), clickX:${clickX}, clickY:${clickY}`);
+    // console.log(`triangulate(), clickX:${clickX}, clickY:${clickY}`);
+
 
 }
 

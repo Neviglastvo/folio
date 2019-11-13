@@ -1,5 +1,5 @@
 ---
-title: Index page
+title: Index test
 ---
 {% extends "layouts/_layout.html" %}
 
@@ -16,6 +16,10 @@ title: Index page
 		{% import "data/data.html" as tests %}
 
 		{% for test in tests.list %}
+		<li>{{test.title}}</li>
+		{% endfor %}
+
+		{% for test in range(0, 4) %}
 		<li>{{test.title}}</li>
 		{% endfor %}
 	{# end of example #}

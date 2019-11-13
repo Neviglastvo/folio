@@ -2,56 +2,50 @@ import * as h from './help'
 
 export default function boom(element, clickX, clickY) {
 
-    let bounds = h.image.getBoundingClientRect(),
-        center = {
+    let center = {
             x: clickX,
-            y: clickY,
+            y: clickY
         },
-        cfgBoom = h.cfg.boom,
-        cfgRotate = h.cfg.rotate,
-        radius = getDistance(center, bounds);
+        cfg = h.cfg.boom,
+        radius = getDistance(center, h.imageBound);
 
-    element.forEach(function (element = element.canvas) {
+    console.log(center);
+
+
+    element.forEach(function (element) {
 
         element = element.canvas;
 
         let bbox = element.getBoundingClientRect(),
             dist = getDistance(bbox, center),
-            delay = dist / radius * cfgBoom.stagger,
+            delay = dist / radius * cfg.stagger,
             scalar = radius / dist,
             nt = {
                 signs: ['-=', '+=']
             };
 
+        // console.log(dist);
+
+
         let tl0 = new TimelineMax();
         let tl1 = new TimelineMax();
 
 
-        tl0.to(element, cfgBoom.speed1, {
-            autoAlpha: cfgBoom.alpha,
+        tl0.to(element, cfg.speed1, {
+            autoAlpha: cfg.alpha,
             x: (bbox.x - center.x) * scalar,
             y: (bbox.y - center.y) * scalar,
-            css: {
-
-                rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
-                rotationX: Math.random() * 360,
-                z: 400,
-                // left: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px",
-                // top: nt.signs[h.rand2Number()] + (Math.random() * 400) + "px"
-            },
-            ease: cfgRotate.ease,
-            // repeat: cfgRotate.repeat,
         }, delay);
 
-        tl1.to(tl1, cfgBoom.speed2, {
-            progress: cfgBoom.progress,
-            ease: cfgBoom.ease,
+        tl1.to(tl1, cfg.speed2, {
+            progress: cfg.progress,
+            ease: cfg.ease,
             repeat: 0,
         });
 
     });
 
-    console.log(`boom(), clickX:${clickX}, clickY:${clickY}`);
+    // console.log(`boom(), clickX:${clickX}, clickY:${clickY}`);
 
 
 }
