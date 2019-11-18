@@ -1,60 +1,129 @@
 .layout
-	overflow: hidden
-	position: relative
+	width: 100%
+	background-color: #000
 	display: flex
-	width: 100vw
-	height: 100vh
+	flex-direction: column
+	position: relative
+	overflow: hidden
 
-	&__sidebar
-		z-index: 20
-		width: 320px
-		min-width: 320px
-		max-width: 320px
-		height: auto
+	&__hero
+	&__hero
+		padding: vw(1920, 100px)
 		min-height: 100vh
-		overflow-x: hidden
-		overflow-y: auto
-		background-color: $black
-		&::-webkit-scrollbar
-			background-color: transparent
-			width: 10px
-		&::-webkit-scrollbar-track
-			background-color: transparent
-		&::-webkit-scrollbar-thumb
-			background-color: $accent
-			background-image: $gradientB
-			border-radius: 5px
-		&::-webkit-scrollbar-track-piece
-			background-color: transparent
-
-	&__content
-		width: 100%
-		overflow-x: hidden
-		overflow-y: auto
-		background-color: $white
-		position: relative
-		color: #000
-
-	&__content-container
 		display: flex
-		flex-wrap: wrap
-		padding: 20px 0
 
-	&__content-header
-		width: 100%
-		min-height: 200px
+	&__container
+		padding: vw(1920, 100px)
 		display: flex
 		flex-direction: column
-		justify-content: center
+
+	&__item
+		padding: 120px vw(1920, 60px)
+		overflow: hidden
+		background-color: #201f1f
+		display: flex
+		flex-direction: column
 		align-items: center
-		margin: 0 20px 20px
-		border: 1px solid $black
+		border-radius: 8px
+		box-shadow: 0 0px 70px 3px rgba($pink, 0.1)
+		position: relative
 
-	&__content-title
-		font-size:  34px
-		line-height: 34px
-		font-family: $fa
+
+	&__item-title
+		margin-bottom: 30px
+		font-size: 120px
 		font-weight: 700
-		margin-bottom: 20px
+		line-height: 92px
+		text-align: center
 
-	&__breadcrumbs
+	&__item-subtitle
+		margin-bottom: 120px
+		font-size: 60px
+		font-weight: 700
+		line-height: 46px
+		text-align: center
+		position: relative
+		&:after, &:before
+			content: ""
+			position: absolute
+			top: 0
+			bottom: 0
+			margin: auto 0
+			height: 3px
+			background-color: #fff
+			width: 60px
+		&:after
+			left: -100px
+		&:before
+			right: -100px
+
+
+	&__divider
+		width: 100%
+		display: flex
+		flex-direction: column
+		align-items: center
+		margin-bottom: 150px
+
+	&__divider-icon
+		margin-bottom: 100px
+		svg
+			width: 32px
+			height: 32px
+			fill: #fff
+			+rotate(90)
+
+
+	&__divider-title
+		font-size: 48px
+		font-weight: 900
+		color: #fdfdfd
+
+	&__bg
+		pointer-events: none
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+
+	&__bg-item
+		position: absolute
+		width: 1px
+		height: 100%
+		background-color: rgba(255,255,255,0.1)
+		&--1
+			top: 90vh
+			left: calc(100% / 4)
+			height: calc(100% - 90vh)
+		&--2
+			top: 50vh
+			left: 50%
+			height: calc(100% - 50vh)
+		&--3
+			top: 0
+			right: calc(100% / 4)
+
+
+	&__item-bg
+		pointer-events: none
+		position: absolute
+		top: 0
+		left: vw(1920, 60px)
+		right: vw(1920, 60px)
+		bottom: 0
+
+	&__item-bg-item
+		position: absolute
+		width: 1px
+		top: 0
+		height: 100%
+		background-color: rgba(255,255,255,0.2)
+		&--1
+			left: calc(100% / 5)
+		&--2
+			left: 50%
+		&--3
+			right: calc(100% / 5)
+
+

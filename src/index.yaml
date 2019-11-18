@@ -3,3 +3,7 @@ ProjectTitle: Portfolio
 PageList:
 - file: app.html
   ready: 1
+- file: q.html
+  ready: 1
+- file: folio.html
+  ready: 1

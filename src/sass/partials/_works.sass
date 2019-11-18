@@ -1,0 +1,97 @@
+.works
+	width: 100%
+	display: flex
+	flex-direction: column
+	align-items: center
+	// background-color: transparent
+
+	&__item
+		width: 80%
+		display: flex
+		margin-bottom: 90px
+		position: relative
+		min-height: 450px
+		align-self: flex-start
+
+		&:last-child
+			margin-bottom: 0
+		+h
+			.works__title
+				color: $pink
+				font-size: 110px
+			.works__img-container
+				transform: translateX(100px)
+				box-shadow: 0 0 100px 5px rgba($pink, 0.38)
+		&:nth-child(even)
+			align-self: flex-end
+			flex-direction: row-reverse
+			+h
+				.works__img-container
+					transform: translateX(-100px)
+			.works__box
+				align-items: flex-end
+			.works__img-container
+				left: 0
+				right: calc(100% / 4)
+
+	&__box
+		padding: 80px 0
+		display: flex
+		flex-direction: column
+
+	&__title
+		z-index: 5
+		margin-bottom: 20px
+		font-size: 50px
+		font-weight: 700
+		+tr
+
+	&__subtitle
+		font-size: 18px
+		font-weight: 300
+
+	&__link
+		margin-top: auto
+		font-size: 18px
+		font-weight: 300
+		color: #FFF
+		position: relative
+		display: flex
+		align-items: center
+		+tr
+		&:before
+			content: ""
+			width: 0
+			margin-right: 0
+			height: 3px
+			background-color: $pink
+			+tr
+		+h
+			color: $pink
+			&:before
+				margin-right: 10px
+				width: 20px
+
+	&__img-container
+		position: absolute
+		top: 0
+		bottom: 0
+		left: calc(100% / 4)
+		right: 0
+		background-color: #000
+		box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.38)
+		border-radius: 4px
+		overflow: hidden
+		+tr
+
+	&__img
+
+	&__more
+		font-size: 25px
+		font-weight: 700
+		+tr
+		+h
+			cursor: pointer
+			color: $pink
+
+
