@@ -4,12 +4,15 @@ import * as h from './help'
 import triangulate from './triangulate'
 import shatter from './shatter'
 import boom from './boom'
-import rotate from './rotate'
+// import rotate from './rotate'
 
 
 export default function targetToShatter(imgToShatter, clickX, clickY) {
 
     h.image = imgToShatter;
+    h.imageID = parseInt(imgToShatter.dataset.id);
+    console.log('ID: '+h.imageID);
+
     h.imageBound = h.image.getBoundingClientRect();
     h.container = imgToShatter.parentNode;
     h.clickPosition[0] = clickX;
@@ -20,18 +23,21 @@ export default function targetToShatter(imgToShatter, clickX, clickY) {
     TweenMax.defaultEase = Linear.easeNone;
     TweenMax.set(h.container, { perspective: 600 });
 
-    console.log(`targetToShatter(${h.image}(w:${h.imageWidth}, h:${h.imageHeight}), clickX:${clickX}, clickY:${clickY}`);
+    // console.log(`targetToShatter(${h.image}(w:${h.imageWidth}, h:${h.imageHeight}), clickX:${clickX}, clickY:${clickY}`);
 
     h.container.removeEventListener('click', targetToShatter);
 
     triangulate(clickX, clickY);
     shatter(shatterToPiecesBoom);
 
+
 }
 
 function shatterToPiecesBoom() {
 
-    boom(h.fragments, h.clickPosition[0], h.clickPosition[1])
+
+
+    boom(h.fragments, h.imageID)
     // rotate(h.fragments)
 
     // h.fragments.forEach(function (f) {
@@ -40,9 +46,6 @@ function shatterToPiecesBoom() {
     // h.fragments.length = 0;
     // h.vertices.length = 0;
     // h.indices.length = 0;
-
-    console.log('end');
-
 
 }
 

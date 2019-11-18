@@ -24,10 +24,8 @@ export default function triangulate(clickX, clickY) {
         v[1] = h.clamp(v[1], 0, h.imageHeight);
     });
 
-
     h.indices = Delaunay.triangulate(h.vertices);
     // console.log(`triangulate(), clickX:${clickX}, clickY:${clickY}`);
-
 
 }
 

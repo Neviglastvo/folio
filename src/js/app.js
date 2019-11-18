@@ -1,8 +1,14 @@
 import targetToShatter from './firstScreen/targetToShatter';
 import domToImage from 'dom-to-image';
 
+const images = document.querySelectorAll('.js-shatter')
+
+let id = 0;
+
 document.addEventListener('click', function (e) {
 	let target = e.target;
+
+
 
 	if (target && target.classList.contains('js-shatter')) {
 
@@ -20,7 +26,7 @@ document.addEventListener('click', function (e) {
 
 			img.src = dataUrl;
 			img.className = 'js-shatter-new';
-			img.dataset.id = 0;
+			img.dataset.id = id++;
 
 			target.parentNode.appendChild(newImg);
 			target.remove();
@@ -32,7 +38,7 @@ document.addEventListener('click', function (e) {
 		}).catch(function (error) {
 			console.error('oops, something went wrong!', error);
 		}).finally(function () {
-			console.log('finish');
+			// console.log('finish');
 		});
 
 	}

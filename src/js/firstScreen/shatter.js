@@ -1,9 +1,11 @@
 import * as h from './help'
 
 export default function shatter(nextFunction) {
-    let p0, p1, p2, fragment;
+    let p0, p1, p2, fragment, id;
     let cfg = h.cfg.shatter;
     let tl0 = new TimelineMax({ onComplete: nextFunction });
+
+    id = h.imageID;
 
     for (let i = 0; i < h.indices.length; i += 3) {
 
@@ -11,7 +13,9 @@ export default function shatter(nextFunction) {
         p1 = h.vertices[h.indices[i + 1]];
         p2 = h.vertices[h.indices[i + 2]];
 
-        fragment = new Fragment(p0, p1, p2);
+        fragment = new Fragment(p0, p1, p2, id);
+
+
         let element = fragment.canvas;
 
         let dx = fragment.centroid[0] - h.clickPosition[0],
@@ -28,15 +32,15 @@ export default function shatter(nextFunction) {
 
         tl0.insert(tl1, delay);
 
-        h.fragments.push(fragment);
+        h.fragments.push({fragment: fragment});
 
         h.container.appendChild(element);
     }
 
+    console.log(h.fragments);
 
     $(h.container).find("img").addClass('hidden');
 
-    console.log(`shatter()`);
 
 }
 
@@ -46,10 +50,11 @@ export default function shatter(nextFunction) {
 // FRAGMENT
 //////////////
 
-let Fragment = function (v0, v1, v2) {
+let Fragment = function (v0, v1, v2, id) {
     this.v0 = v0;
     this.v1 = v1;
     this.v2 = v2;
+    this.id = id;
 
     this.computeBoundingBox();
     this.computeCentroid();

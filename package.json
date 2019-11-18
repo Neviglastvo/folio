@@ -76,6 +76,7 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
+    "@pixi/filter-shockwave": "^3.0.3",
     "dom-to-image": "^2.6.0",
     "gsap": "^2.1.3",
     "js-cookie": "^2.2.1",
