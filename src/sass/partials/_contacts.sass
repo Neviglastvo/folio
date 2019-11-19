@@ -1,4 +1,4 @@
-.works
+.contacts
 	width: 100%
 	display: flex
 	flex-direction: column
@@ -6,55 +6,46 @@
 	// background-color: transparent
 
 	&__item
-		width: 80%
+		width: 100%
 		display: flex
 		margin-bottom: 90px
 		position: relative
 		min-height: 450px
-		align-self: flex-start
+		flex-direction: row-reverse
 
 		&:last-child
 			margin-bottom: 0
-		+h
-			.works__title
-				color: $pink
-				font-size: 110px
-			.works__img-container
-				transform: translateX(100px)
-				box-shadow: 0 0 100px 5px rgba($pink, 0.38)
-		&:nth-child(even)
-			align-self: flex-end
-			flex-direction: row-reverse
-			+h
-				.works__img-container
-					transform: translateX(-100px)
-			.works__box
-				align-items: flex-end
-			.works__img-container
-				left: 0
-				right: calc(100% / 4)
 
 	&__box
 		padding: 80px 0
 		display: flex
 		flex-direction: column
+		z-index: 2
 
 	&__title
-		z-index: 5
 		margin-bottom: 20px
 		font-size: 50px
 		font-weight: 700
+		color: $pink
 		+tr
 
 	&__subtitle
 		font-size: 18px
 		font-weight: 300
+		color: #FFF
+		margin-bottom: 20px
+		&:last-child
+			margin-bottom: 0
+		+tr
+		+h
+			color: $pink
 
 	&__link
 		margin-top: auto
 		font-size: 18px
 		font-weight: 300
 		color: #FFF
+		text-transform: uppercase
 		position: relative
 		display: flex
 		align-items: center
@@ -76,23 +67,14 @@
 		position: absolute
 		top: 0
 		bottom: 0
-		left: calc(100% / 4)
-		right: 0
+		right: calc(100% / 3)
+		left: calc(100% / 5)
+		max-width: 450px
 		background-color: #000
 		box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.38)
 		overflow: hidden
+		z-index: 1
 		+tr
 
 	&__img
-		width: 100%
-		+coverimg
-
-	&__more
-		font-size: 25px
-		font-weight: 700
-		+tr
-		+h
-			cursor: pointer
-			color: $pink
-
 

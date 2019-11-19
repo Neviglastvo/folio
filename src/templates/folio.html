@@ -5,6 +5,8 @@ title: Index page
 
 {% block content %}
 
+{% import "data/data.html" as data %}
+
 
 <div class="layout">
 
@@ -65,24 +67,61 @@ title: Index page
 			</div>
 
 			<div class="layout__item-title">Works</div>
-			<div class="layout__item-subtitle">see my works</div>
+			<div class="layout__item-subtitle">see best of my works</div>
 
 			<div class="works">
-				{% for test in range(0, 3) %}
+				{% for item in data.works %}
 				<div class="works__item">
 					<div class="works__box">
-						<div class="works__title">Incrify</div>
-						<div class="works__subtitle">Corporate website</div>
-						<a href="#" class="works__link">view details</a>
+						<div class="works__title">{{item.title}}</div>
+						<div class="works__subtitle">{{item.descr}}</div>
+						<a href="{{item.link}}" target="blank" class="works__link">view details</a>
 					</div>
 					<div class="works__img-container">
-						<div class="works__img"></div>
+						{% for i in item.img %}
+						<img class="works__img" src="./img/works/{{i.imgItem}}.jpg"></img>
+						{% endfor %}
+
 					</div>
 				</div>
 				{% endfor %}
 
 				<div class="works__more">
 					<div class="works__more-text">load more</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="layout__divider">
+			<div class="layout__divider-icon">{{icon.i('arrow')}}</div>
+			<div class="layout__divider-title">Contacts</div>
+		</div>
+
+		<div class="layout__item">
+
+			<div class="layout__item-bg">
+				<div class="layout__item-bg-item layout__item-bg-item--1"></div>
+				<div class="layout__item-bg-item layout__item-bg-item--2"></div>
+				<div class="layout__item-bg-item layout__item-bg-item--3"></div>
+			</div>
+
+			<div class="layout__item-title">Contacts</div>
+			<div class="layout__item-subtitle layout__item-subtitle--small">i`m always opened for interesting propositions</div>
+
+			<div class="contacts">
+
+				<div class="contacts__item">
+					<div class="contacts__img-container">
+						<div class="contacts__img"></div>
+					</div>
+					<div class="contacts__box">
+						<div class="contacts__title">Roman Yakovenko</div>
+						<a href="mailto:" class="contacts__subtitle">paradiseseeker94@gmail.com</a>
+						<a href="https://t.me/Nevejestvo" class="contacts__subtitle">telegram</a>
+						<a href="https://www.google.com/maps/place/data=!3m1!4b1!4m5!3m4!1s0x40d4c49afe7caa71:0x10e58a34c8ec2b96!8m2!3d50.4153964!4d30.6935992" target="blank" class="contacts__link">kiev, ukraine</a>
+					</div>
 				</div>
 
 			</div>
