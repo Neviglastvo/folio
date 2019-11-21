@@ -1,9 +1,12 @@
 import * as h from './help'
+import boom from './boom'
 
-export default function shatter(nextFunction) {
+
+export default function shatter() {
     let p0, p1, p2, fragment, id;
     let cfg = h.cfg.shatter;
-    let tl0 = new TimelineMax({ onComplete: nextFunction });
+    let tl0 = new TimelineMax({ onComplete: booom });
+    // let tl0 = new TimelineMax();
 
     id = h.imageID;
 
@@ -37,11 +40,13 @@ export default function shatter(nextFunction) {
         h.container.appendChild(element);
     }
 
-    console.log(h.fragments);
-
     $(h.container).find("img").addClass('hidden');
 
+}
 
+
+function booom() {
+    boom(h.fragments, h.imageID)
 }
 
 

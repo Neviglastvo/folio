@@ -3,51 +3,28 @@ import { TweenMax } from 'gsap'
 import * as h from './help'
 import triangulate from './triangulate'
 import shatter from './shatter'
-import boom from './boom'
 // import rotate from './rotate'
-
 
 export default function targetToShatter(imgToShatter, clickX, clickY) {
 
-    h.image = imgToShatter;
-    h.imageID = parseInt(imgToShatter.dataset.id);
-    console.log('ID: '+h.imageID);
+    return new Promise(function (resolve, reject) {
 
-    h.imageBound = h.image.getBoundingClientRect();
-    h.container = imgToShatter.parentNode;
-    h.clickPosition[0] = clickX;
-    h.clickPosition[1] = clickY;
-    h.imageWidth = imgToShatter.offsetWidth
-    h.imageHeight = imgToShatter.offsetHeight
+        h.prepareValues(imgToShatter, clickX, clickY)
 
-    TweenMax.defaultEase = Linear.easeNone;
-    TweenMax.set(h.container, { perspective: 600 });
+    }).then(function () {
 
-    // console.log(`targetToShatter(${h.image}(w:${h.imageWidth}, h:${h.imageHeight}), clickX:${clickX}, clickY:${clickY}`);
+        TweenMax.defaultEase = Linear.easeNone;
+        TweenMax.set(h.container, { perspective: 600 });
+        h.container.removeEventListener('click', targetToShatter);
 
-    h.container.removeEventListener('click', targetToShatter);
-
-    triangulate(clickX, clickY);
-    shatter(shatterToPiecesBoom);
-
+    })
+    .then(triangulate(clickX, clickY))
+    .then(shatter());
 
 }
 
-function shatterToPiecesBoom() {
 
 
-
-    boom(h.fragments, h.imageID)
-    // rotate(h.fragments)
-
-    // h.fragments.forEach(function (f) {
-    //     h.container.removeChild(f.canvas);
-    // });
-    // h.fragments.length = 0;
-    // h.vertices.length = 0;
-    // h.indices.length = 0;
-
-}
 
 
 
