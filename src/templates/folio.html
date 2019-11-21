@@ -128,6 +128,36 @@ title: Index page
 
 		</div>
 
+		<div class="layout__divider">
+			<div class="layout__divider-icon">{{icon.i('arrow')}}</div>
+			<div class="layout__divider-title">Contacts</div>
+		</div>
+
+		<div class="works2 swiper-container">
+			<div class="works2__slider swiper-wrapper">
+				{% for item in data.works %}
+				<div class="works2__item swiper-slide">
+					<div class="works2__box">
+						<div class="works2__title">{{item.title}}</div>
+						<img class="works2__logo" src="./img/works/{{item.logo}}.svg"></img>
+						<div class="works2__subtitle">{{item.descr}}</div>
+						<a href="{{item.link}}" target="blank" class="works2__link">view details</a>
+					</div>
+					<div class="works2__img-container">
+						{% for i in item.img %}
+						<div class="works2__img-parallax" style="background-image:url(../img/works/{{i.imgItem}}.jpg)" data-swiper-parallax-x="-25%"></div>
+						<!-- <img class="works2__img" src="./img/works/{{i.imgItem}}.jpg"></img> -->
+						{% endfor %}
+
+					</div>
+				</div>
+				{% endfor %}
+
+
+			</div>
+
+		</div>
+
 	</div>
 </div>
 

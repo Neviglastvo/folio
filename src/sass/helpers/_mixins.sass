@@ -330,6 +330,7 @@
 
 @mixin darken($color, $transparency: 0.75)
   &:before
+    pointer-events: none
     content: ""
     +coverdiv
     background-color: rgba($color, $transparency)

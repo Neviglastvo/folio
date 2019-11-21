@@ -1,5 +1,8 @@
+import sliderWorks from './blocks/sliderWorks';
 import targetToShatter from './firstScreen/targetToShatter';
 import domToImage from 'dom-to-image';
+
+sliderWorks()
 
 console.log(` Viewport w: ${window.innerWidth}, h: ${window.innerHeight}`);
 
