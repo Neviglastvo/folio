@@ -1,6 +1,9 @@
 import sliderWorks from './blocks/sliderWorks';
 import targetToShatter from './firstScreen/targetToShatter';
+import pet from './pet/pet';
 import domToImage from 'dom-to-image';
+
+pet()
 
 sliderWorks()
 
