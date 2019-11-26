@@ -8,13 +8,16 @@ export default function boom(element, id) {
             y: h.clickPosition[1]
         };
 
-    element.forEach((fragment) => {
+    console.log(element);
+
+
+    element.forEach((fragment, i) => {
 
         fragment = fragment.fragment.canvas;
 
-        // console.log('fragment ID: ' + id + '; imgID: ' + h.imageID);
+        // console.log('fragment ID: ' + id + '; imgID: ' + h.imgID);
 
-        if (id === h.imageID) {
+        if (id === h.imgID) {
 
             let bbox = fragment.getBoundingClientRect(),
                 dist = h.getDistance(bbox, clickPosition),
@@ -24,8 +27,6 @@ export default function boom(element, id) {
                     signs: ['-=', '+=']
                 };
 
-            // console.log(dist);
-
             let tl0 = new TimelineMax();
             let tl1 = new TimelineMax();
 
@@ -33,9 +34,9 @@ export default function boom(element, id) {
                 autoAlpha: cfg.alpha,
                 x: (bbox.x - clickPosition.x) * scalar,
                 y: (bbox.y - clickPosition.y) * scalar,
-                rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
                 rotationX: Math.random() * 360,
-                z: Math.random() * 400,
+                rotationY: nt.signs[h.rand2Number()] + 720 + "deg",
+                rotationZ: Math.random() * 400,
             }, delay);
 
             tl1.to(tl0, cfg.speed2, {

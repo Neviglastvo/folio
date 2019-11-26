@@ -1,4 +1,3 @@
-import { TweenMax } from 'gsap'
 
 import * as h from './help'
 import triangulate from './triangulate'
@@ -14,12 +13,12 @@ export default function targetToShatter(imgToShatter, clickX, clickY) {
     }).then(function () {
 
         TweenMax.defaultEase = Linear.easeNone;
-        TweenMax.set(h.container, { perspective: 600 });
+        // TweenMax.set(h.container, { perspective: 600 });
         h.container.removeEventListener('click', targetToShatter);
 
     })
     .then(triangulate(clickX, clickY))
-    .then(shatter());
+    .then(shatter(clickX, clickY));
 
 }
 

@@ -71,6 +71,7 @@
 	&__img-container
 		+coverdiv
 		z-index: -1
+		display: flex
 
 	&__img
 
@@ -78,13 +79,12 @@
 		+coverimg
 
 	&__img-parallax
-		position: absolute
-		top: 0
-		bottom: 0
-		right: -100%
-		left: -100%
-		width: 100vw
-		width: calc(100vw - vw(1920, 100px) - 30px)
+		height: 100%
+		width: auto
+		min-width: 100vw
+		object-fit: contain
+		object-position: top center
+
 
 
 

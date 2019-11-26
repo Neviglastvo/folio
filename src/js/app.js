@@ -1,3 +1,5 @@
+import { TweenMax } from 'gsap'
+
 import sliderWorks from './blocks/sliderWorks';
 import targetToShatter from './firstScreen/targetToShatter';
 import pet from './pet/pet';
@@ -35,7 +37,7 @@ document.addEventListener('click', function (e) {
 			target.remove();
 
 		}).then(function () {
-
+			console.log(`click in x: ${clickX}, y: ${clickY}`);
 			targetToShatter(newImg, clickX, clickY)
 
 		});

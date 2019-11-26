@@ -8,7 +8,7 @@ export default function shatter() {
     let tl0 = new TimelineMax({ onComplete: booom });
     // let tl0 = new TimelineMax();
 
-    id = h.imageID;
+    id = h.imgID;
 
     for (let i = 0; i < h.indices.length; i += 3) {
 
@@ -24,16 +24,21 @@ export default function shatter() {
         let dx = fragment.centroid[0] - h.clickPosition[0],
             dy = fragment.centroid[1] - h.clickPosition[1],
             d = Math.sqrt(dx * dx + dy * dy),
-            delay = d * cfg.fragmentDelay * h.randomRange(cfg.fragmentDelayRandomMin, cfg.fragmentDelayRandomMax,
+            delay = d * cfg.fragmentDelay * h.randomRange(
+                cfg.fragmentDelayRandomMin,
+                cfg.fragmentDelayRandomMax,
             );
 
         element.style.zIndex = Math.floor(d).toString();
 
         let tl1 = new TimelineMax();
 
-        tl1.to(element, cfg.shatteredOpacitySpeed, { alpha: cfg.shatteredOpacityOfFragment }, cfg.shatteredOpacityDelayBefore);
-
         tl0.insert(tl1, delay);
+
+        tl1.to(element, cfg.shatteredOpacitySpeed, {
+            alpha: cfg.shatteredOpacityOfFragment,
+        }, cfg.shatteredOpacityDelayBefore);
+
 
         h.fragments.push({fragment: fragment});
 
@@ -46,7 +51,7 @@ export default function shatter() {
 
 
 function booom() {
-    boom(h.fragments, h.imageID)
+    boom(h.fragments, h.imgID)
 }
 
 
@@ -108,6 +113,6 @@ Fragment.prototype = {
         this.ctx.lineTo(this.v2[0], this.v2[1]);
         this.ctx.closePath();
         this.ctx.clip();
-        this.ctx.drawImage(h.image, 0, 0);
+        this.ctx.drawImage(h.img, 0, 0);
     }
 };
