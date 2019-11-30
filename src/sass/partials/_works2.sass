@@ -13,11 +13,21 @@
 		position: relative
 		min-height: 85vh
 		overflow: hidden
-		+darken(black, 0.75)
 		&:before
+			content: ""
+			position: absolute
+			top: -10px
+			bottom: -10px
+			left: -10px
+			right: -10px
+			background-color: rgba(black, 0.75)
+			pointer-events: none
+			z-index: 0
 			+tr
 		+h
-			+darken(black, 0.35)
+			&:before
+				background-color: rgba(black, 0.35)
+
 
 
 	&__box
@@ -69,21 +79,27 @@
 				width: 20px
 
 	&__img-container
+		// border: 1px solid cyan
 		+coverdiv
 		z-index: -1
 		display: flex
+		overflow: hidden
+		// background-color: $pink
 
-	&__img
-
-		width: 100%
-		+coverimg
 
 	&__img-parallax
-		height: 100%
-		width: auto
-		min-width: 100vw
-		object-fit: contain
-		object-position: top center
+		pointer-events: none
+		height: 100vw
+		width: calc(100% * 3)
+		position: absolute
+		top: 0
+		bottom: 0
+		margin: 0 auto
+		left: -100%
+		right: 100%
+		background-size: contain
+		background-repeat: no-repeat
+		background-position: top center
 
 
 

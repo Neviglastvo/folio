@@ -1,5 +1,7 @@
 import { TweenMax } from 'gsap'
 
+// import init from './_test';
+
 import sliderWorks from './blocks/sliderWorks';
 import targetToShatter from './firstScreen/targetToShatter';
 import pet from './pet/pet';
