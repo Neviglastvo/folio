@@ -1,54 +1,123 @@
-// .works
-// 	height: 100vh
-// 	background-color: black
-// 	padding: 15px 15px 15px 15px
+.works
+	width: 100%
+	display: flex
+	flex-direction: column
+	align-items: center
+
+	&__item
+		width: 100%
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: center
+		position: relative
+		min-height: 85vh
+		overflow: hidden
+		+h
+			&:before
+				background-color: rgba(black, 0.35)
+
+			.works__title, .works__subtitle, .works__link
+				opacity: 1
+				transform: translateY(0)
+
+	&__box
+		position: absolute
+		top: 0
+		left: 0
+		padding: 20px
+		width: 100%
+		display: flex
+		justify-content: center
+		align-items: center
+		flex-direction: column
+		+tr
+
+	&__logo
+		width: 100%
+		display: flex
+		align-items: center
+		justify-content: center
+		padding: 20px
+
+	&__logo-img
+		width: auto
+		max-width: 100%
+		height: 70px
+		max-height: 70px
+		min-height: 70px
+
+	&__title
+		z-index: 5
+		margin-bottom: 20px
+		font-size: 50px
+		font-weight: 700
+		opacity: 0
+		transform: translateY(-400px)
+		+trs(400)
+
+	&__subtitle
+		font-size: 18px
+		font-weight: 300
+		opacity: 0
+		transform: translateY(-200px)
+		+trs(300)
+
+	&__link
+		position: absolute
+		bottom: 30px
+		font-size: 18px
+		font-weight: 300
+		color: #FFF
+		display: flex
+		align-items: center
+		opacity: 0
+		transform: translateY(200px)
+		+tr
+		&:before
+			content: ""
+			width: 0
+			margin-right: 0
+			height: 3px
+			background-color: $pink
+			+tr
+		+h
+			color: $pink
+			&:before
+				margin-right: 10px
+				width: 20px
+
+	&__img-container
+		+coverdiv
+		z-index: -1
+		display: flex
+		overflow: hidden
+
+	&__img-parallax
+		pointer-events: none
+		height: 100vw
+		width: calc(100% * 3)
+		position: absolute
+		top: 0
+		bottom: 0
+		margin: 0 auto
+		left: -100%
+		right: 100%
+		background-size: contain
+		background-repeat: no-repeat
+		background-position: top center
+		&:before
+			content: ""
+			position: absolute
+			top: -10px
+			bottom: -10px
+			left: -10px
+			right: -10px
+			background-color: rgba(black, 0.75)
+			pointer-events: none
+			z-index: 0
+			+tr
 
 
-// 	&__container
-// 		display: flex
-// 		flex-direction: column
-// 		align-items: center
-// 		border-radius: 6px
-// 		padding: 15px
-// 		padding-bottom: 15vh
-// 		height: 100%
-// 		background-color: $black
-// 		position: relative
-// 		overflow: hidden
-// 		&:after
-// 			content: ""
-// 			position: absolute
-// 			bottom: 0px
-// 			height: 24vh
-// 			left: 0
-// 			width: 100%
-// 			border-top: 1px solid $pink
-// 			transform: perspective(300px) rotateX(65deg) scaleY(-1)
 
-// 	&__title-container
-// 		display: flex
-// 		align-items: center
-// 		margin-bottom: 60px
-
-// 	&__title
-// 		font-family: $fa
-// 		font-size: 80px
-// 		font-weight: 900
-// 		color: $white
-// 		text-transform: uppercase
-
-// 	&__slider
-// 		width: 100%
-// 		display: flex
-// 		height: 100%
-// 		flex-grow: 1
-
-// 	&__slider-container
-// 		width: 100%
-// 		display: flex
-// 		align-items: flex-end
-// 		height: 100%
-
-// 	&__slider-item
-// 		width: calc(100% / 3)
 

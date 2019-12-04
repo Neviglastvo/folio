@@ -10,7 +10,7 @@ import consolidate from 'gulp-consolidate';
 import config from '../config';
 
 gulp.task('sprite:svg', () => gulp
-  .src(config.src.iconsSvg + '/*.svg')
+  .src(config.src.iconsSvg + '/**/*.svg')
   .pipe(
     gulpcheerio({
       run: function($, file) {
@@ -84,7 +84,7 @@ gulp.task('sprite:svg', () => gulp
 );
 
 const build = gulp => gulp.series('sprite:svg');
-const watch = gulp => () => gulp.watch(config.src.iconsSvg + '/*.svg', gulp.parallel('sprite:svg'));
+const watch = gulp => () => gulp.watch(config.src.iconsSvg + '/**/*.svg', gulp.parallel('sprite:svg'));
 
 module.exports.build = build;
 module.exports.watch = watch;

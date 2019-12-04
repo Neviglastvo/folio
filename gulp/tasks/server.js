@@ -23,13 +23,14 @@ gulp.task('server', done => {
       config.dest.img + '/**/*'
     ],
     port: util.env.port || 8080,
-    logLevel: 'silent', // 'debug', 'info', 'silent', 'warn'
+    logLevel: 'info', // 'debug', 'info', 'silent', 'warn'
     logConnections: false,
     logFileChanges: true,
     open: Boolean(util.env.open),
     notify: false,
     ghostMode: false,
-    online: Boolean(util.env.tunnel),
+    online: true,
+    // online: Boolean(util.env.tunnel),
     tunnel: util.env.tunnel || null
   });
   done();

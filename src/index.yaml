@@ -1,9 +1,11 @@
 ProjectTitle: Portfolio
 
 PageList:
+- file: folio.html
+  ready: 1
 - file: app.html
   ready: 1
-- file: q.html
+- file: reflection.html
   ready: 1
-- file: folio.html
+- file: flame.html
   ready: 1

@@ -1,7 +1,8 @@
 import Swiper from 'swiper';
 
 export default function sliderWorks(){
-	var swiper = new Swiper('.swiper-container', {
+
+	var swiper = new Swiper('.js-slider-works', {
 		slidesPerView: 3,
 		spaceBetween: 15,
 		initialSlide: 4,
@@ -24,4 +25,5 @@ export default function sliderWorks(){
 			depth: 100,
 		},
 	});
+
 }

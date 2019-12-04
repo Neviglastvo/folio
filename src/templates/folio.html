@@ -33,28 +33,7 @@ title: Index page
 	</div>
 
 	<div class="layout__hero">
-		<div class="hero">
-			<div class="hero__title">Roman Yakovenko</div>
-			<div class="hero__subtitle">
-				<span class="-"></span>
-				Frontend developer
-			</div>
-			<div class="hero__copyright">Roman Yakovenko - 2019</div>
-
-			<div class="hero__arrow">{{icon.i('arrow')}}</div>
-
-			<div class="hero__social">
-				<a href="" class="hero__social-item">
-					{{icon.i('facebook')}}
-				</a>
-				<a href="" class="hero__social-item">
-					{{icon.i('facebook')}}
-				</a>
-				<a href="" class="hero__social-item">
-					{{icon.i('facebook')}}
-				</a>
-			</div>
-		</div>
+		{% include "./partials/_0hero.html" %}
 	</div>
 	<div class="layout__container">
 
@@ -74,54 +53,7 @@ title: Index page
 			<div class="layout__item-title">About me</div>
 			<div class="layout__item-subtitle layout__item-subtitle--small">here you will know me better</div>
 
-			<div class="lifepath">
-				<div class="lifepath__item">
-					<div class="lifepath__date">1994</div>
-					<div class="lifepath__dot"></div>
-					<div class="lifepath__overlay"></div>
-				</div>
-				<div class="lifepath__item">
-					<div class="lifepath__date">2000</div>
-					<div class="lifepath__dot"></div>
-					<div class="lifepath__overlay"> best period of my life</div>
-				</div>
-				<div class="lifepath__item lifepath__item--actual">
-					<div class="lifepath__date">2011</div>
-					<div class="lifepath__dot"></div>
-					<div class="lifepath__overlay"> best period of my life</div>
-				</div>
-				<div class="lifepath__item lifepath__item--actual">
-					<div class="lifepath__date">2017</div>
-					<div class="lifepath__dot"></div>
-					<div class="lifepath__overlay"> best period of my life</div>
-				</div>
-				<div class="lifepath__item lifepath__item--actual">
-					<div class="lifepath__date">2018</div>
-					<div class="lifepath__dot"></div>
-					<div class="lifepath__overlay"> best period of my life</div>
-				</div>
-				<div class="lifepath__item lifepath__item--actual">
-					<div class="lifepath__date">2019</div>
-					<div class="lifepath__dot"></div>
-					<div class="lifepath__overlay"> best period of my life</div>
-				</div>
-			</div>
-
-			<div class="contacts">
-
-				<div class="contacts__item">
-					<div class="contacts__img-container">
-						<div class="contacts__img"></div>
-					</div>
-					<div class="contacts__box">
-						<div class="contacts__title">Roman Yakovenko</div>
-						<a href="mailto:" class="contacts__subtitle">paradiseseeker94@gmail.com</a>
-						<a href="https://t.me/Nevejestvo" class="contacts__subtitle">telegram</a>
-						<a href="https://www.google.com/maps/place/data=!3m1!4b1!4m5!3m4!1s0x40d4c49afe7caa71:0x10e58a34c8ec2b96!8m2!3d50.4153964!4d30.6935992" target="blank" class="contacts__link">kiev, ukraine</a>
-					</div>
-				</div>
-
-			</div>
+			{% include "./partials/_1about.html" %}
 
 		</div>
 
@@ -130,68 +62,8 @@ title: Index page
 			<div class="layout__divider-title">WORKS</div>
 		</div>
 
-		<div class="works2 swiper-container">
-			<div class="works2__slider swiper-wrapper">
-				{% for item in data.works %}
-				<div class="works2__item swiper-slide">
-					<div class="works2__box">
-						<div class="works2__title">{{item.title}}</div>
-						<img class="works2__logo" src="./img/works/{{item.logo}}.svg"></img>
-						<div class="works2__subtitle">{{item.descr}}</div>
-						<a href="{{item.link}}" target="blank" class="works2__link">view details</a>
-					</div>
-					<div class="works2__img-container">
-						{% for i in item.img %}
-						<div class="works2__img-parallax"
-							 style="background-image:url(../img/works/{{i.imgItem}}.jpg)"
-							 data-swiper-parallax-x="33.3333333%"></div>
-						<!-- <img class="works2__img" src="./img/works/{{i.imgItem}}.jpg"></img> -->
-						{% endfor %}
+		{% include "./partials/_2works.html" %}
 
-					</div>
-				</div>
-				{% endfor %}
-
-
-			</div>
-
-		</div>
-
-		<!-- <div class="layout__item">
-
-			<div class="layout__item-bg">
-				<div class="layout__item-bg-item layout__item-bg-item--1"></div>
-				<div class="layout__item-bg-item layout__item-bg-item--2"></div>
-				<div class="layout__item-bg-item layout__item-bg-item--3"></div>
-			</div>
-
-			<div class="layout__item-title">Works</div>
-			<div class="layout__item-subtitle">see best of my works</div>
-
-			<div class="works">
-				{% for item in data.works %}
-				<div class="works__item">
-					<div class="works__box">
-						<div class="works__title">{{item.title}}</div>
-						<div class="works__subtitle">{{item.descr}}</div>
-						<a href="{{item.link}}" target="blank" class="works__link">open in new folder</a>
-					</div>
-					<div class="works__img-container">
-						{% for i in item.img %}
-						<img class="works__img" src="./img/works/{{i.imgItem}}.jpg"></img>
-						{% endfor %}
-
-					</div>
-				</div>
-				{% endfor %}
-
-				<div class="works__more">
-					<div class="works__more-text">load more</div>
-				</div>
-
-			</div>
-
-		</div> -->
 
 		<div class="layout__divider">
 			<!-- <div class="layout__divider-icon">{{icon.i('arrow')}}</div> -->
@@ -211,21 +83,7 @@ title: Index page
 			<div class="layout__item-title">Contacts</div>
 			<div class="layout__item-subtitle layout__item-subtitle--small">i`m always opened for interesting propositions</div>
 
-			<div class="contacts">
-
-				<div class="contacts__item">
-					<div class="contacts__img-container">
-						<div class="contacts__img"></div>
-					</div>
-					<div class="contacts__box">
-						<div class="contacts__title">Roman Yakovenko</div>
-						<a href="mailto:" class="contacts__subtitle">paradiseseeker94@gmail.com</a>
-						<a href="https://t.me/Nevejestvo" class="contacts__subtitle">telegram</a>
-						<a href="https://www.google.com/maps/place/data=!3m1!4b1!4m5!3m4!1s0x40d4c49afe7caa71:0x10e58a34c8ec2b96!8m2!3d50.4153964!4d30.6935992" target="blank" class="contacts__link">kiev, ukraine</a>
-					</div>
-				</div>
-
-			</div>
+			{% include "./partials/_3contacts.html" %}
 
 		</div>
 
