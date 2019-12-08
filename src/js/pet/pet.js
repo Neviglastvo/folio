@@ -3,115 +3,188 @@ export default function pet() {
     let pet = {
         item: document.getElementsByClassName('js-pet'),
         body: document.getElementsByClassName('js-pet-body'),
-        eye: document.querySelectorAll('.js-pet-eye'),
+        eye: document.getElementsByClassName('js-pet-eye'),
         eyeDot: document.getElementsByClassName('js-pet-eye-dot'),
         mouth: document.getElementsByClassName('js-pet-mouth'),
         message: document.getElementsByClassName('js-pet-message'),
     },
+    vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+    vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
     status = 0,
-    // 0 - chill in the right bot corner
-    // 1 - exploring elements
-    // 2 - following cursor
-    // 3 - rage
-    cursorCoord,
-    exploreEl;
+// 0 - chill in the right bot corner
+// 1 - exploring elements
+// 2 - following cursor
+// 3 - rage
+cursorCoord,
+exploreEl,
+message = '',
+phrases = ['oooh', 'boring...', 'wow'];
 
-    if (pet.item.length) {
+if (pet.item.length) {
 
-        floating()
-        moveOnClick()
-        eyeTrack()
+    init()
 
+    floating()
+    eyeTrack()
+    // moveOnClick()
+    test()
+
+}
+
+console.log(vw);
+console.log(vh);
+
+
+function test(){
+    pet.body[0].addEventListener('click', (e) => {
+        changeStatus(0)
+    });
+}
+
+function changeStatus(status){
+    let item = pet.item[0];
+
+    switch (status) {
+        case 0:
+        console.log('status: ' + status);
+
+        item.style.left = (vw - 180) + 'px';
+        item.style.top = (vh - 130) + 'px';
+
+        localStorage.setItem('petCoordsX', item.style.left)
+        localStorage.setItem('petCoordsY', item.style.top)
+        break;
+        case 1:
+        console.log('status: ' + status);
+        break;
+        case 2:
+        console.log('status: ' + status);
+        break;
+        case 3:
+        console.log('status: ' + status);
+        break;
+        default:
+        console.log('status: ' + status);
     }
 
-    function floating() {
+}
 
-        TweenMax.to(pet.item, 2, {
-            bezier: getBezier(2, 5, 3, 4, false),
-            repeat: -1,
-            ease: Linear.easeNone
-        });
+function init(){
+    let item = pet.item[0];
+    let coords = pet.item[0].getBoundingClientRect();
 
-    }
+    item.style.left = localStorage.getItem('petCoordsX');
+    item.style.top = localStorage.getItem('petCoordsY');
+}
 
-    function eyeTrack() {
-        document.addEventListener('mousemove', (e) => {
-            pet.eye.forEach(eye => {
-                const x = eye.getBoundingClientRect().left + (eye.clientWidth / 2);
-                const y = eye.getBoundingClientRect().top + (eye.clientHeight / 2);
-                const radian = Math.atan2(e.pageX - x, e.pageY - y);
-                const rot = (radian * (180 / Math.PI) * -1) - 140;
+function talking(phrase) {
+    pet.message.innerHTML = phrase;
+}
 
-                eye.style.transform = `rotate(${rot}deg)`;
-            });
-        });
-    }
+function floating() {
 
-    function moveOnClick() {
-        pet.item.onmousedown = function (e) {
-            console.log(e);
+    TweenMax.to(pet.item, 2, {
+        bezier: getBezier(2, 5, 3, 4, false),
+        repeat: -1,
+        ease: Linear.easeNone
+    });
 
-            var coords = offset(pet.item),
-            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-            scrollTop = window.pageYOffset || document.documentElement.scrollTop,
-            shiftX = (e.pageX - coords.left) + scrollLeft,
-            shiftY = (e.pageY - coords.top) + scrollTop;
+    TweenMax.to(pet.message, 2, {
+        bezier: getBezier(-2, -5, -3, -4, false),
+        repeat: -1,
+        ease: Linear.easeNone
+    });
 
-            moveAt(e);
+}
 
-            function moveAt(e) {
-                pet.item.style.left = e.pageX - shiftX + 'px';
-                pet.item.style.top = e.pageY - shiftY + 'px';
-            }
+function eyeTrack() {
+    document.addEventListener('mousemove', (e) => {
+        let eyes = pet.eye;
 
-            document.onmousemove = function (e) {
-                moveAt(e);
-            };
+        for (let eye of eyes) {
+            const x = eye.getBoundingClientRect().left + (eye.clientWidth / 2);
+            const y = eye.getBoundingClientRect().top + (eye.clientHeight / 2);
+            const radian = Math.atan2(e.pageX - x, e.pageY - y);
+            const rot = (radian * (180 / Math.PI) * -1) - 140;
 
-            pet.item.onmouseup = function () {
-                document.onmousemove = null;
-                pet.item.onmouseup = null;
+            eye.style.transform = `rotate(${rot}deg)`;
 
-                localStorage.setItem('petCoordsX', pet.item.style.left)
-                localStorage.setItem('petCoordsY', pet.item.style.top)
-            };
+            localStorage.setItem(`petEyesRotating${[eye]}`, eye.style.transform = `rotate(${rot}deg)`)
+        }
+    });
+}
 
+function moveOnClick() {
+    pet.body[0].addEventListener('mousedown', (e) => {
+
+
+        let item = pet.item[0],
+        coords = offset(item),
+        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop,
+        shiftX = (e.pageX - coords.left) + scrollLeft,
+        shiftY = (e.pageY - coords.top) + scrollTop;
+
+        console.log(item.getBoundingClientRect());
+
+        moveAt(e);
+
+        function moveAt(e) {
+            item.style.left = e.pageX - shiftX + 'px';
+            item.style.top = e.pageY - shiftY + 'px';
         }
 
-        pet.item.ondragstart = function () {
-            return false;
+        document.onmousemove = function (e) {
+            moveAt(e);
         };
-    }
 
-    // pet.item.style.css.left = localStorage.getItem('petCoordsX');
-    // pet.item.style.css.top = localStorage.getItem('petCoordsY');
+        item.onmouseup = function () {
+            document.onmousemove = null;
+            item.onmouseup = null;
 
-    function offset(el) {
-        var rect = el.getBoundingClientRect(),
-        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-    }
-
-    function getBezier(cx, cy, rx, ry, autoRotate) {
-
-        ry = ry || rx;
-
-        var k = 0.551915024494;
-        var x = k * rx;
-        var y = k * ry;
-
-        return {
-            autoRotate: autoRotate || false,
-            type: "cubic",
-            values: [
-            { x: cx + rx, y: cy },
-            { x: cx + rx, y: cy + y }, { x: cx + x, y: cy + ry }, { x: cx, y: cy + ry },
-            { x: cx - x, y: cy + ry }, { x: cx - rx, y: cy + y }, { x: cx - rx, y: cy },
-            { x: cx - rx, y: cy - y }, { x: cx - x, y: cy - ry }, { x: cx, y: cy - ry },
-            { x: cx + x, y: cy - ry }, { x: cx + rx, y: cy - y }, { x: cx + rx, y: cy }
-            ]
+            localStorage.setItem('petCoordsX', item.style.left)
+            localStorage.setItem('petCoordsY', item.style.top)
         };
+
+    });
+
+    pet.item.ondragstart = function () {
+        return false;
+    };
+}
+
+
+
+function offset(element) {
+    let rect = element.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    return {
+        top: rect.top + scrollTop,
+        left: rect.left + scrollLeft
     }
+}
+
+function getBezier(cx, cy, rx, ry, autoRotate) {
+
+    ry = ry || rx;
+
+    let k = 0.551915024494;
+    let x = k * rx;
+    let y = k * ry;
+
+    return {
+        autoRotate: autoRotate || false,
+        type: "cubic",
+        values: [
+        { x: cx + rx, y: cy },
+        { x: cx + rx, y: cy + y }, { x: cx + x, y: cy + ry }, { x: cx, y: cy + ry },
+        { x: cx - x, y: cy + ry }, { x: cx - rx, y: cy + y }, { x: cx - rx, y: cy },
+        { x: cx - rx, y: cy - y }, { x: cx - x, y: cy - ry }, { x: cx, y: cy - ry },
+        { x: cx + x, y: cy - ry }, { x: cx + rx, y: cy - y }, { x: cx + rx, y: cy }
+        ]
+    };
+}
 
 }

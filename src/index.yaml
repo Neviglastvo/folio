@@ -3,6 +3,8 @@ ProjectTitle: Portfolio
 PageList:
 - file: folio.html
   ready: 1
+- file: folio2.html
+  ready: 1
 - file: app.html
   ready: 1
 - file: reflection.html

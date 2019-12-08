@@ -17,7 +17,8 @@
 		width: 100%
 		height: 100%
 		background-color: #000
-		box-shadow: 0 0 6px 3px white
+		box-shadow: 0 0 5px 1px white
+		animation: glowing 3s infinite
 
 	&__mouth
 		border-bottom: 1px solid white
@@ -70,3 +71,45 @@
 
 		&--right
 			right: 20%
+
+	&__message
+		position: absolute
+		bottom: calc(100% + 10px)
+		right: 100%
+		max-width: 260px
+		padding: 10px
+		border: 1px solid #fff
+		border-radius: 50%
+		font-family: $fc
+		background-color: #000
+		box-shadow: 0 0 3px 1px white
+
+		&:before, &:after
+			content: ""
+			position: absolute
+			border: 1px solid #fff
+			border-radius: 50%
+			background-color: #000
+		&:before
+			bottom: -12px
+			right: -12px
+			width: 16px
+			height: 16px
+			box-shadow: 0 0 2px 1px white
+
+		&:after
+			bottom: -19px
+			right: -19px
+			width: 8px
+			height: 8px
+			box-shadow: 0 0 1px 1px white
+
+
+
++keyframes(glowing)
+	0%
+		box-shadow: 0 0 4px 1px white
+	50%
+		box-shadow: 0 0 7px 1px white
+	100%
+		box-shadow: 0 0 4px 1px white

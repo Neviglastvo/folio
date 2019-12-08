@@ -1,0 +1,97 @@
+.roadmap
+	width: 100%
+	display: flex
+	padding: 15px 0
+
+	&__list
+		width: 100%
+		overflow-x: auto
+		overflow-y: hidden
+		display: flex
+		padding: 15px 0
+		margin-bottom: 30px
+
+	&__item
+		display: flex
+		flex-direction: column
+		align-items: center
+		min-width: 200px
+
+	&__item-main
+		padding: 4px
+		border: 3px solid #fff
+		border-radius: 5px
+		margin-bottom: 15px
+		display: flex
+		flex-direction: column
+		align-items: center
+		position: relative
+		text-align: center
+		&:after
+			content: ""
+			position: absolute
+			top: calc(100% + 3px)
+			width: 3px
+			height: 15px
+			background-color: #FFF
+
+	&__item-secondary
+		display: flex
+		flex-direction: column
+		align-items: center
+		padding: 3px
+		margin-bottom: 6px
+		border: 2px solid #fff
+		border-radius: 4px
+		position: relative
+		text-align: center
+		&:after
+			content: ""
+			position: absolute
+			top: calc(100% + 2px)
+			width: 2px
+			height: 6px
+			background-color: #FFF
+
+		&:last-child
+			margin-bottom: 0
+			&:after
+				content: none
+
+	&__item-overlay
+		display: none
+
+	&__item-overlay-item
+
+	&__legend
+		min-width: 240px
+		display: flex
+		flex-direction: column
+		align-items: flex-end
+
+	&__legend-item
+		display: flex
+		align-items: center
+		margin-bottom: 10px
+		&:last-child
+			margin-bottom: 0
+
+	&__legend-color
+		margin-left: 10px
+		width: 10px
+		height: 10px
+
+	&__legend-text
+
+.roadmap-learned
+	background-color: green
+.roadmap-learning
+	background-color: cyan
+.roadmap-knowABit
+	background-color: purple
+	color: #FFF
+.roadmap-forFuture
+	background-color: tomato
+.roadmap-shit
+	background-color: brown
+	color: #FFF

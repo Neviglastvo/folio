@@ -1,0 +1,50 @@
+---
+title: Index page
+---
+{% extends "layouts/_layout.html" %}
+
+{% block content %}
+
+{% import "data/data.html" as data %}
+
+
+
+<div class="layout2">
+	<div id="jsReflection" class="layout2__reflection js-reflection"></div>
+	<div class="layout2__container js-slider-folio">
+		<div class="layout2__slide">
+			<div class="layout2__slide-container">
+				<div class="layout2__slide-item"></div>
+				<div class="layout2__slide-item"></div>
+				<div class="layout2__slide-item"></div>
+				<div class="layout2__slide-item"></div>
+				<div class="layout2__slide-item"></div>
+			</div>
+		</div>
+		<div class="layout2__paging">
+			<div class="layout2__paging-item">
+				<div class="layout2__paging-item-icon"></div>
+				<div class="layout2__paging-item-title">Contacts</div>
+			</div>
+			<div class="layout2__paging-item">
+				<div class="layout2__paging-item-icon"></div>
+				<div class="layout2__paging-item-title">About</div>
+			</div>
+			<div class="layout2__paging-item">
+				<div class="layout2__paging-item-icon"></div>
+				<div class="layout2__paging-item-title">Home</div>
+			</div>
+			<div class="layout2__paging-item">
+				<div class="layout2__paging-item-icon"></div>
+				<div class="layout2__paging-item-title">Works</div>
+			</div>
+			<div class="layout2__paging-item">
+				<div class="layout2__paging-item-icon"></div>
+				<div class="layout2__paging-item-title">Skills</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

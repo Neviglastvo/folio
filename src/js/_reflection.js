@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
@@ -111,6 +112,7 @@ export default function reflection() {
 	}
 	#endif
 	`;
+	var fps = 60;
 	var WIDTH = window.innerWidth;
 	var HEIGHT = window.innerHeight;
 	// camera
@@ -119,136 +121,236 @@ export default function reflection() {
 	var NEAR = 1;
 	var FAR = 800;
 	var camera, cubeCamera, scene, renderer;
-	var cameraControls;
+	var controls;
 	var groundPlane, wallMat;
+
+	var stats;
+	var statsEnabled = true;
+
+	var mouseX = 0;
+	var mouseY = 0;
+	var targetX = 0;
+	var targetY = 0;
+	var windowHalfX = window.innerWidth / 2;
+	var windowHalfY = window.innerHeight / 2;
+
+	var mouseDown = false,
+		mouseX = 0,
+		mouseY = 0;
+
+	function onMouseMove(evt) {
+
+		evt.preventDefault();
+
+		var deltaX = evt.clientX - mouseX,
+			deltaY = evt.clientY - mouseY;
+		mouseX = evt.clientX;
+		mouseY = evt.clientY;
+		rotateScene(deltaX, deltaY);
+	}
+
+	function rotateScene(deltaX, deltaY) {
+		camera.rotation.y += deltaX / 10000;
+		camera.rotation.x += deltaY / 10000;
+	}
+
 	init();
-
-
+	animate();
 
 	function init() {
-		var container = document.getElementById( 'jsReflection' );
+		var container = document.getElementById('jsReflection');
 
-	// renderer
-	renderer = new THREE.WebGLRenderer({ antialias: true });
-	renderer.setPixelRatio(window.devicePixelRatio);
-	renderer.setSize(WIDTH, HEIGHT);
-	container.appendChild(renderer.domElement);
-	// gui controls
-	var gui = new GUI();
-	var params = {
-		'box projected': true
-	};
-	var bpcemGui = gui.add(params, 'box projected');
-	bpcemGui.onChange(function (value) {
-		if (value) {
-			groundPlane.material = boxProjectedMat;
-		} else {
-			groundPlane.material = defaultMat;
+		// renderer
+		renderer = new THREE.WebGLRenderer({ antialias: true });
+		renderer.setPixelRatio(window.devicePixelRatio);
+		renderer.setSize(WIDTH, HEIGHT);
+		container.appendChild(renderer.domElement);
+
+		// gui controls
+		var gui = new GUI();
+		var params = {
+			'box projected': true
+		};
+		var Gui = gui.add(params, 'box projected');
+		Gui.onChange(function (value) {
+			if (value) {
+				groundPlane.material = boxProjectedMat;
+			} else {
+				groundPlane.material = defaultMat;
+			}
+			render();
+		});
+
+		// scene
+		scene = new THREE.Scene();
+
+
+
+		// camera
+		camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+		camera.position.set(100, 0, 0);
+
+		controls = new OrbitControls(camera, renderer.domElement);
+		controls.autoRotate = false;
+		controls.autoRotateSpeed = 1;
+
+		controls.target.set(0, -10, 0);
+		controls.maxPolarAngle = Math.PI / 2
+		controls.enableDamping = true;
+		controls.dampingFactor = 0.0005;
+
+		controls.dispose();
+		// controls.addEventListener('mousemove', render);
+		document.addEventListener('mousemove', onMouseMove);
+		controls.update();
+
+		// cube camera for environment map
+		cubeCamera = new THREE.CubeCamera(1, 1000, 512);
+		cubeCamera.renderTarget.texture.generateMipmaps = true;
+		cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
+		cubeCamera.renderTarget.texture.mapping = THREE.CubeReflectionMapping;
+		cubeCamera.position.set(0, 0, 0);
+		scene.add(cubeCamera);
+
+
+
+		// ground floor ( with box projected environment mapping )
+		var loader = new THREE.TextureLoader();
+		var rMap = loader.load('img/textures/lava/lavatile.jpg');
+		rMap.wrapS = THREE.RepeatWrapping;
+		rMap.wrapT = THREE.RepeatWrapping;
+		rMap.repeat.set(2, 1);
+		var defaultMat = new THREE.MeshPhysicalMaterial({
+			roughness: 1,
+			envMap: cubeCamera.renderTarget.texture,
+			roughnessMap: rMap
+		});
+		var boxProjectedMat = new THREE.MeshPhysicalMaterial({
+			color: new THREE.Color('#ffffff'),
+			roughness: 1,
+			envMap: cubeCamera.renderTarget.texture,
+			roughnessMap: rMap
+		});
+		boxProjectedMat.onBeforeCompile = function (shader) {
+			//these parameters are for the cubeCamera texture
+			shader.uniforms.cubeMapSize = { value: new THREE.Vector3(200, 200, 100) };
+			shader.uniforms.cubeMapPos = { value: new THREE.Vector3(0, - 50, 0) };
+			shader.uniforms.flipEnvMap.value = true;
+			//replace shader chunks with box projection chunks
+			shader.vertexShader = 'varying vec3 vWorldPosition;\n' + shader.vertexShader;
+			shader.vertexShader = shader.vertexShader.replace(
+				'#include <worldpos_vertex>',
+				worldposReplace
+			);
+			shader.fragmentShader = shader.fragmentShader.replace(
+				'#include <envmap_physical_pars_fragment>',
+				envmapPhysicalParsReplace
+			);
+		};
+		groundPlane = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 600, 0), boxProjectedMat);
+		groundPlane.rotateX(- Math.PI / 2);
+		groundPlane.position.set(0, - 49, 0);
+		scene.add(groundPlane);
+		// walls
+		var diffuseTex = loader.load('img/textures/brick_diffuse.jpg', function () {
+			updateCubeMap();
+		});
+		var bumpTex = loader.load('img/textures/brick_bump.jpg', function () {
+			updateCubeMap();
+		});
+		wallMat = new THREE.MeshPhysicalMaterial({
+			map: diffuseTex,
+			bumpMap: bumpTex,
+			bumpScale: 0.5,
+		});
+		var planeGeo = new THREE.PlaneBufferGeometry(100, 100);
+		var planeBack1 = new THREE.Mesh(planeGeo, wallMat);
+		planeBack1.position.z = - 200;
+		planeBack1.position.x = - 200;
+		scene.add(planeBack1);
+		var planeFront1 = new THREE.Mesh(planeGeo, wallMat);
+		planeFront1.position.z = 50;
+		planeFront1.position.x = - 50;
+		planeFront1.rotateY(Math.PI);
+		scene.add(planeFront1);
+		//lights
+		var width = 10;
+		var height = 300;
+		var intensity = 10;
+		var color = 0xEDAE49;
+		var colorReflection = 0xEDAE49;
+		RectAreaLightUniformsLib.init();
+		var redRectLight = new THREE.RectAreaLight(colorReflection, intensity, width, height);
+		redRectLight.position.set(-150, 100, 0);
+		redRectLight.lookAt(199, 5, 0);
+		scene.add(redRectLight);
+		var redRectLightHelper = new THREE.RectAreaLightHelper(redRectLight, color);
+		redRectLight.add(redRectLightHelper);
+
+		if (statsEnabled) {
+			stats = new Stats();
+			container.appendChild(stats.dom);
 		}
+
+
+
+	}
+
+	function updateCubeMap() {
+		//disable specular highlights on walls in the environment map
+		wallMat.roughness = 1;
+		groundPlane.visible = false;
+		cubeCamera.position.copy(groundPlane.position);
+		cubeCamera.update(renderer, scene);
+		wallMat.roughness = 0.6;
+		groundPlane.visible = true;
+
 		render();
-	});
-	// scene
-	scene = new THREE.Scene();
-	// camera
-	camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
-	camera.position.set(280, 0, 0);
-	cameraControls = new OrbitControls(camera, renderer.domElement);
-	cameraControls.target.set(0, - 10, 0);
-	// cameraControls.maxDistance = 400;
-	// cameraControls.minDistance = 10;
-	cameraControls.addEventListener('change', render);
-	cameraControls.update();
-	// cube camera for environment map
-	cubeCamera = new THREE.CubeCamera(1, 1000, 512);
-	cubeCamera.renderTarget.texture.generateMipmaps = true;
-	cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
-	cubeCamera.renderTarget.texture.mapping = THREE.CubeReflectionMapping;
-	cubeCamera.position.set(0, - 100, 0);
-	scene.add(cubeCamera);
-	// ground floor ( with box projected environment mapping )
-	var loader = new THREE.TextureLoader();
-	var rMap = loader.load('img/textures/lava/lavatile.jpg');
-	rMap.wrapS = THREE.RepeatWrapping;
-	rMap.wrapT = THREE.RepeatWrapping;
-	rMap.repeat.set(2, 1);
-	var defaultMat = new THREE.MeshPhysicalMaterial({
-		roughness: 1,
-		envMap: cubeCamera.renderTarget.texture,
-		roughnessMap: rMap
-	});
-	var boxProjectedMat = new THREE.MeshPhysicalMaterial({
-		color: new THREE.Color('#ffffff'),
-		roughness: 1,
-		envMap: cubeCamera.renderTarget.texture,
-		roughnessMap: rMap
-	});
-	boxProjectedMat.onBeforeCompile = function (shader) {
-		//these parameters are for the cubeCamera texture
-		shader.uniforms.cubeMapSize = { value: new THREE.Vector3(200, 200, 100) };
-		shader.uniforms.cubeMapPos = { value: new THREE.Vector3(0, - 50, 0) };
-		shader.uniforms.flipEnvMap.value = true;
-		//replace shader chunks with box projection chunks
-		shader.vertexShader = 'varying vec3 vWorldPosition;\n' + shader.vertexShader;
-		shader.vertexShader = shader.vertexShader.replace(
-			'#include <worldpos_vertex>',
-			worldposReplace
-			);
-		shader.fragmentShader = shader.fragmentShader.replace(
-			'#include <envmap_physical_pars_fragment>',
-			envmapPhysicalParsReplace
-			);
-	};
-	groundPlane = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 500, 150), boxProjectedMat);
-	groundPlane.rotateX(- Math.PI / 2);
-	groundPlane.position.set(0, - 49, 0);
-	scene.add(groundPlane);
-	// walls
-	var diffuseTex = loader.load('img/textures/brick_diffuse.jpg', function () {
-		updateCubeMap();
-	});
-	var bumpTex = loader.load('img/textures/brick_bump.jpg', function () {
-		updateCubeMap();
-	});
-	wallMat = new THREE.MeshPhysicalMaterial({
-		map: diffuseTex,
-		bumpMap: bumpTex,
-		bumpScale: 0.3,
-	});
-	var planeGeo = new THREE.PlaneBufferGeometry(100, 100);
-	var planeBack1 = new THREE.Mesh(planeGeo, wallMat);
-	planeBack1.position.z = - 50;
-	planeBack1.position.x = - 50;
-	scene.add(planeBack1);
-	var planeFront1 = new THREE.Mesh(planeGeo, wallMat);
-	planeFront1.position.z = 50;
-	planeFront1.position.x = - 50;
-	planeFront1.rotateY(Math.PI);
-	scene.add(planeFront1);
-	//lights
-	var width = 50;
-	var height = 100;
-	var intensity = 5;
-	RectAreaLightUniformsLib.init();
-	var redRectLight = new THREE.RectAreaLight(0x9aaeff, intensity, width, height);
-	redRectLight.position.set(- 99, 5, 0);
-	redRectLight.lookAt(0, 5, 0);
-	scene.add(redRectLight);
-	var redRectLightHelper = new THREE.RectAreaLightHelper(redRectLight, 0xffffff);
-	redRectLight.add(redRectLightHelper);
-	render();
-}
-function updateCubeMap() {
-	//disable specular highlights on walls in the environment map
-	wallMat.roughness = 1;
-	groundPlane.visible = false;
-	cubeCamera.position.copy(groundPlane.position);
-	cubeCamera.update(renderer, scene);
-	wallMat.roughness = 0.6;
-	groundPlane.visible = true;
-	render();
-}
-function render() {
-	renderer.render(scene, camera);
-}
+	}
+
+	function onDocumentMouseMove(event) {
+		mouseX = (event.clientX - windowHalfX);
+		mouseY = (event.clientY - windowHalfY);
+
+		console.log(`mouseX:${mouseX} mouseY:${mouseY} `);
+
+		targetX = mouseX * .01;
+		targetY = mouseY * .01;
+
+		// console.log(`targetX:${targetX} targetY:${targetY} `);
+
+		var x = 10 * (targetX - camera.rotation.y);
+		var y = 10 * (targetY - camera.rotation.x);
+
+		camera.rotation.set(x, 0, 0);
+
+		controls.update();
+
+		// controls.object.rotation.x += 0.001 * (targetY - camera.rotation.x);
+		// controls.object.rotation.y += 0.001 * (targetY - camera.rotation.x);
+		// controls.object.rotation.z += 0.001 * (targetY - camera.rotation.x);
+		// controls.rotate.x += 10 * (targetY - camera.rotation.x);
+		// controls.position.z += 10 * (targetY - camera.rotation.x);
+		// console.log(`camera x:${camera.rotation.y} camera y:${camera.rotation.x} `);
+		console.log(camera);
+		console.log(controls.target);
+
+
+
+	}
+
+	function render() {
+
+		setTimeout( function() {
+			renderer.render(scene, camera);
+		}, 1000 / fps );
+	}
+
+	function animate() {
+		setTimeout( function() {
+		    requestAnimationFrame( animate );
+			updateCubeMap();
+		}, 1000 / fps );
+	}
 
 }
