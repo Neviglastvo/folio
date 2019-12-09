@@ -57,15 +57,12 @@ document.addEventListener('click', function (e) {
 
 
 //webgltest
-// import reflection from './_reflection';
+import reflection from './_reflection';
+if ($('.js-reflection').length){
+	reflection()
+}
+
 // import flame from './_flame';
-
-
-
-// if ($('.js-reflection').length){
-// 	reflection()
-// }
-
 // if ($('.js-flame').length){
 // 	flame()
 // }

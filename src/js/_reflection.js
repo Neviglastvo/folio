@@ -112,31 +112,33 @@ export default function reflection() {
 	}
 	#endif
 	`;
-	var fps = 60;
-	var WIDTH = window.innerWidth;
-	var HEIGHT = window.innerHeight;
+	let fps = 60;
+	let WIDTH = window.innerWidth;
+	let HEIGHT = window.innerHeight;
 	// camera
-	var VIEW_ANGLE = 45;
-	var ASPECT = WIDTH / HEIGHT;
-	var NEAR = 1;
-	var FAR = 800;
-	var camera, cubeCamera, scene, renderer;
-	var controls;
-	var groundPlane, wallMat;
+	let VIEW_ANGLE = 45;
+	let ASPECT = WIDTH / HEIGHT;
+	let NEAR = 1;
+	let FAR = 800;
+	let camera, cubeCamera, scene, renderer;
+	let controls;
+	let ground, wallMat;
 
-	var stats;
-	var statsEnabled = true;
+	let renderRequested = false;
 
-	var mouseX = 0;
-	var mouseY = 0;
-	var targetX = 0;
-	var targetY = 0;
-	var windowHalfX = window.innerWidth / 2;
-	var windowHalfY = window.innerHeight / 2;
+	let stats;
+	let statsEnabled = true;
 
-	var mouseDown = false,
+	let targetX = 0;
+	let targetY = 0;
+	let windowHalfX = window.innerWidth / 2;
+	let windowHalfY = window.innerHeight / 2;
+
+	let mouseDown = false,
 		mouseX = 0,
 		mouseY = 0;
+
+
 
 	function onMouseMove(evt) {
 
@@ -158,6 +160,20 @@ export default function reflection() {
 	animate();
 
 	function init() {
+
+		class ColorGUIHelper {
+			constructor(object, prop) {
+				this.object = object;
+				this.prop = prop;
+			}
+			get value() {
+				return `#${this.object[this.prop].getHexString()}`;
+			}
+			set value(hexString) {
+				this.object[this.prop].set(hexString);
+			}
+		}
+
 		var container = document.getElementById('jsReflection');
 
 		// renderer
@@ -166,20 +182,7 @@ export default function reflection() {
 		renderer.setSize(WIDTH, HEIGHT);
 		container.appendChild(renderer.domElement);
 
-		// gui controls
-		var gui = new GUI();
-		var params = {
-			'box projected': true
-		};
-		var Gui = gui.add(params, 'box projected');
-		Gui.onChange(function (value) {
-			if (value) {
-				groundPlane.material = boxProjectedMat;
-			} else {
-				groundPlane.material = defaultMat;
-			}
-			render();
-		});
+
 
 		// scene
 		scene = new THREE.Scene();
@@ -194,27 +197,40 @@ export default function reflection() {
 		controls.autoRotate = false;
 		controls.autoRotateSpeed = 1;
 
-		controls.target.set(0, -10, 0);
+		controls.target.set(0, 0, 0);
 		controls.maxPolarAngle = Math.PI / 2
+		controls.enableZoom = false;
+		controls.enablePan = false;
 		controls.enableDamping = true;
-		controls.dampingFactor = 0.0005;
+		controls.dampingFactor = 0.005;
+		controls.rotateSpeed = 0.005;
+		// controls.screenSpacePanning = false;
+		console.log(controls.getAzimuthalAngle());
+		console.log(controls.getPolarAngle());
+
 
 		controls.dispose();
-		// controls.addEventListener('mousemove', render);
-		document.addEventListener('mousemove', onMouseMove);
 		controls.update();
+
+		// controls.addEventListener('change', render);
+		document.addEventListener('mousemove', onDocumentMouseMove, false);
+		// controls.update();
+
+		console.log(controls);
+
 
 		// cube camera for environment map
 		cubeCamera = new THREE.CubeCamera(1, 1000, 512);
 		cubeCamera.renderTarget.texture.generateMipmaps = true;
 		cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
 		cubeCamera.renderTarget.texture.mapping = THREE.CubeReflectionMapping;
-		cubeCamera.position.set(0, 0, 0);
+		cubeCamera.position.set(100, 50, 100);
 		scene.add(cubeCamera);
 
+		console.log(cubeCamera);
 
 
-		// ground floor ( with box projected environment mapping )
+		// ground ( with box projected environment mapping )
 		var loader = new THREE.TextureLoader();
 		var rMap = loader.load('img/textures/lava/lavatile.jpg');
 		rMap.wrapS = THREE.RepeatWrapping;
@@ -234,7 +250,7 @@ export default function reflection() {
 		boxProjectedMat.onBeforeCompile = function (shader) {
 			//these parameters are for the cubeCamera texture
 			shader.uniforms.cubeMapSize = { value: new THREE.Vector3(200, 200, 100) };
-			shader.uniforms.cubeMapPos = { value: new THREE.Vector3(0, - 50, 0) };
+			shader.uniforms.cubeMapPos = { value: new THREE.Vector3(0, 0, 0) };
 			shader.uniforms.flipEnvMap.value = true;
 			//replace shader chunks with box projection chunks
 			shader.vertexShader = 'varying vec3 vWorldPosition;\n' + shader.vertexShader;
@@ -247,10 +263,13 @@ export default function reflection() {
 				envmapPhysicalParsReplace
 			);
 		};
-		groundPlane = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 600, 0), boxProjectedMat);
-		groundPlane.rotateX(- Math.PI / 2);
-		groundPlane.position.set(0, - 49, 0);
-		scene.add(groundPlane);
+		ground = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 600, 0), boxProjectedMat);
+		ground.rotateX(- Math.PI / 2);
+		ground.position.set(0, - 49, 0);
+		scene.add(ground);
+
+		console.log(ground);
+
 		// walls
 		var diffuseTex = loader.load('img/textures/brick_diffuse.jpg', function () {
 			updateCubeMap();
@@ -273,42 +292,101 @@ export default function reflection() {
 		planeFront1.position.x = - 50;
 		planeFront1.rotateY(Math.PI);
 		scene.add(planeFront1);
-		//lights
-		var width = 10;
-		var height = 300;
+		//ray
+		var rayWidth = 10;
+		var rayHeight = 300;
 		var intensity = 10;
-		var color = 0xEDAE49;
-		var colorReflection = 0xEDAE49;
+		var rayColor = 0xEDAE49;
+		var rayColorReflection = 0xEDAE49;
 		RectAreaLightUniformsLib.init();
-		var redRectLight = new THREE.RectAreaLight(colorReflection, intensity, width, height);
-		redRectLight.position.set(-150, 100, 0);
-		redRectLight.lookAt(199, 5, 0);
-		scene.add(redRectLight);
-		var redRectLightHelper = new THREE.RectAreaLightHelper(redRectLight, color);
-		redRectLight.add(redRectLightHelper);
+		var ray = new THREE.RectAreaLight(rayColorReflection, intensity, rayWidth, rayHeight);
+		ray.position.set(-150, 100, 0);
+		ray.lookAt(0, 100, 0);
+		scene.add(ray);
+		console.log(ray);
 
+		var rayHelper = new THREE.RectAreaLightHelper(ray, rayColor);
+		ray.add(rayHelper);
+
+		console.log(scene);
+
+
+
+		//stats
 		if (statsEnabled) {
 			stats = new Stats();
 			container.appendChild(stats.dom);
 		}
 
+		// gui controls
+		var gui = new GUI();
 
+		var params = { 'box projected': true };
+
+		const guiBP = gui.add(params, 'box projected');
+		guiBP.onChange(function (value) {
+			if (value) {
+				ground.material = boxProjectedMat;
+			} else {
+				ground.material = defaultMat;
+			}
+			render();
+		});
+
+		const guiCameraCfg = gui.addFolder(`Camera params`);
+		guiCameraCfg.add(scene.position, 'x', -300, 300).name('position x').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(scene.position, 'y', -300, 300).name('position y').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(scene.position, 'z', -300, 300).name('position z').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(camera.position, 'x', -500, 500).name('position x').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(camera.position, 'y', -500, 500).name('position y').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(camera.position, 'z', -500, 500).name('position z').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(camera.rotation, 'x', -Math.PI, Math.PI).name('rotation x').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(camera.rotation, 'y', -Math.PI, Math.PI).name('rotation y').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.add(camera.rotation, 'z', -Math.PI, Math.PI).name('rotation z').onChange(requestRenderIfNotRequested);
+		guiCameraCfg.open();
+
+		const guiRayCfg = gui.addFolder(`Ray params`);
+		guiRayCfg.addColor(new ColorGUIHelper(ray, 'color'), 'value').name('color').onChange(requestRenderIfNotRequested);
+		guiRayCfg.add(ray, 'width', 0, 100).name('width').onChange(requestRenderIfNotRequested);
+		guiRayCfg.add(ray, 'height', 0, 500).name('height').onChange(requestRenderIfNotRequested);
+		guiRayCfg.add(ray, 'intensity', 0, 100).name('intensity').onChange(requestRenderIfNotRequested);
+		guiRayCfg.add(ray.position, 'x', -500, 500).name('x').onChange(requestRenderIfNotRequested);
+		guiRayCfg.add(ray.position, 'y', -500, 500).name('y').onChange(requestRenderIfNotRequested);
+		guiRayCfg.add(ray.position, 'z', -500, 500).name('z').onChange(requestRenderIfNotRequested);
+		guiRayCfg.open();
+
+		const guiGroundCfg = gui.addFolder(`Ground params`);
+		guiGroundCfg.add(ground.geometry.parameters, 'width', 0, 1000).name('width').onChange(requestRenderIfNotRequested);
+		guiGroundCfg.add(ground.geometry.parameters, 'height', 0, 1000).name('height').onChange(requestRenderIfNotRequested);
+		guiGroundCfg.add(ground.position, 'x', -500, 500).name('x').onChange(requestRenderIfNotRequested);
+		guiGroundCfg.add(ground.position, 'y', -500, 500).name('y').onChange(requestRenderIfNotRequested);
+		guiGroundCfg.add(ground.position, 'z', -500, 500).name('z').onChange(requestRenderIfNotRequested);
+		guiGroundCfg.open();
+
+		console.log();
+
+		window.addEventListener('resize', onWindowResize, false);
 
 	}
 
 	function updateCubeMap() {
 		//disable specular highlights on walls in the environment map
 		wallMat.roughness = 1;
-		groundPlane.visible = false;
-		cubeCamera.position.copy(groundPlane.position);
+		ground.visible = false;
+		cubeCamera.position.copy(ground.position);
 		cubeCamera.update(renderer, scene);
 		wallMat.roughness = 0.6;
-		groundPlane.visible = true;
+		ground.visible = true;
 
 		render();
 	}
 
 	function onDocumentMouseMove(event) {
+		// Manually fire the event in OrbitControls
+		controls.handleMouseMoveRotate(event);
+	}
+
+	function onDocumentMouseMove2(event) {
 		mouseX = (event.clientX - windowHalfX);
 		mouseY = (event.clientY - windowHalfY);
 
@@ -324,33 +402,42 @@ export default function reflection() {
 
 		camera.rotation.set(x, 0, 0);
 
-		controls.update();
 
-		// controls.object.rotation.x += 0.001 * (targetY - camera.rotation.x);
-		// controls.object.rotation.y += 0.001 * (targetY - camera.rotation.x);
-		// controls.object.rotation.z += 0.001 * (targetY - camera.rotation.x);
-		// controls.rotate.x += 10 * (targetY - camera.rotation.x);
-		// controls.position.z += 10 * (targetY - camera.rotation.x);
-		// console.log(`camera x:${camera.rotation.y} camera y:${camera.rotation.x} `);
 		console.log(camera);
 		console.log(controls.target);
 
 
+	}
 
+	function requestRenderIfNotRequested() {
+		if (!renderRequested) {
+			renderRequested = true;
+			requestAnimationFrame(render);
+		}
+	}
+
+	function onWindowResize() {
+		camera.aspect = window.innerWidth / window.innerHeight;
+		camera.updateProjectionMatrix();
+		renderer.setSize(window.innerWidth, window.innerHeight);
+	}
+
+
+	function animate() {
+
+		requestAnimationFrame(animate);
+		updateCubeMap();
+		controls.update();
+
+		if (statsEnabled) { stats.update() };
 	}
 
 	function render() {
+		renderRequested = true;
 
-		setTimeout( function() {
-			renderer.render(scene, camera);
-		}, 1000 / fps );
+		renderer.render(scene, camera);
 	}
 
-	function animate() {
-		setTimeout( function() {
-		    requestAnimationFrame( animate );
-			updateCubeMap();
-		}, 1000 / fps );
-	}
+
 
 }
