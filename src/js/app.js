@@ -57,7 +57,7 @@ document.addEventListener('click', function (e) {
 
 
 //webgltest
-import reflection from './_reflection';
+import reflection from './reflection/main';
 if ($('.js-reflection').length){
 	reflection()
 }
