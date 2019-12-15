@@ -1,5 +1,5 @@
 ---
-title: Index page
+title: Roman Yakovenko | Frontend Developer
 ---
 {% extends "layouts/_layout.html" %}
 
@@ -18,14 +18,8 @@ title: Index page
 
 	<div class="logo">RY</div>
 
-	<div class="nav">
-		<div class="nav__title">MENU</div>
-		<div class="nav__list">
-			<a href="#" class="nav__item">About</a>
-			<a href="#" class="nav__item">Works</a>
-			<a href="#" class="nav__item">Contact</a>
-		</div>
-	</div>
+
+	{% include "./partials/_nav.html" %}
 
 	<div class="layout__bg">
 		<div class="layout__bg-item layout__bg-item--1"></div>

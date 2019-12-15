@@ -11,3 +11,5 @@ PageList:
   ready: 1
 - file: flame.html
   ready: 1
+- file: cv.html
+  ready: 1

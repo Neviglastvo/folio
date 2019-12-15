@@ -1,0 +1,414 @@
+@import "helpers/*.sass"
+@import "base/*.sass"
+@import "generated/*.sass"
+
+$cvBg: #fff
+$cvBorderColor: #000
+$cvText: #000
+$cvTextContrast: #fff
+$borderWidth: 1px
+
+$cvSkillColor: #eee
+$cvSkillColorActive: #2d2d2d
+
+$leftWidth: 260px
+$leftPadding: 30px
+
+$pt12: 3mm
+$pt14: 3.5mm
+$pt16: 4mm
+$pt18: 4.5mm
+$pt20: 5mm
+
+.cv
+	margin: 0 auto
+	display: flex
+	width: 210mm
+	height: 297mm
+	min-height: 297mm
+	overflow: hidden
+	box-shadow: 0 0 0px 1px #000
+
+
+.cv-left
+	width: $leftWidth
+	border-right: $borderWidth solid $cvBorderColor
+	display: flex
+	flex-direction: column
+	padding: 30px 0 30px 30px
+	&__avatar-container
+		border: $borderWidth solid $cvBorderColor
+		border-radius: 50%
+		// background-color: #2d2d2d
+		height: 120px
+		min-height: 120px
+		width: 120px
+		min-width: 120px
+		display: flex
+		align-items: center
+		justify-content: center
+		margin-bottom: 30px
+	&__avatar
+		width: 100%
+		height: auto
+		object-fit: cover
+	&__avatar2
+		font-size: 60px
+		color: $cvText
+		font-family: $fa
+	&__block
+		display: flex
+		flex-direction: column
+		width: 100%
+		margin-bottom: 40px
+		&:last-child
+			margin-bottom: 0
+		&--interests
+			flex-direction: row
+			flex-wrap: wrap
+			overflow: hidden
+			.cv-left__list
+				margin: -5px
+				width: 100%
+				display: flex
+				flex-direction: row
+				flex-wrap: wrap
+				overflow: hidden
+			.cv-left__item
+				padding: 5px
+				margin-bottom: 0
+			.cv-left__icon
+				margin-right: 0
+				width: 100%
+				height: 100%
+				background-color: #fff
+				width: 60px
+				height: 60px
+				svg
+					fill: #000 !important
+					width: 60px
+					height: 60px
+
+		&--qr
+			margin-top: auto
+			width: 100%
+			margin-right: 0
+			height: auto
+			.cv-left__item
+				width: 100%
+				height: 100%
+				border: none
+			.cv-left__icon
+				position: relative
+				border: none
+				padding: 0
+				margin-right: 0
+				width: 270px
+				height: auto
+				background-color: #FFF
+				height: 0
+				overflow: hidden
+				padding-bottom: 100%
+			svg
+				+coverdiv
+				fill: #000 !important
+
+
+	&__item
+		padding-right: $leftPadding
+		display: flex
+		align-items: center
+		margin-bottom: 20px
+		min-height: 34px
+		&:last-child
+			margin-bottom: 0
+
+	&__title
+		width: 100%
+		padding-bottom: 4px
+		border-bottom: $borderWidth solid $cvBorderColor
+		color: $cvText
+		font-size: $pt18
+		line-height: $pt18
+		letter-spacing: 2px
+		font-family: $fa
+		font-weight: 500
+		margin-bottom: 20px
+		text-transform: uppercase
+
+	&__icon
+		display: flex
+		justify-content: center
+		align-items: center
+		// padding: 2px
+		// background-color: $cvBorderColor
+		// border: $borderWidth solid $cvBorderColor
+		width: 18px
+		min-width: 18px
+		height: 18px
+		margin-right: 10px
+
+		svg
+			width: 100%
+			height: 100%
+			fill: $cvBorderColor
+
+		img
+			width: 100%
+			height: auto
+
+	&__box-title
+		font-family: $fc
+		color: $cvText
+		font-size: 14px
+	&__box-subtitle
+		font-size: $pt14
+		color: $cvText
+		font-family: $fd
+		text-decoration: none
+
+.cv-right
+	padding: 30px 30px 30px 10px
+	width: 100%
+	&__header
+		padding-left: 14px
+		height: 120px
+		width: 100%
+		display: flex
+		flex-direction: column
+		justify-content: center
+		margin-bottom: 30px
+	&__header-title
+		font-family: $fc
+		font-size: 40px
+		line-height: 40px
+		color: #101010
+		text-transform: uppercase
+		margin-bottom: 16px
+	&__header-subtitle
+		text-transform: uppercase
+		font-family: $fd
+		font-size: 20px
+		line-height: 22px
+		color: #101010
+		letter-spacing: 5px
+	&__container
+		padding-left: 34px
+		margin-bottom: 30px
+		position: relative
+		&:last-child
+			margin-bottom: 0
+		&:before
+			content: ""
+			position: absolute
+			height: calc(100% - 34px)
+			width: $borderWidth
+			background-color: $cvBorderColor
+			left: 17px
+			top: 34px
+
+	&__footer
+		padding-left: 36px
+
+	&__title
+		width: 100%
+		display: flex
+		justify-content: flex-end
+		position: relative
+		margin-bottom: 10px
+		font-family: $fc
+		&:after
+			content: ""
+			position: absolute
+			top: 0
+			bottom: 0
+			margin: auto 0
+			right: 0
+			width: 100%
+			height: 1px
+			background-color: $cvBorderColor
+			z-index: -1
+		span
+			position: absolute
+			left: -17px
+			padding: 0 8px
+			border-top: $borderWidth solid #fff
+			border-bottom: $borderWidth solid $cvBorderColor
+			// border-right: $borderWidth solid $cvBorderColor
+			line-height: 38px
+			font-size: 18px
+			letter-spacing: 3px
+			color: #101010
+			text-transform: uppercase
+			background-color: #fff
+			&:after
+				content: ""
+				height: 50%
+				position: absolute
+				bottom: 0
+				right: 0
+				width: 1px
+				background-color: $cvBorderColor
+
+
+	&__title-icon
+		// position: absolute
+		// top: 0
+		// left: -34px
+		height: 40px
+		width: 40px
+		display: flex
+		border: $borderWidth solid $cvBorderColor
+		background-color: #FFF
+		// border-radius: 50%
+		padding: 2px
+		overflow: hidden
+		svg
+			width: 100%
+			fill: #000
+
+	&__item
+		display: flex
+		position: relative
+		padding-left: 20px
+		margin-bottom: 20px
+		&:last-child
+			margin-bottom: 0
+
+		&:before
+			content: ""
+			position: absolute
+			top: 0
+			bottom: 0
+			margin: auto 0
+			left: -17px
+			width: 37px
+			height: 1px
+			background-color: $cvBorderColor
+
+		&:after
+			content: ""
+			position: absolute
+			background-color: #FFF
+			left: -22px
+			bottom: 0
+			top: 0
+			margin: auto 0
+			height: 10px
+			width: 10px
+			border-radius: 50%
+			border: $borderWidth solid $cvBorderColor
+
+	&__year
+		display: flex
+		position: relative
+		margin-left: 10px
+		background-color: #FFF
+		font-family: $fc
+		color: #101010
+		white-space: nowrap
+
+	&__year-item
+		position: relative
+		display: flex
+		align-items: center
+		font-size: 4mm
+		line-height: 4mm
+		&:after
+			content: "-"
+			padding: 0 4px
+		&:last-child
+			&:after
+				content: none
+		span
+			padding-left: 3px
+			font-size: 3mm
+			line-height: 3mm
+
+	&__info
+		display: flex
+		flex-direction: column
+		position: relative
+		&:before
+			content: ""
+			position: absolute
+			top: 0
+			bottom: 0
+			margin: auto 0
+			left: 0
+			width: 1px
+			height: 100%
+			background-color: #000
+
+	&__info-title
+		display: flex
+		align-items: center
+		padding-left: 8px
+		padding-bottom: 2px
+		margin-bottom: 4px
+		font-weight: 500
+		font-family: $fd
+		color: #101010
+		font-size: 16px
+
+	&__info-subtitle
+		display: flex
+		align-items: center
+		padding-left: 12px
+		margin-bottom: 6px
+		color: rgba(16,16,16,0.75)
+		font-family: $fd
+		font-size: 4mm
+		line-height: 4mm
+
+	&__info-subtitle2
+		font-family: $fc
+		padding-left: 16px
+		font-size: 4mm
+		line-height: 4mm
+		text-align: justify
+		color: #101010
+		margin-bottom: 12px
+		&:last-child
+			margin-bottom: 0
+		a
+			color: #101010
+			text-decoration: none
+
+.cv-skills
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	&__item
+		display: flex
+		align-items: center
+		width: 48%
+		min-width: 48%
+		margin-bottom: 10px
+	&__title
+		font-family: $fc
+		color: #101010
+		margin-right: 10px
+		width: 110px
+	&__progress
+		position: relative
+		background-color: $cvSkillColor
+		width: 100%
+		max-width: 200px
+		height: 4px
+	&__progress-overlay
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		background-color: $cvSkillColorActive
+
+
+.cv-technologies
+	display: flex
+	flex-wrap: wrap
+
+	&__item
+		font-family: $fc
+		color: #101010
+		margin: 0 10px 10px 0

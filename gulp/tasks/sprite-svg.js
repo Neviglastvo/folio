@@ -22,7 +22,7 @@ gulp.task('sprite:svg', () => gulp
             w = $('svg').attr('width').replace(/(?!-)[^0-9.]/g,'');
             h = $('svg').attr('height').replace(/(?!-)[^0-9.]/g,'');
         } else {
-            size = $('svg').attr('viewbox').split(' ').splice(2);
+            size = $('svg').attr('viewBox').split(' ').splice(2);
             w = size[0];
             h = size[1];
             $('svg').attr('width', parseInt(w));

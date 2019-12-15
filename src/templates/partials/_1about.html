@@ -1,3 +1,5 @@
+{% import "../data/roadmap.html" as roadmap %}
+
 <div class="lifepath">
 	<div class="lifepath__item">
 		<div class="lifepath__date">1994</div>
@@ -45,92 +47,33 @@
 
 <div class="roadmap">
 	<div class="roadmap__list">
+
+		{% for item in roadmap.roadmap %}
+
 		<div class="roadmap__item">
-			<div class="roadmap__item-main">HTML</div>
-			<div class="roadmap__item-secondary roadmap-learned">Basics</div>
-			<div class="roadmap__item-secondary">Semantic HTML</div>
-			<div class="roadmap__item-secondary">Basic SEO</div>
-			<div class="roadmap__item-secondary">Accessibility</div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main">CSS</div>
-			<div class="roadmap__item-secondary roadmap-learned">Basics</div>
-			<div class="roadmap__item-secondary">
-				Layouts
+
+			<div class="roadmap__item-main">{{item.title}}</div>
+
+			{% if item.subitem|length %}
+			{% for inside in item.subitem %}
+			<div class="roadmap__item-secondary roadmap-{{inside.status}} {{ 'roadmap__item-secondary--overlay' if inside.subitem2|length }}">
+				{{inside.title}}
+				{% if inside.subitem2|length %}
 				<div class="roadmap__item-overlay">
-					<div class="roadmap__item-overlay-item">Floats</div>
-					<div class="roadmap__item-overlay-item">Positioning</div>
-					<div class="roadmap__item-overlay-item">Display</div>
-					<div class="roadmap__item-overlay-item">Box Model</div>
-					<div class="roadmap__item-overlay-item">CSS Grid</div>
-					<div class="roadmap__item-overlay-item">Flex Box</div>
+					{% for inside2 in inside.subitem2 %}
+					<div class="roadmap__item-overlay-item">{{inside2.title}}</div>
+					{% endfor %}
 				</div>
+				{% endif %}
 			</div>
-			<div class="roadmap__item-secondary roadmap-learned">Media-Queries</div>
+			{% endfor %}
+			{% endif %}
+
 		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main">JavaScript</div>
-			<div class="roadmap__item-secondary roadmap-learned">Syntax</div>
-			<div class="roadmap__item-secondary">DOM</div>
-			<div class="roadmap__item-secondary">Fetch API / Ajax</div>
-			<div class="roadmap__item-secondary">ES6+ and modules</div>
-			<div class="roadmap__item-secondary">
-			Understanding the concepts
-			<div class="roadmap__item-overlay">
-				<div class="roadmap__item-overlay-item">Hoisting</div>
-				<div class="roadmap__item-overlay-item">Event Bubbling</div>
-				<div class="roadmap__item-overlay-item">Scope</div>
-				<div class="roadmap__item-overlay-item">Prototype</div>
-				<div class="roadmap__item-overlay-item">Shadow DOM</div>
-				<div class="roadmap__item-overlay-item">strict</div>
-				<div class="roadmap__item-overlay-item">how browsers work</div>
-				<div class="roadmap__item-overlay-item">DNS</div>
-				<div class="roadmap__item-overlay-item">HTTP / HTTPS</div>
-			</div>
-		</div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main">Package Managers</div>
-			<div class="roadmap__item-secondary roadmap-learned">npm</div>
-			<div class="roadmap__item-secondary">yarn</div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main">CSS Preprocessors</div>
-			<div class="roadmap__item-secondary roadmap-learned">SASS</div>
-			<div class="roadmap__item-secondary">PostCSS</div>
-			<div class="roadmap__item-secondary">Less</div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main">CSS Frameworks</div>
-			<div class="roadmap__item-secondary roadmap-learned">Bootstrap</div>
-			<div class="roadmap__item-secondary">Materialize CSS</div>
-			<div class="roadmap__item-secondary">Bulma</div>
-			<div class="roadmap__item-secondary">Semanit UI</div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main">CSS Architecture</div>
-			<div class="roadmap__item-secondary roadmap-learned">BEM</div>
-			<div class="roadmap__item-secondary">OOCSS</div>
-			<div class="roadmap__item-secondary">SMACSS</div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main">Build tools</div>
-			<div class="roadmap__item-secondary roadmap-learned">Gulp</div>
-			<div class="roadmap__item-secondary">Webpack</div>
-			<div class="roadmap__item-secondary">ESLint</div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main"></div>
-			<div class="roadmap__item-secondary roadmap-learned"></div>
-			<div class="roadmap__item-secondary"></div>
-			<div class="roadmap__item-secondary"></div>
-		</div>
-		<div class="roadmap__item">
-			<div class="roadmap__item-main"></div>
-			<div class="roadmap__item-secondary roadmap-learned"></div>
-			<div class="roadmap__item-secondary"></div>
-			<div class="roadmap__item-secondary"></div>
-		</div>
+
+		{% endfor %}
+
+
 	</div>
 	<div class="roadmap__legend">
 		<div class="roadmap__legend-item">
@@ -156,18 +99,3 @@
 	</div>
 </div>
 
-<div class="contacts">
-
-	<div class="contacts__item">
-		<div class="contacts__img-container">
-			<div class="contacts__img"></div>
-		</div>
-		<div class="contacts__box">
-			<div class="contacts__title">Roman Yakovenko</div>
-			<a href="mailto:" class="contacts__subtitle">paradiseseeker94@gmail.com</a>
-			<a href="https://t.me/Nevejestvo" class="contacts__subtitle">telegram</a>
-			<a href="https://www.google.com/maps/place/data=!3m1!4b1!4m5!3m4!1s0x40d4c49afe7caa71:0x10e58a34c8ec2b96!8m2!3d50.4153964!4d30.6935992" target="blank" class="contacts__link">kiev, ukraine</a>
-		</div>
-	</div>
-
-</div>

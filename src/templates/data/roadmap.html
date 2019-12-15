@@ -1,0 +1,436 @@
+{% set roadmap = [
+
+	{
+		title: 'HTML',
+		subitem: [
+			{
+				title: 'Basics',
+				status: 'learned'
+			},
+			{
+				title: 'Semantic HTML',
+				status: 'learned'
+			},
+			{
+				title: 'Basic SEO',
+				status: 'learned'
+			},
+			{
+				title: 'Accessibility',
+				status: 'knowABit'
+			}
+		]
+	},
+
+	{
+		title: 'CSS',
+		subitem: [
+			{
+				title: 'Basics',
+				status: 'learned'
+			},
+			{
+				title: 'Layouts',
+				status: 'learned',
+				subitem2: [
+					{title: 'Floats'},
+					{title: 'Positioning'},
+					{title: 'Display'},
+					{title: 'Box Model'},
+					{title: 'CSS Grid'},
+					{title: 'Flex Box'}
+				]
+			},
+			{
+				title: 'CSS3',
+				status: 'learned'
+			},
+			{
+				title: 'Media-Queries',
+				status: 'learned'
+			},
+			{
+				title: 'Crossbrowser',
+				status: 'learned'
+			},
+			{
+				title: 'Imports, variables',
+				status: 'learned'
+			}
+		]
+	},
+
+	{
+		title: 'JavaScript',
+		subitem: [
+			{
+				title: 'Syntax',
+				status: ''
+			},
+			{
+				title: 'DOM',
+				status: ''
+			},
+			{
+				title: 'Fetch API / Ajax',
+				status: ''
+			},
+			{
+				title: 'ES6+ and modules',
+				status: ''
+			},
+			{
+				title: 'Understanding the concepts',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'Package Managers',
+		subitem: [
+			{
+				title: 'npm',
+				status: ''
+			},
+			{
+				title: 'yarn',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'CSS Preprocessors',
+		subitem: [
+			{
+				title: 'SASS',
+				status: ''
+			},
+			{
+				title: 'PostCSS',
+				status: ''
+			},
+			{
+				title: 'Less',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'CSS Frameworks',
+		subitem: [
+			{
+				title: 'Bootstrap',
+				status: '3'
+			},
+			{
+				title: 'Materialize CSS',
+				status: '3'
+			},
+			{
+				title: 'Bulma',
+				status: '3'
+			},
+			{
+				title: 'Semanit UI',
+				status: '3'
+			}
+		]
+	},
+
+	{
+		title: 'CSS Architecture',
+		subitem: [
+			{
+				title: 'BEM',
+				status: '3'
+			},
+			{
+				title: 'OOCSS',
+				status: '3'
+			},
+			{
+				title: 'SMACSS',
+				status: '3'
+			}
+		]
+	},
+
+	{
+		title: 'Build tools',
+		subitem: [
+			{
+				title: 'Gulp',
+				status: '3'
+			},
+			{
+				title: 'Webpack',
+				status: '3'
+			},
+			{
+				title: 'ESLint',
+				status: '3'
+			}
+		]
+	},
+
+	{
+		title: 'JS Framework',
+		subitem: [
+			{
+				title: 'React.js',
+				status: ''
+			},
+			{
+				title: 'Vue.js',
+				status: ''
+			},
+			{
+				title: 'Angular',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'CSS in JS',
+		subitem: [
+			{
+				title: 'Styled Components',
+				status: ''
+			},
+			{
+				title: 'CSS Modules',
+				status: ''
+			},
+			{
+				title: Emotion'',
+				status: ''
+			},
+			{
+				title: 'Radium',
+				status: ''
+			},
+			{
+				title: 'Glamouros',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'Testing apps',
+		subitem: [
+			{
+				title: 'types',
+				status: '',
+				subitem2: [
+					{title: 'Unit'},
+					{title: 'Integrational'},
+					{title: 'Cypress'},
+					{title: 'Box Model'},
+					{title: 'CSS Grid'},
+					{title: 'Flex Box'}
+				]
+			},
+			{
+				title: 'Jest',
+				status: ''
+			},
+			{
+				title: 'Enzyme',
+				status: ''
+			},
+			{
+				title: 'Cypress',
+				status: ''
+			},
+			{
+				title: 'Mocha',
+				status: ''
+			},
+			{
+				title: 'Karma',
+				status: ''
+			},
+			{
+				title: 'Jasmine',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'PWA',
+		subitem: [
+			{
+				title: 'Storage',
+				status: ''
+			},
+			{
+				title: 'Web Sockets',
+				status: ''
+			},
+			{
+				title: 'Service Workers',
+				status: ''
+			},
+			{
+				title: 'Location',
+				status: ''
+			},
+			{
+				title: 'Notification',
+				status: ''
+			},
+			{
+				title: 'Device Orientation',
+				status: ''
+			},
+			{
+				title: 'Payments',
+				status: ''
+			},
+			{
+				title: 'Credentials',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'App performance',
+		subitem: [
+			{
+				title: 'PRPL Patterns',
+				status: ''
+			},
+			{
+				title: 'RAIL Model',
+				status: ''
+			},
+			{
+				title: 'Prformance Metrics',
+				status: ''
+			},
+			{
+				title: 'Light House Metrics',
+				status: ''
+			},
+			{
+				title: 'Dev Tools mastering',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'Type Checkers',
+		subitem: [
+			{
+				title: 'TypeScript',
+				status: ''
+			},
+			{
+				title: 'Flow',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'Server Side Rendering',
+		subitem: [
+			{
+				title: 'React.js',
+				status: '',
+				subitem2: [
+					{title: 'Next.js'},
+					{title: 'After.js'}
+				]
+			},
+			{
+				title: 'Vue.js',
+				status: '',
+				subitem2: [
+					{title: 'Universal'}
+				]
+			},
+			{
+				title: 'Angular',
+				status: '',
+				subitem2: [
+					{title: 'Nuxt.js'}
+				]
+			}
+		]
+	},
+
+	{
+		title: 'Static Site Generators',
+		subitem: [
+			{
+				title: 'Gatsby.js',
+				status: ''
+			},
+			{
+				title: '',
+				status: ''
+			},
+			{
+				title: '',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'Desktop Apps',
+		subitem: [
+			{
+				title: 'Electron',
+				status: ''
+			},
+			{
+				title: 'Proton Native',
+				status: ''
+			},
+			{
+				title: 'Carlo',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'Mobile Apps',
+		subitem: [
+			{
+				title: 'React Native',
+				status: ''
+			},
+			{
+				title: 'Native Script',
+				status: ''
+			}
+		]
+	},
+
+	{
+		title: 'Keep Learning'
+	}
+
+]
+%}
+
+
+
+{# roadmap statuses:
+	learned - learned and used
+	learning - learning now
+	knowABit - reading about
+	forFuture - need to learn
+	shit - not interested
+#}
