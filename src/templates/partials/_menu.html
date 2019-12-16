@@ -1,0 +1,39 @@
+{% import "../data/data.html" as data %}
+
+<div class="hamburger js-hamburger">
+	<span class="hamburger__icon"></span>
+</div>
+
+<div class="menu js-nav-mobile">
+	<div class="menu__container">
+
+		<div class="menu__left">
+			<div class="logo">RY</div>
+
+			<div class="menu__left-container">
+				<div class="menu__cv">
+					<a href="" class="menu__cv-link" download>Get my CV</a>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="menu__right">
+			<div class="menu__right-container">
+				<div class="menu__list">
+					<a href="#" class="menu__item">Home</a>
+					<a href="#" class="menu__item">About</a>
+					<a href="#" class="menu__item">Works</a>
+					<a href="#" class="menu__item">Contacts</a>
+				</div>
+
+				<div class="menu__socials">
+					{% for item in data.socials %}
+					<a href="{{item.link}}" class="menu__socials-item">{{icon.i(item.icon)}}</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

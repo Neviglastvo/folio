@@ -14,10 +14,13 @@
 		min-height: 85vh
 		overflow: hidden
 		+h
-			&:before
-				background-color: rgba(black, 0.35)
+			.works__img-container
+				+blur(0)
+			.works__img-parallax
+				&:before
+					background-color: rgba(black, 0.45)
 
-			.works__title, .works__subtitle, .works__link
+			.works__title, .works__subtitle, .works__link,
 				opacity: 1
 				transform: translateY(0)
 
@@ -92,6 +95,8 @@
 		z-index: -1
 		display: flex
 		overflow: hidden
+		+blur(3)
+		+tr
 
 	&__img-parallax
 		pointer-events: none

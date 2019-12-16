@@ -19,47 +19,29 @@ title: CV Roman Yakovenko
 
 		<div class="cv-left__block">
 			<div class="cv-left__title">info</div>
-			<!-- <div class="cv-left__item">
-				<div class="cv-left__icon"><img src="./img/cv/icons/left/info/name.png" alt=""></div>
-				<div class="cv-left__box">
-					<div class="cv-left__box-title">Name</div>
-					<div class="cv-left__box-subtitle">Roman Yakovenko</div>
-				</div>
-			</div> -->
+
 			<div class="cv-left__item">
 				<div class="cv-left__icon">{{icon.i('pin')}}</div>
 				<div class="cv-left__box">
-					<!-- <div class="cv-left__box-title">Adress</div> -->
-					<a class="cv-left__box-subtitle" href="https://www.google.com/maps/place/data=!3m1!4b1!4m5!3m4!1s0x40d4c49afe7caa71:0x10e58a34c8ec2b96!8m2!3d50.4153964!4d30.6935992" target="blank">Kyiv, Ukraine <br>Darnitsky district</a>
+					<a class="cv-left__box-subtitle" href="{{data.global.locationLink}}" target="blank">Kyiv, Ukraine <br>Darnitsky district</a>
 
 				</div>
 			</div>
 			<div class="cv-left__item">
 				<div class="cv-left__icon">{{icon.i('phone2')}}</div>
 				<div class="cv-left__box">
-					<!-- <div class="cv-left__box-title">Phone</div> -->
-					<a class="cv-left__box-subtitle" href="tel:+380631866962">+38 063 186 69 62</a>
+					<a class="cv-left__box-subtitle" href="{{data.global.phoneLink}}">{{data.global.phone}}</a>
 				</div>
 			</div>
 
 			<div class="cv-left__item">
 				<div class="cv-left__icon">{{icon.i('at')}}</div>
 				<div class="cv-left__box">
-					<!-- <div class="cv-left__box-title">E-mail</div> -->
-					<a class="cv-left__box-subtitle" href="mailto:r.y.fdev@gmail.com">r.y.fdev@gmail.com</a>
+					<a class="cv-left__box-subtitle" href="mailto:{{data.global.email}}">{{data.global.email}}</a>
 				</div>
 			</div>
 
-			<!-- <div class="cv-left__item">
-				<div class="cv-left__icon"><img src="./img/cv/icons/left/info/site.png" alt=""></div>
-				<div class="cv-left__box">
-					<div class="cv-left__box-title">Website</div>
-					<div class="cv-left__box-subtitle">subtitle</div>
-				</div>
-			</div> -->
-
 		</div>
-
 
 		<div class="cv-left__block">
 			<div class="cv-left__title">social</div>
@@ -95,16 +77,41 @@ title: CV Roman Yakovenko
 				</div>
 
 				<div class="cv-left__item">
-					<div class="cv-left__icon">{{icon.i('code')}}</div>
+					<div class="cv-left__icon">{{icon.i('origami')}}</div>
+				</div>
+
+				<div class="cv-left__item">
+					<div class="cv-left__icon">{{icon.i('puzzle')}}</div>
+				</div>
+
+				<div class="cv-left__item">
+					<div class="cv-left__icon">{{icon.i('fishing')}}</div>
+				</div>
+
+				<div class="cv-left__item">
+					<div class="cv-left__icon">{{icon.i('bycicle')}}</div>
 				</div>
 			</div>
 
 		</div>
 
-		<div class="cv-left__block cv-left__block--qr">
+		<div class="cv-left__block">
 			<div class="cv-left__title">folio</div>
 
 			<div class="cv-left__item">
+				<div class="cv-left__icon">{{icon.i('website21')}}</div>
+				<div class="cv-left__box">
+					<a class="cv-left__box-subtitle" href="{{data.global.folio.link}}" target="blank">{{data.global.folio.name}}</a>
+				</div>
+			</div>
+
+			<div class="cv-left__item">
+				<div class="cv-left__box">
+					<div class="cv-left__box-subtitle">or scan this great QR code</div>
+				</div>
+			</div>
+
+			<div class="cv-left__item cv-left__item--qr">
 				<div class="cv-left__icon">{{icon.i('qr')}}</div>
 			</div>
 
@@ -115,16 +122,17 @@ title: CV Roman Yakovenko
 
 	<div class="cv-right">
 
-		<div class="cv-right__header">
-			<div class="cv-right__header-title">Roman Yakovenko</div>
-			<div class="cv-right__header-subtitle">frontend developer</div>
+		<div class="cv-header">
+			<div class="cv-header__title">Roman Yakovenko</div>
+			<div class="cv-header__subtitle">frontend developer</div>
+			<div class="cv-header__subtitle2">Salary: <span>1500$</span></div>
 		</div>
 
 		<div class="cv-right__container">
 			<div class="cv-right__title">
 				<span>Work experience</span>
 				<div class="cv-right__title-icon">
-					{{icon.i('we4')}}
+					{{icon.i('workExperience')}}
 				</div>
 			</div>
 
@@ -241,7 +249,7 @@ title: CV Roman Yakovenko
 			<div class="cv-right__title">
 				<span>Education</span>
 				<div class="cv-right__title-icon">
-					{{icon.i('education')}}
+					{{icon.i('education2')}}
 				</div>
 			</div>
 
@@ -275,52 +283,51 @@ title: CV Roman Yakovenko
 		</div>
 
 
-		<div class="cv-right__footer">
+		<div class="cv-footer">
 
-			<div class="cv-right__title">
-				<span>Skills</span>
-				<div class="cv-right__title-icon">
-					{{icon.i('skills')}}
+			<div class="cv-footer__col">
+
+				<div class="cv-right__title">
+					<span>Skills</span>
+					<div class="cv-right__title-icon">
+						{{icon.i('skills')}}
+					</div>
 				</div>
+
+				<div class="cv-skills">
+				{% for item in data.skills %}
+					<div class="cv-skills__item">
+						<div class="cv-skills__title">{{item.title}}</div>
+						<div class="cv-skills__progress">
+							<div class="cv-skills__progress-overlay" style="width: {{item.skill}}"></div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+
 			</div>
 
-			<div class="cv-skills">
-				<div class="cv-skills__item"><div class="cv-skills__title">HTML</div><div class="cv-skills__progress"><div class="cv-skills__progress-overlay" style="width: 95%"></div></div></div>
-				<div class="cv-skills__item"><div class="cv-skills__title">CSS</div><div class="cv-skills__progress"><div class="cv-skills__progress-overlay" style="width: 95%"></div></div></div>
-				<div class="cv-skills__item"><div class="cv-skills__title">JS</div><div class="cv-skills__progress"><div class="cv-skills__progress-overlay" style="width: 75%"></div></div></div>
-				<div class="cv-skills__item"><div class="cv-skills__title">PHP</div><div class="cv-skills__progress"><div class="cv-skills__progress-overlay" style="width: 45%"></div></div></div>
+			<div class="cv-footer__col">
+
+				<div class="cv-right__title">
+					<span>Technologies</span>
+					<div class="cv-right__title-icon">
+						{{icon.i('technologies')}}
+					</div>
+				</div>
+
+				<div class="cv-technologies">
+				{% for item in data.technologies %}
+					<div class="cv-technologies__item">{{item.title}}</div>
+				{% endfor %}
+				</div>
+
 			</div>
+
 
 		</div>
-
-
-		<div class="cv-right__footer">
-
-			<div class="cv-right__title">
-				<span>Technologies</span>
-				<div class="cv-right__title-icon">
-					{{icon.i('skills')}}
-				</div>
-			</div>
-
-			<div class="cv-technologies">
-				<div class="cv-technologies__item">BEM</div>
-				<div class="cv-technologies__item">SASS</div>
-				<div class="cv-technologies__item">JQuery</div>
-				<div class="cv-technologies__item">YII2</div>
-				<div class="cv-technologies__item">NPM</div>
-				<div class="cv-technologies__item">Gulp</div>
-				<div class="cv-technologies__item">Browserstack</div>
-				<div class="cv-technologies__item">ES6</div>
-				<div class="cv-technologies__item">Vue</div>
-			</div>
-
-		</div>
-
 
 	</div>
 
-</div>
 
-
-{% endblock %}
+	{% endblock %}

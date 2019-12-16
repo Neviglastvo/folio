@@ -1,4 +1,6 @@
-	<div class="hero">
+{% import "../data/data.html" as data %}
+
+<div class="hero">
 	<div class="hero__title">Roman Yakovenko</div>
 	<div class="hero__subtitle">
 		<span class="-"></span>
@@ -9,14 +11,8 @@
 	<div class="hero__arrow">{{icon.i('arrow')}}</div>
 
 	<div class="hero__social">
-		<a href="" class="hero__social-item">
-			{{icon.i('facebook')}}
-		</a>
-		<a href="" class="hero__social-item">
-			{{icon.i('facebook')}}
-		</a>
-		<a href="" class="hero__social-item">
-			{{icon.i('facebook')}}
-		</a>
+		{% for item in data.socials %}
+		<a href="{{item.link}}" class="hero__social-item">{{icon.i(item.icon)}}</a>
+		{% endfor %}
 	</div>
 </div>

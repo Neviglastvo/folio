@@ -1,4 +1,4 @@
-@mixin burger($width: 30px, $height: 5px, $gutter: 3px, $color: #000, $border-radius: 0, $transition-duration: .3s)
+@mixin burger($width: 30px, $height: 5px, $gutter: 3px, $color: #000, $border-radius: 0, $transition-duration: 0.3)
     $burger-height: $height !global
     $burger-gutter: $gutter !global
 
@@ -19,7 +19,7 @@
             border-radius: $border-radius
 
         transition-property: background-color, transform
-        transition-duration: $transition-duration
+        transition-duration: $transition-duration+ms
 
     &::before, &::after
         position: absolute

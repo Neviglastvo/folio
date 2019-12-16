@@ -12,32 +12,44 @@
   </head>
   <body>
     <!-- BEGIN content -->
-    <div class="pet js-pet">
-      <div class="pet__body js-pet-body">
-        <div class="pet__mouth js-pet-mouth"></div>
-        <div class="pet__eye pet__eye--left js-pet-eye">
-          <div class="pet__eye-dot js-pet-eye-dot"></div>
-        </div>
-        <div class="pet__eye pet__eye--right js-pet-eye">
-          <div class="pet__eye-dot js-pet-eye-dot"></div>
-        </div>
-      </div>
-      <div class="pet__message js-pet-message">Hi</div>
+    <div class="hamburger js-hamburger">
+      <span class="hamburger__icon"></span>
     </div>
-    <div class="layout">
-      <!-- <div class="ray">
-		<div class="ray__gradient"></div>
-		<div class="ray__bg"></div>
-	</div> -->
-      <div class="logo">RY</div>
-      <div class="nav">
-        <div class="nav__title">MENU</div>
-        <div class="nav__list">
-          <a href="#" class="nav__item">About</a>
-          <a href="#" class="nav__item">Works</a>
-          <a href="#" class="nav__item">Contact</a>
+    <div class="menu js-nav-mobile">
+      <div class="menu__container">
+        <div class="menu__left">
+          <div class="logo">RY</div>
+          <div class="menu__left-container">
+            <div class="menu__cv">
+              <a href="" class="menu__cv-link" download>Get my CV</a>
+            </div>
+          </div>
+        </div>
+        <div class="menu__right">
+          <div class="menu__right-container">
+            <div class="menu__list">
+              <a href="#" class="menu__item">Home</a>
+              <a href="#" class="menu__item">About</a>
+              <a href="#" class="menu__item">Works</a>
+              <a href="#" class="menu__item">Contacts</a>
+            </div>
+            <div class="menu__socials">
+              <a href="http..." class="menu__socials-item">
+                <svg class="svg svg-linkedin">
+                  <use xlink:href="img/sprite.svg#svg-linkedin"></use>
+                </svg>
+              </a>
+              <a href="lioonkedin" class="menu__socials-item">
+                <svg class="svg svg-linkedin">
+                  <use xlink:href="img/sprite.svg#svg-linkedin"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="layout js-blurry">
       <div class="layout__bg">
         <div class="layout__bg-item layout__bg-item--1"></div>
         <div class="layout__bg-item layout__bg-item--2"></div>
@@ -55,19 +67,14 @@
             </svg>
           </div>
           <div class="hero__social">
-            <a href="" class="hero__social-item">
-              <svg class="svg svg-facebook">
-                <use xlink:href="img/sprite.svg#svg-facebook"></use>
+            <a href="http..." class="hero__social-item">
+              <svg class="svg svg-linkedin">
+                <use xlink:href="img/sprite.svg#svg-linkedin"></use>
               </svg>
             </a>
-            <a href="" class="hero__social-item">
-              <svg class="svg svg-facebook">
-                <use xlink:href="img/sprite.svg#svg-facebook"></use>
-              </svg>
-            </a>
-            <a href="" class="hero__social-item">
-              <svg class="svg svg-facebook">
-                <use xlink:href="img/sprite.svg#svg-facebook"></use>
+            <a href="lioonkedin" class="hero__social-item">
+              <svg class="svg svg-linkedin">
+                <use xlink:href="img/sprite.svg#svg-linkedin"></use>
               </svg>
             </a>
           </div>
@@ -334,7 +341,7 @@
               </div>
               <a href="http://inffinder.com/" target="blank" class="works__link">view details</a>
               <div class="works__img-container">
-                <div class="works__img-parallax" style="background-image:url(/img/works/inffinder.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/inffinder.jpg)" data-swiper-parallax-x="33.3333333%"></div>
               </div>
             </div>
             <div class="works__item swiper-slide">
@@ -347,8 +354,8 @@
               </div>
               <a href="https://www.nowayout.ae/" target="blank" class="works__link">view details</a>
               <div class="works__img-container">
-                <div class="works__img-parallax" style="background-image:url(/img/works/nwoa.jpg)" data-swiper-parallax-x="33.3333333%"></div>
-                <div class="works__img-parallax" style="background-image:url(/img/works/nwod.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/nwoa.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/nwod.jpg)" data-swiper-parallax-x="33.3333333%"></div>
               </div>
             </div>
             <div class="works__item swiper-slide">
@@ -361,7 +368,7 @@
               </div>
               <a href="https://melbourne.enescape.com/" target="blank" class="works__link">view details</a>
               <div class="works__img-container">
-                <div class="works__img-parallax" style="background-image:url(/img/works/enescape.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/enescape.jpg)" data-swiper-parallax-x="33.3333333%"></div>
               </div>
             </div>
             <div class="works__item swiper-slide">
@@ -374,7 +381,7 @@
               </div>
               <a href="http://www.semaz.kz/ru" target="blank" class="works__link">view details</a>
               <div class="works__img-container">
-                <div class="works__img-parallax" style="background-image:url(/img/works/semaz.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/semaz.jpg)" data-swiper-parallax-x="33.3333333%"></div>
               </div>
             </div>
             <div class="works__item swiper-slide">
@@ -387,7 +394,7 @@
               </div>
               <a href="http://www.daewoobus.kz/ru" target="blank" class="works__link">view details</a>
               <div class="works__img-container">
-                <div class="works__img-parallax" style="background-image:url(/img/works/daewoobus.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/daewoobus.jpg)" data-swiper-parallax-x="33.3333333%"></div>
               </div>
             </div>
             <div class="works__item swiper-slide">
@@ -400,7 +407,7 @@
               </div>
               <a href="http://www.hotelnomad.kz/" target="blank" class="works__link">view details</a>
               <div class="works__img-container">
-                <div class="works__img-parallax" style="background-image:url(/img/works/nomad.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/nomad.jpg)" data-swiper-parallax-x="33.3333333%"></div>
               </div>
             </div>
             <div class="works__item swiper-slide">
@@ -413,7 +420,7 @@
               </div>
               <a href="https://www.incrify.com/" target="blank" class="works__link">view details</a>
               <div class="works__img-container">
-                <div class="works__img-parallax" style="background-image:url(/img/works/incrify.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+                <div class="works__img-parallax" style="background-image:url(./img/works/incrify.jpg)" data-swiper-parallax-x="33.3333333%"></div>
               </div>
             </div>
           </div>

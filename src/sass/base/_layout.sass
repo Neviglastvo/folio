@@ -5,6 +5,10 @@
 	flex-direction: column
 	position: relative
 	overflow: hidden
+	+blur(0)
+	+trs($globalAnimSpeed)
+	&.blurry
+		+blur(8)
 
 	&__hero
 		padding: vw(1920, 100px)
