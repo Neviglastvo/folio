@@ -354,3 +354,18 @@
 @mixin gradient($color2, $color1, $direction: left)
   background: $color1
   background: linear-gradient(to $direction, $color1 0%, $color2 100%)
+
+
+@mixin custom-scroll-bar($width, $radius, $colorBg, $colorThumb)
+  &::-webkit-scrollbar
+    border-radius: $radius
+    height: 10px
+    width: $width
+    background-color: $colorThumb
+
+  &::-webkit-scrollbar-thumb
+    background: $colorBg
+    border-radius: $radius
+
+  &::-webkit-scrollbar-track
+    border-radius: $radius

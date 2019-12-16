@@ -12,6 +12,7 @@ title: Roman Yakovenko | Frontend Developer
 {% include "./partials/_menu.html" %}
 
 <div class="layout js-blurry">
+	<!-- <div id="jsReflection" class="reflection js-reflection"></div> -->
 
 	<div class="layout__bg">
 		<div class="layout__bg-item layout__bg-item--1"></div>
@@ -24,11 +25,6 @@ title: Roman Yakovenko | Frontend Developer
 	</div>
 	<div class="layout__container">
 
-		<div class="layout__divider">
-			<!-- <div class="layout__divider-icon">{{icon.i('arrow')}}</div> -->
-			<div class="layout__divider-title">About me</div>
-		</div>
-
 		<div class="layout__item">
 
 			<div class="layout__item-bg">
@@ -38,25 +34,20 @@ title: Roman Yakovenko | Frontend Developer
 			</div>
 
 			<div class="layout__item-title">About me</div>
-			<div class="layout__item-subtitle layout__item-subtitle--small">here you will know me better</div>
+			<div class="layout__item-subtitle layout__item-subtitle--small">here you can know me better</div>
 
 			{% include "./partials/_1about.html" %}
 
 		</div>
 
-		<div class="layout__divider">
-			<!-- <div class="layout__divider-icon">{{icon.i('arrow')}}</div> -->
-			<div class="layout__divider-title">WORKS</div>
+		<div class="layout__item layout__item--fullwidth">
+
+			<div class="layout__item-title">Works</div>
+			<div class="layout__item-subtitle layout__item-subtitle--small">get acquainted with my work</div>
+
+			{% include "./partials/_2works.html" %}
+
 		</div>
-
-		{% include "./partials/_2works.html" %}
-
-
-		<div class="layout__divider">
-			<!-- <div class="layout__divider-icon">{{icon.i('arrow')}}</div> -->
-			<div class="layout__divider-title">Contacts</div>
-		</div>
-
 
 
 		<div class="layout__item">

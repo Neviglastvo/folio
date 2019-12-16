@@ -5,7 +5,7 @@ export default function sliderWorks(){
 	var swiper = new Swiper('.js-slider-works', {
 		slidesPerView: 3,
 		spaceBetween: 15,
-		initialSlide: 4,
+		initialSlide: 1,
 		loop: false,
 		loopedSlides: 20,
 		freeMode: true,
