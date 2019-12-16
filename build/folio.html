@@ -17,72 +17,68 @@
     </div>
     <div class="menu js-nav-mobile">
       <div class="menu__container">
-        <div class="menu__left">
-          <div class="logo">RY</div>
-          <div class="menu__left-container">
-            <div class="menu__cv">
-              <a href="https://bit.ly/RYDevCv" class="menu__cv-link" download>Download CV</a>
-            </div>
-          </div>
+        <a data-scroll href="#anchorHome" class="logo">RY</a>
+        <div class="menu__cv">
+          <a href="https://bit.ly/RYDevCv" class="menu__cv-link" download>Download CV</a>
         </div>
-        <div class="menu__right">
-          <div class="menu__right-container">
-            <div class="menu__list">
-              <a href="#" class="menu__item">Home</a>
-              <a href="#" class="menu__item">About</a>
-              <a href="#" class="menu__item">Works</a>
-              <a href="#" class="menu__item">Contacts</a>
-            </div>
-            <div class="menu__socials">
-              <a href="https://www.linkedin.com/in/nevejestvo/" class="menu__socials-item">
-                <svg class="svg svg-linkedin">
-                  <use xlink:href="img/sprite.svg#svg-linkedin"></use>
-                </svg>
-              </a>
-              <a href="https://t.me/Nevejestvo" class="menu__socials-item">
-                <svg class="svg svg-telegram">
-                  <use xlink:href="img/sprite.svg#svg-telegram"></use>
-                </svg>
-              </a>
-            </div>
-          </div>
+        <div class="nav">
+          <a data-scroll href="#anchorHome" class="nav__item">Home</a>
+          <a data-scroll href="#anchorAbout" class="nav__item">About</a>
+          <a data-scroll href="#anchorWorks" class="nav__item">Works</a>
+          <a data-scroll href="#anchorContacts" class="nav__item">Contacts</a>
+        </div>
+        <div class="menu__socials">
+          <a href="https://t.me/Nevejestvo" class="menu__socials-item">
+            <svg class="svg svg-telegram">
+              <use xlink:href="img/sprite.svg#svg-telegram"></use>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/nevejestvo/" class="menu__socials-item">
+            <svg class="svg svg-linkedin">
+              <use xlink:href="img/sprite.svg#svg-linkedin"></use>
+            </svg>
+          </a>
+          <a href="https://github.com/ParadiseSeeker" class="menu__socials-item">
+            <svg class="svg svg-github">
+              <use xlink:href="img/sprite.svg#svg-github"></use>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
     <div class="layout js-blurry">
-      <!-- <div id="jsReflection" class="reflection js-reflection"></div> -->
       <div class="layout__bg">
         <div class="layout__bg-item layout__bg-item--1"></div>
         <div class="layout__bg-item layout__bg-item--2"></div>
         <div class="layout__bg-item layout__bg-item--3"></div>
       </div>
-      <div class="layout__hero">
+      <div id="anchorHome" class="layout__hero">
         <div class="hero">
           <div class="hero__title">Roman Yakovenko</div>
           <div class="hero__subtitle">
             <span class="-"></span> Frontend developer </div>
           <a href="https://bit.ly/RYDevCv" class="hero__link" download>Download CV</a>
-          <div class="hero__arrow">
-            <svg class="svg svg-arrow">
-              <use xlink:href="img/sprite.svg#svg-arrow"></use>
-            </svg>
-          </div>
           <div class="hero__social">
+            <a href="https://t.me/Nevejestvo" class="hero__social-item">
+              <svg class="svg svg-telegram">
+                <use xlink:href="img/sprite.svg#svg-telegram"></use>
+              </svg>
+            </a>
             <a href="https://www.linkedin.com/in/nevejestvo/" class="hero__social-item">
               <svg class="svg svg-linkedin">
                 <use xlink:href="img/sprite.svg#svg-linkedin"></use>
               </svg>
             </a>
-            <a href="https://t.me/Nevejestvo" class="hero__social-item">
-              <svg class="svg svg-telegram">
-                <use xlink:href="img/sprite.svg#svg-telegram"></use>
+            <a href="https://github.com/ParadiseSeeker" class="hero__social-item">
+              <svg class="svg svg-github">
+                <use xlink:href="img/sprite.svg#svg-github"></use>
               </svg>
             </a>
           </div>
         </div>
       </div>
       <div class="layout__container">
-        <div class="layout__item">
+        <div id="anchorAbout" class="layout__item">
           <div class="layout__item-bg">
             <div class="layout__item-bg-item layout__item-bg-item--1"></div>
             <div class="layout__item-bg-item layout__item-bg-item--2"></div>
@@ -134,6 +130,7 @@
               <div class="lifepath__overlay"> best period of my life</div>
             </div>
           </div>
+          <div class="layout__item-subtitle layout__item-subtitle--small">roadmap of frontend technologies</div>
           <div class="roadmap">
             <div class="roadmap__list">
               <div class="roadmap__item">
@@ -322,7 +319,7 @@
             </div>
           </div>
         </div>
-        <div class="layout__item layout__item--fullwidth">
+        <div id="anchorWorks" class="layout__item layout__item--fullwidth js-scroll-snap">
           <div class="layout__item-title">Works</div>
           <div class="layout__item-subtitle layout__item-subtitle--small">get acquainted with my work</div>
           <div class="works js-slider-works">
@@ -543,7 +540,7 @@
 
 </div> -->
         </div>
-        <div class="layout__item">
+        <div id="anchorContacts" class="layout__item">
           <div class="layout__item-bg">
             <div class="layout__item-bg-item layout__item-bg-item--1"></div>
             <div class="layout__item-bg-item layout__item-bg-item--2"></div>

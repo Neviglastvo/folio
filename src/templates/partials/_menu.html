@@ -7,31 +7,23 @@
 <div class="menu js-nav-mobile">
 	<div class="menu__container">
 
-		<div class="menu__left">
-			<div class="logo">RY</div>
+		<a data-scroll href="#anchorHome" class="logo">RY</a>
 
-			<div class="menu__left-container">
-				<div class="menu__cv">
-					<a href="{{data.global.cv.downloadlink}}" class="menu__cv-link" download>Download CV</a>
-				</div>
-			</div>
+		<div class="menu__cv">
+			<a href="{{data.global.cv.downloadlink}}" class="menu__cv-link" download>Download CV</a>
 		</div>
 
-		<div class="menu__right">
-			<div class="menu__right-container">
-				<div class="menu__list">
-					<a href="#" class="menu__item">Home</a>
-					<a href="#" class="menu__item">About</a>
-					<a href="#" class="menu__item">Works</a>
-					<a href="#" class="menu__item">Contacts</a>
-				</div>
+		<div class="nav">
+			<a data-scroll href="#anchorHome" class="nav__item">Home</a>
+			<a data-scroll href="#anchorAbout" class="nav__item">About</a>
+			<a data-scroll href="#anchorWorks" class="nav__item">Works</a>
+			<a data-scroll href="#anchorContacts" class="nav__item">Contacts</a>
+		</div>
 
-				<div class="menu__socials">
-					{% for item in data.socials %}
-					<a href="{{item.link}}" class="menu__socials-item">{{icon.i(item.icon)}}</a>
-					{% endfor %}
-				</div>
-			</div>
+		<div class="menu__socials">
+			{% for item in data.socials %}
+			<a href="{{item.link}}" class="menu__socials-item">{{icon.i(item.icon)}}</a>
+			{% endfor %}
 		</div>
 
 	</div>

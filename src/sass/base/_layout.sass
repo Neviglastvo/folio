@@ -14,46 +14,84 @@
 		padding: vw(1920, 100px)
 		min-height: 100vh
 		display: flex
+		margin-bottom: vw(1920, 100px)
+		+r(768)
+			padding: 15px 15px
+			margin-bottom: 100px
 
 	&__container
 		padding: vw(1920, 100px)
 		display: flex
 		flex-direction: column
+		+r(768)
+			padding: 15px
 
 	&__item
-		padding: 120px vw(1920, 60px)
+		padding: vw(1920, 120px) vw(1920, 60px)
 		overflow: hidden
 		background-color: $dark
 		display: flex
 		flex-direction: column
 		align-items: center
-		min-height: 100vh
+		// min-height: 100vh
 		border-radius: 8px
 		box-shadow: 0 0px 70px 3px rgba($pink, 0.1)
 		position: relative
 		margin-bottom: 150px
+		+r(768)
+			padding: 80px 15px
 		&:last-child
 			margin-bottom: 0
 		&--fullwidth
-			padding: 80px 0
+			height: 100vh
+			min-height: 500px
+			padding: 20px 0
 			background-color: transparent
 			box-shadow: none
+			+r(1200)
+				margin: 0 vw(1920, -120px)
 
 
 	&__item-title
 		margin-bottom: 30px
-		font-size: 120px
+		font-size: vw(1920, 100px)
+		line-height: vw(1920, 80px)
 		font-weight: 700
-		line-height: 92px
 		text-align: center
+		+r(1024)
+			font-size: vw(1024, 70px)
+			line-height: vw(1024, 50px)
+
+		+r(768)
+			font-size: vw(768, 70px)
+			line-height: vw(768, 50px)
+
+		+r(480)
+			font-size: vw(480, 70px)
+			line-height: vw(480, 50px)
+
 
 	&__item-subtitle
 		margin-bottom: 80px
-		font-size: 60px
+		font-size: vw(1920, 60px)
+		line-height: vw(1920, 48px)
 		font-weight: 700
-		line-height: 46px
 		text-align: center
 		position: relative
+		+r(1024)
+			font-size: vw(1024, 70px)
+			line-height: vw(1024, 70px)
+
+		+r(768)
+			font-size: vw(768, 50px)
+			line-height: vw(768, 50px)
+			margin-bottom: 60px
+
+		+r(480)
+			font-size: vw(480, 50px)
+			line-height: vw(480, 50px)
+			margin-bottom: 40px
+
 		&:after, &:before
 			content: ""
 			position: absolute
@@ -69,30 +107,15 @@
 			right: -100px
 
 		&--small
-			font-size: 30px
+			font-size: vw(1920, 30px)
+			+r(768)
+				font-size: vw(768, 30px)
+				line-height: vw(768, 30px)
 
+			+r(480)
+				font-size: vw(480, 24px)
+				line-height: vw(480, 24px)
 
-	&__divider
-		width: 100%
-		display: flex
-		flex-direction: column
-		align-items: center
-		margin-bottom: 150px
-
-	&__divider-icon
-		margin-bottom: 100px
-		svg
-			width: 32px
-			height: 32px
-			fill: #fff
-			+rotate(90)
-
-
-	&__divider-title
-		font-size: 48px
-		font-weight: 900
-		color: #fdfdfd
-		text-transform: uppercase
 
 	&__bg
 		pointer-events: none

@@ -3,6 +3,8 @@
 	display: flex
 	align-items: center
 	padding: 15px 0
+	+r(1024)
+		flex-direction: column-reverse
 
 	&__list
 		width: 100%
@@ -12,12 +14,22 @@
 		padding: 15px 0
 		margin-bottom: 30px
 		+custom-scroll-bar(6px, 4px, $pink, rgba($white, 0.25))
+		+r(1024)
+			flex-direction: column
+			align-items: center
+			overflow-x: hidden
+			overflow-y: scroll
+			max-height: 50vh
 
 	&__item
 		display: flex
 		flex-direction: column
 		align-items: center
 		min-width: 200px
+		+r(1024)
+			margin-bottom: 40px
+			&:last-child
+				margin-bottom: 0
 
 	&__item-main
 		padding: 4px
@@ -110,6 +122,9 @@
 		display: flex
 		flex-direction: column
 		align-items: flex-end
+		+r(1024)
+			align-items: center
+			margin-bottom: 40px
 
 	&__legend-item
 		display: flex

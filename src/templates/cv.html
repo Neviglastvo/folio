@@ -18,7 +18,7 @@ title: CV Roman Yakovenko
 		</div>
 
 		<div class="cv-left__block">
-			<div class="cv-left__title">info</div>
+			<div class="cv-left__title">contacts, info</div>
 
 			<div class="cv-left__item">
 				<div class="cv-left__icon">{{icon.i('pin')}}</div>
@@ -41,31 +41,20 @@ title: CV Roman Yakovenko
 				</div>
 			</div>
 
-		</div>
-
-		<div class="cv-left__block">
-			<div class="cv-left__title">social</div>
-
+			{% for item in data.socials %}
 			<div class="cv-left__item">
-				<div class="cv-left__icon">{{icon.i('telegram')}}</div>
+				<div class="cv-left__icon">{{icon.i(item.icon)}}</div>
 				<div class="cv-left__box">
 					<!-- <div class="cv-left__box-title">Telegram</div> -->
-					<a class="cv-left__box-subtitle" href="tg://@nevejestvo" target="blank">@nevejestvo</a>
+					<a class="cv-left__box-subtitle" href="{{item.link}}" target="blank">{{item.content}}</a>
 				</div>
 			</div>
-
-			<div class="cv-left__item">
-				<div class="cv-left__icon">{{icon.i('linkedin')}}</div>
-				<div class="cv-left__box">
-					<!-- <div class="cv-left__box-title">Linkedin</div> -->
-					<a class="cv-left__box-subtitle" href="https://www.linkedin.com/in/nevejestvo/" target="blank">/in/nevejestvo</a>
-				</div>
-			</div>
+			{% endfor %}
 
 		</div>
 
 		<div class="cv-left__block cv-left__block--interests">
-			<div class="cv-left__title">interests</div>
+			<div class="cv-left__title">hobby</div>
 
 			<div class="cv-left__list">
 				<div class="cv-left__item">
@@ -124,7 +113,7 @@ title: CV Roman Yakovenko
 
 		<div class="cv-header">
 			<div class="cv-header__title">Roman Yakovenko</div>
-			<div class="cv-header__subtitle">frontend developer</div>
+			<div class="cv-header__subtitle">frontend developer <span>(2 years of experience)</span></div>
 			<div class="cv-header__subtitle2">Salary: <span>1500$</span></div>
 		</div>
 
@@ -141,23 +130,15 @@ title: CV Roman Yakovenko
 				<div class="cv-right__info">
 
 					<div class="cv-right__info-title">
-						Freelance, continue learning
+						Continue learning, freelance
 						<div class="cv-right__year">
-							<div class="cv-right__year-item"> (2019 <span>sept</span></div>
+							<div class="cv-right__year-item"> (2019 <span>jun</span></div>
 							<div class="cv-right__year-item">for now)</div>
 						</div>
 					</div>
 
 					<div class="cv-right__info-subtitle2">
-						Implementation of new technologies, which fasten the development process and increases overall performance of development and marketing team.
-						<br> Released projects:
-						<a href="http://inffinder.com/">Inffinder</a>,
-						<a href="https://www.nowayout.ae/">NoWayOut</a>,
-						<a href="https://melbourne.enescape.com/">Enescape</a>,
-						<a href="http://www.semaz.kz/ru">Semaz</a>,
-						<a href="http://www.daewoobus.kz/ru">Daewoobus</a>,
-						<a href="http://www.hotelnomad.kz/">Nomad</a>,
-						<a href="https://www.incrify.com/">Incrify</a>.
+						Catch up with new technologies and modern frameworks. Deep dive in depth of modern JavaScript. Experiments and implementing some of own projects. Freelance projects to not to die from starvation.
 					</div>
 
 				</div>
@@ -179,15 +160,11 @@ title: CV Roman Yakovenko
 					<div class="cv-right__info-subtitle">Frontend Developer</div>
 
 					<div class="cv-right__info-subtitle2">
-						Implementation of new technologies, which fasten the development process and increases overall performance of development and marketing team.
+						Working with YII2 framework. Creating websites with booking system. Refactoring code for increasing site performance. Implementation of new technologies, which fasten the development process and increases overall performance of whole team.
 						<br> Released projects:
-						<a href="http://inffinder.com/">Inffinder</a>,
-						<a href="https://www.nowayout.ae/">NoWayOut</a>,
-						<a href="https://melbourne.enescape.com/">Enescape</a>,
-						<a href="http://www.semaz.kz/ru">Semaz</a>,
-						<a href="http://www.daewoobus.kz/ru">Daewoobus</a>,
-						<a href="http://www.hotelnomad.kz/">Nomad</a>,
-						<a href="https://www.incrify.com/">Incrify</a>.
+						{% for item in data.works %}
+						<a href="{{item.link}}">{{item.title}}</a>,
+						{% endfor %}
 					</div>
 				</div>
 			</div>
@@ -219,7 +196,7 @@ title: CV Roman Yakovenko
 
 					<div class="cv-right__info-subtitle2">
 						Support of corporate site. Creating new functionality. Code refactoring. Creating new landings. Employment in other projects.
-						<!-- <br> released projects: <a href="https://aimarketing.info">aimarketing.info</a>, <a href="https://saf.net.ua">saf.net.ua</a>, <a href="https://itlight.su">itlight.su</a> -->
+						<br /> Released project: <a href="https://aimarketing.info">aimarketing.info</a>.
 					</div>
 				</div>
 			</div>
@@ -229,7 +206,7 @@ title: CV Roman Yakovenko
 				<div class="cv-right__info">
 
 					<div class="cv-right__info-title">
-						Freelance, learning
+						Freelance, studying web
 						<div class="cv-right__year">
 							<div class="cv-right__year-item"> (2016 <span>aug</span></div>
 							<div class="cv-right__year-item">2017 <span>dec</span>)</div>
@@ -295,14 +272,14 @@ title: CV Roman Yakovenko
 				</div>
 
 				<div class="cv-skills">
-				{% for item in data.skills %}
+					{% for item in data.skills %}
 					<div class="cv-skills__item">
 						<div class="cv-skills__title">{{item.title}}</div>
 						<div class="cv-skills__progress">
 							<div class="cv-skills__progress-overlay" style="width: {{item.skill}}"></div>
 						</div>
 					</div>
-				{% endfor %}
+					{% endfor %}
 				</div>
 
 			</div>
@@ -317,9 +294,9 @@ title: CV Roman Yakovenko
 				</div>
 
 				<div class="cv-technologies">
-				{% for item in data.technologies %}
+					{% for item in data.technologies %}
 					<div class="cv-technologies__item">{{item.title}}</div>
-				{% endfor %}
+					{% endfor %}
 				</div>
 
 			</div>

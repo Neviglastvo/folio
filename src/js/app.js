@@ -1,6 +1,7 @@
 //main
+import SmoothScroll from 'smooth-scroll';
+import SnapScroll from 'snapscroll';
 import sliderWorks from './blocks/sliderWorks';
-
 if ($('.js-slider-works').length){
 	sliderWorks()
 }
@@ -12,69 +13,29 @@ $('.js-hamburger').on('click', function(e) {
 	$('.js-blurry').toggleClass('blurry');
 });
 
-//test
-import domToImage from 'dom-to-image';
-import targetToShatter from './firstScreen/targetToShatter';
-import pet from './pet/pet';
-
-if ($('.js-pet').length){
-	pet()
-}
-
-console.log(` Viewport w: ${window.innerWidth}, h: ${window.innerHeight}`);
-
-document.addEventListener('click', function (e) {
-	let target = e.target;
-	let id = 0;
-
-	if (target && target.classList.contains('js-shatter')) {
-
-		let newImg,
-		box = target.getBoundingClientRect(),
-		top = box.top,
-		left = box.left,
-		clickX = e.clientX - left,
-		clickY = e.clientY - top;
-
-		domToImage.toPng(target).then(function (dataUrl) {
-
-			let img = new Image();
-			newImg = img;
-
-			img.src = dataUrl;
-			img.className = 'js-shatter-new';
-			img.dataset.id = id++;
-
-			target.parentNode.appendChild(newImg);
-			target.remove();
-
-		}).then(function () {
-			console.log(`click in x: ${clickX}, y: ${clickY}`);
-			targetToShatter(newImg, clickX, clickY)
-
-		});
-		// .catch(function (error) {
-		// 	console.error('oops, something went wrong!', error);
-		// }).finally(function () {
-		// });
-
-	}
-
+const anchorScroll = new SmoothScroll('a[href*="#"]',{
+	speed: 1000,
+	speedAsDuration: true
 });
 
 
-//webgltest
-import reflection from './reflection/main';
-if ($('.js-reflection').length){
-	reflection()
+
+SnapScroll('.js-scroll-snap', {
+	proximity: 300,
+	duration: 75,
+	easing: time => time,
+	onSnapWait: 500,
+});
+
+
+
+function anchorScrollTo(){
+
+	$('a[href*="#"]').on('click', function(event) {
+		$('.hamburger').click();
+	});
+
+
 }
-
-// import flame from './_flame';
-// if ($('.js-flame').length){
-// 	flame()
-// }
-
-
-
-
+anchorScrollTo()
 
