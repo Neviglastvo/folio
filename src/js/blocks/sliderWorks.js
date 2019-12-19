@@ -40,6 +40,7 @@ export default function sliderWorks(){
 	});
 
 	swiper.on('transitionStart', function(event) {
+		console.log('asd');
 		$('.swiper-wrapper').find('.active').removeClass('active')
 	});
 

@@ -6,19 +6,58 @@
   @media only screen and (min-width: $width+ "px")
     @content
 
-=f($fontfamily, $fontsize, $lineheight, $fontweight, $letterspacing)
-  font-family: $fontfamily
-  font-size: $fontsize+px
-  line-height: $lineheight+px
-  font-weight: $fontweight
-  letter-spacing: $letterspacing/1000+em
+=md
+  +r(1023)
+    @content
+
+=sm
+  +r(767)
+    @content
+
+=xs
+  +r(599)
+    @content
 
 =ls($letterspacing)
   letter-spacing: $letterspacing/1000+em
 
+=smooth-scroll
+  -webkit-overflow-scrolling: touch
+
+=smooth-font
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
 =h
   &:hover
     @content
+
+=after($content: "")
+  &::after
+    @if $content == "none"
+      content: none
+    @else
+      content: $content
+    @content
+
+=before($content: "")
+  &::before
+    @if $content == "none"
+      content: none
+    @else
+      content: $content
+    @content
+
+=hover
+  .no-touch &:hover
+    @content
+
+=pa($top: auto, $right: auto, $bottom: auto, $left: auto)
+   position: absolute
+   top: $top
+   right: $right
+   bottom: $bottom
+   left: $left
 
 =vcenter
   position: absolute
@@ -38,16 +77,11 @@
     top: 50%
     transform: translateY(-50%)
 
-
-=placeholder-color($color)
-  &::placeholder
-    color: $color
-
 =placeholder
   &::placeholder
     @content
 
-=coverdiv
+=cover
   position: absolute
   top: 0
   left: 0
@@ -58,37 +92,24 @@
   object-fit: cover
   font-family: 'object-fit: cover'
 
+=containimg
+  object-fit: contain
+  font-family: 'object-fit: contain'
 
-=cover
+=coverbg
   background-repeat: no-repeat
   background-size: cover
   background-position: 50% 50%
 
-=hover
-  .no-touch &:hover
-    @content
-
-=box
-  +box-sizing(border-box)
-
 =tr
   transition: all 300ms
-  // +r(768)
-    // transition: all 0ms
 
-=trs($ms)
-  transition: all $ms+ms
-
-=trcs($ms)
-  transition: color $ms+ms
-
-=trbgcs($ms)
-  transition: backround-color $ms+ms
+=trs($dur: 300, $what: all, $easing: ease)
+  transition: $dur+ms $what $easing
 
 =retina
   @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)
     @content
-
 
 =scale($var)
   transform: scale($var)
@@ -114,259 +135,48 @@
 @function em($pixels, $context: 16)
   @return ($pixels / $context) * 1em
 
-=text-overflow
+=textOverflow
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
 
-//triangle
-=triangle($width, $height, $bg, $direction)
-  width: 0px
-  height: 0px
-  border-style: solid
-  @if $direction == t
-    border-width: 0 $width / 2 + px $height + px $width / 2 + px
-    border-color: transparent transparent $bg transparent
-  @if $direction == r
-    border-width: $height / 2 + px 0 $height / 2 + px $width + px
-    border-color: transparent transparent transparent $bg
-  @if $direction == b
-    border-width: $height + px $width / 2 + px 0 $width / 2 + px
-    border-color: $bg transparent transparent transparent
-  @if $direction == l
-    border-width: $height / 2 + px $width + px $height / 2 + px 0
-    border-color: transparent $bg transparent transparent
-  @if $direction == tl
-    border-width: $height + px $width + px 0 0
-    border-color: $bg transparent transparent transparent
-  @if $direction == tr
-    border-width: 0 $width + px $height + px 0
-    border-color: transparent $bg transparent transparent
-  @if $direction == br
-    border-width: 0 0 $height + px $width + px
-    border-color: transparent transparent $bg transparent
-  @if $direction == bl
-    border-width: $width + px 0 0 $height + px
-    border-color: transparent transparent transparent $bg
-// example
-// +triangle(500,50, #000, l)
-// +triangle(500,50, #000, bl)
+//aspect-ratio(4, 3)
+=aspectRatio($width, $height)
+  position: relative
+  &:before
+    display: block
+    content: ""
+    width: 100%
+    padding-top: ($height / $width) * 100%
+
+  ~ *
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+=blur($radius)
+  -webkit-filter: blur($radius+px)
+  -ms-filter: blur($radius+px)
+  filter: url("data:image/svg+xmlutf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"blur\"><feGaussianBlur stdDeviation=\"#{$radius+px}\" /></filter></svg>#blur")
+  filter: progid:DXImageTransform.Microsoft.Blur(Strength=$radius+px)
+  filter: blur($radius+px)
+  +trs($globalAnimSpeed, filter)
 
 
-=blur($var)
-  filter: blur($var+px)
-
-=better-blur($radius)
+=blurFilter($radius)
   filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='a' x='0' y='0' width='1' height='1' color-interpolation-filters='sRGB'%3E%3CfeGaussianBlur stdDeviation='#{$radius}' result='b'/%3E%3CfeMorphology operator='dilate' radius='#{$radius}'/%3E %3CfeMerge%3E%3CfeMergeNode/%3E%3CfeMergeNode in='b'/%3E%3C/feMerge%3E%3C/filter%3E %3C/svg%3E#a")
 
-@mixin closeButton ($size, $thickness, $color, $colorHover, $radius)
-
-  &
-    display: inline-block
-    width: $size
-    height: $size
-
-  &:before, &:after
-    content: ''
-    display: block
-    width: 140%
-    height: $thickness
-    background-color: $color
-    border-radius: $radius
-    +tr
-
-  &:before
-    transform: rotate(45deg)
-    transform-origin: 0 0
-    margin-top: -$thickness/4
-    margin-left: $thickness/2
-
-  &:after
-    transform: rotate(-45deg)
-    transform-origin: 100% 0
-    margin-left: -41%
-    margin-top: -$thickness
-
-  &:hover
-    cursor: pointer
-
-    &:before, &:after
-      background-color: $colorHover
-
-
-@mixin materialShadow ($lvl: 2, $hoverlvl: 3, $color: #000)
-  position: relative
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
-  @if $lvl == 1
-    box-shadow: 0 1px 3px rgba($color, .12), 0 1px 2px rgba($color, .24)
-  @else if $lvl == 2
-    box-shadow: 0 3px 6px rgba($color, .16), 0 3px 6px rgba($color, .23)
-  @else if $lvl == 3
-    box-shadow: 0 10px 20px rgba($color, .19), 0 6px 6px rgba($color, .23)
-  @else if $lvl == 4
-    box-shadow: 0 14px 28px rgba($color, .25), 0 10px 10px rgba($color, .22)
-  @else if $lvl == 5
-    box-shadow: 0 19px 38px rgba($color, .30), 0 15px 12px rgba($color, .22)
-
-  &:after
-    content: ''
+=darken($color: $black, $transparency: 0.75)
+  +before
+    +cover
     pointer-events: none
-    z-index: 0
-    +coverdiv
-    opacity: 0
-    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
-    @if $hoverlvl == 1
-      box-shadow: 0 1px 3px rgba($color, .12), 0 1px 2px rgba($color, .24)
-    @else if $hoverlvl == 2
-      box-shadow: 0 3px 6px rgba($color, .16), 0 3px 6px rgba($color, .23)
-    @else if $hoverlvl == 3
-      box-shadow: 0 10px 20px rgba($color, .19), 0 6px 6px rgba($color, .23)
-    @else if $hoverlvl == 4
-      box-shadow: 0 14px 28px rgba($color, .25), 0 10px 10px rgba($color, .22)
-    @else if $hoverlvl == 5
-      box-shadow: 0 19px 38px rgba($color, .30), 0 15px 12px rgba($color, .22)
-
-  +h
-    box-shadow: none
-    &:after
-      opacity: 1
-
-@mixin checkbox($size: '14px', $selectedsize: '6px', $color: $accent, $rounded: rounded)
-  display: flex
-  align-items: center
-  label
-    box-sizing: border-box
-    position: relative
-    display: flex
-    align-items: center
-    +h
-      cursor: pointer
-
-    input
-      display: none
-      &:checked + i
-        &:after
-          opacity: 1
-
-    i
-      position: relative
-      width: #{$size}
-      min-width: #{$size}
-      height: #{$size}
-      margin-right: 10px
-      &:before
-        content: ""
-        position: absolute
-        top: 0
-        +coverdiv
-        border: 1px solid #{$color}
-        background-color: #fff
-        z-index: 1
-        border-radius: #{$rounded}
-      &:after
-        content: ""
-        +vcenter
-        width: #{$selectedsize}
-        min-width: #{$selectedsize}
-        height: #{$selectedsize}
-        background-color: #{$color}
-        z-index: 2
-        opacity: 0
-        +tr
-
-
-=nosel
-  user-select: none
-
-=scrollbar
-  &::-webkit-scrollbar
-    @content
-
-=scrollbar-track
-  &::-webkit-scrollbar-track
-    @content
-
-=scrollbar-thumb
-  &::-webkit-scrollbar-thumb
-    @content
-
-=scrollbar-track-piece
-  &::-webkit-scrollbar-track-piece
-    @content
-
-
-
-@mixin draw-star( $dimensions: 50px, $color: yellow )
-  $denominator: 1.3
-  border-color: $color transparent transparent transparent
-  border-style: solid
-  border-top-width: $dimensions / $denominator
-  border-right-width: $dimensions
-  border-left-width: $dimensions
-  height: 0
-  margin-top: $dimensions / $denominator
-  margin-bottom: $dimensions / ($denominator * 1.55555555)
-  position: relative
-  width: 0
-  &:before, &:after
-    border-color: $color transparent transparent transparent
-    border-style: solid
-    border-top-width: $dimensions / $denominator
-    border-right-width: $dimensions
-    border-left-width: $dimensions
-    border-bottom: 0
-    content: ''
-    display: block
-    height: 0
-    left: -$dimensions
-    position: absolute
-    top: -$dimensions / $denominator
-    width: 0
-  &:before
-    transform: translate(15.5555555%, -15.5555555%) rotate(72deg) translateY(50%)
-  &:after
-    transform: translate(-15.5555555%, -15.5555555%) rotate(-72deg) translateY(50%)
-
-
-@mixin darken($color, $transparency: 0.75)
-  &:before
-    pointer-events: none
-    content: ""
-    +coverdiv
     background-color: rgba($color, $transparency)
 
-=backgrounds($c, $y)
-  background: $c
-
-  @for $i from 1 through $y
-    $k: 3%
-    $j: $i - 1
-
-    @if $i == 1
-      &:nth-child(#{$i})
-        background: $c
-        background: rgb(random(255), random(255), random(255))
-    @else
-      &:nth-child(#{$i})
-        background: darken($c, $k * $j)
-        background: rgb(random(255), random(255), random(255))
-
-@mixin gradient($color2, $color1, $direction: left)
+=gradient($color2, $color1, $direction: left)
   background: $color1
   background: linear-gradient(to $direction, $color1 0%, $color2 100%)
 
 
-@mixin custom-scroll-bar($width, $radius, $colorBg, $colorThumb)
-  &::-webkit-scrollbar
-    border-radius: $radius
-    height: 10px
-    width: $width
-    background-color: $colorThumb
-
-  &::-webkit-scrollbar-thumb
-    background: $colorBg
-    border-radius: $radius
-
-  &::-webkit-scrollbar-track
-    border-radius: $radius
 

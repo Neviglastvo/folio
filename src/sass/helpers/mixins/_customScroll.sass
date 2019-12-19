@@ -1,0 +1,14 @@
+// +customScroll(8px, 0, $pink, rgba($white, 0.2))
+@mixin customScroll($width, $radius, $colorBg, $colorThumb)
+  &::-webkit-scrollbar
+    border-radius: $radius
+    height: 10px
+    width: $width
+    background-color: $colorThumb
+
+  &::-webkit-scrollbar-thumb
+    background: $colorBg
+    border-radius: $radius
+
+  &::-webkit-scrollbar-track
+    border-radius: $radius

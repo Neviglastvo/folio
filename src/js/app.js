@@ -1,9 +1,21 @@
 //main
+import './lib/bez.js';
+import './lib/alton.js';
 import SmoothScroll from 'smooth-scroll';
 import SnapScroll from 'snapscroll';
 import sliderWorks from './blocks/sliderWorks';
+import sliderAbout from './blocks/sliderAbout';
+import sliderLayout from './blocks/sliderLayout';
+
+
 if ($('.js-slider-works').length){
 	sliderWorks()
+}
+if ($('.js-slider-about').length){
+	sliderAbout()
+}
+if ($('.js-slider-layout').length){
+	sliderLayout()
 }
 
 $('.js-hamburger').on('click', function(e) {
@@ -18,8 +30,6 @@ const anchorScroll = new SmoothScroll('a[href*="#"]',{
 	speedAsDuration: true
 });
 
-
-
 SnapScroll('.js-scroll-snap', {
 	proximity: 300,
 	duration: 75,
@@ -27,15 +37,26 @@ SnapScroll('.js-scroll-snap', {
 	onSnapWait: 500,
 });
 
-
-
 function anchorScrollTo(){
 
 	$('a[href*="#"]').on('click', function(event) {
 		$('.hamburger').click();
 	});
 
-
 }
 anchorScrollTo()
 
+// if($('.js-hero').length) {
+//     $(document).alton({
+//         firstClass : 'js-hero',
+//         bodyContainer: 'js-trigger-cases',
+//         scrollMode: 'headerScroll'
+//     });
+// }
+
+
+//webgltest
+import reflection from './reflection/main';
+if ($('.js-reflection').length){
+	reflection()
+}

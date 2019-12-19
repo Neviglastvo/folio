@@ -1,0 +1,51 @@
+// <div class="checkbox">
+// 	<label>
+// 		<input type="checkbox" />
+// 		<i></i>
+// 	</label>
+// </div>
+
+// .checkbox
+// 	+checkbox(14px, 8px, $accent, 2px)
+@mixin checkbox($size: '14px', $selectedsize: '6px', $color: $accent, $rounded: 0)
+	display: flex
+	align-items: center
+	label
+		box-sizing: border-box
+		position: relative
+		display: flex
+		align-items: center
+		+h
+			cursor: pointer
+
+		input
+			display: none
+			&:checked + i
+				&:after
+					opacity: 1
+
+		i
+			position: relative
+			width: #{$size}
+			min-width: #{$size}
+			height: #{$size}
+			margin-right: 10px
+			&:before
+				content: ""
+				position: absolute
+				top: 0
+				+cover
+				border: 1px solid #{$color}
+				background-color: #fff
+				z-index: 1
+				border-radius: #{$rounded}
+			&:after
+				content: ""
+				+vcenter
+				width: #{$selectedsize}
+				min-width: #{$selectedsize}
+				height: #{$selectedsize}
+				background-color: #{$color}
+				z-index: 2
+				opacity: 0
+				+tr

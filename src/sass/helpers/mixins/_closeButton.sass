@@ -1,0 +1,32 @@
+@mixin closeButton ($size, $thickness, $color, $colorHover, $radius)
+	&
+		display: inline-block
+		width: $size
+		height: $size
+
+	&:before, &:after
+		content: ''
+		display: block
+		width: 140%
+		height: $thickness
+		background-color: $color
+		border-radius: $radius
+		+tr
+
+	&:before
+		transform: rotate(45deg)
+		transform-origin: 0 0
+		margin-top: -$thickness/4
+		margin-left: $thickness/2
+
+	&:after
+		transform: rotate(-45deg)
+		transform-origin: 100% 0
+		margin-left: -41%
+		margin-top: -$thickness
+
+	&:hover
+		cursor: pointer
+
+		&:before, &:after
+			background-color: $colorHover

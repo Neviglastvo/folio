@@ -11,62 +11,80 @@ title: Roman Yakovenko | Frontend Developer
 
 {% include "./partials/_menu.html" %}
 
-<div class="layout js-blurry">
+<!-- <div class="layout-bg">
+	<div class="layout-bg__item layout-bg__item--1"></div>
+	<div class="layout-bg__item layout-bg__item--2"></div>
+	<div class="layout-bg__item layout-bg__item--3"></div>
+</div> -->
 
-	<div class="layout__bg">
-		<div class="layout__bg-item layout__bg-item--1"></div>
-		<div class="layout__bg-item layout__bg-item--2"></div>
-		<div class="layout__bg-item layout__bg-item--3"></div>
-	</div>
+<div class="layout swiper-container js-slider-layout js-blurry">
 
-	<div id="anchorHome" class="layout__hero">
-		{% include "./partials/_0hero.html" %}
-	</div>
-	<div class="layout__container">
 
-		<div id="anchorAbout" class="layout__item">
+	<div class="layout__pagination js-slider-layout-pagination"></div>
 
-			<div class="layout__item-bg">
-				<div class="layout__item-bg-item layout__item-bg-item--1"></div>
-				<div class="layout__item-bg-item layout__item-bg-item--2"></div>
-				<div class="layout__item-bg-item layout__item-bg-item--3"></div>
+	<div class="layout__container swiper-wrapper">
+
+		<div id="anchorHome" class="layout__hero js-hero swiper-slide" data-title="home"">
+			{% include "./partials/_0hero.html" %}
+		</div>
+
+		<div class="layout__item swiper-slide" data-title="about">
+
+			<div id="anchorAbout" class="layout__item">
+				<div class="layout__item-container">
+
+					<div class="layout__item-bg">
+						<div class="layout__item-bg-item layout__item-bg-item--1"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--2"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--3"></div>
+					</div>
+
+					<div class="layout__item-title">About me</div>
+
+					{% include "./partials/_1about.html" %}
+
+				</div>
 			</div>
 
-			<div class="layout__item-title">About me</div>
-			<div class="layout__item-subtitle layout__item-subtitle--small">here you can know me better</div>
-
-			{% include "./partials/_1about.html" %}
-
 		</div>
+		<div class="layout__item swiper-slide" data-title="works">
 
-		<div id="anchorWorks" class="layout__item layout__item--fullwidth js-scroll-snap">
+			<div id="anchorWorks" class="layout__item layout__item--fullwidth">
+				<div class="layout__item-container">
 
-			<div class="layout__item-title">Works</div>
-			<div class="layout__item-subtitle layout__item-subtitle--small">get acquainted with my work</div>
+					<div class="layout__item-title">Works</div>
 
-			{% include "./partials/_2works.html" %}
+					{% include "./partials/_2works.html" %}
 
-		</div>
-
-
-		<div id="anchorContacts" class="layout__item">
-
-			<div class="layout__item-bg">
-				<div class="layout__item-bg-item layout__item-bg-item--1"></div>
-				<div class="layout__item-bg-item layout__item-bg-item--2"></div>
-				<div class="layout__item-bg-item layout__item-bg-item--3"></div>
+				</div>
 			</div>
 
-			<div class="layout__item-title">Contacts</div>
-			<div class="layout__item-subtitle layout__item-subtitle--small">i`m always opened for interesting propositions</div>
+		</div>
+		<div class="layout__item swiper-slide" data-title="contacts">
 
-			{% include "./partials/_3contacts.html" %}
+			<div id="anchorContacts" class="layout__item">
+				<div class="layout__item-container">
+					<div class="layout__item-bg">
+						<div class="layout__item-bg-item layout__item-bg-item--1"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--2"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--3"></div>
+					</div>
+
+					<div class="layout__item-title">Contacts</div>
+
+					{% include "./partials/_3contacts.html" %}
+
+				</div>
+			</div>
 
 		</div>
-
 	</div>
+
+
+
 </div>
 
-
-
 {% endblock %}
+
+
+

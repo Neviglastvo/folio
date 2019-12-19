@@ -1,63 +1,170 @@
 .layout
 	width: 100%
-	background-color: #000
 	display: flex
 	flex-direction: column
-	position: relative
 	overflow: hidden
 	+blur(0)
-	+trs($globalAnimSpeed)
+	+trs($globalAnimSpeed, filter)
+	z-index: z('content')
+	height: 100vh
+	position: relative
+
+	+after
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 30%
+		height: 100%
+		width: 1px
+		background-color: rgba($white, 0.1)
+		z-index: z('bg')
+		z-index: 10
+
+	+before
+		position: absolute
+		top: 0
+		left: 30%
+		bottom: 0
+		height: 5%
+		width: 3px
+		background-color: rgba($white, 0.5)
+		z-index: z('bg')
+		z-index: 10
+		box-shadow: 0 0 10px 2px rgba($white, 0.5)
+		border-radius: 2px
+		animation: flash 5s infinite linear
+
 	&.blurry
 		+blur(8)
 
+
 	&__hero
-		padding: vw(1920, 100px)
+		position: relative
 		min-height: 100vh
-		display: flex
-		margin-bottom: vw(1920, 100px)
+		height: 100vh
+		display: block
 		+r(768)
 			padding: 15px 15px
 			margin-bottom: 100px
 
 	&__container
-		padding: vw(1920, 100px)
 		display: flex
 		flex-direction: column
 		+r(768)
 			padding: 15px
 
 	&__item
-		padding: vw(1920, 120px) vw(1920, 60px)
+		width: 100%
 		overflow: hidden
-		background-color: $dark
+		padding: vw(1920, $globalPadding)
+		min-height: 100vh
+		height: 100vh
+		overflow: hidden
 		display: flex
-		flex-direction: column
-		align-items: center
-		// min-height: 100vh
 		border-radius: 8px
-		box-shadow: 0 0px 70px 3px rgba($pink, 0.1)
 		position: relative
-		margin-bottom: 150px
+		background-color: rgba(#000, 0.75)
 		+r(768)
 			padding: 80px 15px
 		&:last-child
 			margin-bottom: 0
+
 		&--fullwidth
 			height: 100vh
 			min-height: 500px
-			padding: 20px 0
-			background-color: transparent
+			padding: 40px 0
 			box-shadow: none
+			background-color: rgba(#000, 0.75)
 			+r(1200)
 				margin: 0 vw(1920, -120px)
 
+			.layout__item-container
+				background-color: transparent
+				padding: 0
+
+			.layout__item-title
+				text-shadow: 10px 30px 100px rgba(#000, 1)
+
+	&__pagination
+		z-index: z('menu')
+		+pa(vw(1920, $globalPadding+15px)!important, vw(1920, $globalPadding)!important, auto!important, auto!important)
+		position: fixed !important
+		width: auto !important
+		display: flex
+		align-items: center
+
+	&__pagination-item
+		width: 100% !important
+		height: auto !important
+		display: flex !important
+		align-items: center !important
+		text-align: center
+		background-color: transparent !important
+		border-radius: 0 !important
+		font-family: $f2
+		font-weight: 500
+		text-transform: uppercase
+		user-select: none
+		margin: 0 !important
+		margin-right: 40px !important
+		+after(n)
+			margin-left: 5px
+			width: 40px
+			height: 2px
+			background-color: #FFF
+		+before(n)
+			margin-right: 5px
+			width: 40px
+			height: 2px
+			background-color: #FFF
+		&:last-child
+			margin-right: 0 !important
+			+after('none')
+		&:first-child
+			+before('none')
+
+		// span
+		// 	width: 10px
+		// 	font-size: 16px
+		// 	line-height: 14px
+		// 	color: #FFF
+		// 	text-transform: uppercase
+		// 	+rotate(90)
+
+	&__item-container
+		// background-color: rgba(#000, 0.75)
+		position: relative
+		padding: 60px 15px
+		// background-color: rgba(25,31,38,1)
+		width: 100%
+		display: flex
+		flex-direction: column
+		align-items: center
+
+
+	&__slider
+		width: 100%
+		display: flex
+		flex-direction: column
+		align-items: center
+		.swiper-pagination-bullets
+			position: relative
+
+
+	&__slider-wrapper
+		width: 100%
+
+	&__slider-item
+		width: 100%
+
 
 	&__item-title
-		margin-bottom: 30px
-		font-size: vw(1920, 100px)
+		margin-bottom: 50px
+		font-size: vw(1920, $globalPadding)
 		line-height: vw(1920, 80px)
 		font-weight: 700
 		text-align: center
+		text-shadow: 10px 30px 100px rgba(#000, 0.75)
 		+r(1024)
 			font-size: vw(1024, 70px)
 			line-height: vw(1024, 50px)
@@ -116,33 +223,6 @@
 				font-size: vw(480, 24px)
 				line-height: vw(480, 24px)
 
-
-	&__bg
-		pointer-events: none
-		position: absolute
-		top: 0
-		left: 0
-		right: 0
-		bottom: 0
-
-	&__bg-item
-		position: absolute
-		width: 1px
-		height: 100%
-		background-color: rgba(255,255,255,0.1)
-		&--1
-			top: 90vh
-			left: calc(100% / 4)
-			height: calc(100% - 90vh)
-		&--2
-			top: 50vh
-			left: 50%
-			height: calc(100% - 50vh)
-		&--3
-			top: 0
-			right: calc(100% / 4)
-
-
 	&__item-bg
 		pointer-events: none
 		position: absolute
@@ -166,3 +246,11 @@
 			right: calc(100% / 5)
 
 
++keyframes(flash)
+	0%
+		top: -100%
+	10%
+		top: 100%
+
+	100%
+		top: 100%

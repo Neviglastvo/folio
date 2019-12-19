@@ -1,0 +1,30 @@
+@mixin drawStar( $dimensions: 50px, $color: yellow )
+	$denominator: 1.3
+	border-color: $color transparent transparent transparent
+	border-style: solid
+	border-top-width: $dimensions / $denominator
+	border-right-width: $dimensions
+	border-left-width: $dimensions
+	height: 0
+	margin-top: $dimensions / $denominator
+	margin-bottom: $dimensions / ($denominator * 1.55555555)
+	position: relative
+	width: 0
+	&:before, &:after
+		border-color: $color transparent transparent transparent
+		border-style: solid
+		border-top-width: $dimensions / $denominator
+		border-right-width: $dimensions
+		border-left-width: $dimensions
+		border-bottom: 0
+		content: ''
+		display: block
+		height: 0
+		left: -$dimensions
+		position: absolute
+		top: -$dimensions / $denominator
+		width: 0
+	&:before
+		transform: translate(15.5555555%, -15.5555555%) rotate(72deg) translateY(50%)
+	&:after
+		transform: translate(-15.5555555%, -15.5555555%) rotate(-72deg) translateY(50%)

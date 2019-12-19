@@ -1,0 +1,27 @@
+.layout-bg
+	pointer-events: none
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	z-index: 1
+
+	&__item
+		position: absolute
+		width: 1px
+		height: 100%
+		background-color: rgba(255,255,255,0.1)
+		&--1
+			top: 90vh
+			left: calc(100% / 3)
+			height: calc(100% - 90vh)
+		&--2
+			display: none
+			top: 50vh
+			left: 50%
+			height: calc(100% - 50vh)
+		&--3
+			display: none
+			top: 0
+			right: calc(100% / 4)

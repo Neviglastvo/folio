@@ -11,9 +11,9 @@ export default function reflection() {
 	let cfg = {
 		fps: 60,
 		cam: {
-			posX: 150,
-			posY: 0,
-			posZ: 0,
+			x: 10,
+			y: 0,
+			z: 0,
 			viewAngle: 45,
 			width: window.innerWidth,
 			height: window.innerHeight,
@@ -40,36 +40,31 @@ export default function reflection() {
 		}
 	};
 
+	let WIDTH = window.innerWidth;
+	let HEIGHT = window.innerHeight;
+	let windowHalfX = WIDTH / 2;
+	let windowHalfY = HEIGHT / 2;
+	let mouseX = 0, mouseY = 0;
+
 	let NEAR = 1,
-		FAR = 800,
-		camera, cubeCamera, scene, renderer,
-		controls,
-		ground,
+	FAR = 800,
+	camera, cubeCamera, scene, renderer,
+	controls,
+	ground,
 
-		stats,
-		statsEnabled = true,
+	stats,
+	statsEnabled = true,
 
-		param = {};
+	param = {};
 
 	init();
 	animate();
 
 	function init() {
 
-		class ColorGUIHelper {
-			constructor(object, prop) {
-				this.object = object;
-				this.prop = prop;
-			}
-			get value() {
-				return `#${this.object[this.prop].getHexString()}`;
-			}
-			set value(hexString) {
-				this.object[this.prop].set(hexString);
-			}
-		}
 
-		var container = document.getElementById('jsReflection');
+
+		let container = document.getElementById('jsReflection');
 
 		renderer = new THREE.WebGLRenderer({ antialias: true });
 		renderer.setPixelRatio(window.devicePixelRatio);
@@ -79,42 +74,42 @@ export default function reflection() {
 		scene = new THREE.Scene();
 
 		camera = new THREE.PerspectiveCamera(cfg.cam.viewAngle, cfg.cam.width / cfg.cam.height, cfg.cam.near, cfg.cam.far);
-		camera.position.set(cfg.cam.posX, cfg.cam.posY, cfg.cam.posZ);
+		camera.position.set(cfg.cam.x, cfg.cam.y, cfg.cam.z);
 
 		controls = new OrbitControls(camera, renderer.domElement);
+		controls.target.set( 0, - 10, 0 );
 
-		controls.target.set(0, -10, 0);
 		controls.maxPolarAngle = Math.PI / 2
-		controls.enableRotate = true;
 		controls.enableZoom = false;
-		controls.enablePan = false;
+		// controls.enablePan = true;
 		controls.enableDamping = true;
-		controls.dampingFactor = 0.01;
-		controls.rotateSpeed = 0.2;
+		controls.dampingFactor = 0.005;
+		controls.rotateSpeed = 0.3;
 		// controls.screenSpacePanning = false;
 
-		controls.dispose();
-		controls.update();
+		// controls.dispose();
+		controls.addEventListener( 'change', render );
 
 		// cube camera for environment map
-		cubeCamera = new THREE.CubeCamera(1, 256, 256);
+		cubeCamera = new THREE.CubeCamera(1, 1000, 512);
 		cubeCamera.renderTarget.texture.generateMipmaps = true;
 		cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
 		cubeCamera.renderTarget.texture.mapping = THREE.CubeReflectionMapping;
+		cubeCamera.position.set(cfg.cam.x, cfg.cam.y, cfg.cam.z);
 		scene.add(cubeCamera);
 
 		// ground ( with box projected environment mapping )
-		var loader = new THREE.TextureLoader();
-		var rMap = loader.load(`img/textures/lava/${cfg.ground.texture}.jpg`);
+		let loader = new THREE.TextureLoader();
+		let rMap = loader.load(`img/textures/lava/${cfg.ground.texture}.jpg`);
 		rMap.wrapS = THREE.RepeatWrapping;
 		rMap.wrapT = THREE.RepeatWrapping;
 		rMap.repeat.set(1, 1);
-		var defaultMat = new THREE.MeshPhysicalMaterial({
+		let defaultMat = new THREE.MeshPhysicalMaterial({
 			roughness: 1,
 			envMap: cubeCamera.renderTarget.texture,
 			roughnessMap: rMap
 		});
-		var boxProjectedMat = new THREE.MeshPhysicalMaterial({
+		let boxProjectedMat = new THREE.MeshPhysicalMaterial({
 			color: new THREE.Color(cfg.ray.colorReflection),
 			roughness: 0.75,
 			envMap: cubeCamera.renderTarget.texture,
@@ -130,18 +125,18 @@ export default function reflection() {
 			shader.vertexShader = shader.vertexShader.replace(
 				'#include <worldpos_vertex>',
 				h.worldposReplace
-			);
+				);
 			shader.fragmentShader = shader.fragmentShader.replace(
 				'#include <envmap_physical_pars_fragment>',
 				h.envmapPhysicalParsReplace
-			);
+				);
 		};
 		ground = new THREE.Mesh(new THREE.PlaneBufferGeometry(cfg.ground.width, cfg.ground.height, 0), boxProjectedMat);
 		ground.rotateX(- Math.PI / 2);
 		ground.position.set(cfg.ground.x, cfg.ground.y, cfg.ground.z);
 		scene.add(ground);
 
-		var ambient = new THREE.AmbientLight(cfg.ray.color, 0.01);
+		let ambient = new THREE.AmbientLight(cfg.ray.color, 0.01);
 		scene.add(ambient);
 
 		//ray
@@ -151,13 +146,13 @@ export default function reflection() {
 		ray.lookAt(0, 0, 0);
 		scene.add(ray);
 
-		var rectLightMesh = new THREE.Mesh(
+		let rectLightMesh = new THREE.Mesh(
 			new THREE.PlaneBufferGeometry(),
 			new THREE.MeshBasicMaterial({
 				color: cfg.ray.color,
 				side: THREE.BackSide,
 			})
-		);
+			);
 		rectLightMesh.scale.x = ray.width;
 		rectLightMesh.scale.y = ray.height;
 		ray.add(rectLightMesh);
@@ -171,21 +166,23 @@ export default function reflection() {
 		}
 
 		// gui controls
-		var gui = new GUI();
+		let gui = new GUI();
 
-		var params = { 'box projected': true };
-
-		const guiBP = gui.add(params, 'box projected');
-		guiBP.onChange(function (value) {
-			if (value) {
-				ground.material = boxProjectedMat;
-			} else {
-				ground.material = defaultMat;
+		class ColorGUIHelper {
+			constructor(object, prop) {
+				this.object = object;
+				this.prop = prop;
 			}
-			render();
-		});
+			get value() {
+				return `#${this.object[this.prop].getHexString()}`;
+			}
+			set value(hexString) {
+				this.object[this.prop].set(hexString);
+			}
+		}
 
 		param = {
+			boxProjected: { 'box projected': true },
 			color: ray.color.getHex(),
 			colorReflection: boxProjectedMat.color.getHex(),
 			width: ray.width,
@@ -195,19 +192,36 @@ export default function reflection() {
 			'ambient': ambient.intensity,
 		};
 
-		const guiSceneCfg = gui.addFolder(`Scene params`);
-		guiSceneCfg.add(scene.position, 'x', -300, 300).step(1).name('position x');
-		guiSceneCfg.add(scene.position, 'y', -300, 300).step(1).name('position y');
-		guiSceneCfg.add(scene.position, 'z', -300, 300).step(1).name('position z');
-		// guiSceneCfg.open();
+		const guiBP = gui.add(param.boxProjected, 'box projected');
+		guiBP.onChange(function (value) {
+			if (value) {
+				ground.material = boxProjectedMat;
+			} else {
+				ground.material = defaultMat;
+			}
+			render();
+		});
 
-		const guiCameraCfg = gui.addFolder(`Camera params`);
+		console.log(cubeCamera);
+		console.log(scene);
+		console.log(camera);
+
+		const guiSceneCfg = gui.addFolder(`Scene`);
+		guiSceneCfg.add(scene.position, 'x', -300, 300).step(0.1).name('position x');
+		guiSceneCfg.add(scene.position, 'y', -300, 300).step(0.1).name('position y');
+		guiSceneCfg.add(scene.position, 'z', -300, 300).step(0.1).name('position z');
+		guiSceneCfg.add(scene.rotation, 'x', -Math.PI, Math.PI).step(0.1).name('position x');
+		guiSceneCfg.add(scene.rotation, 'y', -Math.PI, Math.PI).step(0.1).name('position y');
+		guiSceneCfg.add(scene.rotation, 'z', -Math.PI, Math.PI).step(0.1).name('position z');
+		guiSceneCfg.open();
+
+		const guiCameraCfg = gui.addFolder(`Camera`);
 		guiCameraCfg.add(camera.position, 'x', -500, 500).step(1).name('position x');
 		guiCameraCfg.add(camera.position, 'y', -500, 500).step(1).name('position y');
 		guiCameraCfg.add(camera.position, 'z', -500, 500).step(1).name('position z');
-		// guiCameraCfg.open();
+		guiCameraCfg.open();
 
-		const guiRayCfg = gui.addFolder(`Ray params`);
+		const guiRayCfg = gui.addFolder(`Ray`);
 		guiRayCfg.add(ray.position, 'x', -500, 500).name('position x');
 		guiRayCfg.add(ray.position, 'y', -500, 500).name('position y');
 		guiRayCfg.add(ray.position, 'z', -500, 500).name('position z');
@@ -238,15 +252,14 @@ export default function reflection() {
 		});
 		guiRayCfg.open();
 
-		const guiGroundCfg = gui.addFolder(`Ground params`);
+		const guiGroundCfg = gui.addFolder(`Ground`);
 		guiGroundCfg.add(ground.position, 'x', -500, 500).name('x');
 		guiGroundCfg.add(ground.position, 'y', -500, 500).name('y');
 		guiGroundCfg.add(ground.position, 'z', -500, 500).name('z');
 		// guiGroundCfg.open();
 
 		window.addEventListener('resize', onWindowResize, false);
-		window.addEventListener('mousemove', onDocumentMouseMove, false);
-
+		// document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 	}
 
@@ -259,13 +272,14 @@ export default function reflection() {
 		render();
 	}
 
-	function onDocumentMouseMove(event) {
+	// function onDocumentMouseMove(event) {
+	// 	controls.handleMouseMoveRotate(event);
+	// }
 
-		// console.log(controls);
-
-		controls.handleMouseMoveRotate(event);
-		console.log(`x:${camera.position.x}, y:${camera.position.y}, z:${camera.position.z} `)
-
+	function onDocumentMouseMove( event ) {
+		mouseX = ( event.clientX - windowHalfX );
+		mouseY = ( event.clientY - windowHalfY );
+		console.log(`x:${camera.position.x}, y:${camera.position.y}, z:${camera.position.z} `);
 	}
 
 	function onWindowResize() {
@@ -280,11 +294,16 @@ export default function reflection() {
 		updateCubeMap();
 		controls.update();
 
-
 		if (statsEnabled) { stats.update() };
 	}
 
 	function render() {
+
+		camera.position.x += ( - mouseX - camera.position.x ) * 1;
+		camera.position.y += ( - mouseY - camera.position.y ) * 1;
+		camera.lookAt( scene.position );
+
+
 
 		renderer.render(scene, camera);
 	}

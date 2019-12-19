@@ -1,16 +1,17 @@
 {% import "../data/data.html" as data %}
 
 <div class="hero">
-	<div class="hero__title">Roman Yakovenko</div>
-	<div class="hero__subtitle">
-		<span class="-"></span>
-		Frontend developer
-	</div>
-	<a href="{{data.global.cv.downloadlink}}" class="hero__link" download>Download CV</a>
+	<div class="hero__container">
 
-	<div class="hero__social">
-		{% for item in data.socials %}
-		<a href="{{item.link}}" class="hero__social-item">{{icon.i(item.icon)}}</a>
-		{% endfor %}
+		<div class="hero__subtitle" data-bgwords="Frontend developer">Frontend developer</div>
+		<div class="hero__title" data-bgwords="Roman Yakovenko">Roman <br /> Yakovenko</div>
+
+		<div class="hero__social">
+			<a href="{{data.global.cv.downloadlink}}" class="hero__social-item hero__social-item--cv" download>CV</a>
+			{% for item in data.socials %}
+			<a href="{{item.link}}" class="hero__social-item">{{icon.i(item.icon)}}</a>
+			{% endfor %}
+		</div>
+
 	</div>
 </div>

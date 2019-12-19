@@ -1,4 +1,9 @@
-@import "helpers/*.sass"
+$z-indexes: ("modal", "menu", "contentControls", "content", "bg")
+$globalPadding: 100px
+
+@import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
+
+@import "helpers/**/*.sass"
 @import "base/*.sass"
 @import "generated/*.sass"
 
@@ -7,9 +12,11 @@
 @import "works/*.sass"
 @import "cards/*.sass"
 
-@import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
+@include fontFace(Monument, '../fonts/monument/Monument-Regular', 500, normal, otf)
+@include fontFace(Monument, '../fonts/monument/Monument-Ultrabold', 900, normal, otf)
 
 body
+	position: relative
 	background-color: black
 	overflow-x: hidden
 	display: flex
@@ -20,12 +27,16 @@ body
 	font-weight: 500
 	+ls(25)
 	+trs($globalAnimSpeed)
-	+custom-scroll-bar(8px, 0, $pink, rgba($white, 0.2))
+	+customScroll(8px, 0, $pink, rgba($white, 0.2))
+	z-index: z('bg')
+	background-color: rgba(29,31,35,1)
+
 
 .reflection
-	+coverdiv
+	+cover
 	position: fixed
-	z-index: -1
+	z-index: z('bg')
+
 
 .shatter
 	position: relative
@@ -51,7 +62,7 @@ body
 		width: auto
 		height: 100%
 		+coverimg
-		+coverdiv
+		+cover
 		+h
 			cursor: pointer
 
@@ -79,7 +90,7 @@ body
 		z-index: 10
 
 		.circle
-			+coverdiv
+			+cover
 			border-radius: 50%
 			background: linear-gradient(#fc107f, #f86ef6,#fc107f)
 			animation: qwe 0.2s linear infinite
@@ -95,7 +106,7 @@ body
 				background-color: black
 
 			span
-				+coverdiv
+				+cover
 				border-radius: 50%
 				background: linear-gradient(#fc107f, #f86ef6,#fc107f)
 				&:nth-child(1)
@@ -108,7 +119,7 @@ body
 					+blur(75px)
 
 	&__bg
-		+coverdiv
+		+cover
 		pointer-events: none
 		transform-origin: center center
 		transform: scale(1.5) rotate(160deg)

@@ -1,0 +1,15 @@
+// +randomBGColor(red, 10)
+=randomBGColor($c, $y)
+	background: $c
+	@for $i from 1 through $y
+		$k: 3%
+		$j: $i - 1
+
+		@if $i == 1
+			&:nth-child(#{$i})
+				background: $c
+				background: rgb(random(255), random(255), random(255))
+		@else
+			&:nth-child(#{$i})
+				background: darken($c, $k * $j)
+				background: rgb(random(255), random(255), random(255))

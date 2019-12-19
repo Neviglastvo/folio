@@ -1,0 +1,42 @@
+// Create a font face rule. Embedded OpenType, WOFF2, WOFF, TrueType, and SVG files are automatically sourced.
+// @include font-face(Samplino, fonts/Samplino)
+
+// Create a font face rule that applies to bold and italic text.
+// @include font-face("Samplina Neue", fonts/SamplinaNeue, bold, italic)
+
+// Create a font face rule that only sources a WOFF.
+// @include font-face(Samplinoff, fonts/Samplinoff, null, null, woff)
+
+// Create a font face rule that applies to 500 weight text and sources EOT, WOFF2, and WOFF.
+// @include font-face(Samplinal, fonts/Samplinal, 500, normal, eot woff2 woff)
+
+// =============================================================================
+// String Replace
+
+@function strReplace($string, $search, $replace: "")
+	$index: str-index($string, $search)
+	@if $index
+		@return str-slice($string, 1, $index - 1) + $replace + strReplace(str-slice($string, $index + str-length($search)), $search, $replace);
+
+	@return $string
+
+// =============================================================================
+
+
+@mixin fontFace($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg)
+	$src: null;
+	$extmods: (eot: "?", svg: "#" + strReplace($name, " ", "_"))
+	$formats: (otf: "opentype", ttf: "truetype")
+
+	@each $ext in $exts
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+
+	@font-face
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+
+

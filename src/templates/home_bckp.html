@@ -64,4 +64,64 @@ title: Index test
 	{# nav example end #}
 
 
+	<div class="layout js-blurry">
+
+		<div class="layout__bg">
+			<div class="layout__bg-item layout__bg-item--1"></div>
+			<div class="layout__bg-item layout__bg-item--2"></div>
+			<div class="layout__bg-item layout__bg-item--3"></div>
+		</div>
+
+		<div id="anchorHome" class="layout__hero js-hero">
+			{% include "./partials/_0hero.html" %}
+		</div>
+
+		<div class="layout__container js-trigger-cases">
+
+			<div id="anchorAbout" class="layout__item">
+				<div class="layout__item-container">
+
+					<div class="layout__item-bg">
+						<div class="layout__item-bg-item layout__item-bg-item--1"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--2"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--3"></div>
+					</div>
+
+					<div class="layout__item-title">About me</div>
+
+					{% include "./partials/_1about.html" %}
+
+				</div>
+			</div>
+
+			<div id="anchorWorks" class="layout__item layout__item--fullwidth js-scroll-snap">
+				<div class="layout__item-container">
+
+					<div class="layout__item-title">Works</div>
+
+					{% include "./partials/_2works.html" %}
+
+				</div>
+			</div>
+
+
+			<div id="anchorContacts" class="layout__item js-scroll-snap">
+				<div class="layout__item-container">
+					<div class="layout__item-bg">
+						<div class="layout__item-bg-item layout__item-bg-item--1"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--2"></div>
+						<div class="layout__item-bg-item layout__item-bg-item--3"></div>
+					</div>
+
+					<div class="layout__item-title">Contacts</div>
+
+					{% include "./partials/_3contacts.html" %}
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
 {% endblock %}

@@ -1,15 +1,17 @@
 .hamburger
-    top: vw(1920, 100px)
-    right: vw(1920, 100px)
+    top: vw(1920, $globalPadding)
+    right: vw(1920, $globalPadding)
     position: fixed
     justify-content: center
     align-items: center
     z-index: 1000
     +h
         cursor: pointer
+        .hamburger__icon
+            @include burger(40px, 6px, 6px, rgba($white, 1), 10px, $globalAnimSpeed)
 
     &__icon
-        @include burger(40px, 6px, 6px, $pink, 10px, $globalAnimSpeed)
+        @include burger(40px, 6px, 6px, rgba($white, 0.5), 10px, $globalAnimSpeed)
 
     &.active
         .hamburger__icon
