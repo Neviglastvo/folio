@@ -83,6 +83,7 @@
     "jspdf": "^1.5.3",
     "pixi.js": "^5.2.0",
     "scroll-snap": "^2.0.6",
+    "simplex-noise": "^2.4.0",
     "smooth-scroll": "^16.1.0",
     "snapscroll": "^2.0.0",
     "swiper": "^4.5.1",

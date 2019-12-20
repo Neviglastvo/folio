@@ -1,6 +1,6 @@
 //main
-import './lib/bez.js';
-import './lib/alton.js';
+// import './lib/bez.js';
+// import './lib/alton.js';
 import SmoothScroll from 'smooth-scroll';
 import SnapScroll from 'snapscroll';
 import sliderWorks from './blocks/sliderWorks';
