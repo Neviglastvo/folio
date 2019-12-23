@@ -115,22 +115,43 @@ export default function reflection() {
 		ray.lookAt(0, (cfg.ray.y), 0);
 		scene.add(ray);
 
-		var rectLightMesh = new THREE.Mesh(
+		var rayLightMesh = new THREE.Mesh(
 			new THREE.PlaneBufferGeometry(),
 			new THREE.MeshBasicMaterial({
 				color: cfg.ray.color, // ray color
 				side: THREE.BackSide,
 			})
 		);
-		rectLightMesh.scale.x = ray.width;
-		rectLightMesh.scale.y = ray.height;
-		ray.add(rectLightMesh);
+		rayLightMesh.scale.x = ray.width;
+		rayLightMesh.scale.y = ray.height;
+		ray.add(rayLightMesh);
 
 		RectAreaLightUniformsLib.init();
 
 		var ambient = new THREE.AmbientLight(cfg.ray.colorReflection, cfg.ray.ambient);
 		scene.add(ambient);
 		// RAY END ----------------------------------------------------------------------------
+
+
+
+
+		// SPHERE BEGIN ----------------------------------------------------------------------------
+		let sphere = new THREE.RectAreaLight(0x4737ff, 50, 50, 50);
+		sphere.position.set(-250, 130, 100);
+		sphere.lookAt(0, 130, 0);
+		scene.add(sphere);
+
+		var sphereLightMesh = new THREE.Mesh(
+			new THREE.SphereGeometry(1, 50, 50),
+			new THREE.MeshBasicMaterial({
+				color: 0x4737ff,
+				side: THREE.BackSide,
+			})
+		);
+		sphereLightMesh.scale.x = 50;
+		sphereLightMesh.scale.y = 50;
+		sphere.add(sphereLightMesh);
+		// SPHERE END ----------------------------------------------------------------------------
 
 
 
@@ -245,18 +266,18 @@ export default function reflection() {
 		guiRayCfg.add(ray.position, 'z', -500, 500).name('position z');
 		guiRayCfg.addColor(param, 'color').name('color').onChange(function (val) {
 			ray.color.setHex(val);
-			rectLightMesh.material.color.copy(ray.color);
+			rayLightMesh.material.color.copy(ray.color);
 		});
 		guiRayCfg.addColor(param, 'colorReflection').name('Reflection Color').onChange(function (val) {
 			boxProjectedMat.color.setHex(val);
 		});
 		guiRayCfg.add(param, 'width', 1, 100).step(1).onChange(function (val) {
 			ray.width = val;
-			rectLightMesh.scale.x = val;
+			rayLightMesh.scale.x = val;
 		});
 		guiRayCfg.add(param, 'height', 1, 500).step(1).onChange(function (val) {
 			ray.height = val;
-			rectLightMesh.scale.y = val;
+			rayLightMesh.scale.y = val;
 		});
 		guiRayCfg.add(ray, 'intensity', 0, 20).step(0.01).name('intensity');
 		guiRayCfg.add(param, 'roughness1', 0, 1).step(0.01).name('roughness1').onChange(function (val) {
