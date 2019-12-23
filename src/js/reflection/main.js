@@ -13,7 +13,7 @@ export default function reflection() {
 	let cfg = {
 		fps: 60,
 		cam: {
-			x: 150,
+			x: 300,
 			y: 0,
 			z: 0,
 			viewAngle: 45,
@@ -23,40 +23,39 @@ export default function reflection() {
 			far: 800,
 		},
 		ray: {
-			x: -255,
-			y: 0,
+			x: -300,
+			y: 130,
 			z: 0,
-			color: 0x2d1fda,
-			colorReflection: 0x2d1fda,
-			width: 100,
-			height: 290,
-			intensity: 20,
+			color: 0xff3767,
+			colorReflection: 0xff3767,
+			width: 40,
+			height: 400,
+			intensity: 6,
+			ambient: 0.03,
+			roughtness1: 0.37,
+			roughtness2: 0.5,
 		},
 		ground: {
 			texture: 'water',
 			width: 512,
-			height: 512,
+			height: 1024,
 			x: 0,
 			y: -50,
 			z: 0,
 		}
 	};
 
-	var waveMesh, wavePlane, waveMaterial, clock;
-	var worldWidth = 20, worldDepth = 20;
+	let waveMesh, wavePlane, waveMaterial, clock;
+	let worldWidth = 20, worldDepth = 20;
 
-	let NEAR = 1,
-	FAR = 800,
-	camera, cubeCamera, scene, renderer,
-	controls,
-	groundPlane, groundMesh,
+	let camera, cubeCamera, scene, renderer,
+		controls,
+		groundPlane, groundMesh,
 
-	sooqa,
+		stats, statsEnabled = true,
 
-	stats,
-	statsEnabled = true,
+		param = {};
 
-	param = {};
 
 	init();
 	animate();
@@ -79,11 +78,11 @@ export default function reflection() {
 
 		controls = new OrbitControls(camera, renderer.domElement);
 
-		controls.target.set(0, -10, 0);
+		controls.target.set(0, 0, 0);
 		controls.maxPolarAngle = Math.PI / 2
 		controls.enableRotate = true;
+		controls.enablePan = true;
 		controls.enableZoom = false;
-		controls.enablePan = false;
 		controls.enableDamping = true;
 		controls.dampingFactor = 0.01;
 		controls.rotateSpeed = 0.2;
@@ -92,7 +91,6 @@ export default function reflection() {
 		controls.dispose();
 		controls.update();
 
-		// cube camera for environment map
 		cubeCamera = new THREE.CubeCamera(1, 256, 256);
 		cubeCamera.renderTarget.texture.generateMipmaps = true;
 		cubeCamera.renderTarget.texture.minFilter = THREE.LinearMipmapLinearFilter;
@@ -112,25 +110,25 @@ export default function reflection() {
 
 
 		// RAY BEGIN ----------------------------------------------------------------------------
-		let ray = new THREE.RectAreaLight(cfg.ray.color, cfg.ray.intensity, cfg.ray.width, cfg.ray.height);
+		let ray = new THREE.RectAreaLight(cfg.ray.colorReflection, cfg.ray.intensity, cfg.ray.width, cfg.ray.height);
 		ray.position.set(cfg.ray.x, cfg.ray.y, cfg.ray.z);
-		ray.lookAt(0, 0, 0);
+		ray.lookAt(0, (cfg.ray.y), 0);
 		scene.add(ray);
 
 		var rectLightMesh = new THREE.Mesh(
 			new THREE.PlaneBufferGeometry(),
 			new THREE.MeshBasicMaterial({
-				color: cfg.ray.color,
+				color: cfg.ray.color, // ray color
 				side: THREE.BackSide,
 			})
-			);
+		);
 		rectLightMesh.scale.x = ray.width;
 		rectLightMesh.scale.y = ray.height;
 		ray.add(rectLightMesh);
 
 		RectAreaLightUniformsLib.init();
 
-		var ambient = new THREE.AmbientLight(cfg.ray.color, 0.01);
+		var ambient = new THREE.AmbientLight(cfg.ray.colorReflection, cfg.ray.ambient);
 		scene.add(ambient);
 		// RAY END ----------------------------------------------------------------------------
 
@@ -142,13 +140,13 @@ export default function reflection() {
 		THREE.RepeatWrapping;
 		rMap.repeat.set(1, 1);
 		var defaultMat = new THREE.MeshPhysicalMaterial({
-			roughness: 1,
+			roughness: cfg.ray.roughtness1,
 			envMap: cubeCamera.renderTarget.texture,
 			roughnessMap: rMap
 		});
 		var boxProjectedMat = new THREE.MeshPhysicalMaterial({
 			color: new THREE.Color(cfg.ray.colorReflection),
-			roughness: 0.75,
+			roughness: cfg.ray.roughtness2,
 			envMap: cubeCamera.renderTarget.texture,
 			roughnessMap: rMap
 		});
@@ -162,18 +160,17 @@ export default function reflection() {
 			shader.vertexShader = shader.vertexShader.replace(
 				'#include <worldpos_vertex>',
 				h.worldposReplace
-				);
+			);
 			shader.fragmentShader = shader.fragmentShader.replace(
 				'#include <envmap_physical_pars_fragment>',
 				h.envmapPhysicalParsReplace
-				);
+			);
 		};
 		groundPlane = new THREE.PlaneBufferGeometry(cfg.ground.width, cfg.ground.height, worldWidth - 1, worldDepth - 1);
 		groundPlane.rotateX(- Math.PI / 2);
 
 		var groundAnimation = groundPlane.attributes.position;
 		groundAnimation.usage = THREE.DynamicDrawUsage;
-
 
 		var groundAnimationArray = groundPlane.attributes.position.array;
 
@@ -182,47 +179,19 @@ export default function reflection() {
 		var simplex = new SimplexNoise()
 		var smoothing = 100;
 
-		for ( var i = 0; i <= groundAnimationArray.count; i +=3 ) {
-			groundAnimationArray[i+2] = simplex.noise2D(
-				groundAnimationArray[i] / smoothing.randInt(10, 200),
-				groundAnimationArray[i+1] / smoothing.randInt(10, 200)
-				);
+		for (var i = 0; i <= groundAnimationArray.count; i += 3) {
+			groundAnimationArray[i + 2] = simplex.noise2D(
+				(groundAnimationArray[i] / smoothing.randInt(1, 100))* Math.sin(i / 2),
+				(groundAnimationArray[i + 1] / smoothing.randInt(1, 100))* Math.sin(i / 2)
+			);
 		}
 
 		groundMesh = new THREE.Mesh(groundPlane, boxProjectedMat);
 		groundMesh.position.set(cfg.ground.x, cfg.ground.y, cfg.ground.z);
 
-		console.log(groundMesh);
-
-
 		scene.add(groundMesh);
 
 		// GROUND END ( with box projected environment mapping )----------------------------------
-
-
-
-		// WAWES BEGIN ----------------------------------------------------------------------------
-		wavePlane = new THREE.PlaneBufferGeometry( cfg.ground.width, cfg.ground.height, worldWidth - 1, worldDepth - 1 );
-		wavePlane.rotateX( - Math.PI / 2 );
-
-		var waveAnimation = wavePlane.attributes.position;
-		waveAnimation.usage = THREE.DynamicDrawUsage;
-
-		for ( var i = 0; i < waveAnimation.count; i ++ ) {
-			var y = 35 * Math.sin( i / 2 );
-			waveAnimation.setY( i, y );
-		}
-
-		var waweTexture = new THREE.TextureLoader().load(`img/textures/${cfg.ground.texture}.jpg`);
-		waweTexture.wrapS = waweTexture.wrapT = THREE.RepeatWrapping;
-		waweTexture.repeat.set( 5, 5 );
-
-		waveMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, map: waweTexture } );
-		waveMesh = new THREE.Mesh( wavePlane, waveMaterial );
-		waveMesh.position.set(cfg.ground.x, cfg.ground.y+20, cfg.ground.z);
-
-		// scene.add( waveMesh );
-		// WAWES END ----------------------------------------------------------------------------
 
 
 
@@ -276,9 +245,9 @@ export default function reflection() {
 		guiRayCfg.add(ray.position, 'z', -500, 500).name('position z');
 		guiRayCfg.addColor(param, 'color').name('color').onChange(function (val) {
 			ray.color.setHex(val);
-			rectLightMesh.material.color.copy(ray.color).multiplyScalar(ray.intensity);
+			rectLightMesh.material.color.copy(ray.color);
 		});
-		guiRayCfg.addColor(param, 'color').name('Reflection Color').onChange(function (val) {
+		guiRayCfg.addColor(param, 'colorReflection').name('Reflection Color').onChange(function (val) {
 			boxProjectedMat.color.setHex(val);
 		});
 		guiRayCfg.add(param, 'width', 1, 100).step(1).onChange(function (val) {
@@ -289,14 +258,14 @@ export default function reflection() {
 			ray.height = val;
 			rectLightMesh.scale.y = val;
 		});
-		guiRayCfg.add(ray, 'intensity', 0, 100).name('intensity');
+		guiRayCfg.add(ray, 'intensity', 0, 20).step(0.01).name('intensity');
 		guiRayCfg.add(param, 'roughness1', 0, 1).step(0.01).name('roughness1').onChange(function (val) {
 			defaultMat.roughness = val;
 		});
 		guiRayCfg.add(param, 'roughness2', 0, 1).step(0.01).name('roughness2').onChange(function (val) {
 			boxProjectedMat.roughness = val;
 		});
-		guiRayCfg.add(param, 'ambient', 0.0, 0.2).step(0.01).onChange(function (val) {
+		guiRayCfg.add(param, 'ambient', 0.0, 1).step(0.01).onChange(function (val) {
 			ambient.intensity = val;
 		});
 		guiRayCfg.open();
@@ -374,9 +343,9 @@ export default function reflection() {
 
 		var wavesAnimation = groundPlane.attributes.position;
 
-		for ( var i = 0; i <= wavesAnimation.count; i +=2 ) {
-			var y = 2 * Math.sin( i + ( time + i ) / 3 );
-			wavesAnimation.setY( i, y );
+		for (var i = 0; i <= wavesAnimation.count; i++) {
+			var y = 2 * Math.sin(i + (time + i) / 3);
+			wavesAnimation.setY(i, y);
 		}
 
 
