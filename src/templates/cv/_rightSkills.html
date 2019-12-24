@@ -1,0 +1,38 @@
+<div class="cv-footer__col">
+
+	<div class="cv-right__title">
+		<span>Skills</span>
+		<div class="cv-right__title-icon">
+			{{icon.i('skills')}}
+		</div>
+	</div>
+
+	<div class="cv-skills">
+		{% for item in data.skills %}
+		<div class="cv-skills__item">
+			<div class="cv-skills__title">{{item.title}}</div>
+			<div class="cv-skills__progress">
+				<div class="cv-skills__progress-overlay" style="width: {{item.skill}}"></div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+</div>
+
+<div class="cv-footer__col">
+
+	<div class="cv-right__title">
+		<span>Technologies</span>
+		<div class="cv-right__title-icon">
+			{{icon.i('technologies')}}
+		</div>
+	</div>
+
+	<div class="cv-technologies">
+		{% for item in data.technologies %}
+		<div class="cv-technologies__item">{{item.title}}</div>
+		{% endfor %}
+	</div>
+
+</div>

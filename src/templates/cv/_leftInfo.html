@@ -1,0 +1,30 @@
+<div class="cv-left__item">
+	<div class="cv-left__icon">{{icon.i('pin')}}</div>
+	<div class="cv-left__box">
+		<a class="cv-left__box-subtitle" href="{{data.global.locationLink}}" target="blank">Kyiv, Ukraine <br>Darnitsky district</a>
+
+	</div>
+</div>
+<div class="cv-left__item">
+	<div class="cv-left__icon">{{icon.i('phone2')}}</div>
+	<div class="cv-left__box">
+		<a class="cv-left__box-subtitle" href="{{data.global.phoneLink}}">{{data.global.phone}}</a>
+	</div>
+</div>
+
+<div class="cv-left__item">
+	<div class="cv-left__icon">{{icon.i('at')}}</div>
+	<div class="cv-left__box">
+		<a class="cv-left__box-subtitle" href="mailto:{{data.global.email}}">{{data.global.email}}</a>
+	</div>
+</div>
+
+{% for item in data.socials %}
+<div class="cv-left__item">
+	<div class="cv-left__icon">{{icon.i(item.icon)}}</div>
+	<div class="cv-left__box">
+		<!-- <div class="cv-left__box-title">Telegram</div> -->
+		<a class="cv-left__box-subtitle" href="{{item.link}}" target="blank">{{item.content}}</a>
+	</div>
+</div>
+{% endfor %}

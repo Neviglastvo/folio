@@ -6,8 +6,8 @@ $globalPadding: 50px
 @import "generated/*.sass"
 
 $cvBg: #fff
-$cvBorderColor: #000
-$cvText: #000
+$cvBorderColor: #101010
+$cvText: #101010
 $cvTextContrast: #fff
 $borderWidth: 1px
 
@@ -23,6 +23,9 @@ $pt16: 4mm
 $pt18: 4.5mm
 $pt20: 5mm
 
+body
+	background-color: #000
+
 .cv
 	margin: 0 auto
 	display: flex
@@ -30,8 +33,11 @@ $pt20: 5mm
 	height: 297mm
 	min-height: 297mm
 	overflow: hidden
-	box-shadow: 0 0 0px 1px $cvBorderColor
+	color: $cvText
+	border-color: $cvBorderColor
 	background-color: $cvBg
+	// filter: grayscale(100%)
+	// filter: invert(80%)
 
 @import "cv/*.sass"
 

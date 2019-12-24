@@ -31,6 +31,12 @@ export default function reflection() {
 			width: 40,
 			height: 400,
 			intensity: 6,
+			glowing: true,
+			glowingOpacity: 0.5,
+			glowingColor: 0xff3767,
+			glowingSizeX: 6,
+			glowingSizeY: 6,
+			glowBlending: true,
 			ambient: 0.03,
 			roughtness1: 0.37,
 			roughtness2: 0.5,
@@ -49,12 +55,12 @@ export default function reflection() {
 	let worldWidth = 20, worldDepth = 20;
 
 	let camera, cubeCamera, scene, renderer,
-		controls,
-		groundPlane, groundMesh,
+	controls,
+	groundPlane, groundMesh,
 
-		stats, statsEnabled = true,
+	stats, statsEnabled = true, production = false,
 
-		param = {};
+	param = {};
 
 
 	init();
@@ -64,7 +70,6 @@ export default function reflection() {
 
 		// CORE BEGIN ----------------------------------------------------------------------------
 		var container = document.getElementById('jsReflection');
-
 
 		renderer = new THREE.WebGLRenderer({ antialias: true });
 		renderer.setPixelRatio(window.devicePixelRatio);
@@ -101,10 +106,6 @@ export default function reflection() {
 
 		var loader = new THREE.TextureLoader();
 
-		if (statsEnabled) {
-			stats = new Stats();
-			container.appendChild(stats.dom);
-		}
 		// CORE END ----------------------------------------------------------------------------
 
 
@@ -113,7 +114,6 @@ export default function reflection() {
 		let ray = new THREE.RectAreaLight(cfg.ray.colorReflection, cfg.ray.intensity, cfg.ray.width, cfg.ray.height);
 		ray.position.set(cfg.ray.x, cfg.ray.y, cfg.ray.z);
 		ray.lookAt(0, (cfg.ray.y), 0);
-		scene.add(ray);
 
 		var rayLightMesh = new THREE.Mesh(
 			new THREE.PlaneBufferGeometry(),
@@ -121,7 +121,7 @@ export default function reflection() {
 				color: cfg.ray.color, // ray color
 				side: THREE.BackSide,
 			})
-		);
+			);
 		rayLightMesh.scale.x = ray.width;
 		rayLightMesh.scale.y = ray.height;
 		ray.add(rayLightMesh);
@@ -130,27 +130,29 @@ export default function reflection() {
 
 		var ambient = new THREE.AmbientLight(cfg.ray.colorReflection, cfg.ray.ambient);
 		scene.add(ambient);
+
+		scene.add(ray);
 		// RAY END ----------------------------------------------------------------------------
 
 
 
 
 		// SPHERE BEGIN ----------------------------------------------------------------------------
-		let sphere = new THREE.RectAreaLight(0x4737ff, 50, 50, 50);
-		sphere.position.set(-250, 130, 100);
-		sphere.lookAt(0, 130, 0);
-		scene.add(sphere);
+		// let sphere = new THREE.RectAreaLight(0x4737ff, 50, 50, 50);
+		// sphere.position.set(-250, 130, 100);
+		// sphere.lookAt(0, 130, 0);
+		// scene.add(sphere);
 
-		var sphereLightMesh = new THREE.Mesh(
-			new THREE.SphereGeometry(1, 50, 50),
-			new THREE.MeshBasicMaterial({
-				color: 0x4737ff,
-				side: THREE.BackSide,
-			})
-		);
-		sphereLightMesh.scale.x = 50;
-		sphereLightMesh.scale.y = 50;
-		sphere.add(sphereLightMesh);
+		// var sphereLightMesh = new THREE.Mesh(
+		// 	new THREE.SphereGeometry(1, 50, 50),
+		// 	new THREE.MeshBasicMaterial({
+		// 		color: 0x4737ff,
+		// 		side: THREE.BackSide,
+		// 	})
+		// );
+		// sphereLightMesh.scale.x = 50;
+		// sphereLightMesh.scale.y = 50;
+		// sphere.add(sphereLightMesh);
 		// SPHERE END ----------------------------------------------------------------------------
 
 
@@ -181,11 +183,11 @@ export default function reflection() {
 			shader.vertexShader = shader.vertexShader.replace(
 				'#include <worldpos_vertex>',
 				h.worldposReplace
-			);
+				);
 			shader.fragmentShader = shader.fragmentShader.replace(
 				'#include <envmap_physical_pars_fragment>',
 				h.envmapPhysicalParsReplace
-			);
+				);
 		};
 		groundPlane = new THREE.PlaneBufferGeometry(cfg.ground.width, cfg.ground.height, worldWidth - 1, worldDepth - 1);
 		groundPlane.rotateX(- Math.PI / 2);
@@ -195,8 +197,6 @@ export default function reflection() {
 
 		var groundAnimationArray = groundPlane.attributes.position.array;
 
-		console.log(groundAnimationArray);
-
 		var simplex = new SimplexNoise()
 		var smoothing = 100;
 
@@ -204,10 +204,10 @@ export default function reflection() {
 			groundAnimationArray[i + 2] = simplex.noise2D(
 				(groundAnimationArray[i] / smoothing.randInt(1, 100))* Math.sin(i / 2),
 				(groundAnimationArray[i + 1] / smoothing.randInt(1, 100))* Math.sin(i / 2)
-			);
+				);
 		}
 
-		groundMesh = new THREE.Mesh(groundPlane, boxProjectedMat);
+		groundMesh = new THREE.Mesh(groundPlane, defaultMat);
 		groundMesh.position.set(cfg.ground.x, cfg.ground.y, cfg.ground.z);
 
 		scene.add(groundMesh);
@@ -221,7 +221,7 @@ export default function reflection() {
 
 
 		param = {
-			'box projected': true,
+			'box projected': false,
 
 			color: ray.color.getHex(),
 			colorReflection: boxProjectedMat.color.getHex(),
@@ -313,9 +313,26 @@ export default function reflection() {
 
 
 
-
 		window.addEventListener('resize', onWindowResize, false);
 		window.addEventListener('mousemove', onDocumentMouseMove, false);
+
+		$(container).hasClass('js-reflection-production') ? production = true : production = false;
+
+		if (production === true){
+
+			statsEnabled = false;
+			$('.dg.ac').remove()
+
+		} else {
+
+			statsEnabled = true;
+
+			if (statsEnabled) {
+				stats = new Stats();
+				container.appendChild(stats.dom);
+			}
+
+		}
 
 	}
 
@@ -365,17 +382,9 @@ export default function reflection() {
 		var wavesAnimation = groundPlane.attributes.position;
 
 		for (var i = 0; i <= wavesAnimation.count; i++) {
-			var y = 2 * Math.sin(i + (time + i) / 3);
+			var y = 5 * Math.sin(i + ((time + i) / 20) );
 			wavesAnimation.setY(i, y);
 		}
-
-
-		// for ( var i = 0; i <= wavesAnimationArray.count; i +=3 ) {
-		// 	wavesAnimationArray[i+2] = peak * simplex.noise2D(
-		// 		wavesAnimationArray[i]/smoothing,
-		// 		wavesAnimationArray[i+1] / smoothing
-		// 		);
-		// }
 
 		wavesAnimation.needsUpdate = true;
 

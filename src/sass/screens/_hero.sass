@@ -4,24 +4,12 @@
 	height: 100vh
 	display: flex
 	padding: vw(1920, $globalPadding)
-	background-image: radial-gradient( circle 95vh at 30% 10%,  rgba(65,66,71,1) 0%, rgba(29,31,35,1) 90% );
-	z-index: z('content')
-	background-image: url("../img/space.jpg")
-	+coverbg
-	+after
-		position: absolute
-		top: 0
-		bottom: 0
-		left: vw(1920,200px)
-		height: 100%
-		right: 70%
-		+gradient(rgba(#000, 0.1), rgba(#000, 1), left)
-		z-index: 10
-		z-index: z('bg')
-		backdrop-filter: blur(8px)
-
+	z-index: z('contentThingies')
 	+r(768)
 		padding: 15px 15px
+
+	.reflection
+		z-index: -4
 
 	&__container
 		z-index: z('content')
@@ -37,10 +25,9 @@
 		font-size: vw(1920, 120px)
 		line-height: vw(1920, 110px)
 		font-weight: 500
-		color: transparent
 		user-select: none
 		// text-shadow: 10px 30px 100px rgba(#000, 0.75)
-		-webkit-text-stroke: 1px $white
+		+textBorder(1px, $white)
 		+r(1024)
 			font-size: vw(1024, 100px)
 
@@ -54,17 +41,6 @@
 		text-shadow: 10px 30px 80px rgba(#000, 0.75)
 		+r(1024)
 			font-size: vw(1024, 60px)
-
-	&__link
-		position: absolute
-		bottom: 0
-		left: 40px
-		font-size: 16px
-		font-weight: 500
-		color: rgba($white,0.5)
-		+tr
-		+h
-			color: rgba($white,1)
 
 	&__social
 		position: absolute
@@ -88,7 +64,6 @@
 			color: rgba($white,1)
 			svg
 				fill: rgba($white,1)
-		&--cv
 
 		svg
 			width: 100%

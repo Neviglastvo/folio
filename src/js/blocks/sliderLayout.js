@@ -6,7 +6,7 @@ export default function sliderLayout(){
 
 		slidesPerView: 1,
 		direction: 'vertical',
-		spaceBetween: 100,
+		spaceBetween: 0,
 		initialSlide: 0,
 		roundLengths: true,
 		speed: 1000,
@@ -18,6 +18,7 @@ export default function sliderLayout(){
 		pagination: {
 			el: '.js-slider-layout-pagination',
 			clickable: true,
+			bulletActiveClass: 'active',
 			type: 'bullets',
 			direction: 'horizontal',
 			renderBullet: function (index, className) {
@@ -33,5 +34,16 @@ export default function sliderLayout(){
 			}
 		}
 	});
+
+	swiper.on('transitionStart', function(event) {
+		console.log('asd');
+		$('.swiper-wrapper').find('.active').removeClass('active')
+	});
+
+	swiper.on('transitionEnd', function(event) {
+		$('.swiper-slide-active').addClass('active')
+	});
+
+	console.log(swiper.pagination.$el[0]);
 
 }

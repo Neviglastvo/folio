@@ -1,74 +1,74 @@
-.work-card
-	height: 100%
-	width: 100%
-	z-index: 9
-	&.active, &:hover
-		z-index: 12
-		.work-card__img-container
-			z-index: 12
-			transform: scale(1.2)
-		.work-card__img
-			z-index: 12
-			box-shadow: 0 -20px 50px -20px $pink
-		.work-card__img-reflection-container
-			z-index: 12
-			opacity: 0.95
-			transform: perspective(300px) rotateX(65deg) scaleY(-1) scaleX(1.45) translateY(0%)
+// .work-card
+// 	height: 100%
+// 	width: 100%
+// 	z-index: 9
+// 	&.active, &:hover
+// 		z-index: 12
+// 		.work-card__img-container
+// 			z-index: 12
+// 			transform: scale(1.2)
+// 		.work-card__img
+// 			z-index: 12
+// 			box-shadow: 0 -20px 50px -20px $pink
+// 		.work-card__img-reflection-container
+// 			z-index: 12
+// 			opacity: 0.95
+// 			transform: perspective(300px) rotateX(65deg) scaleY(-1) scaleX(1.45) translateY(0%)
 
-	&__container
-		display: flex
-		flex-direction: column
-		height: 100%
+// 	&__container
+// 		display: flex
+// 		flex-direction: column
+// 		height: 100%
 
-	&__title
-		color: $white
-		font-size: 32px
-		margin-bottom: 30px
-		text-align: center
-		font-family: $fc
-		text-transform: uppercase
-		font-weight: 700
+// 	&__title
+// 		color: $white
+// 		font-size: 32px
+// 		margin-bottom: 30px
+// 		text-align: center
+// 		font-family: $fc
+// 		text-transform: uppercase
+// 		font-weight: 700
 
-	&__img-container
-		width: 100%
-		position: relative
-		height: 300px
-		+trs(1200)
-		// border: 1px solid cyan
+// 	&__img-container
+// 		width: 100%
+// 		position: relative
+// 		height: 300px
+// 		+trs(1200)
+// 		// border: 1px solid cyan
 
-	&__img
-		width: 100%
-		height: 100%
-		z-index: 5
-		+trs(700)
+// 	&__img
+// 		width: 100%
+// 		height: 100%
+// 		z-index: 5
+// 		+trs(700)
 
-	&__img-reflection-container
-		// border: 1px solid cyan
-		position: absolute
-		top: 64.45%
-		left: 0
-		width: 100%
-		height: 100%
-		z-index: 0
-		transform: perspective(300px) rotateX(65deg) scaleY(-1) scaleX(1.45) translateY(-100%)
-		+trs(1200)
-		opacity: 0.7
+// 	&__img-reflection-container
+// 		// border: 1px solid cyan
+// 		position: absolute
+// 		top: 64.45%
+// 		left: 0
+// 		width: 100%
+// 		height: 100%
+// 		z-index: 0
+// 		transform: perspective(300px) rotateX(65deg) scaleY(-1) scaleX(1.45) translateY(-100%)
+// 		+trs(1200)
+// 		opacity: 0.7
 
-		&:before
-			content: ""
-			+cover
-			box-shadow: 0 -20px 50px -20px $pink
-			+tr
+// 		&:before
+// 			content: ""
+// 			+cover
+// 			box-shadow: 0 -20px 50px -20px $pink
+// 			+tr
 
-		&:after
-			content: ""
-			+cover
-			background: linear-gradient(to top,transparent 10%,#000 50%)
-			+trs(1200)
+// 		&:after
+// 			content: ""
+// 			+cover
+// 			background: linear-gradient(to top,transparent 10%,#000 50%)
+// 			+trs(1200)
 
 
-	&__img-reflection
-		// border-radius: 15px
-		+cover
+// 	&__img-reflection
+// 		// border-radius: 15px
+// 		+cover
 
 

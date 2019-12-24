@@ -1,55 +1,46 @@
 .cv-right
-	padding: 30px 30px 30px 10px
+	padding: 30px
 	width: 100%
+	display: flex
+	flex-direction: column
+	justify-content: space-between
 
 	&__container
-		padding-left: 34px
 		margin-bottom: 30px
 		position: relative
+		border-left: $borderWidth solid $cvBorderColor
 		&:last-child
 			margin-bottom: 0
-		&:before
-			content: ""
-			position: absolute
-			height: calc(100% - 34px)
-			width: $borderWidth
-			background-color: $cvBorderColor
-			left: 17px
-			top: 34px
 
 	&__title
 		width: 100%
 		display: flex
-		justify-content: flex-end
+		justify-content: space-between
 		position: relative
-		margin-bottom: 10px
+		margin-bottom: 14px
 		font-family: $fc
 		background-color: #FFF
-		&:after
-			content: ""
+		+after
 			position: absolute
 			top: 0
 			bottom: 0
 			margin: auto 0
-			right: 0
+			right: 32px
 			width: 100%
 			height: 1px
 			background-color: $cvBorderColor
 			z-index: 0
 		span
-			position: absolute
-			left: -17px
 			padding: 8px 8px
 			border-top: $borderWidth solid $cvBorderColor
 			border-bottom: $borderWidth solid $cvBorderColor
-			border-left: $borderWidth solid $cvBorderColor
 			border-right: $borderWidth solid $cvBorderColor
 			color: $cvText
 			font-size: $pt18
 			line-height: $pt18
-			letter-spacing: 2px
+			letter-spacing: 1.4px
 			font-family: $fa
-			font-weight: 500
+			font-weight: 700
 			text-transform: uppercase
 			background-color: #fff
 			z-index: 1
@@ -62,14 +53,12 @@
 				width: 1px
 				background-color: $cvBorderColor
 
-
 	&__title-icon
 		height: 36px
 		width: 36px
 		display: flex
 		border: $borderWidth solid $cvBorderColor
 		background-color: #FFF
-		// border-radius: 50%
 		padding: 4px
 		overflow: hidden
 		z-index: 1
@@ -80,34 +69,93 @@
 	&__item
 		display: flex
 		position: relative
-		padding-left: 20px
 		margin-bottom: 20px
 		&:last-child
 			margin-bottom: 0
 
-		&:before
-			content: ""
-			position: absolute
-			top: 0
-			bottom: 0
-			margin: auto 0
-			left: -17px
-			width: 37px
-			height: 1px
-			background-color: $cvBorderColor
+		&--single
+			padding-left: 0
+			+after(none)
+			+before(none)
+			.cv-right__info
+				+before(none)
+			.cv-right__info-title
+				border-bottom: none
 
-		&:after
-			content: ""
+	&__info
+		width: 100%
+		display: flex
+		flex-direction: column
+		position: relative
+		+before(none)
 			position: absolute
-			background-color: #FFF
-			left: -22px
-			bottom: 0
 			top: 0
+			bottom: 0
 			margin: auto 0
-			height: 10px
-			width: 10px
-			border-radius: 50%
-			border: $borderWidth solid $cvBorderColor
+			left: 0
+			width: 1px
+			height: 100%
+			background-color: rgba($cvBorderColor, 0.5)
+
+	&__info-title
+		padding-left: 10px
+		width: 100%
+		display: flex
+		justify-content: space-between
+		align-items: center
+		padding-bottom: 4px
+		margin-bottom: 10px
+		font-weight: 700
+		font-family: $fd
+		color: #101010
+		font-size: $pt18
+		line-height: $pt18
+		border-bottom: $borderWidth solid rgba($cvBorderColor, 0.5)
+
+	&__info-subtitle
+		display: flex
+		justify-content: space-between
+		align-items: center
+		padding-left: 10px
+		margin-bottom: 6px
+		color: rgba(16,16,16,0.9)
+		font-weight: 500
+		font-family: $fd
+		font-size: $pt16
+		line-height: $pt16
+
+	&__info-subtitle2
+		padding-left: 20px
+		font-family: $fc
+		font-size: $pt14
+		line-height: $pt16
+		text-align: justify
+		color: #101010
+		font-weight: 300
+		margin-bottom: 12px
+		&:last-child
+			margin-bottom: 0
+		a
+			color: #101010
+			text-decoration: none
+
+		p
+			width: 100%
+			display: flex
+			position: relative
+			margin-left: 10px
+			padding-right: 10px
+			margin-bottom: 4px
+			&:last-child
+				margin-bottom: 0
+			+before
+				position: absolute
+				left: -18px
+				top: 6px
+				width: 5px
+				height: 5px
+				background-color: $cvBorderColor
+				border-radius: 50%
 
 	&__year
 		display: flex
@@ -122,8 +170,8 @@
 		position: relative
 		display: flex
 		align-items: center
-		font-size: 4mm
-		line-height: 4mm
+		font-size: $pt14
+		line-height: $pt14
 		&:after
 			content: "-"
 			padding: 0 4px
@@ -131,60 +179,7 @@
 			&:after
 				content: none
 		span
-			padding-left: 2px
-			font-size: 3mm
-			line-height: 3mm
+			padding-left: 1px
+			font-size: $pt12
+			line-height: $pt12
 			align-self: flex-end
-
-	&__info
-		display: flex
-		flex-direction: column
-		position: relative
-		&:before
-			content: ""
-			position: absolute
-			top: 0
-			bottom: 0
-			margin: auto 0
-			left: 0
-			width: 1px
-			height: 100%
-			background-color: #000
-
-	&__info-title
-		display: flex
-		align-items: center
-		padding-left: 8px
-		padding-bottom: 2px
-		margin-bottom: 4px
-		font-weight: 500
-		font-family: $fd
-		color: #101010
-		font-size: $pt18
-		line-height: $pt18
-
-	&__info-subtitle
-		display: flex
-		align-items: center
-		padding-left: 12px
-		margin-bottom: 6px
-		color: rgba(16,16,16,0.9)
-		font-weight: 500
-		font-family: $fd
-		font-size: $pt16
-		line-height: $pt16
-
-	&__info-subtitle2
-		font-family: $fc
-		padding-left: 16px
-		font-size: $pt14
-		line-height: $pt14
-		text-align: justify
-		color: #101010
-		font-weight: 300
-		margin-bottom: 12px
-		&:last-child
-			margin-bottom: 0
-		a
-			color: #101010
-			text-decoration: none

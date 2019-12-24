@@ -17,7 +17,10 @@
 		justify-content: center
 		position: relative
 		overflow: hidden
+		opacity: 0.95
+		+trs(300, opacity)
 		&.active
+			opacity: 1
 			.works__img-container
 				+blur(0)
 			.works__img-parallax
@@ -25,19 +28,18 @@
 					background-color: rgba(black, 0.45)
 
 			.works__title, .works__subtitle, .works__link,
-				opacity: 1
 				transform: translateY(0)
 		+rm(1024)
-			&:hover
-				.works__img-container
-					+blur(0)
-				.works__img-parallax
-					&:before
-						background-color: rgba(black, 0.45)
+			// &:hover
+			// 	.works__img-container
+			// 		+blur(0)
+			// 	.works__img-parallax
+			// 		&:before
+			// 			background-color: rgba(black, 0.45)
 
-				.works__title, .works__subtitle, .works__link,
-					opacity: 1
-					transform: translateY(0)
+			// 	.works__title, .works__subtitle, .works__link,
+			// 		opacity: 1
+			// 		transform: translateY(0)
 
 	&__box
 		position: absolute
@@ -49,7 +51,6 @@
 		justify-content: center
 		align-items: center
 		flex-direction: column
-		+tr
 
 	&__logo
 		width: 100%
@@ -70,18 +71,21 @@
 		margin-bottom: 20px
 		font-size: 50px
 		font-weight: 700
-		opacity: 0
-		text-shadow: 4px 3px 0 $black
+		text-shadow: 0px 0px 82px $pink
 		transform: translateY(-400px)
-		+trs(400)
+		+textBorder(2px, $white)
+		font-family: $f4
+		text-transform: uppercase
+		+ls(100)
+		+trs(900, transform)
 
 	&__subtitle
-		text-shadow: 2px 2px 0 $black
+		display: none
+		text-shadow: 0px 0px 14px $black
 		font-size: 18px
 		font-weight: 500
-		opacity: 0
 		transform: translateY(-200px)
-		+trs(300)
+		+trs(700, transform)
 
 	&__link
 		position: absolute
@@ -91,12 +95,10 @@
 		color: #FFF
 		display: flex
 		align-items: center
-		text-shadow: 1px 1px 0 $black
-		opacity: 0
+		text-shadow: 3px 3px 14px $black
 		transform: translateY(200px)
 		+tr
-		&:before
-			content: ""
+		+before
 			width: 0
 			margin-right: 0
 			height: 3px
@@ -104,7 +106,7 @@
 			+tr
 		+h
 			color: $pink
-			&:before
+			+before
 				margin-right: 10px
 				width: 20px
 

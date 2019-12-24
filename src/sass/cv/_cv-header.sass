@@ -1,47 +1,44 @@
 .cv-header
-	padding-left: 14px
-	min-height: 100px
 	width: 100%
 	display: flex
-	flex-direction: column
+	justify-content: space-between
+	align-items: stretch
 	margin-bottom: 20px
+
+	&__box
+		width: 100%
+		display: flex
+		flex-direction: column
+		justify-content: space-between
 
 	&__title
 		font-family: $fc
 		font-size: 34px
-		line-height: 34px
-		color: #101010
+		line-height: 26px
+		color: $cvText
 		text-transform: uppercase
 		font-weight: 900
 		margin-bottom: 10px
 
 	&__subtitle
+		display: flex
+		flex-direction: column
 		text-transform: uppercase
 		font-family: $fd
 		font-size: $pt20
 		line-height: $pt20
-		color: #101010
-		letter-spacing: 2px
+		color: $cvText
+		letter-spacing: 1.4px
 		font-weight: 700
 		span
+			text-transform: lowercase
+			font-weight: 500
+			font-size: $pt16
+			line-height: $pt16
+			letter-spacing: 0.5px
+		p
 			font-weight: 500
 			font-size: 14px
 			letter-spacing: 0.5px
 			text-transform: none
 
-
-	&__subtitle2
-		font-weight: 500
-		display: flex
-		align-items: center
-		margin-top: 10px
-		text-transform: uppercase
-		font-family: $fd
-		font-size: $pt14
-		line-height: $pt14
-		color: #101010
-		letter-spacing: 1px
-		span
-			margin-left: 8px
-			font-size: $pt14
-			line-height: $pt14

@@ -1,4 +1,4 @@
-$z-indexes: ("modal", "menu", "contentControls", "content", "bg")
+$z-indexes: ("menu", "modal", "contentThingies", "blurText", "blur", "content", "body", "bgColor")
 $globalPadding: 100px
 
 @import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
@@ -28,14 +28,15 @@ body
 	+ls(25)
 	+trs($globalAnimSpeed)
 	+customScroll(8px, 0, $pink, rgba($white, 0.2))
-	z-index: z('bg')
 	background-color: rgba(29,31,35,1)
+	z-index: 0
+
 
 
 .reflection
 	+cover
 	position: fixed
-	z-index: z('bg')
+	z-index: z('bgColor')
 
 
 .shatter
@@ -52,7 +53,7 @@ body
 		overflow: hidden
 		&:after
 			content: ""
-			+vcenter
+			+center
 			width: 3px
 			height: 3px
 			background-color: cyan

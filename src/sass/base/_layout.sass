@@ -1,48 +1,23 @@
 .layout
+	position: relative
 	width: 100%
+	height: 100vh
 	display: flex
 	flex-direction: column
+	z-index: z('body')
 	overflow: hidden
 	+blur(0)
 	+trs($globalAnimSpeed, filter)
-	z-index: z('content')
-	height: 100vh
-	position: relative
-
-	+after
-		position: absolute
-		top: 0
-		bottom: 0
-		left: 30%
-		height: 100%
-		width: 1px
-		background-color: rgba($white, 0.1)
-		z-index: z('bg')
-		z-index: 10
-
-	+before
-		position: absolute
-		top: 0
-		left: 30%
-		bottom: 0
-		height: 5%
-		width: 3px
-		background-color: rgba($white, 0.5)
-		z-index: z('bg')
-		z-index: 10
-		box-shadow: 0 0 10px 2px rgba($white, 0.5)
-		border-radius: 2px
-		animation: flash 5s infinite linear
 
 	&.blurry
 		+blur(8)
-
 
 	&__hero
 		position: relative
 		min-height: 100vh
 		height: 100vh
 		display: block
+
 		+r(768)
 			padding: 15px 15px
 			margin-bottom: 100px
@@ -52,6 +27,7 @@
 		flex-direction: column
 		+r(768)
 			padding: 15px
+
 
 	&__item
 		width: 100%
@@ -63,18 +39,50 @@
 		display: flex
 		border-radius: 8px
 		position: relative
-		background-color: rgba(#000, 0.75)
+		z-index: z('content')
+		// background-color: rgba(#000, 0.75)
 		+r(768)
 			padding: 80px 15px
 		&:last-child
 			margin-bottom: 0
 
-		&--fullwidth
+
+		+before
+			content: attr(data-backword)
+			position: absolute
+			left: 0
+			width: 100%
+			height: 20%
+			display: flex
+			justify-content: center
+			align-items: center
+			z-index: z('blur')
+			pointer-events: none
+			+gradient(rgba(#000, 0.1), rgba(#000, 1), left)
+			backdrop-filter: blur(8px)
+
+			text-transform: uppercase
+			font-family: $f4
+			font-size: 20vh
+			line-height: 30vh
+			min-height: 300px
+			text-align: center
+			padding: 20px 0
+			white-space: nowrap
+			+textBorder(2px, rgba($white, 0.08))
+
+			+center(v, 90, -1, 50)
+			left: -35%
+
+		&--hero
+			padding: 0
+			+coverbg
+
+		&--works
 			height: 100vh
 			min-height: 500px
-			padding: 40px 0
+			padding: vw(1920, $globalPadding + 50px) 0 0 0
 			box-shadow: none
-			background-color: rgba(#000, 0.75)
 			+r(1200)
 				margin: 0 vw(1920, -120px)
 
@@ -99,14 +107,18 @@
 		display: flex !important
 		align-items: center !important
 		text-align: center
+		font-size: 20px
+		line-height: 20px
 		background-color: transparent !important
 		border-radius: 0 !important
-		font-family: $f2
+		font-family: $f4
 		font-weight: 500
 		text-transform: uppercase
 		user-select: none
 		margin: 0 !important
 		margin-right: 40px !important
+		opacity: 0.5
+		+tr
 		+after(n)
 			margin-left: 5px
 			width: 40px
@@ -123,24 +135,20 @@
 		&:first-child
 			+before('none')
 
-		// span
-		// 	width: 10px
-		// 	font-size: 16px
-		// 	line-height: 14px
-		// 	color: #FFF
-		// 	text-transform: uppercase
-		// 	+rotate(90)
+		+h
+			opacity: 1
+
+		&.active
+			color: $pink
+			opacity: 1
 
 	&__item-container
-		// background-color: rgba(#000, 0.75)
 		position: relative
 		padding: 60px 15px
-		// background-color: rgba(25,31,38,1)
 		width: 100%
 		display: flex
 		flex-direction: column
 		align-items: center
-
 
 	&__slider
 		width: 100%
@@ -150,13 +158,11 @@
 		.swiper-pagination-bullets
 			position: relative
 
-
 	&__slider-wrapper
 		width: 100%
 
 	&__slider-item
 		width: 100%
-
 
 	&__item-title
 		margin-bottom: 50px
@@ -199,20 +205,6 @@
 			line-height: vw(480, 50px)
 			margin-bottom: 40px
 
-		&:after, &:before
-			content: ""
-			position: absolute
-			top: 0
-			bottom: 0
-			margin: auto 0
-			height: 3px
-			background-color: #fff
-			width: 60px
-		&:after
-			left: -100px
-		&:before
-			right: -100px
-
 		&--small
 			font-size: vw(1920, 30px)
 			+r(768)
@@ -223,34 +215,3 @@
 				font-size: vw(480, 24px)
 				line-height: vw(480, 24px)
 
-	&__item-bg
-		pointer-events: none
-		position: absolute
-		top: 0
-		left: vw(1920, 60px)
-		right: vw(1920, 60px)
-		bottom: 0
-		z-index: 0
-
-	&__item-bg-item
-		position: absolute
-		width: 1px
-		top: 0
-		height: 100%
-		background-color: rgba(255,255,255,0.2)
-		&--1
-			left: calc(100% / 5)
-		&--2
-			left: 50%
-		&--3
-			right: calc(100% / 5)
-
-
-+keyframes(flash)
-	0%
-		top: -100%
-	10%
-		top: 100%
-
-	100%
-		top: 100%

@@ -10,11 +10,12 @@ export default function sliderWorks(){
 		},
 		slidesPerView: 3,
 		spaceBetween: 15,
-		initialSlide: 1,
-		loop: false,
-		loopedSlides: 20,
+		initialSlide: 0,
+		// loop: true,
+		// loopedSlides: 20,
 		freeMode: true,
 		grabCursor: true,
+		// mousewheel: true,
 		freeModeSticky: true,
 		centeredSlides: true,
 		parallax: true,
@@ -40,7 +41,6 @@ export default function sliderWorks(){
 	});
 
 	swiper.on('transitionStart', function(event) {
-		console.log('asd');
 		$('.swiper-wrapper').find('.active').removeClass('active')
 	});
 

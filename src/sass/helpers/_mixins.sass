@@ -59,23 +59,18 @@
    bottom: $bottom
    left: $left
 
-=vcenter
+=center($axis: 'both', $rotation: 0, $X: 50, $Y: 50)
   position: absolute
-  top: 50%
-  left: 50%
-  transform: translate(-50%,-50%)
-
-=center($axis)
   @if $axis == both
-    +vcenter
+    top: $Y*1%
+    left: $X*1%
+    transform: translate(-$X*1%,-$Y*1%) rotate($rotation+deg)
   @else if $axis == h
-    position: absolute
-    left: 50%
-    transform: translateX(-50%)
+    left: $X*1%
+    transform: translateX(-$X*1%) rotate($rotation+deg)
   @else if $axis == v
-    position: absolute
-    top: 50%
-    transform: translateY(-50%)
+    top: $Y*1%
+    transform: translateY(-$Y*1%) rotate($rotation+deg)
 
 =placeholder
   &::placeholder
@@ -114,6 +109,12 @@
 =scale($var)
   transform: scale($var)
 
+
+// +keyframes(flash)
+//   0%
+//     color: red
+//   100%
+//     color: blue
 =keyframes($name)
   @-webkit-keyframes #{$name}
     @content
@@ -140,21 +141,21 @@
   text-overflow: ellipsis
   white-space: nowrap
 
+=textBorder($px: 1, $color: #fff)
+  color: transparent
+  -webkit-text-stroke: $px $color
+
 //aspect-ratio(4, 3)
 =aspectRatio($width, $height)
   position: relative
+  > *
+    +cover
+
   &:before
-    display: block
     content: ""
     width: 100%
+    display: flex
     padding-top: ($height / $width) * 100%
-
-  ~ *
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
 
 =blur($radius)
   -webkit-filter: blur($radius+px)

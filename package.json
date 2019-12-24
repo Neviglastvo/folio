@@ -87,6 +87,7 @@
     "smooth-scroll": "^16.1.0",
     "snapscroll": "^2.0.0",
     "swiper": "^4.5.1",
-    "three": "^0.110.0"
+    "three": "^0.110.0",
+    "three-glow-mesh": "^0.1.1"
   }
 }
