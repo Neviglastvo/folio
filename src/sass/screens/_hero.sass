@@ -27,7 +27,7 @@
 		font-weight: 500
 		user-select: none
 		// text-shadow: 10px 30px 100px rgba(#000, 0.75)
-		+textBorder(1px, $white)
+		+textBorder(2px, $white)
 		+r(1024)
 			font-size: vw(1024, 100px)
 
@@ -47,13 +47,19 @@
 		bottom: 0
 		right: 0
 		display: flex
+		align-items: flex-end
+
+	&__social-box
+		display: flex
 		flex-direction: column
-		align-items: center
+		margin-right: 20px
+		&:last-child
+			margin-right: 0
 
 	&__social-item
-		width: 20px
-		height: 20px
-		margin-bottom: 10px
+		width: 30px
+		height: 30px
+		margin-bottom: 20px
 		font-size: 16px
 		font-weight: 500
 		color: rgba($white,0.5)

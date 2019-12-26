@@ -18,15 +18,9 @@
 		height: 100vh
 		display: block
 
-		+r(768)
-			padding: 15px 15px
-			margin-bottom: 100px
-
 	&__container
 		display: flex
 		flex-direction: column
-		+r(768)
-			padding: 15px
 
 
 	&__item
@@ -40,39 +34,32 @@
 		border-radius: 8px
 		position: relative
 		z-index: z('content')
-		// background-color: rgba(#000, 0.75)
-		+r(768)
-			padding: 80px 15px
 		&:last-child
 			margin-bottom: 0
 
-
 		+before
 			content: attr(data-backword)
-			position: absolute
-			left: 0
+			+center(v, 90, -1, 50)
+			left: -35%
 			width: 100%
 			height: 20%
+			min-height: 300px
 			display: flex
 			justify-content: center
 			align-items: center
 			z-index: z('blur')
 			pointer-events: none
-			+gradient(rgba(#000, 0.1), rgba(#000, 1), left)
-			backdrop-filter: blur(8px)
+			padding: 20px 0
 
+			+gradient(rgba(#000, 0.1), rgba(#000, 1), left)
+			backdrop-filter: blur(10px)
 			text-transform: uppercase
 			font-family: $f4
 			font-size: 20vh
 			line-height: 30vh
-			min-height: 300px
 			text-align: center
-			padding: 20px 0
 			white-space: nowrap
-			+textBorder(2px, rgba($white, 0.08))
-
-			+center(v, 90, -1, 50)
-			left: -35%
+			+textBorder(2px, rgba($white, 0.05))
 
 		&--hero
 			padding: 0
@@ -142,14 +129,6 @@
 			color: $pink
 			opacity: 1
 
-	&__item-container
-		position: relative
-		padding: 60px 15px
-		width: 100%
-		display: flex
-		flex-direction: column
-		align-items: center
-
 	&__slider
 		width: 100%
 		display: flex
@@ -164,54 +143,4 @@
 	&__slider-item
 		width: 100%
 
-	&__item-title
-		margin-bottom: 50px
-		font-size: vw(1920, $globalPadding)
-		line-height: vw(1920, 80px)
-		font-weight: 700
-		text-align: center
-		text-shadow: 10px 30px 100px rgba(#000, 0.75)
-		+r(1024)
-			font-size: vw(1024, 70px)
-			line-height: vw(1024, 50px)
-
-		+r(768)
-			font-size: vw(768, 70px)
-			line-height: vw(768, 50px)
-
-		+r(480)
-			font-size: vw(480, 70px)
-			line-height: vw(480, 50px)
-
-
-	&__item-subtitle
-		margin-bottom: 80px
-		font-size: vw(1920, 60px)
-		line-height: vw(1920, 48px)
-		font-weight: 700
-		text-align: center
-		position: relative
-		+r(1024)
-			font-size: vw(1024, 70px)
-			line-height: vw(1024, 70px)
-
-		+r(768)
-			font-size: vw(768, 50px)
-			line-height: vw(768, 50px)
-			margin-bottom: 60px
-
-		+r(480)
-			font-size: vw(480, 50px)
-			line-height: vw(480, 50px)
-			margin-bottom: 40px
-
-		&--small
-			font-size: vw(1920, 30px)
-			+r(768)
-				font-size: vw(768, 30px)
-				line-height: vw(768, 30px)
-
-			+r(480)
-				font-size: vw(480, 24px)
-				line-height: vw(480, 24px)
 

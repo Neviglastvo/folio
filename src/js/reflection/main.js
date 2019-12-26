@@ -3,6 +3,7 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
+import { Ocean } from 'three/examples/jsm/misc/Ocean.js';
 
 import SimplexNoise from 'simplex-noise';
 
@@ -43,6 +44,7 @@ export default function reflection() {
 		},
 		ground: {
 			texture: 'water',
+			texture1: 'lavatile',
 			width: 512,
 			height: 1024,
 			x: 0,
@@ -57,11 +59,13 @@ export default function reflection() {
 	let camera, cubeCamera, scene, renderer,
 	controls,
 	groundPlane, groundMesh,
+	groundPlane1, groundMesh1,
 
 	stats, statsEnabled = true, production = false,
 
 	param = {};
 
+	var lastTime = ( new Date() ).getTime();
 
 	init();
 	animate();
@@ -136,7 +140,6 @@ export default function reflection() {
 
 
 
-
 		// SPHERE BEGIN ----------------------------------------------------------------------------
 		// let sphere = new THREE.RectAreaLight(0x4737ff, 50, 50, 50);
 		// sphere.position.set(-250, 130, 100);
@@ -156,12 +159,17 @@ export default function reflection() {
 		// SPHERE END ----------------------------------------------------------------------------
 
 
-
-		// GROUND BEGIN ( with box projected environment mapping )--------------------------------
+		// MATERIALS BEGIN -----------------------------------------------------------------------
 		var rMap = loader.load(`img/textures/${cfg.ground.texture}.jpg`);
 		rMap.wrapS = rMap.wrapT = THREE.RepeatWrapping;
 		THREE.RepeatWrapping;
 		rMap.repeat.set(1, 1);
+
+		var rMap1 = loader.load(`img/textures/${cfg.ground.texture1}.jpg`);
+		rMap1.wrapS = rMap1.wrapT = THREE.RepeatWrapping;
+		THREE.RepeatWrapping;
+		rMap1.repeat.set(1, 4);
+
 		var defaultMat = new THREE.MeshPhysicalMaterial({
 			roughness: cfg.ray.roughtness1,
 			envMap: cubeCamera.renderTarget.texture,
@@ -171,7 +179,7 @@ export default function reflection() {
 			color: new THREE.Color(cfg.ray.colorReflection),
 			roughness: cfg.ray.roughtness2,
 			envMap: cubeCamera.renderTarget.texture,
-			roughnessMap: rMap
+			roughnessMap: rMap1
 		});
 		boxProjectedMat.onBeforeCompile = function (shader) {
 			//these parameters are for the cubeCamera texture
@@ -189,6 +197,10 @@ export default function reflection() {
 				h.envmapPhysicalParsReplace
 				);
 		};
+		// MATERIALS END--------------------------------------------------------------------------
+
+
+		// GROUND BEGIN ( with box projected environment mapping )--------------------------------
 		groundPlane = new THREE.PlaneBufferGeometry(cfg.ground.width, cfg.ground.height, worldWidth - 1, worldDepth - 1);
 		groundPlane.rotateX(- Math.PI / 2);
 
@@ -216,9 +228,25 @@ export default function reflection() {
 
 
 
+
+
+
+		// GROUND1 BEGIN ( with box projected environment mapping )--------------------------------
+
+		groundPlane1 = new THREE.PlaneBufferGeometry(cfg.ground.width/3, cfg.ground.height, worldWidth - 1, worldDepth - 1);
+		groundPlane1.rotateX(- Math.PI / 2);
+
+		groundMesh1 = new THREE.Mesh(groundPlane1, boxProjectedMat);
+		groundMesh1.position.set(240, -20, 0);
+
+		scene.add(groundMesh1);
+
+		// GROUND1 END ( with box projected environment mapping )----------------------------------
+
+
+
 		// GUI BEGIN ----------------------------------------------------------------------------
 		var gui = new GUI();
-
 
 		param = {
 			'box projected': false,
@@ -297,6 +325,12 @@ export default function reflection() {
 		guiGroundCfg.add(groundMesh.position, 'z', -500, 500).name('z');
 		// guiGroundCfg.open();
 
+		const guiGroundCfg1 = gui.addFolder(`Ground params1`);
+		guiGroundCfg1.add(groundMesh1.position, 'x', -500, 500).name('x');
+		guiGroundCfg1.add(groundMesh1.position, 'y', -500, 500).name('y');
+		guiGroundCfg1.add(groundMesh1.position, 'z', -500, 500).name('z');
+		// guiGroundCfg.open();
+
 		class ColorGUIHelper {
 			constructor(object, prop) {
 				this.object = object;
@@ -363,7 +397,6 @@ export default function reflection() {
 		requestAnimationFrame(animate);
 		updateCubeMap();
 		controls.update();
-
 
 		if (statsEnabled) { stats.update() };
 	}
