@@ -1,13 +1,14 @@
 import Swiper from 'swiper';
 
 export default function sliderWorks(){
-
 	var swiper = new Swiper('.js-slider-works', {
 		on: {
 			init: function () {
 				$('.swiper-slide-active').addClass('active')
+
 			},
 		},
+		nested: true,
 		slidesPerView: 3,
 		spaceBetween: 15,
 		initialSlide: 0,
@@ -15,7 +16,7 @@ export default function sliderWorks(){
 		// loopedSlides: 20,
 		freeMode: true,
 		grabCursor: true,
-		// mousewheel: true,
+		mousewheel: false,
 		freeModeSticky: true,
 		centeredSlides: true,
 		parallax: true,
@@ -25,10 +26,10 @@ export default function sliderWorks(){
 		},
 		// effect: 'coverflow',
 		coverflowEffect: {
-			rotate: 30,
+			rotate: 25,
 			slideShadows: false,
-			stretch: 100,
-			depth: 100,
+			stretch: 20,
+			depth: 20,
 		},
 		breakpoints: {
 			1024: {

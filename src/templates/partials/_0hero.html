@@ -9,11 +9,11 @@
 
 		<div class="hero__social">
 			<div class="hero__social-box">
-				<a href="{{data.global.cv.downloadlink}}" class="hero__social-item hero__social-item--cv" download>{{icon.i('cv')}}</a>
+				<a href="{{data.global.cv.downloadlink}}" class="hero__social-item hero__social-item--cv" target="blank" download>{{icon.i('cv')}}</a>
 			</div>
 			<div class="hero__social-box">
 				{% for item in data.socials %}
-				<a href="{{item.link}}" class="hero__social-item">{{icon.i(item.icon)}}</a>
+				<a href="{{item.link}}" class="hero__social-item" target="blank">{{icon.i(item.icon)}}</a>
 				{% endfor %}
 			</div>
 		</div>

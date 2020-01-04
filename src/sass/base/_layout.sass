@@ -4,26 +4,21 @@
 	height: 100vh
 	display: flex
 	flex-direction: column
-	z-index: z('body')
 	overflow: hidden
+	z-index: 0
 	+blur(0)
 	+trs($globalAnimSpeed, filter)
 
 	&.blurry
 		+blur(8)
 
-	&__hero
-		position: relative
-		min-height: 100vh
-		height: 100vh
-		display: block
-
 	&__container
 		display: flex
-		flex-direction: column
-
+		z-index: 0
+		position: relative
 
 	&__item
+		// position: relative
 		width: 100%
 		overflow: hidden
 		padding: vw(1920, $globalPadding)
@@ -32,46 +27,45 @@
 		overflow: hidden
 		display: flex
 		border-radius: 8px
-		position: relative
-		z-index: z('content')
-		&:last-child
-			margin-bottom: 0
-
-		+before
-			content: attr(data-backword)
+		z-index: 0
+		+after(attr(data-backword))
 			+center(v, 90, -1, 50)
-			left: -35%
+			left: -35vw
 			width: 100%
 			height: 20%
 			min-height: 300px
 			display: flex
 			justify-content: center
 			align-items: center
-			z-index: z('blur')
 			pointer-events: none
 			padding: 20px 0
 
-			+gradient(rgba(#000, 0.1), rgba(#000, 1), left)
+			+gradient(rgba(#000, 0.1), rgba(#000, 1), bottom)
 			backdrop-filter: blur(10px)
+
 			text-transform: uppercase
-			font-family: $f4
+			font-family: $f3
 			font-size: 20vh
 			line-height: 30vh
+			+ls(100)
 			text-align: center
 			white-space: nowrap
-			+textBorder(2px, rgba($white, 0.05))
+
+			+textBorder(3px, rgba($white, 0.05))
+			z-index: 2
+
+		&.swiper-slide-active
+			// +after(attr(data-backword))
 
 		&--hero
 			padding: 0
-			+coverbg
 
 		&--works
 			height: 100vh
 			min-height: 500px
-			padding: vw(1920, $globalPadding + 50px) 0 0 0
+			padding: vw(1920, $globalPadding/2) 0 vw(1920, $globalPadding/2) 0
+
 			box-shadow: none
-			+r(1200)
-				margin: 0 vw(1920, -120px)
 
 			.layout__item-container
 				background-color: transparent
@@ -82,28 +76,30 @@
 
 	&__pagination
 		z-index: z('menu')
-		+pa(vw(1920, $globalPadding+15px)!important, vw(1920, $globalPadding)!important, auto!important, auto!important)
-		position: fixed !important
-		width: auto !important
+		+pa(vw(1920, ($globalPadding/2)+15)!important, vw(1920, $globalPadding)!important, auto!important, auto!important)
+		position: fixed
+		width: auto
 		display: flex
 		align-items: center
+		display: none
+
 
 	&__pagination-item
-		width: 100% !important
-		height: auto !important
-		display: flex !important
-		align-items: center !important
+		width: 100%
+		height: auto
+		display: flex
+		align-items: center
 		text-align: center
 		font-size: 20px
 		line-height: 20px
-		background-color: transparent !important
-		border-radius: 0 !important
+		background-color: transparent
+		border-radius: 0
 		font-family: $f4
 		font-weight: 500
 		text-transform: uppercase
 		user-select: none
-		margin: 0 !important
-		margin-right: 40px !important
+		margin: 0
+		margin-right: 40px
 		opacity: 0.5
 		+tr
 		+after(n)
@@ -142,5 +138,38 @@
 
 	&__slider-item
 		width: 100%
+
+
+
+.layout-blur
+	display: flex
+	flex-direction: column
+	align-items: center
+	justify-content: center
+
+	position: fixed
+	left: 5vw
+	top: 0
+	bottom: 0
+	width: 20vw
+	height: 100%
+
+	color: red
+
+	+gradient(rgba(#000, 0.1), rgba(#000, 0.8), left)
+	// backdrop-filter: blur(10px)
+	// pointer-events: none
+	z-index: 2
+
+	@supports (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
+		-webkit-backdrop-filter: blur(10px)
+		backdrop-filter: blur(10px)
+
+	@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)))
+		-webkit-filter: url(#backdrop-filter-blur)
+		filter: url(#backdrop-filter-blur)
+
+	display: none
+
 
 

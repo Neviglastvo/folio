@@ -1,7 +1,8 @@
 $z-indexes: ("menu", "modal", "contentThingies", "blurText", "blur", "content", "body", "bgColor")
 $globalPadding: 100px
 
-@import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
+// @import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
+@import "lib/*.sass"
 
 @import "helpers/**/*.sass"
 @import "base/*.sass"
@@ -10,7 +11,6 @@ $globalPadding: 100px
 @import "screens/*.sass"
 @import "partials/*.sass"
 @import "works/*.sass"
-@import "cards/*.sass"
 
 @include fontFace(Monument, '../fonts/monument/Monument-Regular', 500, normal, otf)
 @include fontFace(Monument, '../fonts/monument/Monument-Ultrabold', 900, normal, otf)
@@ -29,14 +29,12 @@ body
 	+trs($globalAnimSpeed)
 	+customScroll(8px, 0, $pink, rgba($white, 0.2))
 	background-color: rgba(29,31,35,1)
-	z-index: 0
-
 
 
 .reflection
 	+cover
 	position: fixed
-	z-index: z('bgColor')
+	z-index: -2
 
 
 .shatter

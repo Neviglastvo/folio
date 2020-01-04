@@ -35,15 +35,4 @@ export default function sliderLayout(){
 		}
 	});
 
-	swiper.on('transitionStart', function(event) {
-		console.log('asd');
-		$('.swiper-wrapper').find('.active').removeClass('active')
-	});
-
-	swiper.on('transitionEnd', function(event) {
-		$('.swiper-slide-active').addClass('active')
-	});
-
-	console.log(swiper.pagination.$el[0]);
-
 }
