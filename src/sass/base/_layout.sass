@@ -1,82 +1,44 @@
 .layout
 	position: relative
-	width: 100%
+	width: 100vw
 	height: 100vh
 	display: flex
-	flex-direction: column
 	overflow: hidden
-	z-index: 0
+	flex-direction: column
+	padding: 0 0 $globalPadding $globalPadding
 	+blur(0)
 	+trs($globalAnimSpeed, filter)
-
+	// +backlight(0, 0, 100%, 1, 45deg, rgba(60,55,106,1) 8.5%, rgba(23,20,69,1) 82.4%, 10s)
+	background-color: $white
 	&.blurry
 		+blur(8)
 
 	&__container
 		display: flex
+		width: 100%
+		height: 100%
 		z-index: 0
 		position: relative
 
 	&__item
-		// position: relative
 		width: 100%
-		overflow: hidden
-		padding: vw(1920, $globalPadding)
-		min-height: 100vh
-		height: 100vh
-		overflow: hidden
+		height: 100%
 		display: flex
-		border-radius: 8px
 		z-index: 0
-		+after(attr(data-backword))
-			+center(v, 90, -1, 50)
-			left: -35vw
-			width: 100%
-			height: 20%
-			min-height: 300px
-			display: flex
-			justify-content: center
-			align-items: center
-			pointer-events: none
-			padding: 20px 0
-
-			+gradient(rgba(#000, 0.1), rgba(#000, 1), bottom)
-			backdrop-filter: blur(10px)
-
-			text-transform: uppercase
-			font-family: $f3
-			font-size: 20vh
-			line-height: 30vh
-			+ls(100)
-			text-align: center
-			white-space: nowrap
-
-			+textBorder(3px, rgba($white, 0.05))
-			z-index: 2
 
 		&.swiper-slide-active
-			// +after(attr(data-backword))
 
 		&--hero
 			padding: 0
+			+cover
+			transform: translateX($globalPadding)
+			display: none
 
 		&--works
-			height: 100vh
-			min-height: 500px
-			padding: vw(1920, $globalPadding/2) 0 vw(1920, $globalPadding/2) 0
-
-			box-shadow: none
-
-			.layout__item-container
-				background-color: transparent
-				padding: 0
-
-			.layout__item-title
-				text-shadow: 10px 30px 100px rgba(#000, 1)
 
 	&__pagination
 		z-index: z('menu')
-		+pa(vw(1920, ($globalPadding/2)+15)!important, vw(1920, $globalPadding)!important, auto!important, auto!important)
+		+pa((($globalPadding/2)+15)!important, $globalPadding!important, auto!important, auto!important)
 		position: fixed
 		width: auto
 		display: flex
@@ -139,37 +101,71 @@
 	&__slider-item
 		width: 100%
 
+	&__left
+		position: absolute
+		left: 0
+		top: 0
+		bottom: $globalPadding
+		width: $globalPadding
+		display: flex
+		flex-direction: column
+		align-items: center
+		justify-content: center
+		pointer-events: none
+		background-color: rgba($white, 1)
+		z-index: 100
+		span
+			+rotate(-90)
+			color: $black
+			font-size: ($globalPadding/2)
+
+	&__bottom
+		position: absolute
+		bottom: 0
+		left: 0
+		width: 100%
+		height: $globalPadding
+		padding-left: $globalPadding
+		padding-right: 40px
+		display: flex
+		align-items: center
+		justify-content: space-between
+		z-index: 101
 
 
-.layout-blur
-	display: flex
-	flex-direction: column
-	align-items: center
-	justify-content: center
+	&__box
+		display: flex
+		flex-direction: column
 
-	position: fixed
-	left: 5vw
-	top: 0
-	bottom: 0
-	width: 20vw
-	height: 100%
+	&__subtitle
+		font-size: 16px
+		font-family: $f4
+		color: $black
 
-	color: red
+	&__title
+		font-size: vw(1920, 60px)
+		line-height: vw(1920, 58px)
+		margin-bottom: -10px
+		font-family: $f4
+		+textBorder(1px, $black)
 
-	+gradient(rgba(#000, 0.1), rgba(#000, 0.8), left)
-	// backdrop-filter: blur(10px)
-	// pointer-events: none
-	z-index: 2
+	&__socials
+		display: flex
+		align-items: center
+		justify-content: center
 
-	@supports (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
-		-webkit-backdrop-filter: blur(10px)
-		backdrop-filter: blur(10px)
+	&__socials-item
+		margin-left: 30px
+		opacity: 0.75
+		+tr
+		&:first-child
+			margin-left: 0
+		+h
+			opacity: 1
+		svg
+			width: 30px
+			height: 30px
+			fill: $black
 
-	@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)))
-		-webkit-filter: url(#backdrop-filter-blur)
-		filter: url(#backdrop-filter-blur)
-
-	display: none
-
-
+		&--cv
 

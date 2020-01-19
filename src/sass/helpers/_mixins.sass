@@ -179,5 +179,25 @@
   background: $color1
   background: linear-gradient(to $direction, $color1 0%, $color2 100%)
 
+=counter($name: list, $content: '', $selector: '> *', $type: decimal)
+  counter-reset: $name
+  #{$selector}
+    &:before
+      content: $content counter($name, $type)
+      counter-increment: $name
 
-
+      // counter-increment:
+      // disc (• • •)
+      // circle (○ ○ ○)
+      // square (▪ ▪ ▪)
+      // decimal (1 2 3)
+      // decimal-leading-zero (01, 02, 03)
+      // lower-roman (i ii iii)
+      // upper-roman (I II III)
+      // lower-greek (α β γ)
+      // lower-latin (a b c)
+      // upper-latin (A B C)
+      // armenian (Ա Բ Գ)
+      // georgian (ა ბ გ)
+      // lower-alpha (a b c)
+      // upper-alpha (A B C)

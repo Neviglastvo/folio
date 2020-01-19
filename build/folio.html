@@ -12,19 +12,49 @@
   </head>
   <body>
     <!-- BEGIN content -->
-    <div class="layout-blur"></div>
-    <div class="layout swiper-container js-slider-layout js-blurry">
-      <div id="jsReflection" class="reflection js-reflection js-reflection-production"></div>
-      <div class="layout__pagination js-slider-layout-pagination"></div>
-      <div class="layout__container swiper-wrapper">
-        <div id="anchorHome" class="layout__item layout__item--hero js-hero swiper-slide" data-backword="hi, i am" data-title="HOME">
+    <div class="layout js-blurry">
+      <!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
+      <!-- <div class="layout__scrollbar js-slider-layout-scrollbar"></div> -->
+      <div class="layout__left">
+        <span>Works</span>
+      </div>
+      <div class="layout__bottom">
+        <div class="layout__box">
+          <div class="layout__subtitle">Frontend developer</div>
+          <div class="layout__title">Roman Yakovenko</div>
+        </div>
+        <div class="layout__socials">
+          <a href="./CV Roman Yakovenko.pdf" class="layout__socials-item layout__socials-item--cv" download>
+            <svg class="svg svg-cv">
+              <use xlink:href="img/sprite.svg#svg-cv"></use>
+            </svg>
+          </a>
+          <a href="https://t.me/Nevejestvo" class="layout__socials-item">
+            <svg class="svg svg-telegram">
+              <use xlink:href="img/sprite.svg#svg-telegram"></use>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/nevejestvo/" class="layout__socials-item">
+            <svg class="svg svg-linkedin">
+              <use xlink:href="img/sprite.svg#svg-linkedin"></use>
+            </svg>
+          </a>
+          <a href="https://github.com/ParadiseSeeker" class="layout__socials-item">
+            <svg class="svg svg-github">
+              <use xlink:href="img/sprite.svg#svg-github"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="layout__container">
+        <div id="anchorHome" class="layout__item layout__item--hero" data-backword="hi, i am" data-title="HOME">
           <div class="hero" data-backwords="Hello">
             <div class="hero__container">
               <div class="hero__subtitle" data-bgwords="Frontend developer">Frontend developer</div>
               <div class="hero__title" data-bgwords="Roman Yakovenko">Roman <br /> Yakovenko</div>
               <div class="hero__social">
                 <div class="hero__social-box">
-                  <a href="https://bit.ly/RYDevCv" class="hero__social-item hero__social-item--cv" target="blank" download>
+                  <a href="./CV Roman Yakovenko.pdf" class="hero__social-item hero__social-item--cv" target="blank" download>
                     <svg class="svg svg-cv">
                       <use xlink:href="img/sprite.svg#svg-cv"></use>
                     </svg>
@@ -51,224 +81,149 @@
             </div>
           </div>
         </div>
-        <div id="anchorWorks" class="layout__item layout__item--works swiper-slide" data-backword="works" data-title="works">
+        <div id="anchorWorks" class="layout__item layout__item--works" data-backword="works" data-title="works">
           <div class="works js-slider-works">
             <div class="works__slider swiper-wrapper">
-              <div class="works__item swiper-slide">
-                <div class="works__box">
-                  <div class="works__title">Inffinder</div>
-                  <!-- <div class="works__subtitle">Website about some big oil things</div> -->
-                  <a href="http://inffinder.com/" target="blank" class="works__link">open</a>
-                </div>
-                <div class="works__logo">
-                  <img class="works__logo-img" src="./img/works/svg/inffinder.svg"></img>
-                </div>
-                <div class="works__img-container">
-                  <div class="works__img-parallax" style="background-image:url(./img/works/inffinder.jpg)" data-swiper-parallax-x="33.3333333%"></div>
-                </div>
-              </div>
-              <div class="works__item swiper-slide">
-                <div class="works__box">
-                  <div class="works__title">NoWayOut</div>
-                  <!-- <div class="works__subtitle">Escape room website</div> -->
-                  <a href="https://www.nowayout.ae/" target="blank" class="works__link">open</a>
-                </div>
-                <div class="works__logo">
-                  <img class="works__logo-img" src="./img/works/svg/nwo.svg"></img>
-                </div>
-                <div class="works__img-container">
-                  <div class="works__img-parallax" style="background-image:url(./img/works/nwoa.jpg)" data-swiper-parallax-x="33.3333333%"></div>
-                  <div class="works__img-parallax" style="background-image:url(./img/works/nwod.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+              <div class="works__item swiper-slide js-work-item">
+                <div class="works__item-container js-tilt">
+                  <div class="works__box">
+                    <div class="works__title-box">
+                      <div class="works__subtitle">Website about some big oil things</div>
+                      <div class="works__title">Inffinder</div>
+                    </div>
+                    <a href="http://inffinder.com/" target="_blank" class="works__link">discover</a>
+                  </div>
+                  <div class="works__logo js-work-logo">
+                    <img class="works__logo-img" src="./img/works/svg/inffinder.svg"></img>
+                  </div>
+                  <div class="works__img-container">
+                    <div class="works__img-preloader swiper-lazy-preloader" style="background-color: rgb(242, 242, 243)"></div>
+                    <div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/inffinder.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+                  </div>
                 </div>
               </div>
-              <div class="works__item swiper-slide">
-                <div class="works__box">
-                  <div class="works__title">Enescape</div>
-                  <!-- <div class="works__subtitle">Escape room agregator</div> -->
-                  <a href="https://melbourne.enescape.com/" target="blank" class="works__link">open</a>
-                </div>
-                <div class="works__logo">
-                  <img class="works__logo-img" src="./img/works/svg/enescape.svg"></img>
-                </div>
-                <div class="works__img-container">
-                  <div class="works__img-parallax" style="background-image:url(./img/works/enescape.jpg)" data-swiper-parallax-x="33.3333333%"></div>
-                </div>
-              </div>
-              <div class="works__item swiper-slide">
-                <div class="works__box">
-                  <div class="works__title">Semaz</div>
-                  <!-- <div class="works__subtitle">Website about big trucks</div> -->
-                  <a href="http://www.semaz.kz/ru" target="blank" class="works__link">open</a>
-                </div>
-                <div class="works__logo">
-                  <img class="works__logo-img" src="./img/works/svg/semaz.svg"></img>
-                </div>
-                <div class="works__img-container">
-                  <div class="works__img-parallax" style="background-image:url(./img/works/semaz.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+              <div class="works__item swiper-slide js-work-item">
+                <div class="works__item-container js-tilt">
+                  <div class="works__box">
+                    <div class="works__title-box">
+                      <div class="works__subtitle">Escape room website</div>
+                      <div class="works__title">NoWayOut</div>
+                    </div>
+                    <a href="https://www.nowayout.ae/" target="_blank" class="works__link">discover</a>
+                  </div>
+                  <div class="works__logo js-work-logo">
+                    <img class="works__logo-img" src="./img/works/svg/nwo.svg"></img>
+                  </div>
+                  <div class="works__img-container">
+                    <div class="works__img-preloader swiper-lazy-preloader" style="background-color: rgb(17, 24, 30)"></div>
+                    <div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/nwoa.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+                  </div>
                 </div>
               </div>
-              <div class="works__item swiper-slide">
-                <div class="works__box">
-                  <div class="works__title">Daewoobus</div>
-                  <!-- <div class="works__subtitle">Website about daewoo buses</div> -->
-                  <a href="http://www.daewoobus.kz/ru" target="blank" class="works__link">open</a>
-                </div>
-                <div class="works__logo">
-                  <img class="works__logo-img" src="./img/works/svg/daewoo.svg"></img>
-                </div>
-                <div class="works__img-container">
-                  <div class="works__img-parallax" style="background-image:url(./img/works/daewoobus.jpg)" data-swiper-parallax-x="33.3333333%"></div>
-                </div>
-              </div>
-              <div class="works__item swiper-slide">
-                <div class="works__box">
-                  <div class="works__title">Nomad</div>
-                  <!-- <div class="works__subtitle">Website about hotels</div> -->
-                  <a href="http://www.hotelnomad.kz/" target="blank" class="works__link">open</a>
-                </div>
-                <div class="works__logo">
-                  <img class="works__logo-img" src="./img/works/svg/nomad.svg"></img>
-                </div>
-                <div class="works__img-container">
-                  <div class="works__img-parallax" style="background-image:url(./img/works/nomad.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+              <div class="works__item swiper-slide js-work-item">
+                <div class="works__item-container js-tilt">
+                  <div class="works__box">
+                    <div class="works__title-box">
+                      <div class="works__subtitle">Escape room agregator</div>
+                      <div class="works__title">Enescape</div>
+                    </div>
+                    <a href="https://melbourne.enescape.com/" target="_blank" class="works__link">discover</a>
+                  </div>
+                  <div class="works__logo js-work-logo">
+                    <img class="works__logo-img" src="./img/works/svg/enescape.svg"></img>
+                  </div>
+                  <div class="works__img-container">
+                    <div class="works__img-preloader swiper-lazy-preloader" style="background-color: rgb(25, 27, 39)"></div>
+                    <div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/enescape.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+                  </div>
                 </div>
               </div>
-              <div class="works__item swiper-slide">
-                <div class="works__box">
-                  <div class="works__title">Incrify</div>
-                  <!-- <div class="works__subtitle">Corporate website</div> -->
-                  <a href="https://www.incrify.com/" target="blank" class="works__link">open</a>
+              <div class="works__item swiper-slide js-work-item">
+                <div class="works__item-container js-tilt">
+                  <div class="works__box">
+                    <div class="works__title-box">
+                      <div class="works__subtitle">Website about big trucks</div>
+                      <div class="works__title">Semaz</div>
+                    </div>
+                    <a href="http://www.semaz.kz/ru" target="_blank" class="works__link">discover</a>
+                  </div>
+                  <div class="works__logo js-work-logo">
+                    <img class="works__logo-img" src="./img/works/svg/semaz.svg"></img>
+                  </div>
+                  <div class="works__img-container">
+                    <div class="works__img-preloader swiper-lazy-preloader" style="background-color: rgb(39, 50, 49)"></div>
+                    <div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/semaz.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+                  </div>
                 </div>
-                <div class="works__logo">
-                  <img class="works__logo-img" src="./img/works/svg/incrify.svg"></img>
+              </div>
+              <div class="works__item swiper-slide js-work-item">
+                <div class="works__item-container js-tilt">
+                  <div class="works__box">
+                    <div class="works__title-box">
+                      <div class="works__subtitle">Website about daewoo buses</div>
+                      <div class="works__title">Daewoobus</div>
+                    </div>
+                    <a href="http://www.daewoobus.kz/ru" target="_blank" class="works__link">discover</a>
+                  </div>
+                  <div class="works__logo js-work-logo">
+                    <img class="works__logo-img" src="./img/works/svg/daewoo.svg"></img>
+                  </div>
+                  <div class="works__img-container">
+                    <div class="works__img-preloader swiper-lazy-preloader" style="background-color: rgb(77, 92, 105)"></div>
+                    <div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/daewoobus.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+                  </div>
                 </div>
-                <div class="works__img-container">
-                  <div class="works__img-parallax" style="background-image:url(./img/works/incrify.jpg)" data-swiper-parallax-x="33.3333333%"></div>
+              </div>
+              <div class="works__item swiper-slide js-work-item">
+                <div class="works__item-container js-tilt">
+                  <div class="works__box">
+                    <div class="works__title-box">
+                      <div class="works__subtitle">Website about hotels</div>
+                      <div class="works__title">Nomad</div>
+                    </div>
+                    <a href="http://www.hotelnomad.kz/" target="_blank" class="works__link">discover</a>
+                  </div>
+                  <div class="works__logo js-work-logo">
+                    <img class="works__logo-img" src="./img/works/svg/nomad.svg"></img>
+                  </div>
+                  <div class="works__img-container">
+                    <div class="works__img-preloader swiper-lazy-preloader" style="background-color: rgb(46, 49, 51)"></div>
+                    <div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/nomad.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="works__item swiper-slide js-work-item">
+                <div class="works__item-container js-tilt">
+                  <div class="works__box">
+                    <div class="works__title-box">
+                      <div class="works__subtitle">Corporate website</div>
+                      <div class="works__title">Incrify</div>
+                    </div>
+                    <a href="https://www.incrify.com/" target="_blank" class="works__link">discover</a>
+                  </div>
+                  <div class="works__logo js-work-logo">
+                    <img class="works__logo-img" src="./img/works/svg/incrify.svg"></img>
+                  </div>
+                  <div class="works__img-container">
+                    <div class="works__img-preloader swiper-lazy-preloader" style="background-color: rgb(44, 16, 17)"></div>
+                    <div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/incrify.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="works__scrollbar js-slider-works-scrollbar"></div>
+            <div class="works__arrow works__arrow--prev js-slider-works-button-prev">
+              <svg class="svg svg-arrowBig">
+                <use xlink:href="img/sprite.svg#svg-arrowBig"></use>
+              </svg>
+            </div>
+            <div class="works__arrow works__arrow--next js-slider-works-button-next">
+              <svg class="svg svg-arrowBig">
+                <use xlink:href="img/sprite.svg#svg-arrowBig"></use>
+              </svg>
+            </div>
+            <!-- <div class="works__pagination js-slider-works-pagination"></div> -->
           </div>
-          <!-- <div class="layout__item">
-
-	<div class="layout__item-bg">
-		<div class="layout__item-bg-item layout__item-bg-item--1"></div>
-		<div class="layout__item-bg-item layout__item-bg-item--2"></div>
-		<div class="layout__item-bg-item layout__item-bg-item--3"></div>
-	</div>
-
-	<div class="layout__item-title">Works</div>
-	<div class="layout__item-subtitle">see best of my works</div>
-
-	<div class="works">
-		
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">Inffinder</div>
-				<div class="works__subtitle">Website about some big oil things</div>
-				<a href="http://inffinder.com/" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				
-				<img class="works__img" src="./img/works/inffinder.jpg"></img>
-				
-
-			</div>
-		</div>
-		
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">NoWayOut</div>
-				<div class="works__subtitle">Escape room website</div>
-				<a href="https://www.nowayout.ae/" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				
-				<img class="works__img" src="./img/works/nwoa.jpg"></img>
-				
-				<img class="works__img" src="./img/works/nwod.jpg"></img>
-				
-
-			</div>
-		</div>
-		
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">Enescape</div>
-				<div class="works__subtitle">Escape room agregator</div>
-				<a href="https://melbourne.enescape.com/" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				
-				<img class="works__img" src="./img/works/enescape.jpg"></img>
-				
-
-			</div>
-		</div>
-		
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">Semaz</div>
-				<div class="works__subtitle">Website about big trucks</div>
-				<a href="http://www.semaz.kz/ru" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				
-				<img class="works__img" src="./img/works/semaz.jpg"></img>
-				
-
-			</div>
-		</div>
-		
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">Daewoobus</div>
-				<div class="works__subtitle">Website about daewoo buses</div>
-				<a href="http://www.daewoobus.kz/ru" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				
-				<img class="works__img" src="./img/works/daewoobus.jpg"></img>
-				
-
-			</div>
-		</div>
-		
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">Nomad</div>
-				<div class="works__subtitle">Website about hotels</div>
-				<a href="http://www.hotelnomad.kz/" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				
-				<img class="works__img" src="./img/works/nomad.jpg"></img>
-				
-
-			</div>
-		</div>
-		
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">Incrify</div>
-				<div class="works__subtitle">Corporate website</div>
-				<a href="https://www.incrify.com/" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				
-				<img class="works__img" src="./img/works/incrify.jpg"></img>
-				
-
-			</div>
-		</div>
-		
-
-		<div class="works__more">
-			<div class="works__more-text">load more</div>
-		</div>
-
-	</div>
-
-</div> -->
         </div>
       </div>
     </div>

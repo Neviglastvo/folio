@@ -8,12 +8,13 @@
 	align-items: center
 	justify-content: center
 	border: $borderWidth solid $cvBorderColor
+	+aspectRatio(1,1)
 	// border-radius: 50%
 
 	&__img
-		width: 100%
-		height: auto
+		+cover
 		+coverimg
+		// +rotate(-90)
 
 	&__text
 		display: flex
@@ -24,3 +25,4 @@
 		color: $cvText
 		font-family: $fa
 		+rotate(45)
+		display: none

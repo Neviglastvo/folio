@@ -11,6 +11,11 @@ import * as h from './_help'
 
 export default function reflection() {
 
+	var now,delta,then = Date.now();
+	var interval = 1000/30;
+
+
+
 
 
 	let cfg = {
@@ -73,6 +78,8 @@ export default function reflection() {
 
 	param = {};
 
+
+
 	var mouseX = 0;
 	var mouseY = 0;
 	var windowHalfX = window.innerWidth / 2;
@@ -101,9 +108,12 @@ export default function reflection() {
 		// CORE BEGIN ----------------------------------------------------------------------------
 		let container = document.getElementById('jsReflection');
 
-		renderer = new THREE.WebGLRenderer({ antialias: true });
-		renderer.setPixelRatio(window.devicePixelRatio);
+		renderer = new THREE.WebGLRenderer({
+			antialias: true,
+			alpha: true });
+		renderer.setPixelRatio( mobilecheck() ? window.devicePixelRatio/3 : window.devicePixelRatio);
 		renderer.setSize(cfg.cam.width, cfg.cam.height);
+		renderer.setClearColor( 0x000000, 0 );
 		container.appendChild(renderer.domElement);
 
 		scene = new THREE.Scene();
@@ -226,6 +236,26 @@ export default function reflection() {
 
 
 
+		// SPHERE BEGIN ----------------------------------------------------------------------------
+		// let sphere = new THREE.RectAreaLight(0x4737ff, 50, 50, 50);
+		// sphere.position.set(-250, 130, 100);
+		// sphere.lookAt(0, 130, 0);
+		// scene.add(sphere);
+
+		// let sphereLightMesh = new THREE.Mesh(
+		// 	new THREE.SphereGeometry(1, 50, 50),
+		// 	new THREE.MeshBasicMaterial({
+		// 		color: 0x4737ff,
+		// 		side: THREE.BackSide,
+		// 	})
+		// );
+		// sphereLightMesh.scale.x = 100;
+		// sphereLightMesh.scale.y = 100;
+		// sphere.add(sphereLightMesh);
+		// SPHERE END ----------------------------------------------------------------------------
+
+
+
 		// GROUND BEGIN ( with box projected environment mapping )--------------------------------
 		groundPlane = new THREE.PlaneBufferGeometry(cfg.ground.width, cfg.ground.height, worldWidth - 1, worldDepth - 1);
 		groundPlane.rotateX(- Math.PI / 2);
@@ -263,6 +293,8 @@ export default function reflection() {
 				// mousePosition: {type: 'v2', value: new THREE.Vector2( 0.5, 0.5 ) }
 			}
 		});
+
+		console.log(cloudsMaterial);
 
 		cloudsPlane = new THREE.PlaneBufferGeometry(window.innerWidth, window.innerWidth, 128, 128);
 
@@ -496,15 +528,25 @@ export default function reflection() {
 
 	function animate() {
 
+		requestAnimationFrame(animate);
+
+	    // now = Date.now();
+	    // delta = now - then;
+	    // //update time dependent animations here at 30 fps
+	    // if (delta > interval) {
+	    //     sphereMesh.quaternion.multiplyQuaternions(autoRotationQuaternion, sphereMesh.quaternion);
+	    //     then = now - (delta % interval);
+	    // }
+
 		if (statsEnabled) { stats.update() };
 
 		updateCubeMap();
 
 		controls.update();
 
-		requestAnimationFrame(animate);
 		render();
 	}
+
 
 	function randomInteger(min, max) {
 		let rand = min + Math.random() * (max + 1 - min);

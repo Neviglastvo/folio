@@ -1,10 +1,9 @@
 $z-indexes: ("menu", "modal", "contentThingies", "blurText", "blur", "content", "body", "bgColor")
-$globalPadding: 100px
+$globalPadding: 5vw
 
-// @import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css"
 @import "lib/*.sass"
-
 @import "helpers/**/*.sass"
+
 @import "base/*.sass"
 @import "generated/*.sass"
 
@@ -30,12 +29,10 @@ body
 	+customScroll(8px, 0, $pink, rgba($white, 0.2))
 	background-color: rgba(29,31,35,1)
 
-
 .reflection
 	+cover
 	position: fixed
 	z-index: -2
-
 
 .shatter
 	position: relative

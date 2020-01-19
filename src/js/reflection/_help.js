@@ -157,19 +157,19 @@ export let worldposReplace = `
 		float hue = uHue + vElevation * .05;
 		hue += smoothstep(.6, 1.0, vElevation) * .2;
 
-		float highlight = sin ( smoothstep(.6, .91, vElevation) * 3.14 );
+		float highlight = sin( smoothstep(.6, 1.0, vElevation) * 3.14 );
 
-		hue += highlight * .1;
+		hue += highlight * 0.1;
 
-		float saturation = vElevation * 1.1;
+		float saturation = vElevation * 0.9;
 		float darkborders = sin(vUv.x * 3.14) * sin(vUv.y * 3.14);
-		float brightness = pow( darkborders * .3 + vElevation, 3.5);
-		brightness *= .5 + smoothstep(.6, 1.0, vElevation) * .5;
+		float brightness = pow(darkborders * 0.03 + vElevation, 2.0);
+		brightness *= 1.0 + smoothstep(.6, 1.0, vElevation) * .05;
 
-		brightness += highlight * .2;
+		brightness += highlight * .8;
 		vec3 col = hsl2rgb(hue, saturation, brightness);
 
-		gl_FragColor = vec4(col, 1.0);
+		gl_FragColor = vec4(col, 0);
 	}`,
 	cloudVertexShader = `
 	attribute vec3 position;
@@ -191,7 +191,7 @@ export let worldposReplace = `
 		vec4 perm(vec4 x){return mod289(((x * 34.0) + 1.0) * x);}
 
 		float rand(vec2 co){
-			return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+			return fract(sin(dot(co.xy ,vec2(10.0,75.0))) * .5);
 		}
 
 		float noise(vec3 p){
@@ -218,18 +218,18 @@ export let worldposReplace = `
 
 		float fbm(vec2 pos, float t){
 			float r;
-						r 	= 	noise( vec3( pos, t ) * 01.0 ) * 01.0000;
-						r 	+= 	noise( vec3( pos, t ) * 02.0 ) * 00.5000;
-						r 	+= 	noise( vec3( pos, t ) * 04.0 ) * 00.2500;
-						r 	+= 	noise( vec3( pos, t ) * 08.0 ) * 00.1250;
-						r 	+= 	noise( vec3( pos, t ) * 16.0 ) * 00.0625;
+			r =  noise( vec3( pos, t ) * 01.0 ) * 01.0000;
+			r += noise( vec3( pos, t ) * 02.0 ) * 00.5000;
+			r += noise( vec3( pos, t ) * 04.0 ) * 00.2500;
+			r += noise( vec3( pos, t ) * 08.0 ) * 00.1250;
+			r += noise( vec3( pos, t ) * 16.0 ) * 00.0625;
 			return r / 1.9375;
 		}
 
 		void main() {
 			vUv = uv;
-			float t = time*.3 + sin(time) * .2;
-			float t2 = time*.1 + cos(time * .2) * .05;
+			float t = time*.1 + sin(time) * .16;
+			float t2 = time*.1 + cos(time * .2) * .13;
 			vec2 pos = vUv * 2.0;
 
 			vec2 displacement = vec2(t, t2) + (2.0 + mousePosition * .5);

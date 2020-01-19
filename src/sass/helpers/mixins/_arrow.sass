@@ -1,0 +1,34 @@
+// +arrow(r, #fff, 14px)
+@mixin arrow($direction, $color, $size)
+	display: block
+	height: 0
+	width: 0
+	@if $direction == 't'
+		border-left: $size solid transparent
+		border-right: $size solid transparent
+		border-bottom: $size solid $color
+	@else if $direction == 'r'
+		border-top: $size solid transparent
+		border-bottom: $size solid transparent
+		border-left: $size solid $color
+	@else if $direction == 'b'
+		border-top: $size solid $color
+		border-right: $size solid transparent
+		border-left: $size solid transparent
+	@else if $direction == 'l'
+		border-top: $size solid transparent
+		border-right: $size solid $color
+		border-bottom: $size solid transparent
+	@else if $direction == 'tl'
+		border-top: $size solid $color
+		border-right: $size solid transparent
+	@else if $direction == 'tr'
+		border-top: $size solid $color
+		border-left: $size solid transparent
+	@else if $direction == 'bl'
+		border-bottom: $size solid $color
+		border-right: $size solid transparent
+	@else if $direction == 'br'
+		border-bottom: $size solid $color
+		border-left: $size solid transparent
+

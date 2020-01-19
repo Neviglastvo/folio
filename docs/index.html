@@ -10,7 +10,45 @@
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,500,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 <style>
-@-webkit-keyframes label-active{0%{-webkit-box-shadow:0 0 #e4e8e1;box-shadow:0 0 #e4e8e1}to{-webkit-box-shadow:0 0 10px 8px transparent;box-shadow:0 0 10px 8px transparent}}@keyframes label-active{0%{-webkit-box-shadow:0 0 #e4e8e1;box-shadow:0 0 #e4e8e1}to{-webkit-box-shadow:0 0 10px 8px transparent;box-shadow:0 0 10px 8px transparent}}a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;vertical-align:baseline}fieldset,img{margin:0;padding:0;vertical-align:baseline}html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-box-sizing:border-box;box-sizing:border-box}a img,fieldset,img{border:0}input[type=email],input[type=tel],input[type=text],textarea{-webkit-appearance:none}button,input[type=submit]{cursor:pointer}button::-moz-focus-inner,input[type=submit]::-moz-focus-inner{padding:0;border:0}textarea{overflow:auto}button,input{margin:0;padding:0;border:0}a,a:focus,button,div,h1,h2,h3,h4,h5,h6,input,select,span,textarea{outline:0}ol,ul{list-style-type:none}table{border-spacing:0;border-collapse:collapse;width:100%}*,:after,:before{-webkit-box-sizing:inherit;box-sizing:inherit}.content,.content__item{display:-webkit-box;display:-ms-flexbox;display:flex}.content{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;border:2px solid #801336}.content__item{position:relative;width:100%;height:100%}.content__iframe{position:absolute;top:0;left:0;width:100%;height:100%}.devices{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.devices__item{margin-right:6px;width:34px;height:34px;background-color:rgba(128,19,54,.4);border-radius:4px;position:relative;opacity:.8;padding:3px;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}.devices__item:hover{cursor:pointer;opacity:1}.devices__item:last-child{margin-right:0}.devices__item.active{pointer-events:none;opacity:1;background-color:#801336}.devices__item.active svg{fill:#e4e8e1}.devices__item svg{padding:3px;width:100%;height:100%;fill:#e4e8e1}.header{-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:4px 10px}.header,.header__block,.header__box{display:-webkit-box;display:-ms-flexbox;display:flex}.header__box{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.header__block{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.header__logo{width:40px;height:40px;border-radius:50%;margin-right:15px;background-color:#801336}.label{width:100%;overflow:hidden;height:28px}.label__container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end;width:100%;overflow-y:hidden;overflow-x:auto;-webkit-box-sizing:content-box;box-sizing:content-box}.label__item,.label__status{-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}.label__item{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0 7px 2px;background-color:#801336;margin-right:2px;opacity:.7;height:28px;width:auto;border-radius:4px 4px 0 0}.label__item:hover{cursor:pointer;opacity:.8;background-color:#801336}.label__item .label__status,.label__item.disabled .label__url{display:none}.label__item.disabled{-webkit-filter:grayscale(100%);filter:grayscale(100%);pointer-events:none}.label__item.inProgress .label__status,.label__item.ready .label__status{display:block;background-color:#61ef61;-webkit-animation:none;animation:none;-webkit-box-shadow:0 0 5px 1px #61ef61;box-shadow:0 0 5px 1px #61ef61}.label__item.inProgress .label__status{background-color:#ff0;-webkit-box-shadow:0 0 5px 1px #ff0;box-shadow:0 0 5px 1px #ff0}.label__item.active{border-radius:4px 4px 0 0;opacity:1}.label__item.active .label__status{display:block;-webkit-animation:label-active 2s ease infinite;animation:label-active 2s ease infinite}.label__status{width:6px;height:6px;border-radius:50%;pointer-events:none;margin:0 4px}.label__name{display:block;margin:0 6px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;font-size:16px;line-height:28px;font-weight:300;color:#e4e8e1}.label__name,.label__name:hover{text-decoration:none}.label__url{position:relative;height:14px;width:14px;opacity:.6;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}.label__url:hover{opacity:1}.label__url svg{position:absolute;top:0;left:0;width:100%;height:100%;fill:#e4e8e1}.window{width:100vw;height:100vh;overflow:hidden;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;position:relative;color:#feeffd;border-top:none;font-family:"Oswald",sans-serif;background:-o-linear-gradient(135deg,#323232 0%,#3f3f3f 50%,#1c1c1c 150%),-o-linear-gradient(bottom,rgba(255,255,255,.4) 0%,rgba(0,0,0,.25) 200%);background:linear-gradient(-45deg,#323232 0%,#3f3f3f 50%,#1c1c1c 150%),linear-gradient(to top,rgba(255,255,255,.4) 0%,rgba(0,0,0,.25) 200%);background-blend-mode:multiply}
+@-webkit-keyframes label-active{0%{-webkit-box-shadow:0 0 #e4e8e1;box-shadow:0 0 #e4e8e1}to{-webkit-box-shadow:0 0 10px 8px transparent;box-shadow:0 0 10px 8px transparent}}@keyframes label-active{0%{-webkit-box-shadow:0 0 #e4e8e1;box-shadow:0 0 #e4e8e1}to{-webkit-box-shadow:0 0 10px 8px transparent;box-shadow:0 0 10px 8px transparent}}a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;vertical-align:baseline}fieldset,img{margin:0;padding:0;vertical-align:baseline}html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-box-sizing:border-box;box-sizing:border-box}a img,fieldset,img{border:0}input[type=email],input[type=tel],input[type=text],textarea{-webkit-appearance:none}button,input[type=submit]{cursor:pointer}button::-moz-focus-inner,input[type=submit]::-moz-focus-inner{padding:0;border:0}textarea{overflow:auto}button,input{margin:0;padding:0;border:0}a,a:focus,button,div,h1,h2,h3,h4,h5,h6,input,select,span,textarea{outline:0}ol,ul{list-style-type:none}table{border-spacing:0;border-collapse:collapse;width:100%}*,:after,:before{-webkit-box-sizing:inherit;box-sizing:inherit}.content,.content__item{display:-webkit-box;display:-ms-flexbox;display:flex}.content{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;border-top:2px solid #801336}.content__item{position:relative;width:100%;height:100%}.content__iframe{position:absolute;top:0;left:0;width:100%;height:100%}.devices{z-index: 999;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.devices__item{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;-ms-align-items: center;align-items: center;margin-right:6px;width:auto;height:34px;background-color:rgba(128,19,54,.4);border-radius:4px;position:relative;opacity:.8;padding:3px;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}.devices__item:hover{cursor:pointer;opacity:1}.devices__item:hover .devices__item-dropdown{opacity: 1;height: auto;padding: 6px;}.devices__item:last-child{margin-right:0}.devices__item.active{opacity:1;background-color:#801336}.devices__item.active svg{fill:#e4e8e1}.devices__item svg{padding:3px;width:100%;max-width: 34px;height:100%;fill:#e4e8e1}.header{-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:4px 10px}.header,.header__block,.header__box{display:-webkit-box;display:-ms-flexbox;display:flex}.header__box{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.header__block{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.header__logo{position: relative;width:40px;height:40px;border-radius:50%;margin-right:15px;background-color:#801336}.header__logo img{position: absolute;left: 0;top: 0;width: 100%;height: 100%;object-fit:contain}.label{width:100%;overflow:hidden;height:28px}.label__container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end;width:100%;overflow-y:hidden;overflow-x:auto;-webkit-box-sizing:content-box;box-sizing:content-box}.label__item,.label__status{-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}.label__item{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0 7px 2px;background-color:#801336;margin-right:2px;opacity:.7;height:28px;width:auto;border-radius:4px 4px 0 0}.label__item:hover{cursor:pointer;opacity:.8;background-color:#801336}.label__item .label__status,.label__item.disabled .label__url{display:none}.label__item.disabled{-webkit-filter:grayscale(100%);filter:grayscale(100%);pointer-events:none}.label__item.inProgress .label__status,.label__item.ready .label__status{display:block;background-color:#61ef61;-webkit-animation:none;animation:none;-webkit-box-shadow:0 0 5px 1px #61ef61;box-shadow:0 0 5px 1px #61ef61}.label__item.inProgress .label__status{background-color:#ff0;-webkit-box-shadow:0 0 5px 1px #ff0;box-shadow:0 0 5px 1px #ff0}.label__item.active{border-radius:4px 4px 0 0;opacity:1}.label__item.active .label__status{display:block;-webkit-animation:label-active 2s ease infinite;animation:label-active 2s ease infinite}.label__status{width:6px;height:6px;border-radius:50%;pointer-events:none;margin:0 4px}.label__name{display:block;margin:0 6px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;font-size:16px;line-height:28px;font-weight:300;color:#e4e8e1}.label__name,.label__name:hover{text-decoration:none}.label__url{position:relative;height:14px;width:14px;opacity:.6;-webkit-transition:all 300ms;-o-transition:all 300ms;transition:all 300ms}.label__url:hover{opacity:1}.label__url svg{position:absolute;top:0;left:0;width:100%;height:100%;fill:#e4e8e1}.window{width:100vw;height:100vh;overflow:hidden;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;position:relative;color:#feeffd;border-top:none;font-family:"Oswald",sans-serif;background:-o-linear-gradient(135deg,#323232 0%,#3f3f3f 50%,#1c1c1c 150%),-o-linear-gradient(bottom,rgba(255,255,255,.4) 0%,rgba(0,0,0,.25) 200%);background:linear-gradient(-45deg,#323232 0%,#3f3f3f 50%,#1c1c1c 150%),linear-gradient(to top,rgba(255,255,255,.4) 0%,rgba(0,0,0,.25) 200%);background-blend-mode:multiply}.devices__item-size{
+	font-size: 12px;
+	color: #FFF;
+}
+.header__name{
+	font-size: 16px;
+	font-weight: 700;
+}
+.header__name--small{
+	font-size: 14px;
+	font-weight: 400;
+}
+.devices__item-dropdown{
+	opacity: 0;
+	width: auto;
+	border-radius: 5px;
+	height: 0;
+	max-height: 500px;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+	top: 100%;
+	margin-top: 6px;
+	width: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	transition: 300ms all;
+	pointer-events: none;
+	background-color: #801336;
+	padding: 0 6px;
+
+}
+.devices__item-dropdown-item{
+	color: #FFF;
+	margin: 2px 0;
+	font-size: 14px;
+	white-space: nowrap;
+}
 </style>
 <body>
 	<?xml version="1.0" encoding="UTF-8"?>
@@ -66,7 +104,7 @@
 	<div class="window">
 		<div class="header">
 			<div class="header__box">
-				<div class="header__logo"></div>
+				<div class="header__logo"><img src="./img/img.png" alt="logo" /></div>
 				<div class="header__block">
 					<div class="header__name">
 						Portfolio
@@ -74,9 +112,9 @@
 
 					
 
-					<div class="header__name">
+					<div class="header__name header__name--small">
 						Total pages: 6.
-						Updated 04.01.2020.
+						Updated 19.01.2020.
 					</div>
 				</div>
 			</div>
@@ -85,36 +123,101 @@
 					<svg>
 						<use xlink:href="#svg-phone"></use>
 					</svg>
+					<div class="devices__item-size">320</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">iPhone 5/SE</div>
+						<div class="devices__item-dropdown-item">Nokia Lumia</div>
+						<div class="devices__item-dropdown-item">Samsung Galaxy S (Old)</div>
+					</div>
 				</div>
 				<div class="devices__item js-device-button" data-mode="mobile" data-width="375">
 					<svg>
 						<use xlink:href="#svg-phone"></use>
 					</svg>
+					<div class="devices__item-size">375</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">iPhone 6/7/8/X</div>
+					</div>
+				</div>
+				<div class="devices__item js-device-button" data-mode="mobile" data-width="414">
+					<svg>
+						<use xlink:href="#svg-phone"></use>
+					</svg>
+					<div class="devices__item-size">414</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">iPhone 6/7/8 Plus</div>
+					</div>
 				</div>
 				<div class="devices__item js-device-button" data-mode="mobile" data-width="480">
 					<svg>
 						<use xlink:href="#svg-phone"></use>
 					</svg>
+					<div class="devices__item-size">480</div>
 				</div>
-				<div class="devices__item js-device-button" data-mode="ipad" data-width="900">
+				<div class="devices__item js-device-button" data-mode="ipad" data-width="768">
 					<svg>
 						<use xlink:href="#svg-tablet"></use>
 					</svg>
+					<div class="devices__item-size">768</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">iPad Mini/Retina</div>
+					</div>
+				</div>
+				<div class="devices__item js-device-button" data-mode="ipad" data-width="1024">
+					<svg>
+						<use xlink:href="#svg-tablet"></use>
+					</svg>
+					<div class="devices__item-size">1024</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">iPad Pro</div>
+					</div>
 				</div>
 				<div class="devices__item js-device-button" data-mode="desktop" data-width="1366">
 					<svg>
 						<use xlink:href="#svg-notebook"></use>
 					</svg>
+					<div class="devices__item-size">1366</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">HD Monitors</div>
+						<div class="devices__item-dropdown-item">MacBook Air 11</div>
+					</div>
+				</div>
+				<div class="devices__item js-device-button" data-mode="desktop" data-width="1440">
+					<svg>
+						<use xlink:href="#svg-notebook"></use>
+					</svg>
+					<div class="devices__item-size">1440</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">HD Monitors</div>
+						<div class="devices__item-dropdown-item">MacBook Air 13/Pro 15</div>
+					</div>
 				</div>
 				<div class="devices__item js-device-button active" data-mode="wide" data-width="1920">
 					<svg>
 						<use xlink:href="#svg-desktop"></use>
 					</svg>
+					<div class="devices__item-size">1920</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">Full HD Monitors</div>
+					</div>
+				</div>
+				<div class="devices__item js-device-button" data-mode="wide2" data-width="2560">
+					<svg>
+						<use xlink:href="#svg-desktop"></use>
+					</svg>
+					<div class="devices__item-size">2560</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">2K Monitors</div>
+					</div>
 				</div>
 				<div class="devices__item js-device-button" data-mode="wide2" data-width="4096">
 					<svg>
 						<use xlink:href="#svg-desktop"></use>
 					</svg>
+					<div class="devices__item-size">4096</div>
+					<div class="devices__item-dropdown">
+						<div class="devices__item-dropdown-item">4K Monitors</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -133,7 +236,7 @@
 					<span>1. </span>
 					folio
 
-					 ( 1% )
+					 ( 95% )
 				</a>
 
 				<a href="folio.html" class="label__url" target="blank">
@@ -144,39 +247,19 @@
 
 			
 
-				<li class="label__item js-label-name  inProgress 
+				<li class="label__item js-label-name  ready 
 				 ">
 
 				<div class="label__status"></div>
 
-				<a class="label__name js-label-name-link" href="folio2.html">
+				<a class="label__name js-label-name-link" href="cv.html">
 					<span>2. </span>
-					folio2
+					cv
 
-					 ( 1% )
+					 ( 100% )
 				</a>
 
-				<a href="folio2.html" class="label__url" target="blank">
-					<svg><use xlink:href="#svg-link"></use></svg>
-				</a>
-
-			</li>
-
-			
-
-				<li class="label__item js-label-name  inProgress 
-				 ">
-
-				<div class="label__status"></div>
-
-				<a class="label__name js-label-name-link" href="app.html">
-					<span>3. </span>
-					app
-
-					 ( 1% )
-				</a>
-
-				<a href="app.html" class="label__url" target="blank">
+				<a href="cv.html" class="label__url" target="blank">
 					<svg><use xlink:href="#svg-link"></use></svg>
 				</a>
 
@@ -190,10 +273,10 @@
 				<div class="label__status"></div>
 
 				<a class="label__name js-label-name-link" href="reflection.html">
-					<span>4. </span>
+					<span>3. </span>
 					reflection
 
-					 ( 1% )
+					 ( 50% )
 				</a>
 
 				<a href="reflection.html" class="label__url" target="blank">
@@ -209,14 +292,14 @@
 
 				<div class="label__status"></div>
 
-				<a class="label__name js-label-name-link" href="flame.html">
-					<span>5. </span>
-					flame
+				<a class="label__name js-label-name-link" href="app.html">
+					<span>4. </span>
+					app
 
-					 ( 1% )
+					 ( 25% )
 				</a>
 
-				<a href="flame.html" class="label__url" target="blank">
+				<a href="app.html" class="label__url" target="blank">
 					<svg><use xlink:href="#svg-link"></use></svg>
 				</a>
 
@@ -229,14 +312,34 @@
 
 				<div class="label__status"></div>
 
-				<a class="label__name js-label-name-link" href="cv.html">
-					<span>6. </span>
-					cv
+				<a class="label__name js-label-name-link" href="3D.html">
+					<span>5. </span>
+					3D
 
 					 ( 1% )
 				</a>
 
-				<a href="cv.html" class="label__url" target="blank">
+				<a href="3D.html" class="label__url" target="blank">
+					<svg><use xlink:href="#svg-link"></use></svg>
+				</a>
+
+			</li>
+
+			
+
+				<li class="label__item js-label-name  disabled 
+				 ">
+
+				<div class="label__status"></div>
+
+				<a class="label__name js-label-name-link" href="disabled.html">
+					<span>6. </span>
+					disabled
+
+					
+				</a>
+
+				<a href="disabled.html" class="label__url" target="blank">
 					<svg><use xlink:href="#svg-link"></use></svg>
 				</a>
 

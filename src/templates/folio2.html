@@ -9,42 +9,26 @@ title: Index page
 
 
 
-<div class="layout2">
-	<div id="jsReflection" class="layout2__reflection js-reflection"></div>
-	<div class="layout2__container js-slider-folio">
-		<div class="layout2__slide">
-			<div class="layout2__slide-container">
-				<div class="layout2__slide-item"></div>
-				<div class="layout2__slide-item"></div>
-				<div class="layout2__slide-item"></div>
-				<div class="layout2__slide-item"></div>
-				<div class="layout2__slide-item"></div>
-			</div>
+<div class="layout swiper-container js-slider-layout js-blurry">
+
+	<!-- <div id="jsReflection" class="reflection js-reflection js-reflection-production"></div> -->
+
+	<div class="layout__pagination js-slider-layout-pagination"></div>
+
+	<div class="layout__container swiper-wrapper">
+
+		<div id="anchorHome" class="layout__item layout__item--hero js-hero swiper-slide" data-backword="hi, i am" data-title="HOME" >
+			{% include "./partials/_0hero.html" %}
 		</div>
-		<div class="layout2__paging">
-			<div class="layout2__paging-item">
-				<div class="layout2__paging-item-icon"></div>
-				<div class="layout2__paging-item-title">Contacts</div>
-			</div>
-			<div class="layout2__paging-item">
-				<div class="layout2__paging-item-icon"></div>
-				<div class="layout2__paging-item-title">About</div>
-			</div>
-			<div class="layout2__paging-item">
-				<div class="layout2__paging-item-icon"></div>
-				<div class="layout2__paging-item-title">Home</div>
-			</div>
-			<div class="layout2__paging-item">
-				<div class="layout2__paging-item-icon"></div>
-				<div class="layout2__paging-item-title">Works</div>
-			</div>
-			<div class="layout2__paging-item">
-				<div class="layout2__paging-item-icon"></div>
-				<div class="layout2__paging-item-title">Skills</div>
-			</div>
+
+		<div id="anchorWorks"  class="layout__item layout__item--works swiper-slide" data-backword="works" data-title="works">
+			{% include "./partials/_2works.html" %}
 		</div>
+
 	</div>
+
 </div>
+
 
 
 {% endblock %}

@@ -11,7 +11,7 @@ title: CV Roman Yakovenko
 	<div class="cv-left">
 
 		<div class="avatar">
-			<!-- <img src="/img/cv/avatar" alt="" class="avatar__img"> -->
+			<img src="./img/cv/2.png" alt="" class="avatar__img">
 			<div class="avatar__text">¯\_(ツ)_/¯</div>
 		</div>
 
@@ -38,11 +38,11 @@ title: CV Roman Yakovenko
 			{% include "./cv/_leftHobby.html" %}
 		</div>
 
-		<div class="cv-left__block">
+		<!-- <div class="cv-left__block cv-left__block--folio">
 			<div class="cv-left__title">folio</div>
 
-			{% include "./cv/_leftFolio.html" %}
-		</div>
+			{# include "./cv/_leftFolio.html" #}
+		</div> -->
 
 	</div>
 
@@ -69,6 +69,11 @@ title: CV Roman Yakovenko
 			</div>
 
 			{% include "./cv/_rightExperience.html" %}
+
+		</div>
+
+		<div class="cv-right__container cv-right__container--2col">
+			{% include "./cv/_rightSkills.html" %}
 		</div>
 
 		<div class="cv-right__container">
@@ -93,9 +98,6 @@ title: CV Roman Yakovenko
 			{% include "./cv/_rightEducation.html" %}
 		</div>
 
-		<div class="cv-footer">
-			{% include "./cv/_rightSkills.html" %}
-		</div>
 
 	</div>
 

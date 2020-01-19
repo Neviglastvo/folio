@@ -2,64 +2,36 @@
 	<div class="works__slider swiper-wrapper">
 
 		{% for item in data.works %}
-		<div class="works__item swiper-slide">
-			<div class="works__box">
-				<div class="works__title">{{item.title}}</div>
-				<!-- <div class="works__subtitle">{{item.descr}}</div> -->
-				<a href="{{item.link}}" target="blank" class="works__link">open</a>
-			</div>
+		<div class="works__item swiper-slide js-work-item">
+			<div class="works__item-container js-tilt">
+				<div class="works__box">
+					<div class="works__title-box">
+						<div class="works__subtitle">{{item.descr}}</div>
+						<div class="works__title">{{item.title}}</div>
 
-			<div class="works__logo">
-				<img class="works__logo-img" src="./img/works/svg/{{item.logo}}.svg"></img>
-			</div>
+					</div>
+					<a href="{{item.link}}" target="_blank" class="works__link">discover</a>
+				</div>
 
-			<div class="works__img-container">
-				{% for i in item.img %}
-				<div class="works__img-parallax"
-				style="background-image:url(./img/works/{{i.imgItem}}.jpg)"
-				data-swiper-parallax-x="33.3333333%"></div>
-				{% endfor %}
+				<div class="works__logo js-work-logo">
+					<img class="works__logo-img" src="./img/works/svg/{{item.logo}}.svg"></img>
+				</div>
 
+				<div class="works__img-container">
+					<div class="works__img-preloader swiper-lazy-preloader" style="background-color: {{item.accent}}"></div>
+					{% for i in item.img %}
+					<div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/{{i.imgItem}}.jpg" data-swiper-parallax="33%" data-swiper-parallax-duration="0"></div>
+					{% endfor %}
+
+				</div>
 			</div>
 		</div>
 		{% endfor %}
 
 	</div>
+	<div class="works__scrollbar js-slider-works-scrollbar"></div>
+	<div class="works__arrow works__arrow--prev js-slider-works-button-prev">{{icon.i('arrowBig')}}</div>
+	<div class="works__arrow works__arrow--next js-slider-works-button-next">{{icon.i('arrowBig')}}</div>
+	<!-- <div class="works__pagination js-slider-works-pagination"></div> -->
 </div>
 
-
-<!-- <div class="layout__item">
-
-	<div class="layout__item-bg">
-		<div class="layout__item-bg-item layout__item-bg-item--1"></div>
-		<div class="layout__item-bg-item layout__item-bg-item--2"></div>
-		<div class="layout__item-bg-item layout__item-bg-item--3"></div>
-	</div>
-
-	<div class="layout__item-title">Works</div>
-	<div class="layout__item-subtitle">see best of my works</div>
-
-	<div class="works">
-		{% for item in data.works %}
-		<div class="works__item">
-			<div class="works__box">
-				<div class="works__title">{{item.title}}</div>
-				<div class="works__subtitle">{{item.descr}}</div>
-				<a href="{{item.link}}" target="blank" class="works__link">open in new folder</a>
-			</div>
-			<div class="works__img-container">
-				{% for i in item.img %}
-				<img class="works__img" src="./img/works/{{i.imgItem}}.jpg"></img>
-				{% endfor %}
-
-			</div>
-		</div>
-		{% endfor %}
-
-		<div class="works__more">
-			<div class="works__more-text">load more</div>
-		</div>
-
-	</div>
-
-</div> -->

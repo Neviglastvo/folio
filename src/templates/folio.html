@@ -10,30 +10,41 @@ title: Roman Yakovenko | Frontend Developer
 {# include "./partials/_pet.html" #}
 
 {# include "./partials/_menu.html" #}
-<div class="layout-blur"></div>
+<div class="layout js-blurry">
 
-<div class="layout swiper-container js-slider-layout js-blurry">
+	<!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
+	<!-- <div class="layout__scrollbar js-slider-layout-scrollbar"></div> -->
+	<div class="layout__left">
+		<span>Works</span>
+	</div>
 
-	<div id="jsReflection" class="reflection js-reflection js-reflection-production"></div>
+	<div class="layout__bottom">
+		<div class="layout__box">
+			<div class="layout__subtitle">Frontend developer</div>
+			<div class="layout__title">Roman Yakovenko</div>
+		</div>
+		<div class="layout__socials">
+			<a href="{{data.global.cv.downloadlink}}" class="layout__socials-item layout__socials-item--cv" download>{{icon.i('cv')}}</a>
+			{% for item in data.socials %}
+			<a href="{{item.link}}" class="layout__socials-item">{{icon.i(item.icon)}}</a>
+			{% endfor %}
+		</div>
+	</div>
 
-	<div class="layout__pagination js-slider-layout-pagination"></div>
+	<div class="layout__container">
 
-	<div class="layout__container swiper-wrapper">
 
-		<div id="anchorHome" class="layout__item layout__item--hero js-hero swiper-slide" data-backword="hi, i am" data-title="HOME" >
+		<div id="anchorHome" class="layout__item layout__item--hero" data-backword="hi, i am" data-title="HOME" >
 			{% include "./partials/_0hero.html" %}
 		</div>
 
-		<div id="anchorWorks"  class="layout__item layout__item--works swiper-slide" data-backword="works" data-title="works">
+		<div id="anchorWorks"  class="layout__item layout__item--works" data-backword="works" data-title="works">
 			{% include "./partials/_2works.html" %}
 		</div>
 
 	</div>
 
 </div>
-
-
-
 
 
 {% endblock %}
