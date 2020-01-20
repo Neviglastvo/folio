@@ -19,7 +19,7 @@ export default function sliderWorks() {
 			}
 		});
 
-		element.addClass('tilting')
+		element.addClass("tilting");
 	}
 
 	let swiper = new Swiper($(".js-slider-works"), {
@@ -50,7 +50,7 @@ export default function sliderWorks() {
 		},
 		nested: true,
 		slidesPerView: swiperElements,
-		spaceBetween: -1,
+		spaceBetween: 20,
 		speed: 1000,
 		initialSlide: 0,
 		freeMode: true,
@@ -75,8 +75,7 @@ export default function sliderWorks() {
 		},
 		scrollbar: {
 			el: ".js-slider-works-scrollbar",
-			draggable: true,
-			progressbarOpposite: true,
+			draggable: false,
 			snapOnRelease: true
 
 			// hide: true,
@@ -92,21 +91,21 @@ export default function sliderWorks() {
 		// }
 	});
 
-	swiper.on("progress", function() {
-		let currentElement = $(this.slides[this.activeIndex]);
-
-		if (currentElement.hasClass("active")) {
-			currentElement.removeClass("active");
-			console.log("not active ");
-		}
-	});
+	// swiper.on("progress", function() {
+	// 	let currentElement = $(this.slides[this.activeIndex]);
+	// });
 
 	swiper.on("transitionStart", function(event) {
 		console.log("transitionStart");
 
 		let currentElement = $(this.slides[this.activeIndex]);
 
-		if (currentElement.hasClass('tilting')) {
+		if (currentElement.hasClass("active")) {
+			currentElement.removeClass("active");
+			console.log("not active ");
+		}
+
+		if (currentElement.hasClass("tilting")) {
 			currentElement[0].universalTilt.destroy();
 		}
 	});
