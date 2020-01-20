@@ -1,37 +1,34 @@
 import Swiper from "swiper";
-import tilt from "tilt.js";
+import UniversalTilt from "universal-tilt.js";
 
 export default function sliderWorks() {
+	let transformDistance = [],
+		swiperElements = 2;
 
-	let sooqa = [],
-		swiperElements = 2,
-		tiltOptions = {
-			glare: true,
-			maxGlare: .2,
-			speed: 500,
-			easing: "ease",
-			maxTilt: 3,
-			perspective: 500,
-		};
+	function tiltElements(element) {
+		console.log(element);
+		element.universalTilt({
+			settings: {
+				base: "window",
+				max: 5,
+				perspective: 1000,
+				speed: 700,
+				shine: true,
+				"shine-opacity": 0.1,
+				reverse: true
+			}
+		});
 
+		element.addClass('tilting')
+	}
 
-	// function getValues(el) {
-	// 	var matrix = el
-	// 		.css("transform")
-	// 		.replace(/^\D+/g, "")
-	// 		.split(",");
-	// 	var x = matrix[12] || matrix[4];
-	// 	// var y = matrix[13] || matrix[5];
-	// 	return x;
-	// }
-
-
-
-	let swiper = new Swiper($('.js-slider-works'), {
+	let swiper = new Swiper($(".js-slider-works"), {
 		on: {
 			init: function() {
-				$(".swiper-slide-active").addClass("active");
-				// let elActive = $(".swiper-slide.active");
+				let elActive = $(this.slides[this.activeIndex]);
+				elActive.addClass("active");
+
+				tiltElements(elActive);
 
 				// $.each(this.slides, function(index, element) {
 				// 	let el = $(this).find(".js-parallax");
@@ -43,17 +40,17 @@ export default function sliderWorks() {
 				// 	"transform",
 				// 	`translateX(${-elWidthPercent * indexQ}%)`
 				// );
-				// 	sooqa.push(getValues(el));
+				// 	transformDistance.push(getValues(el));
 				// });
 
-				// console.log(sooqa);
+				// console.log(transformDistance);
 
 				// console.log(getMethods(this));
-			},
+			}
 		},
 		nested: true,
 		slidesPerView: swiperElements,
-		spaceBetween: 15,
+		spaceBetween: -1,
 		speed: 1000,
 		initialSlide: 0,
 		freeMode: true,
@@ -62,7 +59,7 @@ export default function sliderWorks() {
 		preloadImages: false,
 		lazy: true,
 		loadPrevNext: true,
-		loadPrevNextAmount: 4,
+		loadPrevNextAmount: 3,
 		loadOnTransitionStart: true,
 		freeModeSticky: true,
 		centeredSlides: true,
@@ -95,32 +92,40 @@ export default function sliderWorks() {
 		// }
 	});
 
-	swiper.on("transitionStart", function(event) {
-		let elActive = $(".swiper-slide.active");
+	swiper.on("progress", function() {
+		let currentElement = $(this.slides[this.activeIndex]);
 
-		// elActive.tilt.reset.call(elActive);
-		// elActive.tilt.destroy.call(elActive);
-		elActive.removeClass("active");
+		if (currentElement.hasClass("active")) {
+			currentElement.removeClass("active");
+			console.log("not active ");
+		}
+	});
+
+	swiper.on("transitionStart", function(event) {
+		console.log("transitionStart");
+
+		let currentElement = $(this.slides[this.activeIndex]);
+
+		if (currentElement.hasClass('tilting')) {
+			currentElement[0].universalTilt.destroy();
+		}
 	});
 
 	swiper.on("transitionEnd", function(event) {
-		this.lazy.loadInSlide(this.activeIndex-1);
+		console.log("transitionEnd");
+		let currentElement = $(this.slides[this.activeIndex]);
+		this.lazy.loadInSlide(this.activeIndex - 1);
 
-		let el = $(".swiper-slide-active");
-		el.addClass("active")
-		let elActive = $(".swiper-slide.active")
-
-
+		$(currentElement).addClass("active");
+		tiltElements(currentElement);
 	});
 
 	swiper.on("lazyImageReady", function(event, element) {
-		$(element).parents('.js-work-item').find('.js-work-logo').addClass('ready')
+		$(element)
+			.parents(".js-work-item")
+			.find(".js-work-logo")
+			.addClass("ready");
 	});
-
-
-	let tilt = $('.js-tilt').tilt(tiltOptions);
-
-
 
 	// var previousProgress = swiper.progress;
 	// swiper.on("setTranslate", function() {
@@ -146,7 +151,7 @@ export default function sliderWorks() {
 
 	// 	$.each(this.slides, function(i, element) {
 	// 		let el = $(element).find(".js-parallax");
-	// 		let oldValue = sooqa;
+	// 		let oldValue = transformDistance;
 	// 		let progressQ = progress.toFixed(3);
 	// 		console.log(oldValue);
 
@@ -163,5 +168,13 @@ export default function sliderWorks() {
 	// 	});
 	// });
 
-
+	// function getValues(el) {
+	// 	var matrix = el
+	// 		.css("transform")
+	// 		.replace(/^\D+/g, "")
+	// 		.split(",");
+	// 	var x = matrix[12] || matrix[4];
+	// 	// var y = matrix[13] || matrix[5];
+	// 	return x;
+	// }
 }

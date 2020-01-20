@@ -7,7 +7,6 @@ $worksAnimationSpeed: 700
 	display: flex
 	flex-direction: column
 	align-items: center
-	// overflow: hidden
 
 	&__slider
 		width: 100%
@@ -16,23 +15,12 @@ $worksAnimationSpeed: 700
 		counter-reset: list
 		+counter(list, '0', '.works__title-box')
 
-	// &__scrollbar
-	// 	position: absolute
-	// 	left: $globalPadding*1.5
-	// 	right: $globalPadding*1.5
-	// 	height: 6px
-	// 	bottom: 10%
-	// 	background-color: rgba($white, 0.33)
-	// 	.swiper-scrollbar-drag
-	// 		background-color: rgba($white, 1)
-	// 		border-radius: 0
-
 	&__scrollbar
 		position: absolute
-		top: 0
-		right: 0
-		height: 100%
-		width: 10px
+		bottom: $globalPadding
+		right: $globalPadding
+		left: $globalPadding
+		height: 20px
 		background-color: rgba($white, 0.33)
 		.swiper-scrollbar-drag
 			background-color: rgba($white, 1)
@@ -57,10 +45,10 @@ $worksAnimationSpeed: 700
 
 		&--prev
 			left: calc((100% / 10) + #{$globalPadding})
+
 		&.swiper-button-disabled
 			opacity: 0
 			pointer-events: none
-
 
 		svg
 			+cover
@@ -72,15 +60,13 @@ $worksAnimationSpeed: 700
 		height: 100%
 		display: flex
 		opacity: 0.9
+	    transform-style: preserve-3d !important
 
 		&.active
 			opacity: 1
-			transform-style: preserve-3d
+			z-index: 2
 			.works__logo
-				transform: translateZ(20px) scale(1.1)
-				// @include backlight(0, 0, 4vw, 0.75, 45deg, rgba(60,55,106,1) 8.5%, rgba(23,20,69,1) 82.4%, 3s)
-				&.ready
-					transform: translateZ(20px) scale(1.1)
+				transform: translateZ(350px) scale(1.1)
 			.works__img-container
 				+blur(0)
 			.works__img-parallax
@@ -104,7 +90,6 @@ $worksAnimationSpeed: 700
 		align-items: center
 		justify-content: center
 		overflow: hidden
-		transform-style: preserve-3d
 
 
 	&__box
@@ -114,7 +99,7 @@ $worksAnimationSpeed: 700
 		overflow: hidden
 		flex-direction: column
 		align-items: flex-start
-		padding: $globalPadding*1.5 $globalPadding
+		padding: $globalPadding*1.5 0
 
 	&__logo
 		display: flex
@@ -135,17 +120,24 @@ $worksAnimationSpeed: 700
 		min-height: 70px
 
 	&__title-box
+		padding: 0 $globalPadding
+		position: relative
 		width: 100%
 		display: flex
 		flex-direction: row-reverse
 		justify-content: space-between
 		align-items: center
+		mix-blend-mode: screen
+		font-family: $f2
+		color: $black
+		font-weight: 900
+		+after
+			+cover
+			background-color: $white
+			mix-blend-mode: color-burn
 		&:before
 			//slider item counter 'list'
-			// position: absolute
-			// top: $globalPadding*1.5
-			// right: $globalPadding
-			color: $white
+			// color: $white
 			font-size: $globalPadding
 			font-weight: 900
 			line-height: 90px
@@ -158,11 +150,9 @@ $worksAnimationSpeed: 700
 		display: flex
 		align-items: center
 		z-index: 5
-		font-family: $f2
-		font-weight: 700
 		font-size: 60px
 		line-height: 60px
-		color: $white
+		// color: $white
 		text-transform: capitalize
 		+ls(40)
 		+trs($worksAnimationSpeed, transform)
@@ -174,16 +164,15 @@ $worksAnimationSpeed: 700
 		font-family: $f2
 		font-size: 16px
 		line-height: 14px
-		font-weight: 300
 		text-transform: uppercase
 		+ls(200)
 		+trs($worksAnimationSpeed, transform)
 
 	&__link
+		box-sizing: border-box
 		+materialShadow(2,3, $white)
 		margin: auto auto 0 auto
 		position: relative
-		display: flex
 		align-items: center
 		background: none
 		padding: 12px 20px
@@ -191,10 +180,10 @@ $worksAnimationSpeed: 700
 		font-size: 18px
 		font-weight: 700
 		text-transform: uppercase
-		mix-blend-mode: screen
 		opacity: 0
-		transform: translateZ(50px)
-		// +ls(300)
+		transform: translateZ(100px)
+		+ls(300)
+		mix-blend-mode: screen
 		+after
 			+cover
 			background-color: $white
@@ -240,6 +229,10 @@ $worksAnimationSpeed: 700
 			pointer-events: none
 			z-index: 0
 			+trs($worksAnimationSpeed)
+
+	.shine
+		pointer-events: none
+		+trs($worksAnimationSpeed)
 
 @keyframes(worksPreloader)
 	0%
