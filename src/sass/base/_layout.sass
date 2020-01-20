@@ -1,3 +1,6 @@
+$padW: 5vw
+$padH: 8vh
+
 .layout
 	position: relative
 	width: 100vw
@@ -5,11 +8,13 @@
 	display: flex
 	overflow: hidden
 	flex-direction: column
-	padding: 0 0 $globalPadding $globalPadding
+	padding: 0 0 0 $padW
 	+blur(0)
 	+trs($globalAnimSpeed, filter)
-	// +backlight(0, 0, 100%, 1, 45deg, rgba(60,55,106,1) 8.5%, rgba(23,20,69,1) 82.4%, 10s)
 	background-color: $white
+	+r(768)
+		padding: $padH*2 0 0 0
+
 	&.blurry
 		+blur(8)
 
@@ -25,25 +30,20 @@
 		height: 100%
 		display: flex
 		z-index: 0
+		overflow: hidden
 
 		&.swiper-slide-active
 
 		&--hero
-			padding: 0
-			+cover
-			transform: translateX($globalPadding)
-			display: none
 
 		&--works
 
 	&__pagination
-		z-index: z('menu')
-		+pa((($globalPadding/2)+15)!important, $globalPadding!important, auto!important, auto!important)
-		position: fixed
 		width: auto
 		display: flex
+		flex-direction: row-reverse
 		align-items: center
-		display: none
+		+center('both', -90)
 
 
 	&__pagination-item
@@ -59,32 +59,24 @@
 		font-family: $f4
 		font-weight: 500
 		text-transform: uppercase
+		color: $black
 		user-select: none
 		margin: 0
 		margin-right: 40px
-		opacity: 0.5
+		opacity: 0.75
 		+tr
-		+after(n)
-			margin-left: 5px
-			width: 40px
-			height: 2px
-			background-color: #FFF
-		+before(n)
-			margin-right: 5px
-			width: 40px
-			height: 2px
-			background-color: #FFF
+
 		&:last-child
-			margin-right: 0 !important
 			+after('none')
 		&:first-child
+			margin-left: 40px
 			+before('none')
 
 		+h
 			opacity: 1
+			cursor: pointer
 
 		&.active
-			color: $pink
 			opacity: 1
 
 	&__slider
@@ -102,18 +94,22 @@
 		width: 100%
 
 	&__left
-		position: absolute
+		z-index: 9999999
+
+		position: fixed
 		left: 0
 		top: 0
-		bottom: $globalPadding
-		width: $globalPadding
+		bottom: 0
+		width: $padW
 		display: flex
 		flex-direction: column
 		align-items: center
 		justify-content: center
-		pointer-events: none
 		background-color: rgba($white, 1)
-		z-index: 100
+		+r(768)
+			bottom: 0
+			width: $padW*2
+			display: none
 		span
 			+rotate(-90)
 			color: $black
@@ -124,13 +120,17 @@
 		bottom: 0
 		left: 0
 		width: 100%
-		height: $globalPadding
-		padding-left: $globalPadding
-		padding-right: 40px
+		height: $padH
+		padding-left: $padW
+		padding-right: 20px
 		display: flex
 		align-items: center
 		justify-content: space-between
 		z-index: 101
+		+r(768)
+			bottom: auto
+			top: 0
+			height: $padH*2
 
 
 	&__box
@@ -143,29 +143,54 @@
 		color: $black
 
 	&__title
-		font-size: vw(1920, 60px)
-		line-height: vw(1920, 58px)
+		font-size: $padH/1.5
+		line-height: $padH/1.5
 		margin-bottom: -10px
 		font-family: $f4
 		+textBorder(1px, $black)
 
 	&__socials
+		height: 100%
+		padding: 5px 0
 		display: flex
 		align-items: center
 		justify-content: center
+		+r(768)
+			position: absolute
+			left: 0
+			top: 0
+			width: $padW*2
+			height: 100%
+			flex-direction: column
+			display: none
 
 	&__socials-item
+		height: 100%
+		display: flex
+		align-items: center
+		justify-content: center
 		margin-left: 30px
 		opacity: 0.75
 		+tr
 		&:first-child
 			margin-left: 0
+			+r(768)
+				margin-top: 0
 		+h
 			opacity: 1
+		+r(768)
+			width: 100%
+			height: auto
+
+
 		svg
-			width: 30px
-			height: 30px
+			width: auto
+			max-width: 30px
+			height: 100%
 			fill: $black
+			+r(768)
+				max-height: 30px
+				width: 100%
 
 		&--cv
 

@@ -1,20 +1,23 @@
 .hamburger
-    top: ($globalPadding/2)
-    left: ($globalPadding/3.5)
+    top: $padH
+    right: $padW
     position: fixed
     justify-content: center
     align-items: center
     z-index: 1000
+    display: none
+    +r(768)
+        display: flex
     +h
         cursor: pointer
         .hamburger__icon
-            @include burger(40px, 5px, 5px, rgba($white, 0.75), 0px, $globalAnimSpeed)
+            @include burger(40px, 5px, 5px, rgba($black, 0.75), 0px, $globalAnimSpeed)
 
     &__icon
-        @include burger(40px, 5px, 5px, rgba($white, 0.5), 0px, $globalAnimSpeed)
+        @include burger(40px, 5px, 5px, rgba($black, 0.5), 0px, $globalAnimSpeed)
 
     &.active
         .hamburger__icon
             @include burger-to-cross
             &:before, &:after
-                background-color: $white
+                background-color: $black

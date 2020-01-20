@@ -1,9 +1,8 @@
+import sliderLayout from './blocks/sliderLayout';
 import sliderWorks from "./blocks/sliderWorks";
 
+sliderLayout()
 sliderWorks();
-
-
-
 
 $(".js-hamburger").on("click", function(e) {
 	e.preventDefault();
@@ -12,12 +11,8 @@ $(".js-hamburger").on("click", function(e) {
 	$(".js-blurry").toggleClass("blurry");
 });
 
-// import sliderLayout from './blocks/sliderLayout';
 // import sliderAbout from './blocks/sliderAbout';
 
-// if ($('.js-slider-layout').length){
-// 	sliderLayout()
-// }
 
 // if ($('.js-slider-about').length){
 // 	sliderAbout()

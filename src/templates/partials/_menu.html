@@ -9,7 +9,7 @@
 
 		<div class="menu__box">
 			<div class="menu__subtitle">Frontend developer</div>
-			<div class="menu__title">Roman <br /> Yakovenko</div>
+			<div class="menu__title">Roman Yakovenko</div>
 		</div>
 
 		<!-- <a data-scroll href="#anchorHome" class="logo">RY</a> -->
@@ -23,7 +23,8 @@
 		<!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
 
 		<div class="menu__socials">
-			<a href="{{data.global.cv.downloadlink}}" class="menu__socials-item menu__socials-item--cv" download>CV</a>
+			<a href="{{data.global.cv.downloadlink}}" class="menu__socials-item menu__socials-item--cv" download>{{icon.i('cv')}}</a>
+
 			{% for item in data.socials %}
 			<a href="{{item.link}}" class="menu__socials-item">{{icon.i(item.icon)}}</a>
 			{% endfor %}

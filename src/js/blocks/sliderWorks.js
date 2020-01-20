@@ -6,16 +6,16 @@ export default function sliderWorks() {
 		swiperElements = 2;
 
 	function tiltElements(element) {
-		console.log(element);
+		// console.log(element);
 		element.universalTilt({
 			settings: {
 				base: "window",
 				max: 5,
 				perspective: 1000,
-				speed: 700,
-				shine: true,
-				"shine-opacity": 0.1,
-				reverse: true
+				speed: 300,
+				// shine: true,
+				// "shine-opacity": 0.25,
+				// reverse: true
 			}
 		});
 
@@ -25,10 +25,11 @@ export default function sliderWorks() {
 	let swiper = new Swiper($(".js-slider-works"), {
 		on: {
 			init: function() {
-				let elActive = $(this.slides[this.activeIndex]);
-				elActive.addClass("active");
+				let currentElement = $(this.slides[this.activeIndex]);
+				let currentElementTilt = currentElement.children();
+				currentElement.addClass("active");
 
-				tiltElements(elActive);
+				tiltElements(currentElementTilt);
 
 				// $.each(this.slides, function(index, element) {
 				// 	let el = $(this).find(".js-parallax");
@@ -50,10 +51,13 @@ export default function sliderWorks() {
 		},
 		nested: true,
 		slidesPerView: swiperElements,
-		spaceBetween: 20,
-		speed: 1000,
+		spaceBetween: -1,
+		speed: 500,
 		initialSlide: 0,
-		freeMode: true,
+		freeMode: false,
+		freeModeSticky: true,
+		centeredSlides: true,
+		parallax: true,
 		// grabCursor: true,
 		mousewheel: false,
 		preloadImages: false,
@@ -61,9 +65,6 @@ export default function sliderWorks() {
 		loadPrevNext: true,
 		loadPrevNextAmount: 3,
 		loadOnTransitionStart: true,
-		freeModeSticky: true,
-		centeredSlides: true,
-		parallax: true,
 		pagination: {
 			el: ".js-slider-works-pagination",
 			progressbarOpposite: true,
@@ -75,48 +76,70 @@ export default function sliderWorks() {
 		},
 		scrollbar: {
 			el: ".js-slider-works-scrollbar",
-			draggable: false,
+			draggable: true,
 			snapOnRelease: true
 
 			// hide: true,
-		}
+		},
 
-		// breakpoints: {
-		// 	1024: {
-		// 		slidesPerView: 2,
-		// 	},
-		// 	600: {
-		// 		slidesPerView: 1.25,
-		// 	}
-		// }
+		breakpoints: {
+			768: {
+				slidesPerView: swiperElements
+			},
+			320: {
+				slidesPerView: 1,
+				spaceBetween: 0
+			}
+		}
 	});
 
-	// swiper.on("progress", function() {
-	// 	let currentElement = $(this.slides[this.activeIndex]);
-	// });
-
-	swiper.on("transitionStart", function(event) {
-		console.log("transitionStart");
-
+	swiper.on("progress", function() {
+		let elements = $(this.slides);
+		let elementsTilt = $(this.slides).find('.tilting');
 		let currentElement = $(this.slides[this.activeIndex]);
+		let currentElementTilt = currentElement.children();
 
 		if (currentElement.hasClass("active")) {
-			currentElement.removeClass("active");
-			console.log("not active ");
+
+			$(elements).each(function(index, el) {
+				$(el).removeClass("active");
+			});
+
 		}
 
-		if (currentElement.hasClass("tilting")) {
-			currentElement[0].universalTilt.destroy();
-		}
+		$(elementsTilt).each(function(index, el) {
+			$(el).removeClass("tilting");
+			elementsTilt[0].universalTilt.destroy();
+		});
+
+	});
+
+	swiper.on("transitionStart", function(event) {
+
+		// let elements = $(this.slides);
+		// let elementsTilt = $(this.slides).children();
+		// let currentElement = $(this.slides[this.activeIndex]);
+		// let currentElementTilt = currentElement.children();
+
+		// if (currentElement.hasClass("active")) {
+		// 	currentElement.removeClass("active");
+		// }
+
+		// if (elementsTilt.hasClass("tilting")) {
+		// 	console.log('asd');
+		// 	currentElementTilt[0].universalTilt.destroy();
+		// }
 	});
 
 	swiper.on("transitionEnd", function(event) {
 		console.log("transitionEnd");
-		let currentElement = $(this.slides[this.activeIndex]);
 		this.lazy.loadInSlide(this.activeIndex - 1);
 
+		let currentElement = $(this.slides[this.activeIndex]);
+		let currentElementTilt = currentElement.children();
+
 		$(currentElement).addClass("active");
-		tiltElements(currentElement);
+		tiltElements(currentElementTilt);
 	});
 
 	swiper.on("lazyImageReady", function(event, element) {

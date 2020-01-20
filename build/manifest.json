@@ -1,0 +1,8 @@
+{
+  "short_name": "R.Y. FD Folio",
+  "name": "Roman Yakovenko Frontend Developer Folio",
+  "start_url": "/folio.html",
+  "background_color": "#f00",
+  "display": "minimal-ui",
+  "theme_color": "#0f0"
+}
