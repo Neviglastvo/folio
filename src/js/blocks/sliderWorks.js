@@ -9,7 +9,8 @@ export default function sliderWorks() {
 		// console.log(element);
 		element.universalTilt({
 			settings: {
-				base: "window",
+				// base: "window",
+				scale: 1.05,
 				max: 5,
 				perspective: 1000,
 				speed: 300,
@@ -52,10 +53,10 @@ export default function sliderWorks() {
 		nested: true,
 		slidesPerView: swiperElements,
 		spaceBetween: -1,
-		speed: 500,
+		speed: 700,
 		initialSlide: 0,
-		freeMode: false,
-		freeModeSticky: true,
+		// freeMode: false,
+		// freeModeSticky: true,
 		centeredSlides: true,
 		parallax: true,
 		// grabCursor: true,
@@ -97,38 +98,21 @@ export default function sliderWorks() {
 		let elements = $(this.slides);
 		let elementsTilt = $(this.slides).find('.tilting');
 		let currentElement = $(this.slides[this.activeIndex]);
-		let currentElementTilt = currentElement.children();
+		// console.log('progress');
 
 		if (currentElement.hasClass("active")) {
-
+			// console.log('currentElement');
 			$(elements).each(function(index, el) {
 				$(el).removeClass("active");
 			});
-
 		}
 
 		$(elementsTilt).each(function(index, el) {
+			// console.log('elementsTilt');
 			$(el).removeClass("tilting");
 			elementsTilt[0].universalTilt.destroy();
 		});
 
-	});
-
-	swiper.on("transitionStart", function(event) {
-
-		// let elements = $(this.slides);
-		// let elementsTilt = $(this.slides).children();
-		// let currentElement = $(this.slides[this.activeIndex]);
-		// let currentElementTilt = currentElement.children();
-
-		// if (currentElement.hasClass("active")) {
-		// 	currentElement.removeClass("active");
-		// }
-
-		// if (elementsTilt.hasClass("tilting")) {
-		// 	console.log('asd');
-		// 	currentElementTilt[0].universalTilt.destroy();
-		// }
 	});
 
 	swiper.on("transitionEnd", function(event) {

@@ -7,47 +7,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#fff" />
     <meta name="format-detection" content="telephone=no" />
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" media="all" href="css/app.css" />
     </link>
   </head>
   <body>
     <!-- BEGIN content -->
-    <div class="layout js-blurry">
-      <!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
-      <!-- <div class="layout__scrollbar js-slider-layout-scrollbar"></div> -->
-      <div class="layout__left">
-        <span>Works</span>
-      </div>
-      <div class="layout__bottom">
-        <div class="layout__box">
-          <div class="layout__subtitle">Frontend developer</div>
-          <div class="layout__title">Roman Yakovenko</div>
+    <div class="hamburger js-hamburger">
+      <span class="hamburger__icon"></span>
+    </div>
+    <div class="menu js-nav-mobile">
+      <div class="menu__container">
+        <div class="menu__box">
+          <div class="menu__subtitle">Frontend developer</div>
+          <div class="menu__title">Roman Yakovenko</div>
         </div>
-        <div class="layout__socials">
-          <a href="./CV Roman Yakovenko.pdf" class="layout__socials-item layout__socials-item--cv" download>
+        <!-- <a data-scroll href="#anchorHome" class="logo">RY</a> -->
+        <!-- <div class="nav">
+			<a data-scroll href="#anchorHome" class="nav__item">Home</a>
+			<a data-scroll href="#anchorAbout" class="nav__item">About</a>
+			<a data-scroll href="#anchorWorks" class="nav__item">Works</a>
+			<a data-scroll href="#anchorContacts" class="nav__item">Contacts</a>
+		</div> -->
+        <!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
+        <div class="menu__socials">
+          <a href="./CV Roman Yakovenko.pdf" class="menu__socials-item menu__socials-item--cv" download>
             <svg class="svg svg-cv">
               <use xlink:href="img/sprite.svg#svg-cv"></use>
             </svg>
           </a>
-          <a href="https://t.me/Nevejestvo" class="layout__socials-item">
+          <a href="https://t.me/Nevejestvo" class="menu__socials-item">
             <svg class="svg svg-telegram">
               <use xlink:href="img/sprite.svg#svg-telegram"></use>
             </svg>
           </a>
-          <a href="https://www.linkedin.com/in/nevejestvo/" class="layout__socials-item">
+          <a href="https://www.linkedin.com/in/nevejestvo/" class="menu__socials-item">
             <svg class="svg svg-linkedin">
               <use xlink:href="img/sprite.svg#svg-linkedin"></use>
             </svg>
           </a>
-          <a href="https://github.com/ParadiseSeeker" class="layout__socials-item">
+          <a href="https://github.com/ParadiseSeeker" class="menu__socials-item">
             <svg class="svg svg-github">
               <use xlink:href="img/sprite.svg#svg-github"></use>
             </svg>
           </a>
         </div>
       </div>
-      <div class="layout__container">
-        <div id="anchorHome" class="layout__item layout__item--hero" data-backword="hi, i am" data-title="HOME">
+    </div>
+    <div class="layout js-blurry swiper-container js-slider-layout">
+      <div class="layout__left">
+        <!-- <span>Works</span> -->
+        <div class="layout__pagination js-slider-layout-pagination"></div>
+      </div>
+      <!-- <div class="layout__bottom">
+		<div class="layout__scrollbar js-slider-layout-scrollbar"></div>
+		<div class="layout__box">
+			<div class="layout__subtitle">Frontend developer</div>
+			<div class="layout__title">Roman Yakovenko</div>
+		</div>
+		<div class="layout__socials">
+			<a href="./CV Roman Yakovenko.pdf" class="layout__socials-item layout__socials-item--cv" download>
+<svg class="svg svg-cv"><use xlink:href="img/sprite.svg#svg-cv"></use></svg>
+</a>
+			
+			<a href="https://t.me/Nevejestvo" class="layout__socials-item">
+<svg class="svg svg-telegram"><use xlink:href="img/sprite.svg#svg-telegram"></use></svg>
+</a>
+			
+			<a href="https://www.linkedin.com/in/nevejestvo/" class="layout__socials-item">
+<svg class="svg svg-linkedin"><use xlink:href="img/sprite.svg#svg-linkedin"></use></svg>
+</a>
+			
+			<a href="https://github.com/ParadiseSeeker" class="layout__socials-item">
+<svg class="svg svg-github"><use xlink:href="img/sprite.svg#svg-github"></use></svg>
+</a>
+			
+		</div>
+	</div> -->
+      <div class="layout__container swiper-wrapper">
+        <div class="layout__item layout__item--hero swiper-slide" data-backword="hi, i am" data-title="HOME">
           <div class="hero" data-backwords="Hello">
             <div class="hero__container">
               <div class="hero__subtitle" data-bgwords="Frontend developer">Frontend developer</div>
@@ -81,7 +119,7 @@
             </div>
           </div>
         </div>
-        <div id="anchorWorks" class="layout__item layout__item--works" data-backword="works" data-title="works">
+        <div class="layout__item layout__item--works swiper-slide" data-backword="works" data-title="works">
           <div class="works js-slider-works">
             <div class="works__slider swiper-wrapper">
               <div class="works__item swiper-slide js-work-item">
@@ -212,12 +250,16 @@
               </div>
             </div>
             <div class="works__scrollbar js-slider-works-scrollbar"></div>
-            <!-- <div class="works__arrow works__arrow--prev js-slider-works-button-prev">
-<svg class="svg svg-arrowBig"><use xlink:href="img/sprite.svg#svg-arrowBig"></use></svg>
-</div> -->
-            <!-- <div class="works__arrow works__arrow--next js-slider-works-button-next">
-<svg class="svg svg-arrowBig"><use xlink:href="img/sprite.svg#svg-arrowBig"></use></svg>
-</div> -->
+            <div class="works__arrow works__arrow--prev js-slider-works-button-prev">
+              <svg class="svg svg-arrowBig">
+                <use xlink:href="img/sprite.svg#svg-arrowBig"></use>
+              </svg>
+            </div>
+            <div class="works__arrow works__arrow--next js-slider-works-button-next">
+              <svg class="svg svg-arrowBig">
+                <use xlink:href="img/sprite.svg#svg-arrowBig"></use>
+              </svg>
+            </div>
             <!-- <div class="works__pagination js-slider-works-pagination"></div> -->
           </div>
         </div>

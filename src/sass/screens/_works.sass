@@ -60,19 +60,18 @@ $worksAnimationSpeed: 700
 		height: 100%
 		display: flex
 		opacity: 0.9
-		backface-visibility: hidden
 		&.active
 			opacity: 1
 			z-index: 2
 			.works__item-container
 
 			.works__logo
-				transform: scale(1.2)
+				transform: scale(1.3)
 			.works__img-container
-				+blur(0)
-			.works__img-parallax
-				&:before
+				// +blur(0)
+				&:after
 					background-color: rgba(black, 0.65)
+			.works__img-parallax
 
 			.works__title-box
 			.works__title
@@ -121,7 +120,7 @@ $worksAnimationSpeed: 700
 		min-height: 70px
 
 	&__title-box
-		padding: 0 $padW
+		padding: 5px $padW
 		position: relative
 		width: 100%
 		display: flex
@@ -139,7 +138,7 @@ $worksAnimationSpeed: 700
 		&:before
 			//slider item counter 'list'
 			// color: $white
-			font-size: $padW
+			font-size: 60px
 			font-weight: 900
 			line-height: 90px
 			pointer-events: none
@@ -176,6 +175,7 @@ $worksAnimationSpeed: 700
 		background: none
 		padding: 12px 20px
 		color: $black
+		font-family: $f3
 		font-size: 18px
 		font-weight: 700
 		text-transform: uppercase
@@ -197,8 +197,14 @@ $worksAnimationSpeed: 700
 		z-index: -1
 		display: flex
 		overflow: hidden
-		+blurFilter(3)
+		// +blur(3)
 		+trs($worksAnimationSpeed)
+		+after
+			+cover
+			background-color: rgba(black, 0.85)
+			pointer-events: none
+			z-index: 0
+			+trs($worksAnimationSpeed)
 
 	&__img-preloader
 		+cover
@@ -221,12 +227,6 @@ $worksAnimationSpeed: 700
 		background-size: cover
 		background-repeat: no-repeat
 		background-position: center center
-		+before
-			+cover
-			background-color: rgba(black, 0.85)
-			pointer-events: none
-			z-index: 0
-			+trs($worksAnimationSpeed)
 
 	.shine
 		pointer-events: none
