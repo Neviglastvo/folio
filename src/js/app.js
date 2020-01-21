@@ -19,6 +19,15 @@ $(".js-hamburger").on("click", function(e) {
 // }
 
 
+//bg
+import bg from './bg/main';
+
+$(document).ready(function() {
+	if ($('.js-bg').length) {
+		bg()
+	}
+});
+
 //webgltest
 // import reflection from './reflection/main';
 

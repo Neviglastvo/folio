@@ -12,11 +12,21 @@ $padH: 8vh
 	+blur(0)
 	+trs($globalAnimSpeed, filter)
 	background-color: $white
+
 	+r(768)
 		padding: $padH*2 0 0 0
 
 	&.blurry
 		+blur(8)
+
+	&__bg
+		position: fixed
+		top: 0
+		left: 0
+		height: 100vh
+		width: 100%
+		svg
+			+cover
 
 	&__container
 		display: flex

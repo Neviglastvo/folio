@@ -4,6 +4,7 @@
 	display: flex
 	padding: $globalPadding
 	z-index: 3
+	mix-blend-mode: color-burn
 
 	&__container
 		padding-left: 2vw
@@ -22,8 +23,8 @@
 		line-height: vw(1920, 110px)
 		font-weight: 500
 		user-select: none
-		// text-shadow: 10px 30px 100px rgba(#000, 0.75)
 		+textBorder(2px, $black)
+		mix-blend-mode: color-burn
 
 	&__subtitle
 		user-select: none
@@ -32,7 +33,6 @@
 		font-family: $f4
 		font-size: 22px
 		font-weight: 500
-		// text-shadow: 10px 30px 80px rgba(#000, 0.75)
 
 	&__social
 		position: absolute

@@ -65,6 +65,7 @@ export default function sliderWorks() {
 		loadPrevNext: true,
 		// loadPrevNextAmount: swiperElements,
 		loadOnTransitionStart: true,
+		resistanceRatio: 0.5,
 		pagination: {
 			el: ".js-slider-works-pagination",
 			progressbarOpposite: true,

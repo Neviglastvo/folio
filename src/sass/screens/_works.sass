@@ -50,11 +50,11 @@ $worksAnimationSpeed: 700
 			cursor: pointer
 			opacity: 1
 		&--next
-			right: calc((100% / 10) + #{$padW})
+			right: calc((100% / 5) + #{$padW})
 			+rotate(180)
 
 		&--prev
-			left: calc((100% / 10) + #{$padW})
+			left: calc((100% / 5) + #{$padW})
 
 		&.swiper-button-disabled
 			opacity: 0
@@ -129,7 +129,7 @@ $worksAnimationSpeed: 700
 		min-height: 70px
 
 	&__title-box
-		padding: 5px $padW
+		padding: 5px $padW/2
 		position: relative
 		width: 100%
 		display: flex
