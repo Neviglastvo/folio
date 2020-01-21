@@ -3,19 +3,18 @@ import UniversalTilt from "universal-tilt.js";
 
 export default function sliderWorks() {
 	let transformDistance = [],
-		swiperElements = 2;
+		swiperElements = 2.5;
 
 	function tiltElements(element) {
 		// console.log(element);
 		element.universalTilt({
 			settings: {
 				// base: "window",
-				scale: 1.05,
 				max: 5,
 				perspective: 1000,
 				speed: 300,
-				// shine: true,
-				// "shine-opacity": 0.25,
+				shine: true,
+				"shine-opacity": 0.25,
 				// reverse: true
 			}
 		});
@@ -64,7 +63,7 @@ export default function sliderWorks() {
 		preloadImages: false,
 		lazy: true,
 		loadPrevNext: true,
-		loadPrevNextAmount: 3,
+		// loadPrevNextAmount: swiperElements,
 		loadOnTransitionStart: true,
 		pagination: {
 			el: ".js-slider-works-pagination",
@@ -98,17 +97,14 @@ export default function sliderWorks() {
 		let elements = $(this.slides);
 		let elementsTilt = $(this.slides).find('.tilting');
 		let currentElement = $(this.slides[this.activeIndex]);
-		// console.log('progress');
 
 		if (currentElement.hasClass("active")) {
-			// console.log('currentElement');
 			$(elements).each(function(index, el) {
 				$(el).removeClass("active");
 			});
 		}
 
 		$(elementsTilt).each(function(index, el) {
-			// console.log('elementsTilt');
 			$(el).removeClass("tilting");
 			elementsTilt[0].universalTilt.destroy();
 		});
@@ -118,6 +114,7 @@ export default function sliderWorks() {
 	swiper.on("transitionEnd", function(event) {
 		console.log("transitionEnd");
 		this.lazy.loadInSlide(this.activeIndex - 1);
+		this.lazy.loadInSlide(this.activeIndex + 1);
 
 		let currentElement = $(this.slides[this.activeIndex]);
 		let currentElementTilt = currentElement.children();

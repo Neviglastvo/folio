@@ -4,6 +4,9 @@ export default function sliderLayout() {
 
 	var swiper = new Swiper('.js-slider-layout', {
 		nested: true,
+		hashNavigation: {
+			watchState: true
+		},
 		slidesPerView: 1,
 		direction: 'vertical',
 		spaceBetween: 0,
@@ -11,7 +14,7 @@ export default function sliderLayout() {
 		roundLengths: true,
 		speed: 700,
 		loop: false,
-		// simulateTouch: false,
+		simulateTouch: false,
 		centeredSlides: true,
 		mousewheel: true,
 		// parallax:true,
@@ -20,7 +23,7 @@ export default function sliderLayout() {
 			clickable: true,
 			bulletActiveClass: 'active',
 			type: 'bullets',
-			direction: 'horizontal',
+			direction: 'vertical',
 			renderBullet: function(index, className) {
 				let slideTitle = this.slides[index].dataset.title;
 				let arr = [...slideTitle];

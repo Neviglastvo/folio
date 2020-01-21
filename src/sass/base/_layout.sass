@@ -94,26 +94,27 @@ $padH: 8vh
 		width: 100%
 
 	&__left
-		z-index: 9999999
-
 		position: fixed
 		left: 0
 		top: 0
 		bottom: 0
 		width: $padW
+		max-width: $padW
 		display: flex
 		flex-direction: column
 		align-items: center
 		justify-content: center
-		background-color: rgba($white, 1)
 		+r(768)
 			bottom: 0
 			width: $padW*2
 			display: none
-		span
-			+rotate(-90)
-			color: $black
-			font-size: ($globalPadding/2)
+
+		.logo
+			position: absolute
+			top: 0
+			width: 100%
+			left: 0
+			right: 0
 
 	&__bottom
 		position: absolute
