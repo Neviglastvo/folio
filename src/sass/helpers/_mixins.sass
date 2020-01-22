@@ -179,10 +179,10 @@
   background: $color1
   background: linear-gradient(to $direction, $color1 0%, $color2 100%)
 
-=counter($name: list, $content: '', $selector: '> *', $type: decimal)
+=counter($selectorType: 'before', $name: list, $content: '', $selector: '> *', $type: decimal)
   counter-reset: $name
   #{$selector}
-    &:before
+    &::#{$selectorType}
       content: $content counter($name, $type)
       counter-increment: $name
       @content

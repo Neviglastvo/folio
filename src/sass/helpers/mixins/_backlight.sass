@@ -1,4 +1,4 @@
-// +backlight(0, 5vw, 5vw, 0.75, #0fffc1, #7e0fff, 10s)
+// +backlight(0, 5vw, 5vw, 0.75, 0, #0fffc1, #7e0fff, 10s)
 @mixin backlight($x, $y, $spread, $size, $deg, $colorA, $colorB, $duration)
 	+before
 		position: absolute
@@ -6,13 +6,13 @@
 		left: $x
 		right: 0
 		z-index: -1
-		height: 100%
 		width: 100%
+		height: 100%
 		margin: 0 auto
 		transform: scale($size)
 		filter: blur($spread)
-		background: linear-gradient($deg, $colorA, $colorB)
-		background-size: 200% 200%
+		background: linear-gradient($deg+deg, $colorA, $colorB)
+		background-size: $size*2 $size*2
 		animation: animateGlow $duration ease infinite
 		pointer-events: none
 		background-blend-mode: multiply, multiply

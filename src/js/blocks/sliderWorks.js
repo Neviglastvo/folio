@@ -51,9 +51,11 @@ export default function sliderWorks() {
 		},
 		nested: true,
 		slidesPerView: swiperElements,
-		spaceBetween: -1,
+		spaceBetween: -2,
 		speed: 700,
 		initialSlide: 0,
+		preventInteractionOnTransition: true,
+		slideToClickedSlide: true,
 		// freeMode: false,
 		// freeModeSticky: true,
 		centeredSlides: true,
@@ -82,6 +84,13 @@ export default function sliderWorks() {
 
 			// hide: true,
 		},
+		// effect: 'coverflow',
+		// coverflowEffect: {
+		//   rotate: -30,
+		//   depth: -100,
+		//   stretch: 150,
+		//   slideShadows: false,
+		// },
 
 		breakpoints: {
 			768: {
