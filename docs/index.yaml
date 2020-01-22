@@ -8,12 +8,3 @@ PageList:
   ready: 95
 - file: cv.html
   ready: 100
-- file: reflection.html
-  ready: 50
-- file: app.html
-  ready: 25
-- file: 3D.html
-  ready: 1
-- file: disabled.html
-  ready: 0
-
