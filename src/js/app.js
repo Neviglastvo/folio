@@ -1,7 +1,7 @@
-import sliderLayout from './blocks/sliderLayout';
+// import sliderLayout from './blocks/sliderLayout';
 import sliderWorks from "./blocks/sliderWorks";
 
-sliderLayout()
+// sliderLayout()
 sliderWorks();
 
 $(".js-hamburger").on("click", function(e) {
@@ -20,32 +20,10 @@ $(".js-hamburger").on("click", function(e) {
 
 
 //bg
-import bg from './bg/main';
-
-$(document).ready(function() {
-	if ($('.js-bg').length) {
-		bg()
-	}
-});
-
-//webgltest
-// import reflection from './reflection/main';
+// import bg from './bg/main';
 
 // $(document).ready(function() {
-
-// if ($('.js-reflection').length){
-// 	reflection()
-// }
-
-// });
-
-//webgltest
-// import char from './char/char';
-
-// $(document).ready(function() {
-
-// if ($('.char').length){
-// 	char()
-// }
-
+// 	if ($('.js-bg').length) {
+// 		bg()
+// 	}
 // });

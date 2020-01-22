@@ -10,12 +10,19 @@ title: Roman Yakovenko | Frontend Developer
 {% include "./partials/_menu.html" %}
 <div class="layout js-blurry swiper-container js-slider-layout">
 
-	<div id="jsBg" class="layout__bg js-bg js-production"></div>
+	<!-- <div id="jsBg" class="layout__bg js-bg js-production"></div> -->
 	<!-- <div id="jsBg" class="layout__bg js-bg "></div> -->
 
 	<div class="layout__left">
 		{% include "./partials/_logo.html" %}
-		<div class="layout__pagination js-slider-layout-pagination"></div>
+		<!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
+
+		<div class="layout__left-social">
+				{% for item in data.socialsHero %}
+				<a href="{{item.link}}" class="layout__left-social-item" target="_blank">{{icon.i(item.icon)}}</a>
+				{% endfor %}
+				<a href="{{data.global.cv.downloadlink}}" class="layout__left-social-item layout__left-social-item--cv" download>{{icon.i('cv2')}}</a>
+		</div>
 	</div>
 
 	<div class="layout__container swiper-wrapper">

@@ -1,7 +1,7 @@
 import util from 'gulp-util';
 
 const production = util.env.production || util.env.prod || util.env._.indexOf('build') !== -1 || false;
-const destPath = 'build';
+const destPath = 'docs';
 
 const config = {
     env       : 'development',

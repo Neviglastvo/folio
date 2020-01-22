@@ -7,6 +7,12 @@ $worksAnimationSpeed: 700
 	display: flex
 	flex-direction: column
 	align-items: center
+	transform: translateX(100%)
+	&.swiper-container-initialized
+		animation: worksInit 1.5s cubic-bezier(.65,-0.35,.31,1.32) 2s 1 normal forwards
+
+		.works__scrollbar
+			animation: worksInitScrollbar 0.3s ease-in 3.5s 1 normal forwards
 	&__slider
 		width: 100%
 		height: 100%
@@ -19,12 +25,12 @@ $worksAnimationSpeed: 700
 			+trs($worksAnimationSpeed)
 
 	&__scrollbar
+		transform: translateY(100%)
 		position: absolute
 		bottom: 0
 		right: 0
 		left: $padW
 		height: 20px
-		// background-color: rgba($white, 0.33)
 		.swiper-scrollbar-drag
 			background-color: rgba($black, 0.75)
 			border-radius: 0
@@ -70,10 +76,8 @@ $worksAnimationSpeed: 700
 		&.active
 			z-index: 12
 			.works__item-container
-				transform-style: preserve-3d
 			.works__logo
-				// transform: scale(1.3) translateZ(100px)
-				transform: translateZ(100px)
+				+scale(1.3)
 			.works__img-container
 				opacity: 1
 				&:after
@@ -101,7 +105,6 @@ $worksAnimationSpeed: 700
 		flex-direction: column
 		align-items: center
 		justify-content: center
-		// overflow: hidden
 
 	&__box
 		+cover
@@ -148,8 +151,7 @@ $worksAnimationSpeed: 700
 		align-items: center
 		justify-content: center
 		opacity: 0
-		transform: translateZ(150px)
-		// +trs($worksAnimationSpeed)
+		+trs($worksAnimationSpeed)
 		&.ready
 			opacity: 1
 			+scale(1)
@@ -202,7 +204,7 @@ $worksAnimationSpeed: 700
 		+cover
 		background-color: $pink
 		margin: 0
-		animation: worksPreloader 1s infinite
+		animation: worksPreload 1s infinite
 		+after(none)
 
 	&__img-parallax
@@ -226,11 +228,27 @@ $worksAnimationSpeed: 700
 		pointer-events: none
 		+trs($worksAnimationSpeed)
 
-@keyframes(worksPreloader)
+
+
+@keyframes worksPreload
 	0%
 		opacity: 1
 	25%
 		opacity: 0.5
 	100%
 		opacity: 1
+
+@keyframes worksInit
+
+	0%
+		transform: translateX(100%)
+	100%
+		transform: translateX(0%)
+
+@keyframes worksInitScrollbar
+
+	0%
+		transform: translateY(100%)
+	100%
+		transform: translateY(0%)
 
