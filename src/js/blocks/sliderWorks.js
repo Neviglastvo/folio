@@ -6,14 +6,14 @@ export default function sliderWorks() {
 		swiperElements = 2.5;
 
 	function tiltElements(element) {
-		// console.log(element);
+
 		element.universalTilt({
 			settings: {
 				// base: "window",
-				max: 5,
+				max: 7,
 				perspective: 1000,
-				speed: 300,
-				shine: true,
+				speed: 1500,
+				shine: false,
 				"shine-opacity": 0.25,
 				// reverse: true
 			}
@@ -30,42 +30,21 @@ export default function sliderWorks() {
 				currentElement.addClass("active");
 
 				tiltElements(currentElementTilt);
-
-				// $.each(this.slides, function(index, element) {
-				// 	let el = $(this).find(".js-parallax");
-				// 	let elWidthPercent = 100 / swiperElements;
-				// 	let indexQ = index - 1;
-				// 	let elWidth = element.offsetWidth;
-				// el.css('transform', `translateX(${-elWidth + (indexQ * elWidth)}px)`);
-				// el.css(
-				// 	"transform",
-				// 	`translateX(${-elWidthPercent * indexQ}%)`
-				// );
-				// 	transformDistance.push(getValues(el));
-				// });
-
-				// console.log(transformDistance);
-
-				// console.log(getMethods(this));
 			}
 		},
-		nested: true,
+		// nested: true,
 		slidesPerView: swiperElements,
-		spaceBetween: -2,
+		spaceBetween: -1,
 		speed: 700,
 		initialSlide: 0,
 		preventInteractionOnTransition: true,
 		slideToClickedSlide: true,
-		// freeMode: false,
-		// freeModeSticky: true,
 		centeredSlides: true,
 		parallax: true,
-		// grabCursor: true,
 		mousewheel: false,
 		preloadImages: false,
 		lazy: true,
-		loadPrevNext: true,
-		// loadPrevNextAmount: swiperElements,
+		loadPrevNext: false,
 		loadOnTransitionStart: true,
 		resistanceRatio: 0.5,
 		pagination: {
@@ -81,17 +60,7 @@ export default function sliderWorks() {
 			el: ".js-slider-works-scrollbar",
 			draggable: true,
 			snapOnRelease: true
-
-			// hide: true,
 		},
-		// effect: 'coverflow',
-		// coverflowEffect: {
-		//   rotate: -30,
-		//   depth: -100,
-		//   stretch: 150,
-		//   slideShadows: false,
-		// },
-
 		breakpoints: {
 			768: {
 				slidesPerView: swiperElements
@@ -103,22 +72,46 @@ export default function sliderWorks() {
 		}
 	});
 
-	swiper.on("progress", function() {
-		let elements = $(this.slides);
-		let elementsTilt = $(this.slides).find('.tilting');
-		let currentElement = $(this.slides[this.activeIndex]);
+	var previousProgress = swiper.progress;
 
-		if (currentElement.hasClass("active")) {
-			$(elements).each(function(index, el) {
-				$(el).removeClass("active");
-			});
+	swiper.on("progress", function(event) {
+		let progress = this.progress;
+		let progressOld = event;
+
+		function moveCheck() {
+			let result;
+			var currentProgress = progress;
+
+			if (currentProgress === previousProgress) {
+				result = false; //move distance = 0
+			} else {
+				result = true; //move distance > 0
+			}
+			previousProgress = currentProgress;
+
+			return result;
 		}
 
-		$(elementsTilt).each(function(index, el) {
-			$(el).removeClass("tilting");
-			elementsTilt[0].universalTilt.destroy();
-		});
+		if (moveCheck()) {
 
+			let elements = $(this.slides);
+			let elementsTilt = $(this.slides).find('.tilting');
+			let currentElement = $(this.slides[this.activeIndex]);
+
+			if (currentElement.hasClass("active")) {
+				$(elements).each(function(index, el) {
+					$(el).removeClass("active");
+				});
+			}
+
+			$(elementsTilt).each(function(index, el) {
+				$(el).removeClass("tilting");
+				$(el)[0].universalTilt.destroy();
+			});
+
+		} else {
+
+		}
 	});
 
 	swiper.on("transitionEnd", function(event) {
@@ -140,54 +133,4 @@ export default function sliderWorks() {
 			.addClass("ready");
 	});
 
-	// var previousProgress = swiper.progress;
-	// swiper.on("setTranslate", function() {
-	// 	let progress = this.progress;
-	// 	let translate = this.translate;
-	// 	let elWidth = this.wrapperEl.offsetWidth;
-
-	// 	function directionCheck() {
-	// 		let result;
-	// 		var currentProgress = progress;
-
-	// 		if (currentProgress > previousProgress) {
-	// 			result = 1; //right
-	// 		} else {
-	// 			result = -1; //left
-	// 		}
-	// 		previousProgress = currentProgress;
-
-	// 		return result;
-	// 	}
-
-	// 	let direction = directionCheck();
-
-	// 	$.each(this.slides, function(i, element) {
-	// 		let el = $(element).find(".js-parallax");
-	// 		let oldValue = transformDistance;
-	// 		let progressQ = progress.toFixed(3);
-	// 		console.log(oldValue);
-
-	// 		let newValue = `translateX(${parseInt(oldValue[i])  + progressQ * 100 * -1}%)`;
-	// 		console.log(newValue);
-
-	// 		if (direction == -1) {
-	// 			el.css("transform", newValue);
-	// 			console.log(direction);
-	// 		} else if (direction == 1) {
-	// 			el.css('transform', `translateX(${parseInt(oldValue[i])  + progressQ * 100}px)`);
-	// 			console.log(direction);
-	// 		}
-	// 	});
-	// });
-
-	// function getValues(el) {
-	// 	var matrix = el
-	// 		.css("transform")
-	// 		.replace(/^\D+/g, "")
-	// 		.split(",");
-	// 	var x = matrix[12] || matrix[4];
-	// 	// var y = matrix[13] || matrix[5];
-	// 	return x;
-	// }
 }

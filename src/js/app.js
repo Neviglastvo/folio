@@ -11,15 +11,7 @@ $(".js-hamburger").on("click", function(e) {
 	$(".js-blurry").toggleClass("blurry");
 });
 
-// import sliderAbout from './blocks/sliderAbout';
 
-
-// if ($('.js-slider-about').length){
-// 	sliderAbout()
-// }
-
-
-//bg
 // import bg from './bg/main';
 
 // $(document).ready(function() {
