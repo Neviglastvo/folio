@@ -12,21 +12,9 @@ $padH: 8vh
 	+blur(0)
 	+trs($globalAnimSpeed, filter)
 	background-color: $white
-	animation: sooqa 2s
-	+r(768)
-		padding: $padH*2 0 0 0
 
 	&.blurry
 		+blur(8)
-
-	&__bg
-		position: fixed
-		top: 0
-		left: 0
-		height: 100vh
-		width: 100%
-		svg
-			+cover
 
 	&__container
 		display: flex
@@ -41,109 +29,64 @@ $padH: 8vh
 		display: flex
 		z-index: 0
 		overflow: hidden
-		padding: 0 0 0 $padW
-
-		&.swiper-slide-active
-
 		&--hero
 			+cover
 
 		&--works
-			padding-left: 0
-
-	&__pagination
-		width: auto
-		display: flex
-		flex-direction: row-reverse
-		align-items: center
-		+center('both', -90)
 
 
-	&__pagination-item
-		width: 100%
-		height: auto
-		display: flex
-		align-items: center
-		text-align: center
-		font-size: 20px
-		line-height: 20px
-		background-color: transparent
-		border-radius: 0
-		font-family: $f4
-		font-weight: 500
-		text-transform: uppercase
-		color: $white
-		user-select: none
-		margin: 0
-		margin-right: 40px
-		opacity: 0.75
-		+tr
-
-		&:last-child
-			+after('none')
-		&:first-child
-			margin-left: 40px
-			+before('none')
-
-		+h
-			opacity: 1
-			cursor: pointer
-
-		&.active
-			opacity: 1
-
-	&__slider
-		width: 100%
-		display: flex
-		flex-direction: column
-		align-items: center
-		.swiper-pagination-bullets
-			position: relative
-
-	&__slider-wrapper
-		width: 100%
-
-	&__slider-item
-		width: 100%
-
-	&__left
+	&__sidebar
 		z-index: 100
 		position: fixed
 		left: 0
 		top: 0
 		bottom: 0
-		width: 100%
-		max-width: $padW
+		width: $padW
 		display: flex
-		align-items: flex-end
-		padding: 20px
-		justify-content: center
+		flex-direction: column
+		justify-content: space-between
+		align-items: center
 		background-color: rgba($black,0.75)
 		backdrop-filter: blur(5px)
 		+r(768)
-			bottom: 0
-			width: $padW*2
-			display: none
+			position: relative
+			bottom: auto
+			width: 100%
+			height: auto
+			flex-direction: row
 
 		.logo
-			position: absolute
-			top: 0
 			width: 100%
-			left: 0
-			right: 0
+			+r(768)
+				width: $padW*3
+				height: 100%
 
-	&__left-social
+
+	&__sidebar-social
+		width: 100%
+		padding: $padH/3 $padW/4
 		display: flex
 		flex-direction: column
 		align-items: center
+		+r(768)
+			padding: 15px
+			width: auto
+			flex-direction: row
 
-	&__left-social-item
-		width: 40px
-		height: 40px
-		margin-bottom: 20px
+	&__sidebar-social-item
+		width: 100%
+		// max-width: 40px
+		margin-bottom: $padH/3
+		+aspectRatio(1,1)
 		+tr
+		+r(768)
+			width: $padW*2
+			margin-bottom: 0
+			margin-right: $padW/3
 		&:last-child
 			margin-bottom: 0
+			+r(768)
+				margin-right: 0
 		+h
 			svg
 				fill: rgba($white,1)
@@ -154,84 +97,44 @@ $padH: 8vh
 			fill: rgba($white,0.75)
 			+tr
 
-	&__bottom
-		position: absolute
-		bottom: 0
-		left: 0
-		width: 100%
-		height: $padH
-		padding-left: $padW
-		padding-right: 20px
-		display: flex
-		align-items: center
-		justify-content: space-between
-		z-index: 101
-		+r(768)
-			bottom: auto
-			top: 0
-			height: $padH*2
+
+	// &__pagination
+	// 	width: auto
+	// 	display: flex
+	// 	flex-direction: row-reverse
+	// 	align-items: center
+	// 	+center('both', -90)
 
 
-	&__box
-		display: flex
-		flex-direction: column
+	// &__pagination-item
+	// 	width: 100%
+	// 	height: auto
+	// 	display: flex
+	// 	align-items: center
+	// 	text-align: center
+	// 	font-size: 20px
+	// 	line-height: 20px
+	// 	background-color: transparent
+	// 	border-radius: 0
+	// 	font-family: $f4
+	// 	font-weight: 500
+	// 	text-transform: uppercase
+	// 	color: $white
+	// 	user-select: none
+	// 	margin: 0
+	// 	margin-right: 40px
+	// 	opacity: 0.75
+	// 	+tr
 
-	&__subtitle
-		font-size: 16px
-		font-family: $f4
-		color: $black
+	// 	&:last-child
+	// 		+after('none')
+	// 	&:first-child
+	// 		margin-left: 40px
+	// 		+before('none')
 
-	&__title
-		font-size: $padH/1.5
-		line-height: $padH/1.5
-		margin-bottom: -10px
-		font-family: $f4
-		+textBorder(1px, $black)
+	// 	+h
+	// 		opacity: 1
+	// 		cursor: pointer
 
-	&__socials
-		height: 100%
-		padding: 5px 0
-		display: flex
-		align-items: center
-		justify-content: center
-		+r(768)
-			position: absolute
-			left: 0
-			top: 0
-			width: $padW*2
-			height: 100%
-			flex-direction: column
-			display: none
-
-	&__socials-item
-		height: 100%
-		display: flex
-		align-items: center
-		justify-content: center
-		margin-left: 30px
-		opacity: 0.75
-		+tr
-		&:first-child
-			margin-left: 0
-			+r(768)
-				margin-top: 0
-		+h
-			opacity: 1
-		+r(768)
-			width: 100%
-			height: auto
-
-
-		svg
-			width: auto
-			max-width: 30px
-			height: 100%
-			fill: $black
-			+r(768)
-				max-height: 30px
-				width: 100%
-
-		&--cv
-
-
-
+	// 	&.active
+	// 		opacity: 1

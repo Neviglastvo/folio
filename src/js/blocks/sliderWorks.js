@@ -12,7 +12,8 @@ export default function sliderWorks() {
 				// base: "window",
 				max: 7,
 				perspective: 1000,
-				speed: 1500,
+				speed: 1000,
+				// scale: 1.1,
 				shine: false,
 				"shine-opacity": 0.25,
 				// reverse: true
@@ -34,7 +35,6 @@ export default function sliderWorks() {
 		},
 		// nested: true,
 		slidesPerView: swiperElements,
-		spaceBetween: -1,
 		speed: 700,
 		initialSlide: 0,
 		preventInteractionOnTransition: true,
@@ -58,36 +58,32 @@ export default function sliderWorks() {
 		},
 		scrollbar: {
 			el: ".js-slider-works-scrollbar",
-			draggable: true,
+			draggable: false,
 			snapOnRelease: true
 		},
 		breakpoints: {
 			768: {
-				slidesPerView: swiperElements
+				slidesPerView: swiperElements,
+				spaceBetween: 0
 			},
 			320: {
 				slidesPerView: 1,
-				spaceBetween: 0
+				spaceBetween: 15
 			}
 		}
 	});
 
-	var previousProgress = swiper.progress;
+	var oldProgress = swiper.progress;
 
 	swiper.on("progress", function(event) {
 		let progress = this.progress;
-		let progressOld = event;
 
 		function moveCheck() {
 			let result;
-			var currentProgress = progress;
+			var newProgress = progress;
 
-			if (currentProgress === previousProgress) {
-				result = false; //move distance = 0
-			} else {
-				result = true; //move distance > 0
-			}
-			previousProgress = currentProgress;
+			newProgress === oldProgress ? result = false : result = true;
+			oldProgress = newProgress;
 
 			return result;
 		}
@@ -102,14 +98,11 @@ export default function sliderWorks() {
 				$(elements).each(function(index, el) {
 					$(el).removeClass("active");
 				});
+				$(elementsTilt).each(function(index, el) {
+					$(el).removeClass("tilting");
+					$(el)[0].universalTilt.destroy();
+				});
 			}
-
-			$(elementsTilt).each(function(index, el) {
-				$(el).removeClass("tilting");
-				$(el)[0].universalTilt.destroy();
-			});
-
-		} else {
 
 		}
 	});

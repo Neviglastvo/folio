@@ -7,21 +7,21 @@ title: Roman Yakovenko | Frontend Developer
 
 {% import "data/data.html" as data %}
 
-{% include "./partials/_menu.html" %}
+{# include "./partials/_menu.html" #}
 <div class="layout js-blurry swiper-container js-slider-layout">
 
 	<!-- <div id="jsBg" class="layout__bg js-bg js-production"></div> -->
 	<!-- <div id="jsBg" class="layout__bg js-bg "></div> -->
 
-	<div class="layout__left">
+	<div class="layout__sidebar">
 		{% include "./partials/_logo.html" %}
 		<!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
 
-		<div class="layout__left-social">
+		<div class="layout__sidebar-social">
 				{% for item in data.socialsHero %}
-				<a href="{{item.link}}" class="layout__left-social-item" target="_blank">{{icon.i(item.icon)}}</a>
+				<a href="{{item.link}}" class="layout__sidebar-social-item" target="_blank">{{icon.i(item.icon)}}</a>
 				{% endfor %}
-				<a href="{{data.global.cv.downloadlink}}" class="layout__left-social-item layout__left-social-item--cv" download>{{icon.i('cv3')}}</a>
+				<a href="{{data.global.cv.downloadlink}}" class="layout__sidebar-social-item layout__sidebar-social-item--cv" download>{{icon.i('cv3')}}</a>
 		</div>
 	</div>
 

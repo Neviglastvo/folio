@@ -1,24 +1,39 @@
 .logo
-	padding: 24px 10px
-	display: flex
-	align-items: center
-	justify-content: center
-	font-family: $f1
-	font-size: 20px
-	line-height: 40px
-	font-weight: 900
-	color: $pink
+	+aspectRatio(1,1)
 	z-index: 1000
 	user-select: none
 	+tr
 	+h
 		cursor: pointer
 		background-color: rgba($black,0.5)
+
+	&__container
+		width: 100%
+		height: 100%
+		display: flex
+		align-items: center
+		justify-content: center
+		+r(768)
+			padding: 20px
+
+	p
+		font-family: $f1
+		font-size: $padW/3.5
+		line-height: $padW/3.1
+		font-weight: 900
+		color: $pink
+		+r(768)
+			font-size: $padW/1.25
+			line-height: $padW/1.25
+
 	span
-		margin: 0 4px
-		font-size: 32px
-		line-height: 26px
+		margin: 0 2px
+		font-family: $f3
+		font-size: $padW/2.5
+		line-height: $padW/3.3
 		color: $white
 		font-weight: 900
-		font-family: $f3
 		text-transform: uppercase
+		+r(768)
+			font-size: $padW/1.25
+			line-height: $padW/1.25
