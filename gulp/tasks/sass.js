@@ -7,24 +7,26 @@ import autoprefixer from 'autoprefixer';
 // import mqpacker from 'css-mqpacker';
 import config from '../config';
 import csso from 'postcss-csso';
+import plumber from 'gulp-plumber';
+
 
 const isMax = mq => /max-width/.test(mq);
 const isMin = mq => /min-width/.test(mq);
 
 const sortMediaQueries = (a, b) => {
-    A = a.replace(/\D/g, '');
-    B = b.replace(/\D/g, '');
+  A = a.replace(/\D/g, '');
+  B = b.replace(/\D/g, '');
 
-    if (isMax(a) && isMax(b)) {
-        return B - A;
-    } else if (isMin(a) && isMin(b)) {
-        return A - B;
-    } else if (isMax(a) && isMin(b)) {
-        return 1;
-    } else if (isMin(a) && isMax(b)) {
-        return -1;
-    }
+  if (isMax(a) && isMax(b)) {
+    return B - A;
+  } else if (isMin(a) && isMin(b)) {
+    return A - B;
+  } else if (isMax(a) && isMin(b)) {
     return 1;
+  } else if (isMin(a) && isMax(b)) {
+    return -1;
+  }
+  return 1;
 }
 
 const processors = [
@@ -42,12 +44,15 @@ const processors = [
 gulp.task('sass', () => gulp
   .src(config.src.sass + '/*.{sass,scss}')
   .pipe(sourcemaps.init())
+  .pipe(plumber({
+    errorHandler: config.errorHandler
+  }))
   .pipe(sassGlob())
   .pipe(sass({
-      outputStyle: config.production ? 'compact' : 'expanded', // nested, expanded, compact, compressed
-      precision: 5
+    outputStyle: config.production ? 'compact' : 'expanded', // nested, expanded, compact, compressed
+    precision: 5
   }))
-  .on('error', config.errorHandler)
+  // .on('error', config.errorHandler)
   .pipe(postcss(processors))
   .pipe(sourcemaps.write('./'))
   .pipe(gulp.dest(config.dest.css))

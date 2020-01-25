@@ -1,9 +1,9 @@
 import gulp from 'gulp';
-import browseeSync from 'browser-sync';
+import browserSync from 'browser-sync';
 import util from  'gulp-util';
 import config  from '../config';
 
-const server = browseeSync.create();
+const server = browserSync.create();
 
 // in CL 'gulp server --open' to open current project in browser
 // in CL 'gulp server --tunnel siteName' to make project available over http://siteName.localtunnel.me
@@ -27,7 +27,7 @@ gulp.task('server', done => {
     logConnections: false,
     logFileChanges: true,
     open: Boolean(util.env.open),
-    notify: false,
+    notify: true,
     ghostMode: false,
     online: true,
     // online: Boolean(util.env.tunnel),

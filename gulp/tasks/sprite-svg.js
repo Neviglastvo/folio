@@ -11,6 +11,9 @@ import config from '../config';
 
 gulp.task('sprite:svg', () => gulp
   .src(config.src.iconsSvg + '/**/*.svg')
+  .pipe(plumber({
+      errorHandler: config.errorHandler
+  }))
   .pipe(
     gulpcheerio({
       run: function($, file) {
@@ -33,9 +36,6 @@ gulp.task('sprite:svg', () => gulp
       parserOptions: { xmlMode: true }
     })
   )
-  .pipe(plumber({
-      errorHandler: config.errorHandler
-  }))
   .pipe(svgmin({
       js2svg: {
           pretty: true

@@ -94,7 +94,7 @@ export default function sliderWorks() {
 			let elementsTilt = $(this.slides).find('.tilting');
 			let currentElement = $(this.slides[this.activeIndex]);
 
-			if (currentElement.hasClass("active")) {
+			if (currentElement.hasClass("active") || currentElement.hasClass("tilting")) {
 				$(elements).each(function(index, el) {
 					$(el).removeClass("active");
 				});
