@@ -1,11 +1,10 @@
 $padW: 5vw
 $padH: 8vh
 
-
 .layout
 	position: relative
 	width: 100vw
-	height: 100vh
+	height: 100%
 	display: flex
 	overflow: hidden
 	flex-direction: column
@@ -34,7 +33,6 @@ $padH: 8vh
 
 		&--works
 
-
 	&__sidebar
 		z-index: 100
 		position: fixed
@@ -58,9 +56,8 @@ $padH: 8vh
 		.logo
 			width: 100%
 			+r(768)
-				width: $padW*3
+				width: auto
 				height: 100%
-
 
 	&__sidebar-social
 		width: 100%

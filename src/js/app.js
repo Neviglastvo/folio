@@ -1,4 +1,4 @@
-// import sliderLayout from './blocks/sliderLayout';
+import {VHChromeFix} from './libs/VHChromeFix';
 import sliderWorks from "./blocks/sliderWorks";
 
 // sliderLayout()
@@ -11,11 +11,16 @@ $(".js-hamburger").on("click", function(e) {
 	$(".js-blurry").toggleClass("blurry");
 });
 
+var options = [
+  {
+    selector: '.layout',
+    vh: 100,
+  },
+  {
+    selector: 'body',
+    vh: 100,
+  }
+];
 
-// import bg from './bg/main';
+var vhFix = new VHChromeFix(options);
 
-// $(document).ready(function() {
-// 	if ($('.js-bg').length) {
-// 		bg()
-// 	}
-// });

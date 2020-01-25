@@ -2,6 +2,11 @@
 	+aspectRatio(1,1)
 	z-index: 1000
 	user-select: none
+	+r(768)
+		+before(none)
+			display: flex
+			width: auto
+			height: 100%
 	+tr
 	+h
 		cursor: pointer
@@ -14,7 +19,8 @@
 		align-items: center
 		justify-content: center
 		+r(768)
-			padding: 20px
+			padding: 0 20px
+			position: relative
 
 	p
 		font-family: $f1
@@ -23,8 +29,8 @@
 		font-weight: 900
 		color: $pink
 		+r(768)
-			font-size: $padW/1.25
-			line-height: $padW/1.25
+			font-size: $padW*1.75
+			line-height: $padW*1.75
 
 	span
 		margin: 0 2px
@@ -35,5 +41,5 @@
 		font-weight: 900
 		text-transform: uppercase
 		+r(768)
-			font-size: $padW/1.25
-			line-height: $padW/1.25
+			font-size: $padW*2.5
+			line-height: $padW*2.5
