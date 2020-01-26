@@ -127,10 +127,12 @@ export default function sliderWorks() {
 	});
 
 	$('.js-logo').on('click', function() {
-		swiper.slideTo(0, 3000);
+		// let animationSpeed = ((swiper.activeIndex * 100))
+		// console.log(animationSpeed);
+		swiper.slideTo(0, 1500);
 		if (swiper.activeIndex === 0) {
 			console.log(swiper.slides);
-			swiper.slideTo($(swiper.slides).length, 3000);
+			swiper.slideTo($(swiper.slides).length, 1500);
 		}
 	});
 
