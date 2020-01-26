@@ -126,4 +126,12 @@ export default function sliderWorks() {
 			.addClass("ready");
 	});
 
+	$('.js-logo').on('click', function() {
+		swiper.slideTo(0, 3000);
+		if (swiper.activeIndex === 0) {
+			console.log(swiper.slides);
+			swiper.slideTo($(swiper.slides).length, 3000);
+		}
+	});
+
 }

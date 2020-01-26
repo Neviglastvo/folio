@@ -1,7 +1,8 @@
-import {VHChromeFix} from './libs/VHChromeFix';
+import {
+	VHChromeFix
+} from './libs/VHChromeFix';
 import sliderWorks from "./blocks/sliderWorks";
 
-// sliderLayout()
 sliderWorks();
 
 $(".js-hamburger").on("click", function(e) {
@@ -11,16 +12,11 @@ $(".js-hamburger").on("click", function(e) {
 	$(".js-blurry").toggleClass("blurry");
 });
 
-var options = [
-  {
-    selector: '.layout',
-    vh: 100,
-  },
-  {
-    selector: 'body',
-    vh: 100,
-  }
-];
 
-var vhFix = new VHChromeFix(options);
-
+var vhFix = new VHChromeFix({
+	selector: 'body',
+	vh: 100,
+}, {
+	selector: '.layout',
+	vh: 100,
+});
