@@ -6,19 +6,39 @@ export default function sliderWorks() {
 		swiperElements = 2.5;
 
 	function tiltElements(element) {
+		let tiltCfg;
 
-		element.universalTilt({
-			settings: {
-				// base: "window",
-				max: 7,
-				perspective: 1000,
-				speed: 1000,
-				// scale: 1.1,
-				shine: false,
-				"shine-opacity": 0.25,
-				// reverse: true
+		if ($(window).width() >= 767) {
+			console.log($(window).width());
+
+			tiltCfg = {
+				settings: {
+					// base: "window",
+					max: 7,
+					perspective: 1000,
+					speed: 1000,
+					// scale: 1.1,
+					shine: false,
+					"shine-opacity": 0.25,
+					// reverse: true
+				}
 			}
-		});
+		} else {
+			tiltCfg = {
+				settings: {
+					// base: "window",
+					max: 15,
+					perspective: 1000,
+					speed: 2000,
+					// scale: 1.1,
+					shine: false,
+					"shine-opacity": 0.25,
+					reverse: true
+				}
+			}
+		}
+
+		element.universalTilt(tiltCfg);
 
 		element.addClass("tilting");
 	}

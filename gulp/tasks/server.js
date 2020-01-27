@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import browserSync from 'browser-sync';
-import util from  'gulp-util';
-import config  from '../config';
+import util from 'gulp-util';
+import config from '../config';
 
 const server = browserSync.create();
 
@@ -27,12 +27,14 @@ gulp.task('server', done => {
     logConnections: false,
     logFileChanges: true,
     open: Boolean(util.env.open),
-    notify: true,
+    notify: false,
     ghostMode: false,
     online: true,
     // online: Boolean(util.env.tunnel),
-    tunnel: util.env.tunnel || null
+    tunnel: util.env.tunnel || null,
+    plugins: ['bs-fullscreen-message']
   });
+
   done();
 });
 

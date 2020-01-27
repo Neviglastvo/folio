@@ -3,6 +3,7 @@ import gutil from 'gulp-util';
 import notify from 'gulp-notify';
 import server from './server';
 import config from '../config';
+
 var webpackConfig = require('../../webpack.config').createConfig(config.env);
 
 const handler = (err, stats, cb) => {
