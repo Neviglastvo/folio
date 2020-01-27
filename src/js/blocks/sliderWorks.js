@@ -27,13 +27,13 @@ export default function sliderWorks() {
 			tiltCfg = {
 				settings: {
 					// base: "window",
-					max: 15,
+					max: 20,
 					perspective: 1000,
-					speed: 2000,
+					speed: 3000,
 					// scale: 1.1,
 					shine: false,
 					"shine-opacity": 0.25,
-					reverse: true
+					// reverse: true
 				}
 			}
 		}
