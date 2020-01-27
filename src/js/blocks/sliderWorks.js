@@ -27,20 +27,21 @@ export default function sliderWorks() {
 			tiltCfg = {
 				settings: {
 					// base: "window",
+					disabled: 'x',
 					max: 20,
-					perspective: 1000,
-					speed: 3000,
+					perspective: 800,
+					speed: 2500,
 					// scale: 1.1,
 					shine: false,
-					"shine-opacity": 0.25,
+					"shine-opacity": 0.5,
 					// reverse: true
 				}
 			}
 		}
 
-		element.universalTilt(tiltCfg);
+		$(element).universalTilt(tiltCfg);
 
-		element.addClass("tilting");
+		$(element).addClass("tilting");
 	}
 
 	let swiper = new Swiper($(".js-slider-works"), {
@@ -48,8 +49,8 @@ export default function sliderWorks() {
 			init: function() {
 				let currentElement = $(this.slides[this.activeIndex]);
 				let currentElementTilt = currentElement.children();
-				currentElement.addClass("active");
 
+				currentElement.addClass("active");
 				tiltElements(currentElementTilt);
 			}
 		},
@@ -57,21 +58,21 @@ export default function sliderWorks() {
 		slidesPerView: swiperElements,
 		speed: 700,
 		initialSlide: 0,
-		preventInteractionOnTransition: true,
+		// preventInteractionOnTransition: true,
 		slideToClickedSlide: true,
 		centeredSlides: true,
 		parallax: true,
 		mousewheel: false,
-		preloadImages: false,
 		lazy: true,
+		preloadImages: false,
 		loadPrevNext: false,
 		loadOnTransitionStart: true,
 		resistanceRatio: 0.5,
-		pagination: {
-			el: ".js-slider-works-pagination",
-			progressbarOpposite: true,
-			clickable: true
-		},
+		// pagination: {
+		// 	el: ".js-slider-works-pagination",
+		// 	progressbarOpposite: true,
+		// 	clickable: true
+		// },
 		navigation: {
 			nextEl: ".js-slider-works-button-next",
 			prevEl: ".js-slider-works-button-prev"
@@ -96,6 +97,7 @@ export default function sliderWorks() {
 	var oldProgress = swiper.progress;
 
 	swiper.on("progress", function(event) {
+		console.log("progress");
 		let progress = this.progress;
 
 		function moveCheck() {
@@ -113,15 +115,14 @@ export default function sliderWorks() {
 			let elements = $(this.slides);
 			let elementsTilt = $(this.slides).find('.tilting');
 			let currentElement = $(this.slides[this.activeIndex]);
+			let currentElementTilt = currentElement.children();
 
-			if (currentElement.hasClass("active") || currentElement.hasClass("tilting")) {
-				$(elements).each(function(index, el) {
-					$(el).removeClass("active");
-				});
-				$(elementsTilt).each(function(index, el) {
-					$(el).removeClass("tilting");
-					$(el)[0].universalTilt.destroy();
-				});
+			$(currentElement).removeClass("active");
+
+			if (currentElementTilt.hasClass("tilting")) {
+				$(currentElementTilt).removeClass("tilting");
+				console.log($(currentElementTilt)[0]);
+				$(currentElementTilt)[0].universalTilt.destroy();
 			}
 
 		}
