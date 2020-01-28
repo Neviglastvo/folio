@@ -1,14 +1,21 @@
 import Swiper from "swiper";
 import UniversalTilt from "universal-tilt.js";
 
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+};
+
 export default function sliderWorks() {
 	let transformDistance = [],
-		swiperElements = 2.5;
+		swiperElements = 2.5,
+		mobile = isMobileDevice() && $(window).width() <= 767;
+
+	console.log(mobile);
 
 	function tiltElements(element) {
 		let tiltCfg;
 
-		if ($(window).width() >= 767) {
+		if (!mobile) {
 			console.log($(window).width());
 
 			tiltCfg = {
@@ -95,12 +102,14 @@ export default function sliderWorks() {
 	});
 
 	var oldProgress = swiper.progress;
+	let transitionStart;
+	let eventType = mobile ? transitionStart = 'progress' : transitionStart = 'progress';
 
-	swiper.on("progress", function(event) {
-		console.log("progress");
+	swiper.on(eventType, function(event) {
+		// console.log(eventType);
 		let progress = this.progress;
 
-		function moveCheck() {
+		let moveCheck = function() {
 			let result;
 			var newProgress = progress;
 
@@ -110,7 +119,9 @@ export default function sliderWorks() {
 			return result;
 		}
 
-		if (moveCheck()) {
+		if (moveCheck) {
+
+			// console.log('moveCheck');
 
 			let elements = $(this.slides);
 			let elementsTilt = $(this.slides).find('.tilting');
@@ -120,8 +131,9 @@ export default function sliderWorks() {
 			$(currentElement).removeClass("active");
 
 			if (currentElementTilt.hasClass("tilting")) {
+				// console.log('tilting');
+				// console.log($(currentElementTilt)[0]);
 				$(currentElementTilt).removeClass("tilting");
-				console.log($(currentElementTilt)[0]);
 				$(currentElementTilt)[0].universalTilt.destroy();
 			}
 
@@ -150,10 +162,11 @@ export default function sliderWorks() {
 	$('.js-logo').on('click', function() {
 		// let animationSpeed = ((swiper.activeIndex * 100))
 		// console.log(animationSpeed);
-		swiper.slideTo(0, 1500);
 		if (swiper.activeIndex === 0) {
 			console.log(swiper.slides);
 			swiper.slideTo($(swiper.slides).length, 1500);
+		} else {
+		swiper.slideTo(0, 1500);
 		}
 	});
 

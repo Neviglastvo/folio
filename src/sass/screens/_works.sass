@@ -7,11 +7,11 @@ $worksAnimationSpeed: 700
 	display: flex
 	flex-direction: column
 	align-items: center
-	// transform: translateX(-1000%)
+	transform: translateX(-1000%)
 	+r(768)
 		padding: 20px
 	&.swiper-container-initialized
-		// animation: worksInit 2s cubic-bezier(.55,-0.45,.31,1.32) 2s 1 normal forwards
+		animation: worksInit 2s cubic-bezier(.55,-0.45,.31,1.32) 2s 1 normal forwards
 
 		.works__scrollbar
 			animation: worksInitScrollbar 1s ease-in 4s 1 normal forwards
@@ -191,6 +191,7 @@ $worksAnimationSpeed: 700
 		opacity: 0
 		// pointer-events: none
 		user-select: none
+		+scale(0)
 		+trs($worksAnimationSpeed)
 		+r(768)
 			max-height: $padW*3
