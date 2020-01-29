@@ -26,11 +26,12 @@ const renderHtml = onlyChanged => {
         path: [config.src.templates]
     }))
     .pipe(prettify({
-        indent_size: 2,
+        indent_size: 1,
         wrap_attributes: 'auto', // 'force'
         preserve_newlines: false,
         // unformatted: [],
-        end_with_newline: true
+        end_with_newline: true,
+        indent_with_tabs: true,
     }))
 		.pipe(gulp.dest(config.dest.html))
 	;
@@ -47,7 +48,7 @@ const watch = gulp => {
     ], gulp.parallel('nunjucks:changed'));
 
     gulp.watch([
-      config.src.templates + '/**/_*.html'
+      config.src.templates + '/**/*.html'
     ], gulp.parallel('nunjucks'));
   }
 };

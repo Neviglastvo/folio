@@ -37,8 +37,9 @@
   -moz-osx-font-smoothing: grayscale
 
 =h
-  &:hover
-    @content
+  @media not all and (pointer: coarse)
+    &:hover
+      @content
 
 =after($content: "")
   &::after

@@ -58,6 +58,9 @@ $worksAnimationSpeed: 700
 		+h
 			cursor: pointer
 			opacity: 1
+			svg
+				filter: drop-shadow(0 0 8px rgba($black, 0.75))
+				fill: $pink
 		+r(768)
 			bottom: $padH*3
 			width: 50px
@@ -80,6 +83,8 @@ $worksAnimationSpeed: 700
 		svg
 			+cover
 			fill: $white
+			filter: drop-shadow(0 0 10px rgba($black, 0.25))
+			+tr
 
 	&__item
 		position: relative
@@ -104,7 +109,7 @@ $worksAnimationSpeed: 700
 					box-shadow: 0 14px 28px rgba($black, .25), 0 10px 10px rgba($black, .22)
 
 			.works__title
-				box-shadow: 0 0 40px 0 rgba($black, 0.25)
+				box-shadow: 0 0 40px 0 rgba($white, 0.25)
 
 			.works__logo
 				transform: translate3d(0,0,150px)
@@ -165,7 +170,9 @@ $worksAnimationSpeed: 700
 		color: $black
 		font-weight: 900
 		text-transform: uppercase
+		+textOverflow
 		+ls(10)
+		+trs($worksAnimationSpeed)
 		+r(768)
 			padding: $padH/2 $padW $padH/3 $padW
 			font-size: $padW*1.5

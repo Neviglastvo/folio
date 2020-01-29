@@ -10,13 +10,13 @@ export default function sliderWorks() {
 		swiperElements = 2.5,
 		mobile = isMobileDevice() && $(window).width() <= 767;
 
-	console.log(mobile);
+	// console.log(mobile);
 
 	function tiltElements(element) {
 		let tiltCfg;
 
 		if (!mobile) {
-			console.log($(window).width());
+			// console.log($(window).width());
 
 			tiltCfg = {
 				settings: {
@@ -141,7 +141,7 @@ export default function sliderWorks() {
 	});
 
 	swiper.on("transitionEnd", function(event) {
-		console.log("transitionEnd");
+		// console.log("transitionEnd");
 		this.lazy.loadInSlide(this.activeIndex - 1);
 		this.lazy.loadInSlide(this.activeIndex + 1);
 
@@ -163,7 +163,7 @@ export default function sliderWorks() {
 		// let animationSpeed = ((swiper.activeIndex * 100))
 		// console.log(animationSpeed);
 		if (swiper.activeIndex === 0) {
-			console.log(swiper.slides);
+			// console.log(swiper.slides);
 			swiper.slideTo($(swiper.slides).length, 1500);
 		} else {
 		swiper.slideTo(0, 1500);

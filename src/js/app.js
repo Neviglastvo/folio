@@ -2,7 +2,9 @@ import {
 	VHChromeFix
 } from './libs/VHChromeFix';
 import sliderWorks from "./blocks/sliderWorks";
+import greetings from "./libs/greetings";
 
+greetings();
 sliderWorks();
 
 $(".js-hamburger").on("click", function(e) {
