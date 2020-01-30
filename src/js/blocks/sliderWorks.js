@@ -69,6 +69,7 @@ export default function sliderWorks() {
 		slideToClickedSlide: true,
 		centeredSlides: true,
 		parallax: true,
+		watchSlidesVisibility: true,
 		mousewheel: false,
 		lazy: true,
 		preloadImages: false,
@@ -96,7 +97,7 @@ export default function sliderWorks() {
 			},
 			320: {
 				slidesPerView: 1,
-				spaceBetween: 15
+				spaceBetween: 0
 			}
 		}
 	});

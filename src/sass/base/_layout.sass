@@ -11,6 +11,7 @@ $padH: 8vh
 	+blur(0)
 	+trs($globalAnimSpeed, filter)
 	background-color: $white
+	min-height: 700px
 
 	&.blurry
 		+blur(8)
@@ -86,6 +87,7 @@ $padH: 8vh
 			+r(1023)
 				margin-right: 0
 		+h
+			+scale(1.1)
 			svg
 				fill: rgba($pink,1)
 				filter: drop-shadow(12px 12px 7px rgba($black, 0.75))
