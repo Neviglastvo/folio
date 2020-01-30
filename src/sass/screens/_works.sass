@@ -10,6 +10,8 @@ $worksAnimationSpeed: 700
 	+r(1023)
 		padding: 20px
 	&.swiper-container-initialized
+		transform: translateX(200vw)
+		animation: worksItemInit 1s ease-in 1.5s 1 normal forwards
 
 		@keyframes worksInit
 			0%
@@ -18,7 +20,7 @@ $worksAnimationSpeed: 700
 
 		.works__scrollbar
 			opacity: 0
-			animation: worksInitScrollbar 1s ease-in 2s 1 normal forwards
+			animation: worksInitScrollbar 1s ease-in 2.5s 1 normal forwards
 
 	&__slider
 		height: 100%
@@ -96,12 +98,15 @@ $worksAnimationSpeed: 700
 		display: flex
 		user-select: none
 		margin-right: -1px
+		transform: translateX(200vw)
 		animation-name: worksItemInit
 		animation-duration: 1s
-		animation-delay: calc(1.5s + var(--animation-order) * 250ms)
+		animation-delay: calc(2s + var(--animation-order) * 250ms)
 		animation-fill-mode: both
 		animation-timing-function: cubic-bezier(0.550, 0.460, 0.450, 0.940)
-		transform: translateX(200vw)
+		+r(1023)
+			animation: none
+			transform: translateX(0)
 		&:last-child
 			.works__item-container
 				+backlight(0, 0, 0, 100%, 65, $pink, cyan, 20s)
@@ -116,7 +121,6 @@ $worksAnimationSpeed: 700
 					box-shadow: 0 14px 28px rgba($black, .25), 0 10px 10px rgba($black, .22)
 
 			.works__title
-				// box-shadow: 0 0 40px 0 rgba($white, 0.25)
 				text-shadow: 5px 4px 1px var(--color)
 				opacity: 1
 				transform: translate3d(0,25px,100px) scale(0.9)
@@ -311,7 +315,6 @@ $worksAnimationSpeed: 700
 @keyframes worksItemInit
 	0%
 	100%
-		opacity: 1
 		transform: rotate(0) translate(0) skew(0) scale(1)
 
 @keyframes worksInitScrollbar

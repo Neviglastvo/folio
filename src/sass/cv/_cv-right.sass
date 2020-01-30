@@ -8,7 +8,7 @@
 	&__container
 		margin-bottom: 20px
 		position: relative
-		border-left: 1px solid $cvBorderColor
+		box-shadow: -5px 0 0px -4px $cvBorderColor
 		&:last-child
 			margin-bottom: 0
 
@@ -18,7 +18,7 @@
 			display: flex
 
 	&__col
-		border-left: 1px solid $cvBorderColor
+		box-shadow: -5px 0 0px -4px $cvBorderColor
 		width: 100%
 		.cv-skills, .cv-technologies
 			padding-left: 10px
@@ -48,16 +48,17 @@
 			display: flex
 			align-items: center
 			padding: 0 8px
-			border-top: $borderWidth solid $cvBorderColor
-			border-bottom: $borderWidth solid $cvBorderColor
-			border-right: $borderWidth solid $cvBorderColor
-			border-left: 1px solid $cvBorderColor
+			// border-top: $borderWidth solid $cvBorderColor
+			// border-bottom: $borderWidth solid $cvBorderColor
+			// border-right: 0.1px solid $cvBorderColor
+			// border-left: 1px solid $cvBorderColor
+			box-shadow: 0 0 0px 1px $cvBorderColor
 			color: $cvText
 			font-size: $pt18
 			line-height: $pt18
 			letter-spacing: 1.4px
-			font-family: $f2
-			font-weight: 700
+			font-family: $f1
+			font-weight: 500
 			text-transform: uppercase
 			background-color: $cvBg
 			z-index: 1
