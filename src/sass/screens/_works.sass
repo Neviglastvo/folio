@@ -7,11 +7,16 @@ $worksAnimationSpeed: 700
 	display: flex
 	flex-direction: column
 	align-items: center
-	transform: translateX(-1000%)
-	+r(768)
+	transform: translateX(200vw)
+	+r(1023)
 		padding: 20px
 	&.swiper-container-initialized
-		animation: worksInit 2s cubic-bezier(.55,-0.45,.31,1.32) 2s 1 normal forwards
+		animation: worksInit 1.5s linear 1s 1 normal forwards
+
+		@keyframes worksInit
+			0%
+			100%
+				transform: translateX(0)
 
 		.works__scrollbar
 			animation: worksInitScrollbar 1s ease-in 4s 1 normal forwards
@@ -31,7 +36,7 @@ $worksAnimationSpeed: 700
 		left: $padW
 		height: 6px
 		opacity: 0
-		+r(768)
+		+r(1023)
 			bottom: auto
 			top: 0
 			left: 0
@@ -61,19 +66,19 @@ $worksAnimationSpeed: 700
 			svg
 				filter: drop-shadow(0 0 8px rgba($black, 0.75))
 				fill: $pink
-		+r(768)
+		+r(1023)
 			bottom: $padH*3
 			width: 50px
 			height: 30px
 		&--next
 			right: calc((100% / 6) + #{$padW})
-			+r(768)
+			+r(1023)
 				right: $padW*2
 
 		&--prev
 			left: calc((100% / 6) + #{$padW})
 			+rotate(180)
-			+r(768)
+			+r(1023)
 				left: $padW*2
 
 		&.swiper-button-disabled
@@ -93,7 +98,19 @@ $worksAnimationSpeed: 700
 		display: flex
 		user-select: none
 		margin: 0 -1px
-		+r(768)
+		animation-name: worksItemInit
+		animation-duration: 1s
+		animation-delay: calc(1.5s + var(--animation-order) * 250ms)
+		animation-fill-mode: both
+		animation-timing-function: cubic-bezier(0.550, 0.460, 0.450, 0.940)
+		transform: translateZ(700px) translateX(100vw)
+		transform-origin: -100% 50%
+		@keyframes worksItemInit
+			0%
+			100%
+				opacity: 1
+				transform: rotate(0) translate(0) skew(0) scale(1)
+		+r(1023)
 			margin: 0
 		&:last-child
 			.works__item-container
@@ -109,13 +126,17 @@ $worksAnimationSpeed: 700
 					box-shadow: 0 14px 28px rgba($black, .25), 0 10px 10px rgba($black, .22)
 
 			.works__title
-				box-shadow: 0 0 40px 0 rgba($white, 0.25)
+				// box-shadow: 0 0 40px 0 rgba($white, 0.25)
+				text-shadow: 5px 4px 1px var(--color)
+				opacity: 1
+				transform: translate3d(0,25px,100px) scale(0.9)
+				color: $white
 
 			.works__logo
 				transform: translate3d(0,0,150px)
 				height: 100%
 				max-height: $padW*2
-				+r(768)
+				+r(1023)
 					max-height: $padW*6
 
 			.works__link
@@ -163,18 +184,18 @@ $worksAnimationSpeed: 700
 		display: flex
 		justify-content: space-between
 		align-items: center
-		background-color: rgba($white, 0.75)
+		// background-color: rgba($white, 0.75)
 		font-family: $f4
 		font-size: $padW/1.5
 		line-height: $padW/2
 		color: $black
 		font-weight: 900
 		text-transform: uppercase
-
+		opacity: 0
 		+textOverflow
-		+ls(10)
+		+ls(50)
 		+trs($worksAnimationSpeed)
-		+r(768)
+		+r(1023)
 			padding: $padH/2 $padW $padH/3 $padW
 			font-size: $padW*1.5
 			line-height: $padW*1.5
@@ -201,7 +222,7 @@ $worksAnimationSpeed: 700
 		user-select: none
 		+scale(0)
 		+trs($worksAnimationSpeed)
-		+r(768)
+		+r(1023)
 			max-height: $padW*3
 
 		&.ready
@@ -213,6 +234,7 @@ $worksAnimationSpeed: 700
 		max-width: 100%
 		height: 100%
 		pointer-events: none
+		// filter: drop-shadow(0px 0px 1px rgba($white, 1))
 
 	&__link
 		display: flex
@@ -232,7 +254,7 @@ $worksAnimationSpeed: 700
 		+trs($worksAnimationSpeed)
 		+h
 			cursor: pointer
-		+r(768)
+		+r(1023)
 			font-size: $padW
 			padding: $padH/3 $padW $padH/3.5 $padW
 
@@ -291,15 +313,12 @@ $worksAnimationSpeed: 700
 	100%
 		opacity: 1
 
-@keyframes worksInit
 
-	0%
-		transform: translateX(-1000%)
-	100%
-		transform: translateX(0%)
+
+
+
 
 @keyframes worksInitScrollbar
-
 	0%
 		opacity: 0
 	100%

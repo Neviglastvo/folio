@@ -8,7 +8,7 @@ function isMobileDevice() {
 export default function sliderWorks() {
 	let transformDistance = [],
 		swiperElements = 2.5,
-		mobile = isMobileDevice() && $(window).width() <= 767;
+		mobile = isMobileDevice() && $(window).width() <= 1023;
 
 	// console.log(mobile);
 
@@ -90,7 +90,7 @@ export default function sliderWorks() {
 			snapOnRelease: true
 		},
 		breakpoints: {
-			768: {
+			1023: {
 				slidesPerView: swiperElements,
 				spaceBetween: 0
 			},
