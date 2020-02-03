@@ -1,7 +1,7 @@
 ProjectTitle: Portfolio
-ProjectColor: '#e4e8e1'
-ProjectBgColor: '#801336'
-ProjectLogo: 'img/img.png'
+ProjectColor: '#DA1F4F'
+ProjectBgColor: '#000000'
+ProjectLogo: 'favicon/favicon.ico'
 
 PageList:
 - file: folio.html

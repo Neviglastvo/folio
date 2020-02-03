@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import gulpif from 'gulp-if';
 import sass from 'gulp-sass';
 import sassGlob from 'gulp-sass-glob';
 import sourcemaps from 'gulp-sourcemaps';
@@ -32,7 +33,7 @@ const sortMediaQueries = (a, b) => {
 const processors = [
   autoprefixer({
     overrideBrowserslist: ['last 2 versions'],
-    cascade: false
+    cascade: true
   }),
   // require('lost'),
   // mqpacker({
@@ -43,18 +44,17 @@ const processors = [
 
 gulp.task('sass', () => gulp
   .src(config.src.sass + '/*.{sass,scss}')
-  .pipe(sourcemaps.init())
+  .pipe(gulpif(config.production === false, sourcemaps.init()))
   .pipe(plumber({
     errorHandler: config.errorHandler
   }))
   .pipe(sassGlob())
   .pipe(sass({
-    outputStyle: config.production ? 'compact' : 'expanded', // nested, expanded, compact, compressed
+    outputStyle: config.production ? 'compressed' : 'nested', // nested, expanded, compact, compressed
     precision: 5
   }))
-  // .on('error', config.errorHandler)
   .pipe(postcss(processors))
-  .pipe(sourcemaps.write('./'))
+  .pipe(gulpif(config.production === false, sourcemaps.write('./')))
   .pipe(gulp.dest(config.dest.css))
 );
 

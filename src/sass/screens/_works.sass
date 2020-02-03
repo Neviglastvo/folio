@@ -26,8 +26,12 @@ $worksAnimationSpeed: 700
 		height: 100%
 		position: relative
 		// transition-timing-function: linear
+		cursor: grab
 		+counter('after', list, '0', '.works__title')
 			pointer-events: none
+
+		&:active
+			cursor: grabbing
 
 	&__scrollbar
 		position: absolute
@@ -99,7 +103,7 @@ $worksAnimationSpeed: 700
 		height: 100%
 		display: flex
 		user-select: none
-		margin-right: -1px
+		margin: 0 -1px
 		transform: translateX(200vw)
 		animation-name: worksItemInit
 		animation-duration: 1s

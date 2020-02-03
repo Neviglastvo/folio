@@ -13,22 +13,19 @@ const config = {
         templatesData: 'src/templates/data',
         pagelist     : 'src/index.yaml',
         sass         : 'src/sass',
-        // path for sass files that will be generated automatically via some of tasks
-        sassGen      : 'src/sass/generated',
+        sassGen      : 'src/sass/generated', // path for sass files that will be generated automatically via some of tasks
         js           : 'src/js',
         img          : 'src/img',
         svg          : 'src/img/svg',
         icons        : 'src/icons',
-        // path to png sources for sprite:png task
-        iconsPng     : 'src/icons',
-        // path to svg sources for sprite:svg task
-        iconsSvg     : 'src/icons',
-        // path to svg sources for iconfont task
-        iconsFont    : 'src/icons',
+        iconsPng     : 'src/icons', // path to png sources for sprite:png task
+        iconsSvg     : 'src/icons', // path to svg sources for sprite:svg task
+        iconsFont    : 'src/icons', // path to svg sources for iconfont task
         fonts        : 'src/fonts',
         lib          : 'src/lib',
         data         : 'src/data'
     },
+
     dest: {
         root : destPath,
         html : destPath,

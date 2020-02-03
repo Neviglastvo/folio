@@ -59,6 +59,7 @@ export default function sliderWorks() {
 			}
 		},
 		// nested: true,
+		touchEventsTarget: 'wrapper',
 		slidesPerView: swiperElements,
 		speed: 1000,
 		initialSlide: 0,
@@ -104,9 +105,9 @@ export default function sliderWorks() {
 	let eventType = mobile ? transitionStart = 'progress' : transitionStart = 'progress';
 
 	swiper.on(eventType, function(event) {
-		console.log(event);
+		// console.log(event);
 		destroyTilting()
-		parallax()
+		// parallax()
 	});
 
 	swiper.on("transitionEnd", function(event) {

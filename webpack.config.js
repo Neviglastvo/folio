@@ -52,9 +52,9 @@ function createConfig(env) {
       // new webpack.NoEmitOnErrorsPlugin(),
 
       new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
+        analyzerMode: isProduction ? 'disabled' : 'static',
         analyzerPort: 4000,
-        openAnalyzer: false,
+        openAnalyzer: false
       }),
     ],
     resolve: {
