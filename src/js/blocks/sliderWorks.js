@@ -2,7 +2,7 @@ import Swiper from "swiper";
 import UniversalTilt from "universal-tilt.js";
 
 function isMobileDevice() {
-    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+	return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 
 export default function sliderWorks() {
@@ -10,13 +10,10 @@ export default function sliderWorks() {
 		swiperElements = 2.5,
 		mobile = isMobileDevice() && $(window).width() <= 1023;
 
-	// console.log(mobile);
-
 	function tiltElements(element) {
 		let tiltCfg;
 
 		if (!mobile) {
-			// console.log($(window).width());
 
 			tiltCfg = {
 				settings: {
@@ -63,7 +60,7 @@ export default function sliderWorks() {
 		},
 		// nested: true,
 		slidesPerView: swiperElements,
-		speed: 700,
+		speed: 1000,
 		initialSlide: 0,
 		// preventInteractionOnTransition: true,
 		slideToClickedSlide: true,
@@ -107,38 +104,9 @@ export default function sliderWorks() {
 	let eventType = mobile ? transitionStart = 'progress' : transitionStart = 'progress';
 
 	swiper.on(eventType, function(event) {
-		// console.log(eventType);
-		let progress = this.progress;
-
-		let moveCheck = function() {
-			let result;
-			var newProgress = progress;
-
-			newProgress === oldProgress ? result = false : result = true;
-			oldProgress = newProgress;
-
-			return result;
-		}
-
-		if (moveCheck) {
-
-			// console.log('moveCheck');
-
-			let elements = $(this.slides);
-			let elementsTilt = $(this.slides).find('.tilting');
-			let currentElement = $(this.slides[this.activeIndex]);
-			let currentElementTilt = currentElement.children();
-
-			$(currentElement).removeClass("active");
-
-			if (currentElementTilt.hasClass("tilting")) {
-				// console.log('tilting');
-				// console.log($(currentElementTilt)[0]);
-				$(currentElementTilt).removeClass("tilting");
-				$(currentElementTilt)[0].universalTilt.destroy();
-			}
-
-		}
+		console.log(event);
+		destroyTilting()
+		parallax()
 	});
 
 	swiper.on("transitionEnd", function(event) {
@@ -167,8 +135,70 @@ export default function sliderWorks() {
 			// console.log(swiper.slides);
 			swiper.slideTo($(swiper.slides).length, 1500);
 		} else {
-		swiper.slideTo(0, 1500);
+			swiper.slideTo(0, 1500);
 		}
 	});
+
+
+
+	function parallax() {
+		// let direction = function() {
+		// 	let result;
+		// 	var newProgress = swiper.progress;
+
+		// 	if (newProgress > oldProgress) {
+		// 		result = 1; //right
+		// 	} else {
+		// 		result = -1; //left
+		// 	}
+		// 	oldProgress = newProgress;
+
+		// 	return result;
+		// };
+
+		[].forEach.call(swiper.slides, function(element, i) {
+			let el = element.getElementsByClassName("js-parallax")[0];
+
+			let translateFormula = (
+				transformDistance[i] +
+				swiper.progress * 100 * 2.666666
+			).toFixed(6);
+
+			// if (direction() == -1) {
+			el.style.transform = `translateX(${translateFormula}%)`;
+			// console.log('right' + i + ' ' + `translateX(${translateFormula}%)`);
+			// } else if (direction() == 1) {
+			// el.style.transform = `translateX(${translateFormula}%)`;
+			// console.log('left' + i + ' ' + `translateX(${translateFormula}%)`);
+			// }
+		});
+	}
+
+	function destroyTilting() {
+		let progress = swiper.progress;
+		var oldProgress = swiper.progress;
+
+		let moveCheck = function() {
+			let result;
+			var newProgress = progress;
+
+			newProgress === oldProgress ? (result = false) : (result = true);
+			oldProgress = newProgress;
+
+			return result;
+		};
+
+		if (moveCheck) {
+			let currentElement = $(swiper.slides[swiper.activeIndex]);
+			let currentElementTilt = currentElement.children();
+
+			$(currentElement).removeClass("active");
+
+			if (currentElementTilt.hasClass("tilting")) {
+				$(currentElementTilt).removeClass("tilting");
+				$(currentElementTilt)[0].universalTilt.destroy();
+			}
+		}
+	}
 
 }

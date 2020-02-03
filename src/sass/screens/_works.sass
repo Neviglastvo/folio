@@ -25,7 +25,7 @@ $worksAnimationSpeed: 700
 	&__slider
 		height: 100%
 		position: relative
-		counter-reset: list
+		// transition-timing-function: linear
 		+counter('after', list, '0', '.works__title')
 			pointer-events: none
 
@@ -57,7 +57,9 @@ $worksAnimationSpeed: 700
 		bottom: $padH*3
 		margin: auto 0
 		width: 70px
+		width: $padW
 		height: 50px
+		height: $padH
 		opacity: 0.9
 		+trs($worksAnimationSpeed)
 		+h
@@ -138,6 +140,7 @@ $worksAnimationSpeed: 700
 				box-shadow: 0 0 40px 0 rgba($white, 0.25)
 				transform: translate3d(0,0,75px)
 				+h
+					transform: translate3d(0,0,125px) scale(1.2)
 					background-color: $pink
 					color: $white
 
@@ -269,7 +272,7 @@ $worksAnimationSpeed: 700
 		display: flex
 		overflow: hidden
 		opacity: 0.95
-		pointer-events: none
+		// pointer-events: none
 		+trs($worksAnimationSpeed)
 		+after
 			+cover
@@ -283,12 +286,13 @@ $worksAnimationSpeed: 700
 		background-color: $pink
 		margin: 0
 		opacity: 0.5
-		+trs($worksAnimationSpeed)
+
+		transition-timing-function: linear
 		animation: worksPreload 1s infinite
 		+after(none)
 
 	&__img-parallax
-		pointer-events: none
+		// pointer-events: none
 		left: -100%
 		right: 100%
 		width: 300%
@@ -300,7 +304,9 @@ $worksAnimationSpeed: 700
 		background-size: cover
 		background-repeat: no-repeat
 		background-position: center center
+		// transition-timing-function: linear
 		opacity: 0
+
 		&.swiper-lazy-loaded
 			opacity: 1
 

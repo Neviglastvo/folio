@@ -22,7 +22,7 @@
 				{% if item.img|length %}
 					<div class="works__img-preloader swiper-lazy-preloader" style="background-color: {{item.accent}}"></div>
 					{% for i in item.img %}
-					<div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/{{i.imgItem}}" data-swiper-parallax="33.375%"></div>
+					<div class="works__img-parallax js-parallax swiper-lazy" data-background="./img/works/{{i.imgItem}}" data-swiper-parallax-x="33.333333%" data-swiper-parallax-duration="1000"></div>
 					{% endfor %}
 				{% endif %}
 				</div>
