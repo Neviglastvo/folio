@@ -26,6 +26,7 @@ $worksAnimationSpeed: 700
 		height: 100%
 		position: relative
 		// transition-timing-function: linear
+		will-change: transform
 		cursor: grab
 		+counter('after', list, '0', '.works__title')
 			pointer-events: none
@@ -310,6 +311,7 @@ $worksAnimationSpeed: 700
 		background-position: center center
 		// transition-timing-function: linear
 		opacity: 0
+		will-change: transform
 
 		&.swiper-lazy-loaded
 			opacity: 1
