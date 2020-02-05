@@ -104,13 +104,14 @@ $worksAnimationSpeed: 700
 		height: 100%
 		display: flex
 		user-select: none
-		margin: 0 -1px
 		transform: translateX(200vw)
 		animation-name: worksItemInit
 		animation-duration: 1s
 		animation-delay: calc(2s + var(--animation-order) * 250ms)
 		animation-fill-mode: both
 		animation-timing-function: cubic-bezier(0.550, 0.460, 0.450, 0.940)
+		will-change: transform
+		+trs($worksAnimationSpeed, transform)
 		+r(1023)
 			animation: none
 			transform: translateX(0)
@@ -122,7 +123,10 @@ $worksAnimationSpeed: 700
 				pointer-events: none !important
 
 		&.active
-			z-index: 2
+			z-index: 999
+			transform: translateX(0) scale(1.025)
+			+r(1023)
+				transform: translateX(0) scale(1.025)
 			.works__item-container
 				+after
 					box-shadow: 0 14px 28px rgba($black, .25), 0 10px 10px rgba($black, .22)

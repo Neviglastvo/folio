@@ -18,7 +18,6 @@
 		width: calc(100% - 30px)
 		margin-bottom: 30px
 
-
 	&__block
 		display: flex
 		flex-direction: column
@@ -30,6 +29,7 @@
 			flex-wrap: wrap
 			overflow: hidden
 			.cv-left__list
+				height: auto
 				margin: -6px
 				padding-right: 10px
 				width: 100%
@@ -41,16 +41,17 @@
 				width: calc(100%/4)
 				padding: 6px
 				margin-bottom: 0
+				height: 50px
 			.cv-left__icon
 				display: flex
 				margin-right: 0
 				background-color: #fff
 				width: 60px
-				height: 60px
+				height: 50px
 				svg
-					fill: #000
-					width: 100%
-					height: 100%
+					fill: $cvBorderColor
+					width: 60px
+					height: 50px
 
 		&--folio
 			margin-top: auto
@@ -67,6 +68,7 @@
 
 		&--qr
 			width: 100%
+			max-width: 85%
 			margin-right: 0
 			height: auto
 			.cv-left__item
@@ -86,7 +88,7 @@
 				padding-bottom: 100%
 			svg
 				+cover
-				fill: #000 !important
+				fill: $cvBorderColor !important
 
 	&__title
 		width: 100%
@@ -131,8 +133,8 @@
 		color: $cvText
 		font-family: $f5
 		text-decoration: none
-		&--goal
 
+		&--goal
 			font-family: $f5
 			font-size: $pt16
 			font-weight: 500

@@ -73,7 +73,10 @@ export default function sliderWorks() {
 		preloadImages: false,
 		loadPrevNext: false,
 		loadOnTransitionStart: true,
-		resistanceRatio: 0.5,
+		resistanceRatio: 0.75,
+		touchAngle: 10,
+		threshold: 1,
+		spaceBetween: -1,
 		// pagination: {
 		// 	el: ".js-slider-works-pagination",
 		// 	progressbarOpposite: true,
