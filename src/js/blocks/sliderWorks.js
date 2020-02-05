@@ -74,7 +74,7 @@ export default function sliderWorks() {
 		loadPrevNext: false,
 		loadOnTransitionStart: true,
 		resistanceRatio: 0.75,
-		touchAngle: 10,
+		touchAngle: 15,
 		threshold: 1,
 		spaceBetween: -1,
 		// pagination: {
