@@ -18,9 +18,9 @@ export default function sliderWorks() {
 			tiltCfg = {
 				settings: {
 					// base: "window",
-					max: 7,
+					max: 8,
 					perspective: 1000,
-					speed: 1000,
+					speed: 1500,
 					// scale: 1.1,
 					shine: false,
 					"shine-opacity": 0.25,
@@ -94,11 +94,11 @@ export default function sliderWorks() {
 		breakpoints: {
 			1023: {
 				slidesPerView: swiperElements,
-				spaceBetween: 0
+				spaceBetween: -1
 			},
 			320: {
 				slidesPerView: 1,
-				spaceBetween: 0
+				spaceBetween: -1
 			}
 		}
 	});

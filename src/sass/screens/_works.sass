@@ -1,4 +1,5 @@
-$worksAnimationSpeed: 700
+$worksAnimationSpeed: 750
+$cubicWorks: cubic-bezier(.3,.0,1.9,04)
 
 .works
 	position: relative
@@ -25,7 +26,7 @@ $worksAnimationSpeed: 700
 	&__slider
 		height: 100%
 		position: relative
-		// transition-timing-function: linear
+		transition-timing-function: $cubicWorks
 		will-change: transform
 		cursor: grab
 		+counter('after', list, '0', '.works__title')
@@ -111,7 +112,7 @@ $worksAnimationSpeed: 700
 		animation-fill-mode: both
 		animation-timing-function: cubic-bezier(0.550, 0.460, 0.450, 0.940)
 		will-change: transform
-		+trs($worksAnimationSpeed, transform)
+		+trs($worksAnimationSpeed*0.5, transform)
 		+r(1023)
 			animation: none
 			transform: translateX(0)
@@ -124,34 +125,33 @@ $worksAnimationSpeed: 700
 
 		&.active
 			z-index: 999
-			transform: translateX(0) scale(1.025)
 			+r(1023)
 				transform: translateX(0) scale(1.025)
 			.works__item-container
-				+after
-					box-shadow: 0 14px 28px rgba($black, .25), 0 10px 10px rgba($black, .22)
 
 			.works__title
 				text-shadow: 5px 4px 1px var(--color)
 				opacity: 1
-				transform: translate3d(0,25px,100px) scale(0.9)
+				transform: translate3d(0,$padH/3,$padH*1.25) scale(0.9)
 				color: $white
 
 			.works__logo
-				transform: translate3d(0,0,150px)
+				transform: translate3d(0,0,$padH*2)
 				height: 100%
 				max-height: $padW*2
+				filter: drop-shadow(12px 12px 7px rgba(0,0,0,.25))
 				+r(1023)
 					max-height: $padW*6
 
 			.works__link
 				opacity: 1
-				box-shadow: 0 0 40px 0 rgba($white, 0.25)
-				transform: translate3d(0,0,75px)
+				// box-shadow: 0 0 40px 0 rgba($white, 0.25)
+				transform: translate3d(0,-$padH/4,$padH*1.25)
 				+h
-					transform: translate3d(0,0,125px) scale(1.2)
 					background-color: $pink
 					color: $white
+					+r(1023)
+						transform: translate3d(0,0,150px) scale(1.2)
 
 			.works__img-container
 				opacity: 1
@@ -171,21 +171,6 @@ $worksAnimationSpeed: 700
 		+r(1023)
 			padding: $padH*0.75 0 $padH*1.25 0
 
-		+after
-			pointer-events: none
-			+cover
-			box-shadow: 0 14px 28px rgba($black, 0), 0 10px 10px rgba($black, 0)
-			+trs($worksAnimationSpeed)
-
-	&__box
-		+cover
-		display: flex
-		flex-direction: column
-		align-items: center
-		justify-content: space-between
-		+trs($worksAnimationSpeed)
-		display: none
-
 	&__title
 		padding: $padH/2 $padW/4 $padH/3 $padW/4
 		position: relative
@@ -204,6 +189,7 @@ $worksAnimationSpeed: 700
 		+textOverflow
 		+ls(50)
 		+trs($worksAnimationSpeed)
+		will-change: transform, opacity
 		+r(1023)
 			padding: $padH/2 $padW $padH/3 $padW
 			font-size: $padW*1.5
@@ -231,6 +217,7 @@ $worksAnimationSpeed: 700
 		user-select: none
 		+scale(1.5)
 		+trs($worksAnimationSpeed)
+		will-change: transform
 		+r(1023)
 			max-height: $padW*3
 
@@ -252,6 +239,7 @@ $worksAnimationSpeed: 700
 		align-items: center
 		padding: $padH/5 $padW/4 $padH/5 $padW/4
 		opacity: 0
+		// box-shadow: 0 0 40px 0 rgba($white, 0)
 		color: $black
 		font-family: $f4
 		font-size: $padW/4
@@ -265,8 +253,7 @@ $worksAnimationSpeed: 700
 			cursor: pointer
 		+r(1023)
 			font-size: $padW
-			padding: $padH/3 $padW $padH/3.5 $padW
-
+			padding: $padH/4 $padW $padH/4.5 $padW
 
 		svg
 			fill: $black
@@ -297,7 +284,7 @@ $worksAnimationSpeed: 700
 		opacity: 0.5
 
 		transition-timing-function: linear
-		animation: worksPreload 1s infinite
+		animation: worksPreload $worksAnimationSpeed*2+ms infinite
 		+after(none)
 
 	&__img-parallax
@@ -308,12 +295,11 @@ $worksAnimationSpeed: 700
 		position: absolute
 		top: 0
 		bottom: 0
-		height: 100%
-		margin: auto
 		background-size: cover
 		background-repeat: no-repeat
 		background-position: center center
 		// transition-timing-function: linear
+		transition-timing-function: $cubicWorks
 		opacity: 0
 		will-change: transform
 
