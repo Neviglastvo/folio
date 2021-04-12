@@ -1,0 +1,50 @@
+<img src="./img/roadmap/js/async/head.webp" alt="" class="head" />
+
+<p>ES7 introduced a new way to add async behavior in JavaScript and make working with promises easier! With the introduction of the <code>async</code> and <code>await</code> keywords, we can create <strong>async</strong> functions which implicitly return a promise. But.. how can we do that? 😮</p>
+
+<p>Previously, we saw that we can explicitly create promises using the <code>Promise</code> object, whether it was by typing <code>new Promise(() =&gt; {})</code>, <code>Promise.resolve</code>, or <code>Promise.reject</code>. </p>
+
+<p>Instead of explicitly using the <code>Promise</code> object, we can now create asynchronous functions that <em>implicitly</em> return an object! This means that we no longer have to write any <code>Promise</code> object ourselves.</p>
+
+<img src="./img/roadmap/js/async/1.png" />
+
+<p>Although the fact that <strong>async</strong> functions implicitly return promises is pretty great, the real power of <code>async</code> functions can be seen when using the <code>await</code> keyword! With the <code>await</code> keyword, we can <em>suspend</em> the asynchronous function while we wait for the <code>await</code>ed value return a resolved promise. If we want to get the value of this resolved promise, like we previously did with the <code>then()</code> callback, we can assign variables to the <code>await</code>ed promise value!</p>
+
+<p>So, we can <em>suspend</em> an async function? Okay great but.. what does that even mean? </p>
+
+<p>Let's see what happens when we run the following block of code:</p>
+
+<img src="./img/roadmap/js/async/1.gif" />
+
+<p>Hmm.. What's happening here?</p>
+
+<img src="./img/roadmap/js/async/2.gif" />
+
+<p>First, the engine encounters a <code>console.log</code>. It gets popped onto the call stack, after which <code>Before function!</code> gets logged.</p>
+
+<img src="./img/roadmap/js/async/3.gif" />
+
+<p>Then, we invoke the async function <code>myFunc()</code>, after which the function body of <code>myFunc</code> runs. On the very first line within the function body, we call another <code>console.log</code>, this time with the string <code>In function!</code>. The <code>console.log</code> gets added to the call stack, logs the value, and gets popped off.</p>
+
+<img src="./img/roadmap/js/async/4.gif" />
+
+<p>The function body keeps on being executed, which gets us to the second line. Finally, we see an <code>await</code> keyword! 🎉 </p>
+
+<p>The first thing that happens is that the value that gets awaited gets executed: the function <code>one</code> in this case. It gets popped onto the call stack, and eventually returns a resolved promise. Once the promise has resolved and <code>one</code> returned a value, the engine encounters the <code>await</code> keyword. </p>
+
+<p>When encountering an <code>await</code> keyword, the <code>async</code> function gets <em>suspended</em>. ✋🏼 The execution of the function body <strong>gets paused</strong>, and the rest of the async function gets run in a <em>microtask</em> instead of a regular task! </p>
+
+<img src="./img/roadmap/js/async/5.gif" />
+
+<p>Now that the async function <code>myFunc</code> is suspended as it encountered the <code>await</code> keyword, the engine jumps out of the async function and continues executing the code in the execution context in which the async function got called: the <strong>global execution context</strong> in this case! 🏃🏽‍♀️</p>
+
+<img src="./img/roadmap/js/async/6.gif" />
+
+<p>Finally, there are no more tasks to run in the global execution context! The event loop checks to see if there are any microtasks queued up: and there are! The async <code>myFunc</code> function is queued up after resolving the valued of <code>one</code>. <code>myFunc</code> gets popped back onto the call stack, and continues running where it previously left off.</p>
+
+<p>The variable <code>res</code> finally gets its value, namely the value of the resolved promise that <code>one</code> returned! We invoke <code>console.log</code> with the value of <code>res</code>: the string <code>One!</code> in this case. <code>One!</code> gets logged to the console and gets popped off the call stack! 😊</p>
+
+<p>Finally, all done! Did you notice how <code>async</code> functions are different compared to a promise <code>then</code>? The <code>await</code> keyword <em>suspends</em> the <code>async</code> function, whereas the Promise body would've kept on being executed if we would've used <code>then</code>!</p>
+
+<a href="https://github.com/domenic/promises-unwrapping" target="_blank">Promises better understanding</a>
+

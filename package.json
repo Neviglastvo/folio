@@ -5,7 +5,6 @@
     "ghpages": "git subtree push --prefix build origin gh-pages",
     "build": "gulp build --production",
     "start": "gulp",
-    "precommit": "lint-staged",
     "lint": "eslint --ignore-pattern 'src/js/lib/' --cache --format=node_modules/eslint-formatter-pretty src/js/",
     "lint-fix": "npm run lint -- --fix"
   },
@@ -22,6 +21,7 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
+    "babel-plugin-prismjs": "^2.0.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -30,6 +30,7 @@
     "babel-runtime": "^6.26.0",
     "browser-sync": "^2.26.7",
     "bs-fullscreen-message": "^1.1.0",
+    "css-loader": "^3.5.2",
     "css-mqpacker": "^7.0.0",
     "del": "^5.1.0",
     "eslint": "^6.8.0",
@@ -75,6 +76,7 @@
     "require-dir": "^1.2.0",
     "require-yaml": "^0.0.1",
     "run-sequence": "^2.2.1",
+    "style-loader": "^1.1.3",
     "through2": "^3.0.1",
     "webpack": "^4.41.5",
     "webpack-bundle-analyzer": "^3.6.0",
@@ -84,10 +86,17 @@
   "dependencies": {
     "dom-to-image": "^2.6.0",
     "gsap": "^3.0.5",
+    "prism-themes": "^1.4.0",
+    "prismjs": "^1.20.0",
     "simplex-noise": "^2.4.0",
     "swiper": "^5.3.0",
     "three": "^0.112.1",
     "tilt.js": "^1.2.1",
     "universal-tilt.js": "^2.0.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

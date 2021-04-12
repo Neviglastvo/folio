@@ -188,7 +188,8 @@
   background: $color1
   background: linear-gradient(to $direction, $color1 0%, $color2 100%)
 
-=counter($selectorType: 'before', $name: list, $content: '', $selector: '> *', $type: decimal)
+// +counter('before', 'list', '', '> li', decimal)
+=counter($selectorType: 'before', $name: 'list', $content: '', $selector: '> *', $type: decimal)
   counter-reset: $name
   #{$selector}
     &::#{$selectorType}

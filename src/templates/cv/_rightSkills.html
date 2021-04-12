@@ -7,7 +7,15 @@
 		</div>
 	</div>
 
-	<div class="cv-skills">
+	<div class="cv-technologies">
+		{% for item in data.skills %}
+		<div class="cv-technologies__item">
+			{{item.title}}
+		</div>
+		{% endfor %}
+	</div>
+
+	{# <div class="cv-skills">
 		{% for item in data.skills %}
 		<div class="cv-skills__item">
 			<div class="cv-skills__title">{{item.title}}</div>
@@ -17,7 +25,7 @@
 		</div>
 		{% endfor %}
 	</div>
-
+ #}
 </div>
 
 <div class="cv-right__col">

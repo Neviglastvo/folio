@@ -1,0 +1,121 @@
+
+<img src="./img/roadmap/js/eventLoop/head.webp" alt="" class="head" />
+
+
+<p>JavaScript is single-threaded: only one task can run at a time.</p>
+<p>The browser gives us some features that the JavaScript engine itself doesn’t provide: a Web API. This includes the DOM API, setTimeout, HTTP requests, and so on. This can help us create some async, non-blocking behavior 🚀</p>
+<p>When we invoke a function, it gets added to something called the call stack. The call stack is part of the JS engine, this isn’t browser specific. It’s a stack, meaning that it’s first in, last out (think of a pile of pancakes). When a function returns a value, it gets popped off the stack 👋</p>
+
+<pre class="language-javascript">
+	<code>
+		function greet() {
+		  return console.log("Greetings");
+		}
+
+		function respond() {
+		  return setTimeout(() => {
+		    return console.log("QQ");
+		  }, 1000);
+		}
+
+		greet();
+		respond();
+	</code>
+</pre>
+
+<img src="./img/roadmap/js/eventLoop/1.gif" />
+
+<p>The <code>respond</code> function returns a <code>setTimeout</code> function. The <code>setTimeout</code> is provided to us by the Web API: it lets us delay tasks without blocking the main thread. The callback function that we passed to the <code>setTimeout</code> function,  the arrow function <code>() => { return 'Hey' }</code> gets added to the Web API. In the meantime, the <code>setTimeout</code> function and the respond function get popped off the stack, they both returned their values! </p>
+
+
+<img src="./img/roadmap/js/eventLoop/2.gif" />
+
+<p >In the Web API, a timer runs for as long as the second argument we passed to it, 1000ms. The callback doesn’t immediately get added to the call stack, instead it’s passed to something called the queue.</p>
+
+<img src="./img/roadmap/js/eventLoop/3.gif" />
+
+<p >This can be a confusing part: it doesn't mean that the callback function gets added to the callstack(thus returns a value) after 1000ms! It simply gets added to the queue after 1000ms. But it’s a queue, the function has got to wait for its turn!</p>
+
+<p>Now this is the part we’ve all been waiting for… Time for the event loop to do its only task: <strong>connecting the queue with the call stack</strong>! If the call stack is <strong>empty</strong>, so if all previously invoked functions have returned their values and have been popped off the stack, the <em>first item</em> in the queue gets added to the call stack. In this case, no other functions were invoked, meaning that the call stack was empty by the time  the callback function was the first item in the queue. </p>
+
+<img src="./img/roadmap/js/eventLoop/4.gif" />
+
+<p>The callback is added to the call stack, gets invoked, and returns a value, and gets popped off the stack.
+</p>
+
+<img src="./img/roadmap/js/eventLoop/5.gif" />
+
+<h3>Practice</h3>
+
+<h4>figuring out what gets logged to the console if we run the following:</h4>
+
+<pre class="language-javascript">
+	<code>
+		const foo = () => console.log("First");
+		const bar = () => setTimeout(() => console.log("Second"), 500);
+		const baz = () => console.log("Third");
+
+		bar();
+		foo();
+		baz();
+
+		// First
+		// Third
+		// Second (after 500ms)
+	</code>
+</pre>
+
+<img src="./img/roadmap/js/eventLoop/6.gif" />
+
+<ol>
+<li>We invoke <code>bar</code>. <code>bar</code> returns a <code>setTimeout</code> function.</li>
+<li>The callback we passed to <code>setTimeout</code> gets added to the Web API, the <code>setTimeout</code> function and <code>bar</code> get popped off the callstack. </li>
+<li>The timer runs, in the meantime <code>foo</code> gets invoked and logs <code>First</code>. <code>foo</code> returns (undefined),<code>baz</code> gets invoked, and the callback gets added to the queue.</li>
+<li>
+<code>baz</code> logs <code>Third</code>. The event loop sees the callstack is empty after <code>baz</code> returned, after which the callback gets added to the call stack.</li>
+<li>The callback logs <code>Second</code>.</li>
+</ol>
+
+
+<h3>More Practice</h3>
+
+
+
+<h3>One</h3>
+<pre class="language-javascript">
+	<code>
+		for (var i = 0; i < 4; i += 1) {
+		  setTimeout(() => console.log(i), 0);
+		}
+
+		// 4 times 4
+	</code>
+</pre>
+
+<h5>How to fix????????????????</h5>
+
+
+<pre class="language-javascript">
+	<code>
+		for (var i = 0; i < 4; i += 1) {
+		  setTimeout(() => console.log(i), 0);
+		}
+
+		// 4 times 4
+	</code>
+</pre>
+
+<p>or change var to let</p>
+
+<pre class="language-javascript">
+	<code>
+		for (let i = 0; i < 4; i += 1) {
+		  setTimeout(() => console.log(i), 0);
+		}
+
+		// 0
+		// 1
+		// 2
+		// 3
+	</code>
+</pre>

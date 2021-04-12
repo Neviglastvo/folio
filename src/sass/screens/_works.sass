@@ -149,6 +149,7 @@ $cubicWorks: cubic-bezier(.3,.0,1.9,04)
 				transform: translate3d(0,-$padH/4,$padH*1.25)
 				+h
 					background-color: $pink
+					background-color: var(--colorHover)
 					color: $white
 					+r(1023)
 						transform: translate3d(0,0,150px) scale(1.2)
@@ -214,7 +215,7 @@ $cubicWorks: cubic-bezier(.3,.0,1.9,04)
 		justify-content: center
 		user-select: none
 		+scale(0.25)
-		+trs($worksAnimationSpeed)
+		+trs($worksAnimationSpeed/2)
 		will-change: transform
 		+r(1023)
 			max-height: $padW*3
@@ -253,6 +254,12 @@ $cubicWorks: cubic-bezier(.3,.0,1.9,04)
 		+r(1023)
 			font-size: $padW
 			padding: $padH/4 $padW $padH/4.5 $padW
+
+		&--disabled
+			font-family: $f1
+			font-weight: 700
+			+ls(-50)
+			pointer-events: none
 
 		svg
 			fill: $black

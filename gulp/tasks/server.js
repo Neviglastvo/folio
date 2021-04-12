@@ -10,7 +10,7 @@ const server = browserSync.create();
 
 gulp.task('server', done => {
   server.init({
-    https: true,
+    // https: true,
     server: {
       baseDir: !config.production ? [config.dest.root, config.src.root] : config.dest.root,
       directory: false,

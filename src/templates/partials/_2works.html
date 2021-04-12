@@ -13,10 +13,16 @@
 					<img class="works__logo-img" src="./img/works/svg/{{item.logo}}"></img>
 				</div>
 
-				<a href="{{item.link}}" target="{{item.linkTarget}}" class="works__link">
-					{{item.linkTitle}}
-					{{icon.i('linkExternal')}}
-				</a>
+				{% if item.disabled %}
+					<div class="works__link works__link--disabled">
+						¯\_(ツ)_/¯
+					</div>
+				{% else %}
+					<a href="{{item.link}}" target="{{item.linkTarget}}" class="works__link"  style="--colorHover: {{item.accent}};">
+						{{item.linkTitle}}
+						{{icon.i('linkExternal')}}
+					</a>
+				{% endif %}
 
 				<div class="works__img-container">
 				{% if item.img|length %}

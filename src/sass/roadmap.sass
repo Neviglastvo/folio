@@ -1,0 +1,390 @@
+$z-indexes: ("modal", "menu", "content", "bg")
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:300,500,700,900')
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=cyrillic,cyrillic-ext')
+
+
+@font-face
+	font-family: 'Hack'
+	src: url('../fonts/hack/hack-regular.woff2?sha=3114f1256') format('woff2'), url('../fonts/hack/hack-regular.woff?sha=3114f1256') format('woff')
+	font-weight: 400
+	font-style: normal
+
+
+@font-face
+	font-family: 'Hack'
+	src: url('../fonts/hack/hack-bold.woff2?sha=3114f1256') format('woff2'), url('../fonts/hack/hack-bold.woff?sha=3114f1256') format('woff')
+	font-weight: 700
+	font-style: normal
+
+
+@font-face
+	font-family: 'HackItalic'
+	src: url('../fonts/hack/hack-italic.woff2?sha=3114f1256') format('woff2'), url('../fonts/hack/hack-italic.woff?sha=3114f1256') format('woff')
+	font-weight: 400
+	font-style: italic
+
+
+@font-face
+	font-family: 'HackItalic'
+	src: url('../fonts/hack/hack-bolditalic.woff2?sha=3114f1256') format('woff2'), url('../fonts/hack/hack-bolditalic.woff?sha=3114f1256') format('woff')
+	font-weight: 700
+	font-style: italic
+
+
+@import "helpers/**/*.sass"
+@import "base/*.sass"
+@import "generated/*.sass"
+
+// @include fontFace(Monument, '../fonts/monument/MonumentRegular400', 500, normal, otf)
+
+$fh: Hack
+$fa: Comfortaa
+$fo: 'Open Sans', sans-serif
+
+
+body
+	background-color: #2d2d2d
+	height: 100vh
+	width: 100%
+	font-family: $fa
+	font-weight: 500
+
+.roadmap
+	width: 100%
+	min-height: 100vh
+	display: flex
+
+	&__left
+		position: fixed
+		left: 0
+		top: 0
+		height: 100%
+		width: 100%
+		max-width: 260px
+		display: flex
+		flex-direction: column
+		z-index: 11
+
+
+	&__content
+		margin-left: 260px
+		width: 100%
+		min-height: 100vh
+		display: flex
+		flex-direction: column
+		background-color: #161616
+		overflow: hidden
+
+	&__content-item
+		position: relative
+		display: none
+		flex-direction: column
+		align-items: center
+		&.visible
+			display: flex
+
+	&__content-item-title
+		font-size: 26px
+		color: $accent
+		margin-bottom: 30px
+		position: fixed
+		top: 0
+		padding: 15px 0
+		box-shadow: 10px 0px 10px 0px #2d2d2d
+		left: 260px
+		right: 0
+		background-color: #161616
+		text-align: center
+		z-index: 10
+
+
+
+	&__content-text
+		position: relative
+		padding: 60px 15px 15px 15px
+		display: flex
+		flex-direction: column
+		width: 100%
+		min-height: 100vh
+		font-family: $fo
+		font-weight: 400
+		color: #FFF
+		h3
+			margin: 40px 0
+			font-size: 24px
+			font-family: $fo
+			font-weight: 700
+			text-align: center
+		h4
+			margin: 30px 0
+			font-size: 22px
+			font-family: $fo
+			font-weight: 700
+			text-align: center
+		h5
+			margin: 10px 0
+			font-family: $fo
+			font-weight: 700
+			text-align: center
+			font-size: 22px
+		p
+			color: $white
+			padding: 10px 0
+			text-align: justify
+		a
+			color: $white
+			text-decoration: underline
+
+		img
+			width: 100%
+			max-width: 700px
+			height: auto
+			margin: 15px auto
+			&.head
+				border: 1px solid $accent
+				max-width: 100%
+				margin: 0 0px 30px
+
+		pre
+			display: flex
+			max-width: 100% !important
+			width: 100%
+			margin: 15px auto
+			padding: 0 !important
+			padding-right: 15px !important
+			border: none !important
+			// white-space: pre-wrap !important
+			code
+				font-family: Hack !important
+				background-color: transparent
+				overflow: auto !important
+
+		code
+			max-width: 100% !important
+			font-family: Hack !important
+			background-color: rgba(#fff, 0.1)
+			border-radius: 3px
+			padding: 0 5px
+
+		ol
+			max-width: 700px
+			margin: 0 auto
+			padding: 0
+			padding-left: 15px
+			display: flex
+			flex-direction: column
+			align-items: flex-start
+			list-style: none
+			+counter('before', list, '', '> li', decimal)
+				margin-right: 10px
+
+			li
+				padding-left: 15px
+				margin-bottom: 10px
+				&:last-child
+					margin-bottom: 0
+
+
+		table
+			border-color: rgba(#fff, 0.5)
+			thead
+				tr
+					border: 1px solid
+				th
+					border: 1px solid
+			tbody
+				th
+					padding: 15px 0
+				tr
+				td
+					border: 1px solid
+					padding: 5px
+
+		iframe
+			width: 100%
+			min-height: calc(100vh - 75px)
+			margin-bottom: 15px
+			&:last-child
+				margin-bottom: 0
+
+	&__list
+		width: 100%
+		height: 100%
+		overflow-y: auto
+		overflow-x: hidden
+		display: flex
+		flex-direction: column
+		padding: 15px
+		+customScroll(6px, 4px, $pink, rgba($white, 0.25))
+
+
+	&__item
+		width: auto
+		display: flex
+		flex-direction: column
+		align-items: flex-start
+		margin-bottom: 30px
+		&:last-child
+			margin-bottom: 0
+
+	&__item-main
+		width: 100%
+		padding: 2px 5px
+		border: 2px solid $white
+		margin-bottom: 10px
+		display: flex
+		flex-direction: column
+		align-items: center
+		position: relative
+		text-align: center
+		color: $white
+		+h
+			cursor: pointer
+		+after
+			position: absolute
+			top: calc(100% + 1px)
+			left: 10px
+			width: 1px
+			height: 11px
+			background-color: $white
+			opacity: 0.5
+
+	&__item-secondary
+		margin-left: 12px
+		display: flex
+		flex-direction: column
+		align-items: center
+		padding: 3px 5px
+		margin-bottom: 6px
+		border: 1px solid rgba(#fff, 0.5)
+		background-color: transparent !important
+		position: relative
+		font-size: 14px
+		line-height: 16px
+		font-weight: 400
+		font-family: $fh
+		text-align: center
+		color: #FFF
+		&:after
+			content: ""
+			position: absolute
+			top: calc(100% + 1px)
+			left: -1px
+			width: 1px
+			height: 6px
+			background-color: #FFF
+			opacity: 0.5
+
+		+before
+			position: absolute
+			top: 0
+			bottom: 0
+			margin: auto 0
+			right: -20px
+			width: 10px
+			height: 10px
+			border-radius:  50%
+
+		&:last-child
+			margin-bottom: 0
+			&:after
+				content: none
+		+h
+			cursor: pointer
+
+		// &--overlay
+		// 	padding-right: 24px
+
+		// 	+h
+		// 		cursor: pointer
+		// 		.roadmap__item-overlay
+		// 			height: auto
+		// 			opacity: 1
+		// 			max-height: 500px
+		// 			pointer-events: all
+
+		&.active
+			background-color: $accent !important
+			border-color: $accent
+
+
+	&__item-overlay
+		+center
+		background-color: #FFF
+		min-width: 150px
+		color: $black
+		z-index: 2
+		padding: 6px
+		opacity: 0
+		width: 0
+		pointer-events: none
+		max-height: 0
+		box-shadow: 0 0 10px 0 rgba($pink, 0.5)
+		+tr
+		display: none
+
+	&__item-overlay-item
+		white-space: nowrap
+
+	&__legend
+		padding: 15px
+		display: flex
+		flex-direction: column
+
+	&__legend-item
+		display: flex
+		flex-direction: row-reverse
+		align-items: center
+		justify-content: flex-end
+		color: $white
+
+	&__legend-color
+		margin-right: 5px
+		width: 10px
+		height: 10px
+		border-radius: 50%
+
+	&__legend-text
+
+.roadmap-learned
+	background-color: green
+	+before
+		background-color: green
+.roadmap-learning
+	background-color: cyan
+	+before
+		background-color: cyan
+.roadmap-knowABit
+	background-color: purple
+	+before
+		background-color: purple
+.roadmap-forFuture
+	background-color: tomato
+	+before
+		background-color: tomato
+.roadmap-shit
+	background-color: brown
+	+before
+		background-color: brown
+
+// learned - learned and used
+// learning - learning now
+// knowABit - reading about
+// forFuture - need to learn
+// shit - not interested
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -3,26 +3,26 @@
 	// border-right: 1px solid $cvBorderColor
 	display: flex
 	flex-direction: column
-	padding: 30px 0 30px 30px
+	padding: $globalGap 0 $globalGap $globalGap
 	position: relative
 	+after
-		width: 0.5px
+		width: 1px
 		background-color: $cvBorderColor
 		position: absolute
 		right: 0
-		top: 30px
-		bottom: 30px
+		top: $globalGap
+		bottom: $globalGap
 
 	.avatar
 		height: auto
-		width: calc(100% - 30px)
-		margin-bottom: 30px
+		width: calc(100% - #{$globalGap})
+		margin-bottom: $globalGap
 
 	&__block
 		display: flex
 		flex-direction: column
 		width: 100%
-		margin-bottom: 30px
+		margin-bottom: 24px
 
 		&--interests
 			flex-direction: row
@@ -130,6 +130,7 @@
 		font-size: 14px
 	&__box-subtitle
 		font-size: $pt14
+		line-height: 20px
 		color: $cvText
 		font-family: $f5
 		text-decoration: none

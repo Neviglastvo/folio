@@ -1,23 +1,226 @@
 {% set roadmap = [
 
 	{
-		title: 'HTML',
+		title: 'Основы',
+		file: 'basics',
 		subitem: [
 			{
-				title: 'Basics',
-				status: 'learned'
+				title: 'Как устроен интернет',
+				status: 'learned',
+				file: 'basicsHowInternetWorks'
+			},
+			{
+				title: 'Как устроен WEB',
+				status: 'learned',
+				file: 'basicsHowWebWorks'
+			},
+			{
+				title: 'Как работает браузер',
+				status: 'learned',
+				file: 'basics'
+			},
+			{
+				title: 'HTTP Status codes',
+				status: 'learned',
+				file: 'basicsHttpCodes'
 			},
 			{
 				title: 'Semantic HTML',
-				status: 'learned'
+				status: 'learned',
+				file: 'basicsHowInternetWorks'
+			},
+			{
+				title: 'Cookies',
+				status: 'learned',
+				file: 'basicsCookies'
+			},
+			{
+				title: 'Web Storage',
+				status: 'learned',
+				file: 'basicsWebStorage'
 			},
 			{
 				title: 'Basic SEO',
-				status: 'learned'
+				status: 'learned',
+				file: 'basicsHowInternetWorks'
 			},
 			{
 				title: 'Accessibility',
-				status: 'knowABit'
+				status: 'knowABit',
+				file: 'basicsHowInternetWorks'
+			}
+		]
+	},
+	{
+		title: 'JavaScript',
+		file: 'js',
+		subitem: [
+			{
+				title: 'EnginesV8',
+				status: 'learned',
+				file: 'jsEnginesV8'
+			},
+			{
+				title: 'JSON',
+				status: 'learned',
+				file: 'jsJSON'
+			},
+			{
+				title: 'Syntax',
+				status: 'learned',
+				file: 'jsSyntax'
+			},
+			{
+				title: 'Scroll',
+				status: 'learned',
+				file: 'jsScroll'
+			},
+			{
+				title: 'Storage',
+				status: 'learned',
+				file: 'jsStorage'
+			},
+			{
+				title: 'Objects',
+				status: 'learned',
+				file: 'jsObjects'
+			},
+			{
+				title: 'Arrays',
+				status: 'learned',
+				file: 'jsArrays'
+			},
+			{
+				title: 'Regular Expressions',
+				status: 'learned',
+				file: 'jsRegExp'
+			},
+			{
+				title: 'Data Types',
+				status: 'learned',
+				file: 'jsDataTypes'
+			},
+			{
+				title: 'This',
+				status: 'learned',
+				file: 'jsThis'
+			},
+			{
+				title: 'Event Loop',
+				status: 'learned',
+				file: 'jsEventLoop'
+			},
+			{
+				title: 'Hoisting',
+				status: 'learned',
+				file: 'jsHoisting'
+			},
+			{
+				title: 'Closures',
+				status: 'learned',
+				file: 'jsClosures'
+			},
+			{
+				title: 'Try/Catch',
+				status: 'learned',
+				file: 'jsTryCatch'
+			},
+			{
+				title: 'Promises',
+				status: 'learned',
+				file: 'jsPromises'
+			},
+			{
+				title: 'Async/Await',
+				status: 'learned',
+				file: 'jsAsync'
+			},
+			{
+				title: 'Fetch',
+				status: 'learned',
+				file: 'jsFetch'
+			},
+			{
+				title: 'Axios',
+				status: 'learned',
+				file: 'jsAxios'
+			},
+			{
+				title: 'Array Reduce',
+				status: 'learned',
+				file: 'jsArrayReduce'
+			},
+			{
+				title: 'ES6',
+				status: 'learned',
+				file: 'jsES6'
+			},
+			{
+				title: 'ES6 Modules',
+				status: 'learned',
+				file: 'jsModules'
+			},
+			{
+				title: 'Numbers',
+				status: 'learned',
+				file: 'jsNumbers'
+			},
+			{
+				title: 'DOM',
+				status: 'learned',
+				file: 'jsDOM'
+			},
+			{
+				title: 'Fetch API / Ajax',
+				status: 'learned',
+				file: 'js'
+			},
+			{
+				title: 'ES6+ and modules',
+				status: 'learned',
+				file: 'js'
+			},
+			{
+				title: 'Language concepts',
+				status: 'learned',
+				file: 'js',
+				subitem2: [
+					{title: 'Hoisting'},
+					{title: 'Event Bubbling'},
+					{title: 'Scope'},
+					{title: 'Prototype'},
+					{title: 'Shadow Dom'},
+					{title: 'strict'},
+					{title: 'how browsers work'},
+					{title: 'DNS'},
+					{title: 'HTTP'}
+				]
+			}
+		]
+	},
+	{
+		title: 'HTML',
+		file: 'html',
+		subitem: [
+			{
+				title: 'Basics',
+				status: 'learned',
+				file: 'htmlBasics'
+			},
+			{
+				title: 'Semantic HTML',
+				status: 'learned',
+				file: 'htmlBasics'
+			},
+			{
+				title: 'Basic SEO',
+				status: 'learned',
+				file: 'htmlBasics'
+			},
+			{
+				title: 'Accessibility',
+				status: 'knowABit',
+				file: 'htmlBasics'
 			}
 		]
 	},
@@ -60,42 +263,6 @@
 		]
 	},
 
-	{
-		title: 'JavaScript',
-		subitem: [
-			{
-				title: 'Syntax',
-				status: 'learned'
-			},
-			{
-				title: 'DOM',
-				status: 'learned'
-			},
-			{
-				title: 'Fetch API / Ajax',
-				status: 'learned'
-			},
-			{
-				title: 'ES6+ and modules',
-				status: 'learned'
-			},
-			{
-				title: 'Language concepts',
-				status: 'learned',
-				subitem2: [
-					{title: 'Hoisting'},
-					{title: 'Event Bubbling'},
-					{title: 'Scope'},
-					{title: 'Prototype'},
-					{title: 'Shadow Dom'},
-					{title: 'strict'},
-					{title: 'how browsers work'},
-					{title: 'DNS'},
-					{title: 'HTTP'}
-				]
-			}
-		]
-	},
 
 	{
 		title: 'Package Managers',

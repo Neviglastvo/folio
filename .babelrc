@@ -8,5 +8,20 @@
   ],
   "parserOpts": {
   	"plugins": ["transform-object-rest-spread", "transform-es2015-spread", "transform-es2015-destructuring"]
-  }
+  },
+  "plugins": [
+  ["prismjs", {
+    "languages": [
+      "applescript",
+      "css",
+      "javascript",
+      "markup",
+      "scss",
+      "sass"
+    ],
+    "plugins": ["line-numbers"],
+    // "theme": "twilight",
+    "css": true
+  }]
+  ]
 }

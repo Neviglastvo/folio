@@ -1,5 +1,17 @@
 {% set works = [
 	{
+		title: 'TripByClick',
+		logo: 'tbc.svg',
+		accent: 'rgb(217, 82, 79)',
+		link: 'https://trip-by-click.com/',
+		linkTitle: 'Discover',
+		linkTarget: '_blank',
+		descr: 'Travellers best thingie',
+		img: [
+			{imgItem: 'tbc.jpg'}
+		]
+	},
+	{
 		title: 'Inffinder',
 		logo: 'inffinder.svg',
 		accent: 'rgb(21, 25, 78)',
@@ -93,7 +105,8 @@
 		descr: 'Corporate website',
 		img: [
 			{imgItem: 'incrify.jpg'}
-		]
+		],
+		disabled: true
 	},
 	{
 		title: 'Next Work',
@@ -186,47 +199,35 @@
 {% set skills = [
 
 	{
-		title: 'HTML 5',
+		title: 'HTML5',
 		color: 'orange',
 		icon: 'html',
 		skill: '95%'
 	},
 	{
-		title: 'CSS 3',
+		title: 'CSS3',
 		icon: 'css',
 		color: 'blue',
 		skill: '95%'
 	},
 	{
-		title: 'JavaScript',
+		title: 'JavaScript (ES5, ES6)',
 		icon: 'js',
 		color: 'yellow',
 		skill: '75%'
-	},
-	{
-		title: 'PHP',
-		icon: 'php',
-		color: 'blue',
-		skill: '25%'
 	}
 
 ] %}
 
 {% set technologies = [
 
-	{title: 'Nunjucks'},
-	{title: 'BEM'},
+	{title: 'React'},
+	{title: 'Redux'},
+	{title: 'TypeScipt'},
 
+	{title: 'StyledComponents'},
 	{title: 'SASS'},
-
-	{title: 'JQuery'},
-	{title: 'ES6'},
-
-	{title: 'YII2'},
-
-	{title: 'Git'},
-
-	{title: 'MERN (basic knowledge)'},
+	{title: 'BEM'},
 
 	{title: 'Webpack'},
 	{title: 'Gulp'}

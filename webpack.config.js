@@ -5,7 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 function createConfig(env) {
   let isProduction,
-    webpackConfig;
+  webpackConfig;
 
   if (env === undefined) {
     env = process.env.NODE_ENV;
@@ -29,8 +29,8 @@ function createConfig(env) {
       publicPath: 'js/',
     },
     devtool: isProduction ?
-      '#source-map' :
-      '#cheap-module-eval-source-map',
+    '#source-map' :
+    '#cheap-module-eval-source-map',
     plugins: [
       // new webpack.optimize.CommonsChunkPlugin({
       //     name: 'vendor',
@@ -56,10 +56,10 @@ function createConfig(env) {
         analyzerPort: 4000,
         openAnalyzer: false
       }),
-    ],
-    resolve: {
-      extensions: ['.js'],
-      alias: {
+      ],
+      resolve: {
+        extensions: ['.js'],
+        alias: {
         // TweenLite: path.resolve('node_modules', 'gsap/src/uncompressed/TweenLite.js'),
         // TweenMax: path.resolve('node_modules', 'gsap/src/uncompressed/TweenMax.js'),
         // TimelineLite: path.resolve('node_modules', 'gsap/src/uncompressed/TimelineLite.js'),
@@ -74,28 +74,32 @@ function createConfig(env) {
     },
     module: {
       rules: [
-        {
-          enforce: 'pre',
-          test: /\.js$/,
-          exclude: [
-            path.resolve(__dirname, 'node_modules'),
-          ],
-          loader: 'eslint-loader',
-          options: {
-            fix: true,
-            cache: true,
-            ignorePattern: __dirname + '/src/js/lib/'
-          }
-        }, {
-          test: /\.js$/,
-          loader: 'babel-loader',
-          exclude: [
-            path.resolve(__dirname, 'node_modules'),
-          ],
-        },
-        { test: /\.(glsl|frag|vert)$/, loader: 'raw-loader', exclude: /node_modules/ },
-        { test: /\.(glsl|frag|vert)$/, loader: 'glslify-loader', exclude: /node_modules/ }
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: [
+        path.resolve(__dirname, 'node_modules'),
         ],
+        loader: 'eslint-loader',
+        options: {
+          fix: true,
+          cache: true,
+          ignorePattern: __dirname + '/src/js/lib/'
+        }
+      }, {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: [
+        path.resolve(__dirname, 'node_modules'),
+        ],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      { test: /\.(glsl|frag|vert)$/, loader: 'raw-loader', exclude: /node_modules/ },
+      { test: /\.(glsl|frag|vert)$/, loader: 'glslify-loader', exclude: /node_modules/ }
+      ],
     },
   };
 
@@ -104,7 +108,7 @@ function createConfig(env) {
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       })
-    );
+      );
   }
 
   return webpackConfig;

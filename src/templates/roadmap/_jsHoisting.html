@@ -1,0 +1,101 @@
+
+<img src="./img/roadmap/js/hoisting/head.webp" alt="" class="head" />
+
+
+<p>If you’re new to JavaScript, you may have experienced “weird” behavior where some variables are randomly <code>undefined</code>, <code>ReferenceError</code>s get thrown, and so on. Hoisting is often explained as <em>putting variables and functions to the top of the file</em> but nah, that’s not what’s happening, although the behavior might seem like it 😃</p>
+
+<p>When the JS engine gets our script, the first thing it does is <strong>setting up memory</strong> for the data in our code. No code is executed at this point, it’s simply just preparing everything for execution. The way that function declarations and variables are stored is different. Functions are stored with a <strong>reference to the entire function</strong>.</p>
+
+<img src="./img/roadmap/js/hoisting/1.gif" />
+
+<p>With variables, it’s a bit different. ES6 introduced two new keywords to declare variables: <code>let</code> and <code>const</code>. Variables declared with the <code>let</code> or <code>const</code> keyword are stored <em>uninitialized</em>.</p>
+
+<img src="./img/roadmap/js/hoisting/2.gif" />
+
+<p>Variables declared with the <code>var</code> keyword are stored with the default value of <code>undefined</code>. </p>
+
+<img src="./img/roadmap/js/hoisting/3.gif" />
+
+<p>Now that the creation phase is done, we can actually execute the code. Let's see what happens if we had 3 console.log statements on top of the file, before we declared the function or any of the variables.</p>
+
+<p>Since functions are stored with a reference to the entire function code,  we can invoke them even <em>before</em> the line on which we created them! 🔥</p>
+
+<img src="./img/roadmap/js/hoisting/4.gif" />
+
+<p>When we reference a variable declared with the <code>var</code> keyword before their declaration, it’ll simply return its default value that it was stored with: <code>undefined</code>! However, this could sometimes lead to "unexpected" behavior. In most cases this means you’re referencing it unintentionally (you probably don’t want it to actually have the value of <code>undefined</code>) 😬</p>
+
+<img src="./img/roadmap/js/hoisting/5.gif" />
+
+<p>In order to prevent being able to accidentally reference an <code>undefined</code> variable, like we could with the <code>var</code> keyword, a <code>ReferenceError</code> gets thrown whenever we try to access <em>uninitialized</em> variables. The "zone" before their actual declaration, is called the <strong>temporal dead zone</strong>: you cannot reference the variables (this includes ES6 classes as well!) before their initialization.</p>
+
+<img src="./img/roadmap/js/hoisting/6.gif" />
+
+<p>When the engine passes the line on which we actually declared the variables, the values in memory are overwritten with the values we actually declared them with.</p>
+
+<p>(Oops I notice now this should be number 7. Will update asap 😬)</p>
+
+<img src="./img/roadmap/js/hoisting/7.gif" />
+
+<p>All done! 🎉 Quick recap:</p>
+
+<ol>
+<li>Functions and variables are stored in memory for an execution context before we execute our code. This is called <em>hoisting</em>. </li>
+<li>Functions are stored with a reference to the entire functions, variables with the <code>var</code> keyword with the value of <code>undefined</code>, and variables with the <code>let</code> and <code>const</code> keyword are stored <em>uninitialized</em>. </li>
+</ol>
+
+<p>I hope that the term <em>hoisting</em> is a bit less vague now that we've looked at what's happening when we execute our code. As always, don't worry if it still doesn't make a lot of sense yet. You'll get a lot more comfortable with it the more you work with it. Feel free to ask me for help, I'd love to help you! 😃</p>
+
+
+<h3>Practice</h3>
+
+<h4>figuring out what gets logged to the console if we run the following:</h4>
+
+<pre class="language-javascript">
+	<code>
+		let hello;
+		console.log("hello :", hello);
+		hello = "hello!";
+		console.log("hello :", hello);
+
+		// undefined
+		// hello!
+	</code>
+</pre>
+
+<pre class="language-javascript">
+	<code>
+		var hello;
+		console.log("hello :", hello);
+		hello = "hello!";
+		console.log("hello :", hello);
+
+		// undefined
+		// hello!
+	</code>
+</pre>
+
+<pre class="language-javascript">
+	<code>
+		var hello;
+		console.log("hello :", hello);
+		var hello = "hello!";
+		console.log("hello :", hello);
+
+		// undefined
+		// hello!
+	</code>
+</pre>
+
+<h5>but!</h5>
+
+<pre class="language-javascript">
+	<code>
+		let hello;
+		console.log("hello :", hello);
+		let hello = "hello!";
+		console.log("hello :", hello);
+
+		// ERROR: Uncaught SyntaxError: Identifier 'w' has already been declared
+	</code>
+</pre>
+
