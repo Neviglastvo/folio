@@ -1,17 +1,14 @@
 ---
 title: CV Roman Yakovenko
 ---
-{% extends "layouts/_layoutcv.html" %}
 
-{% block content %}
-
-{% import "data/data.html" as data %}
+{% extends "layouts/_layoutcv.html" %} {% block content %} {% import
+"data/data.html" as data %}
 
 <div class="cv">
 	<div class="cv-left">
-
 		<div class="avatar">
-			<img src="./img/cv/2.png" alt="" class="avatar__img">
+			<img src="./img/cv/2.png" alt="" class="avatar__img" />
 			<div class="avatar__text">¯\_(ツ)_/¯</div>
 		</div>
 
@@ -25,8 +22,16 @@ title: CV Roman Yakovenko
 			<div class="cv-left__title">goal</div>
 
 			<div class="cv-left__item">
-				<div class="cv-left__box-subtitlebox-subtitle cv-left__box-subtitle--goal">
-					Seeking a position of a <i>React Developer</i> with the opportunity to work in a team of professionals, to expand my skill set, learn new technologies and participate in challenging projects.
+				<div
+					class="
+						cv-left__box-subtitlebox-subtitle
+						cv-left__box-subtitle--goal
+					"
+				>
+					Seeking a position of a <span>React Developer</span> with
+					the opportunity to work in a team of professionals, to
+					expand my skill set, learn new technologies and participate
+					in challenging projects.
 				</div>
 			</div>
 		</div>
@@ -42,19 +47,15 @@ title: CV Roman Yakovenko
 
 			{% include "./cv/_leftFolio.html" %}
 		</div>
-
 	</div>
 
-
 	<div class="cv-right">
-
 		<div class="cv-header">
 			<div class="cv-header__box">
 				<div class="cv-header__title">Roman Yakovenko</div>
 				<div class="cv-header__subtitle">
 					React developer
-					<span>3 years of experience</span>
-
+					<span>4 years of experience</span>
 				</div>
 				<!-- <div class="cv-header__subtitle2">Salary: <span>1500$</span></div> -->
 			</div>
@@ -73,31 +74,27 @@ title: CV Roman Yakovenko
 			</div>
 
 			{% include "./cv/_rightExperience.html" %}
-
 		</div>
 
+		{#
 		<div class="cv-right__container">
 			<div class="cv-right__title">
 				<span>Responsibilities</span>
-				<div class="cv-right__title-icon">
-					{{icon.i('cog')}}
-				</div>
+				<div class="cv-right__title-icon">{{icon.i('cog')}}</div>
 			</div>
 
 			{% include "./cv/_rightResponsibilities.html" %}
 		</div>
+		#}
 
 		<div class="cv-right__container">
 			<div class="cv-right__title">
 				<span>Education</span>
-				<div class="cv-right__title-icon">
-					{{icon.i('education2')}}
-				</div>
+				<div class="cv-right__title-icon">{{icon.i('education2')}}</div>
 			</div>
 
 			{% include "./cv/_rightEducation.html" %}
 		</div>
-
 	</div>
 </div>
 

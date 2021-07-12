@@ -1,12 +1,10 @@
 ProjectTitle: Portfolio
-ProjectColor: '#DA1F4F'
-ProjectBgColor: '#000000'
-ProjectLogo: 'favicon/favicon.ico'
+ProjectColor: "#DA1F4F"
+ProjectBgColor: "#000000"
+ProjectLogo: "favicon/favicon.ico"
 
 PageList:
-- file: folio.html
-  ready: 95
-- file: cv.html
-  ready: 100
-- file: roadmap.html
-  ready: 9
+    - file: folio.html
+      ready: 100
+    - file: cv.html
+      ready: 100

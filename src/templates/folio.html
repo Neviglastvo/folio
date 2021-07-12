@@ -7,15 +7,10 @@ title: Roman Yakovenko | Frontend Developer
 
 {% import "data/data.html" as data %}
 
-{# include "./partials/_menu.html" #}
 <div class="layout">
-
-	<!-- <div id="jsBg" class="layout__bg js-bg js-production"></div> -->
-	<!-- <div id="jsBg" class="layout__bg js-bg "></div> -->
 
 	<div class="layout__sidebar">
 		{% include "./partials/_logo.html" %}
-		<!-- <div class="layout__pagination js-slider-layout-pagination"></div> -->
 
 		<div class="layout__sidebar-social">
 				{% for item in data.socialsHero %}
@@ -28,11 +23,11 @@ title: Roman Yakovenko | Frontend Developer
 	<div class="layout__container">
 
 		<div class="layout__item layout__item--hero">
-			{% include "./partials/_0hero.html" %}
+			{% include "./partials/_hero.html" %}
 		</div>
 
 		<div class="layout__item layout__item--works">
-			{% include "./partials/_2works.html" %}
+			{% include "./partials/_works.html" %}
 		</div>
 
 	</div>

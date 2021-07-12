@@ -15,33 +15,43 @@
 		&:last-child
 			margin-bottom: 0
 
-		+before
-			position: absolute
-			top: 30px
-			bottom: 0
-			left: 0
-			width: 1px
-			background-color: #000
+		// +before
+		// 	position: absolute
+		// 	top: 30px
+		// 	bottom: 0
+		// 	left: 0
+		// 	width: 1px
+		// 	background-color: #000
 
 		&--2col
-			+before(none)
-			border-left: none
+			// +before(none)
+			// border-left: none
 
 			width: 100%
 			display: flex
+			align-items: stretch
+
+			.cv-right__title
+				margin-bottom: 2px
+
 
 	&__col
 		position: relative
 		// box-shadow: -4px 0 0px -4px $cvBorderColor
 		// border-left: $borderWidth solid $cvBorderColor
 		width: 100%
-		+before
-			position: absolute
-			top: 30px
-			bottom: 0
-			left: 0
-			width: 1px
-			background-color: #000
+
+		display: flex
+		flex-direction: column
+		// +before
+		// 	position: absolute
+		// 	top: 30px
+		// 	bottom: 0
+		// 	left: 0
+		// 	width: 1px
+		// 	background-color: #000
+
+
 
 		.cv-skills, .cv-technologies
 			padding-left: 10px
@@ -53,26 +63,26 @@
 		display: flex
 		justify-content: space-between
 		position: relative
-		margin-bottom: 20px
+		margin-bottom: 14px
 		font-family: $f2
 		background-color: $cvBg
-		+after
-			position: absolute
-			top: 0
-			bottom: 0
-			margin: auto 0
-			right: 0
-			width: 100%
-			height: $borderWidth
-			background-color: $cvBorderColor
-			z-index: 0
+		// +after
+		// 	position: absolute
+		// 	top: 0
+		// 	bottom: 0
+		// 	margin: auto 0
+		// 	right: 0
+		// 	width: 100%
+		// 	height: $borderWidth
+		// 	background-color: $cvBorderColor
+		// 	z-index: 0
 
 		span
 			display: flex
 			align-items: center
-			padding: 0 8px
+			// padding: 0 8px
 			// box-shadow: 0 0 0px 1px $cvBorderColor
-			border: $borderWidth solid $cvBorderColor
+			// border: $borderWidth solid $cvBorderColor
 			// border-left: none
 
 			color: $cvText
@@ -83,9 +93,11 @@
 			font-weight: 500
 			text-transform: uppercase
 			background-color: $cvBg
-			z-index: 1
+			// z-index: 1
 
 	&__title-icon
+		display: none
+
 		height: 36px
 		width: 36px
 		display: flex
@@ -119,18 +131,17 @@
 		display: flex
 		flex-direction: column
 		position: relative
-		+before(none)
-			position: absolute
-			top: 0
-			bottom: 0
-			margin: auto 0
-			left: 0
-			width: 1px
-			height: 100%
-			background-color: rgba($cvBorderColor, 0.5)
+		border-left: $borderWidth solid $cvBorderColor
+
+	&__info-responsibilities
+		width: 100%
+		display: flex
+		flex-direction: column
+		position: relative
+
 
 	&__info-title
-		padding-left: 10px
+		padding-left: 6px
 		width: 100%
 		display: flex
 		justify-content: space-between
@@ -142,7 +153,7 @@
 		color: $cvText
 		font-size: $pt18
 		line-height: $pt18
-		border-bottom: 1px solid rgba($cvBorderColor, 0.5)
+		border-bottom: 1px solid $cvBorderColor
 		a
 			color: $cvText
 			text-decoration: none
@@ -151,8 +162,7 @@
 		display: flex
 		justify-content: space-between
 		align-items: center
-		padding-left: 10px
-		margin-bottom: 10px
+		padding-left: 8px
 		color: rgba(16,16,16,0.9)
 		font-weight: 700
 		font-family: $f3
@@ -160,10 +170,10 @@
 		line-height: $pt16
 
 	&__info-subtitle2
-		padding-left: 20px
+		padding-left: 8px
 		font-family: $f5
 		font-size: $pt16
-		line-height: $pt18
+		line-height: $pt20
 		text-align: justify
 		color: $cvText
 		font-weight: 300
@@ -177,27 +187,39 @@
 			font-style: italic
 
 		p
+			margin: 0
 			width: 100%
+			// margin-left: 4px
+			padding: 4px 0
 			display: flex
-			position: relative
-			margin-left: 10px
-			padding-right: 10px
-			margin-bottom: 4px
+
+			font-family: $f3
+			font-size: $pt16
+			line-height: $pt20
+
 			&:last-child
 				margin-bottom: 0
-			+before
-				position: absolute
-				left: -18px
-				top: 6px
-				width: 5px
-				height: 5px
-				background-color: $cvBorderColor
-				border-radius: 50%
+
+	&__info-stack
+		margin-left: 10px
+
+		display: inline-flex
+		gap: 6px
+
+		background-color: $cvBg
+		font-family: $f3
+		color: $cvText
+		white-space: nowrap
+		align-self: start
+
+		a
+			font-family: $f1
+			font-size: $pt14
+			color: rgba($cvText, 0.75)
 
 	&__year
 		display: flex
 		position: relative
-		margin-left: 10px
 		background-color: $cvBg
 		font-family: $f3
 		color: $cvText
@@ -218,5 +240,5 @@
 		span
 			padding-left: 1px
 			font-size: $pt12
-			line-height: $pt12
+			line-height: $pt16
 			align-self: flex-end
